@@ -21,16 +21,26 @@
 <body>
 
   <!-- HEADER -->
-  <header class="header">
-    <div class="container nav">
-      <div class="logo">ExpenseSplit</div>
-      <nav>
-        <a href="#how">How it works</a>
-        <a href="#features">Features</a>
-        <a href="#tool">Calculator</a>
-      </nav>
-    </div>
+ <header class="header">
+    .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+nav a {
+  margin-left: 24px;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #2563eb;
+}
+
   </header>
+
 
   <!-- HERO SECTION -->
   <section class="hero">
