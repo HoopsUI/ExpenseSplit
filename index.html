@@ -90,13 +90,51 @@
   </section>
 
   <!-- CTA -->
-  <section id="tool" class="cta">
-    <div class="container">
-      <h2>Ready to Split Your Expenses?</h2>
-      <p>Start using ExpenseSplit now — no login required.</p>
-      <a href="#" class="secondary-btn">Launch Calculator</a>
+  <section id="tool" class="section light">
+  <div class="container calculator">
+
+    <h2 class="section-title">Expense Split Calculator</h2>
+
+    <!-- Currency -->
+    <label>Choose currency</label>
+    <select id="currency">
+      <option value="₹">₹ INR</option>
+      <option value="$">$ USD</option>
+      <option value="€">€ EUR</option>
+      <option value="£">£ GBP</option>
+      <option value="¥">¥ JPY</option>
+    </select>
+
+    <!-- Total Amount -->
+    <label>Total Expense Amount</label>
+    <input type="number" id="totalAmount" placeholder="Enter total amount">
+
+    <!-- Split Type -->
+    <label>Split type</label>
+    <select id="splitType">
+      <option value="equal">Equal split</option>
+      <option value="unequal">Unequal split</option>
+    </select>
+
+    <!-- People -->
+    <label>Number of people</label>
+    <input type="number" id="people" placeholder="Enter number of people">
+
+    <!-- Unequal Inputs -->
+    <div id="unequalInputs" style="display:none;">
+      <label>Enter individual shares (comma separated)</label>
+      <input type="text" id="shares" placeholder="Example: 1,2,1">
+      <small>Higher number = higher share</small>
     </div>
-  </section>
+
+    <button class="primary-btn" onclick="calculateSplit()">Calculate</button>
+
+    <!-- Results -->
+    <div id="result" class="result-box"></div>
+
+  </div>
+</section>
+
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -109,6 +147,7 @@
       </div>
     </div>
   </footer>
+<script src="script.js"></script>
 
 </body>
 </html>
