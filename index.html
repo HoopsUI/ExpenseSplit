@@ -95,25 +95,46 @@
 
     <h2 class="section-title">Expense Split Calculator</h2>
 
-    <!-- 🔹 STEP 1: Calculator Form START -->
-    <form id="calculatorForm">
+    <!-- BASIC CALCULATOR FORM -->
+    <form id="calculatorForm" class="calculator-form">
 
-      <!-- currency -->
-      <!-- total amount -->
-      <!-- split type -->
-      <!-- number of people -->
+      <div class="form-group">
+        <label>Choose currency</label>
+        <select id="currency">
+          <option value="₹">₹ INR</option>
+          <option value="$">$ USD</option>
+          <option value="€">€ EUR</option>
+          <option value="£">£ GBP</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Total Expense Amount</label>
+        <input type="number" id="amount" placeholder="Enter total amount">
+      </div>
+
+      <div class="form-group">
+        <label>Split type</label>
+        <select id="splitType">
+          <option value="equal">Equal split</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Number of people</label>
+        <input type="number" id="people" placeholder="Enter number of people">
+      </div>
 
       <button type="submit" class="primary-btn">
         Calculate
       </button>
 
     </form>
-    <!-- 🔹 STEP 1: Calculator Form END -->
 
-    <!-- 🔹 RESULTS (later step) -->
+    <!-- RESULT -->
     <div id="result" class="result-box hidden"></div>
 
-    <!-- 🔹 ADVANCED CTA -->
+    <!-- ADVANCED CTA -->
     <div class="advanced-cta">
       <p>Need to track who paid what and settle balances?</p>
       <a href="advanced.html" class="secondary-btn">
@@ -123,6 +144,7 @@
 
   </div>
 </section>
+
 
 
     <!-- Currency -->
