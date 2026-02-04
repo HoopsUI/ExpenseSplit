@@ -1,4 +1,21 @@
 
+const peopleInput = document.getElementById("people");
+const namesContainer = document.getElementById("namesContainer");
+
+peopleInput.addEventListener("input", () => {
+  const count = parseInt(peopleInput.value);
+  namesContainer.innerHTML = "";
+
+  if (!count || count <= 0 || count > 20) return;
+
+  for (let i = 1; i <= count; i++) {
+    namesContainer.innerHTML += `
+      <div class="name-input">
+        <input type="text" placeholder="Person ${i} name" id="name-${i}">
+      </div>`;
+  }
+});
+
 document.getElementById("splitType").addEventListener("change", function () {
   document.getElementById("unequalInputs").style.display =
     this.value === "unequal" ? "block" : "none";
@@ -19,6 +36,12 @@ function calculateSplit() {
     return;
   }
 
+  const names = [];
+  for (let i = 1; i <= people; i++) {
+    const name = document.getElementById(`name-${i}`).value || `Person ${i}`;
+    names.push(name);
+  }
+
   resultTable.innerHTML = "";
   resultBox.classList.remove("hidden");
 
@@ -26,13 +49,13 @@ function calculateSplit() {
     const share = (total / people).toFixed(2);
     summaryText.innerText = `Total expense of ${currency}${total} split equally among ${people} people.`;
 
-    for (let i = 1; i <= people; i++) {
+    names.forEach(name => {
       resultTable.innerHTML += `
         <tr>
-          <td>Person ${i}</td>
+          <td>${name}</td>
           <td>${currency}${share}</td>
         </tr>`;
-    }
+    });
   }
 
   if (type === "unequal") {
@@ -52,7 +75,7 @@ function calculateSplit() {
       const amount = ((s / sumShares) * total).toFixed(2);
       resultTable.innerHTML += `
         <tr>
-          <td>Person ${i + 1}</td>
+          <td>${names[i]}</td>
           <td>${currency}${amount}</td>
         </tr>`;
     });
