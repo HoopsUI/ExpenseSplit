@@ -91,6 +91,10 @@ if (peopleInput) {
   }
 }
 
+// ===== SHARED DATA (Advanced Calculator) =====
+let participants = [];
+let expenses = [];
+
 
 // ===== PHASE 2: PARTICIPANTS =====
 
@@ -99,7 +103,7 @@ const addPersonBtn = document.getElementById("addPersonBtn");
 
 if (addPersonBtn) {
   // Data store
-  let participants = [];
+  
 
   // DOM elements
   const personInput = document.getElementById("personName");
@@ -168,119 +172,110 @@ if (addPersonBtn) {
 
 // ===== PHASE 3: EXPENSES =====
 
-let expenses = [];
+if (document.getElementById("addExpenseBtn")) {
+  const expenseTitleInput = document.getElementById("expenseTitle");
+  const expenseAmountInput = document.getElementById("expenseAmount");
+  const addExpenseBtn = document.getElementById("addExpenseBtn");
+  const expenseList = document.getElementById("expenseList");
 
-const expenseTitleInput = document.getElementById("expenseTitle");
-const expenseAmountInput = document.getElementById("expenseAmount");
-const addExpenseBtn = document.getElementById("addExpenseBtn");
-const expenseList = document.getElementById("expenseList");
+  addExpenseBtn.addEventListener("click", () => {
+    const title = expenseTitleInput.value.trim() || "Expense";
+    const amount = parseFloat(expenseAmountInput.value);
+    const paidBy = paidBySelect.value;
 
-// Add expense
-addExpenseBtn.addEventListener("click", () => {
-  const title = expenseTitleInput.value.trim() || "Expense";
-  const amount = parseFloat(expenseAmountInput.value);
-  const paidBy = paidBySelect.value;
+    const selectedPeople = Array.from(
+      splitBetweenDiv.querySelectorAll("input[type='checkbox']:checked")
+    ).map(cb => cb.value);
 
-  const selectedPeople = Array.from(
-    splitBetweenDiv.querySelectorAll("input[type='checkbox']:checked")
-  ).map(cb => cb.value);
+    if (!amount || amount <= 0) {
+      alert("Enter a valid amount.");
+      return;
+    }
 
-  // Validation
-  if (!amount || amount <= 0) {
-    alert("Enter a valid amount.");
-    return;
-  }
+    if (!paidBy) {
+      alert("Select who paid.");
+      return;
+    }
 
-  if (!paidBy) {
-    alert("Select who paid.");
-    return;
-  }
+    if (selectedPeople.length === 0) {
+      alert("Select at least one person to split with.");
+      return;
+    }
 
-  if (selectedPeople.length === 0) {
-    alert("Select at least one person to split with.");
-    return;
-  }
+    expenses.push({
+      title,
+      amount,
+      paidBy,
+      splitBetween: selectedPeople
+    });
 
-  // Store expense
-  expenses.push({
-    title,
-    amount,
-    paidBy,
-    splitBetween: selectedPeople
+    expenseTitleInput.value = "";
+    expenseAmountInput.value = "";
+
+    renderExpenses();
   });
 
-  // Reset inputs
-  expenseTitleInput.value = "";
-  expenseAmountInput.value = "";
-
-  renderExpenses();
-});
-
-// Render expenses
-function renderExpenses() {
-  expenseList.innerHTML = "";
-
-  expenses.forEach((exp, index) => {
-    const li = document.createElement("li");
-    li.textContent = `${exp.title} – ${exp.amount} (Paid by ${exp.paidBy})`;
-    expenseList.appendChild(li);
-  });
+  function renderExpenses() {
+    expenseList.innerHTML = "";
+    expenses.forEach(exp => {
+      const li = document.createElement("li");
+      li.textContent = `${exp.title} – ${exp.amount} (Paid by ${exp.paidBy})`;
+      expenseList.appendChild(li);
+    });
+  }
 }
 
 // ===== PHASE 4: CALCULATIONS =====
 
-const calculateBtn = document.getElementById("calculateBtn");
-const resultsDiv = document.getElementById("results");
+if (document.getElementById("calculateBtn")) {
+  const calculateBtn = document.getElementById("calculateBtn");
+  const resultsDiv = document.getElementById("results");
 
-calculateBtn.addEventListener("click", () => {
-  if (participants.length === 0 || expenses.length === 0) {
-    alert("Add participants and expenses first.");
-    return;
-  }
-
-  const balances = {};
-
-  // Initialize balances
-  participants.forEach(name => {
-    balances[name] = 0;
-  });
-
-  // Process expenses
-  expenses.forEach(exp => {
-    const share = exp.amount / exp.splitBetween.length;
-
-    // Payer gets full amount
-    balances[exp.paidBy] += exp.amount;
-
-    // Everyone owes their share
-    exp.splitBetween.forEach(person => {
-      balances[person] -= share;
-    });
-  });
-
-  renderResults(balances);
-});
-
-// Show results
-function renderResults(balances) {
-  resultsDiv.innerHTML = "";
-
-  const list = document.createElement("ul");
-
-  Object.keys(balances).forEach(name => {
-    const li = document.createElement("li");
-    const value = balances[name].toFixed(2);
-
-    if (balances[name] > 0) {
-      li.textContent = `${name} gets ${value}`;
-    } else if (balances[name] < 0) {
-      li.textContent = `${name} owes ${Math.abs(value)}`;
-    } else {
-      li.textContent = `${name} is settled`;
+  calculateBtn.addEventListener("click", () => {
+    if (participants.length === 0 || expenses.length === 0) {
+      alert("Add participants and expenses first.");
+      return;
     }
 
-    list.appendChild(li);
+    const balances = {};
+
+    participants.forEach(name => {
+      balances[name] = 0;
+    });
+
+    expenses.forEach(exp => {
+      const share = exp.amount / exp.splitBetween.length;
+
+      balances[exp.paidBy] += exp.amount;
+
+      exp.splitBetween.forEach(person => {
+        balances[person] -= share;
+      });
+    });
+
+    renderResults(balances);
   });
 
-  resultsDiv.appendChild(list);
+  function renderResults(balances) {
+    resultsDiv.innerHTML = "";
+    const list = document.createElement("ul");
+
+    Object.keys(balances).forEach(name => {
+      const li = document.createElement("li");
+      const value = balances[name].toFixed(2);
+
+      if (balances[name] > 0) {
+        li.textContent = `${name} gets ${value}`;
+      } else if (balances[name] < 0) {
+        li.textContent = `${name} owes ${Math.abs(value)}`;
+      } else {
+        li.textContent = `${name} is settled`;
+      }
+
+      list.appendChild(li);
+    });
+
+    resultsDiv.appendChild(list);
+  }
 }
+
