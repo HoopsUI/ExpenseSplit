@@ -130,9 +130,21 @@
     <button class="primary-btn" onclick="calculateSplit()">Calculate</button>
 
     <!-- Results -->
-    <div id="result" class="result-box"></div>
+    <div id="result" class="result-box hidden">
+  <h3>Split Summary</h3>
+  <p id="summaryText"></p>
 
-  </div>
+  <table class="result-table">
+    <thead>
+      <tr>
+        <th>Person</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody id="resultTable"></tbody>
+  </table>
+</div>
+
 </section>
 
 
