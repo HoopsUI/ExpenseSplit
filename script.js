@@ -9,16 +9,30 @@ function calculateSplit() {
   const people = parseInt(document.getElementById("people").value);
   const type = document.getElementById("splitType").value;
   const currency = document.getElementById("currency").value;
-  const result = document.getElementById("result");
+
+  const resultBox = document.getElementById("result");
+  const summaryText = document.getElementById("summaryText");
+  const resultTable = document.getElementById("resultTable");
 
   if (!total || !people || people <= 0) {
-    result.innerHTML = "Please enter valid values.";
+    alert("Please enter valid values.");
     return;
   }
 
+  resultTable.innerHTML = "";
+  resultBox.classList.remove("hidden");
+
   if (type === "equal") {
     const share = (total / people).toFixed(2);
-    result.innerHTML = `Each person pays: <strong>${currency}${share}</strong>`;
+    summaryText.innerText = `Total expense of ${currency}${total} split equally among ${people} people.`;
+
+    for (let i = 1; i <= people; i++) {
+      resultTable.innerHTML += `
+        <tr>
+          <td>Person ${i}</td>
+          <td>${currency}${share}</td>
+        </tr>`;
+    }
   }
 
   if (type === "unequal") {
@@ -26,19 +40,21 @@ function calculateSplit() {
       .split(",")
       .map(Number);
 
-    if (shares.length !== people) {
-      result.innerHTML = "Number of shares must match number of people.";
+    if (shares.length !== people || shares.some(isNaN)) {
+      alert("Please enter valid shares matching number of people.");
       return;
     }
 
     const sumShares = shares.reduce((a, b) => a + b, 0);
-    let output = "<strong>Split Result:</strong><br>";
+    summaryText.innerText = `Total expense of ${currency}${total} split unequally based on usage.`;
 
     shares.forEach((s, i) => {
       const amount = ((s / sumShares) * total).toFixed(2);
-      output += `Person ${i + 1}: ${currency}${amount}<br>`;
+      resultTable.innerHTML += `
+        <tr>
+          <td>Person ${i + 1}</td>
+          <td>${currency}${amount}</td>
+        </tr>`;
     });
-
-    result.innerHTML = output;
   }
 }
