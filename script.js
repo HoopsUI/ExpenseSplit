@@ -84,75 +84,73 @@ function calculateSplit() {
 
 // ===== PHASE 2: PARTICIPANTS =====
 
-// Data store
-let participants = [];
-
-// DOM elements
-const personInput = document.getElementById("personName");
+// Run ONLY if Advanced Calculator exists
 const addPersonBtn = document.getElementById("addPersonBtn");
-const peopleList = document.getElementById("peopleList");
-const paidBySelect = document.getElementById("paidBy");
-const splitBetweenDiv = document.getElementById("splitBetween");
 
-// Add person
-addPersonBtn.addEventListener("click", () => {
-  const name = personInput.value.trim();
+if (addPersonBtn) {
+  // Data store
+  let participants = [];
 
-  // Validation
-  if (!name) {
-    alert("Please enter a name.");
-    return;
+  // DOM elements
+  const personInput = document.getElementById("personName");
+  const peopleList = document.getElementById("peopleList");
+  const paidBySelect = document.getElementById("paidBy");
+  const splitBetweenDiv = document.getElementById("splitBetween");
+
+  // Add person
+  addPersonBtn.addEventListener("click", () => {
+    const name = personInput.value.trim();
+
+    // Validation
+    if (!name) {
+      alert("Please enter a name.");
+      return;
+    }
+
+    if (participants.includes(name)) {
+      alert("This person already exists.");
+      return;
+    }
+
+    participants.push(name);
+    personInput.value = "";
+    renderParticipants();
+  });
+
+  // Render participants everywhere
+  function renderParticipants() {
+    // List
+    peopleList.innerHTML = "";
+    participants.forEach((name) => {
+      const li = document.createElement("li");
+      li.textContent = name;
+      peopleList.appendChild(li);
+    });
+
+    // Paid by dropdown
+    paidBySelect.innerHTML = `<option value="">Select person</option>`;
+    participants.forEach((name) => {
+      const option = document.createElement("option");
+      option.value = name;
+      option.textContent = name;
+      paidBySelect.appendChild(option);
+    });
+
+    // Split between checkboxes
+    splitBetweenDiv.innerHTML = "";
+    participants.forEach((name) => {
+      const label = document.createElement("label");
+      label.style.display = "block";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.value = name;
+      checkbox.checked = true;
+
+      label.appendChild(checkbox);
+      label.append(" " + name);
+
+      splitBetweenDiv.appendChild(label);
+    });
   }
-
-  if (participants.includes(name)) {
-    alert("This person already exists.");
-    return;
-  }
-
-  // Add to data
-  participants.push(name);
-
-  // Clear input
-  personInput.value = "";
-
-  // Re-render UI
-  renderParticipants();
-});
-
-// Render participants everywhere
-function renderParticipants() {
-  // List
-  peopleList.innerHTML = "";
-  participants.forEach((name) => {
-    const li = document.createElement("li");
-    li.textContent = name;
-    peopleList.appendChild(li);
-  });
-
-  // Paid by dropdown
-  paidBySelect.innerHTML = `<option value="">Select person</option>`;
-  participants.forEach((name) => {
-    const option = document.createElement("option");
-    option.value = name;
-    option.textContent = name;
-    paidBySelect.appendChild(option);
-  });
-
-  // Split between checkboxes
-  splitBetweenDiv.innerHTML = "";
-  participants.forEach((name) => {
-    const label = document.createElement("label");
-    label.style.display = "block";
-
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.value = name;
-    checkbox.checked = true;
-
-    label.appendChild(checkbox);
-    label.append(" " + name);
-
-    splitBetweenDiv.appendChild(label);
-  });
 }
-
