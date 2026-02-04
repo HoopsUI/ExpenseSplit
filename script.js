@@ -227,3 +227,60 @@ function renderExpenses() {
   });
 }
 
+// ===== PHASE 4: CALCULATIONS =====
+
+const calculateBtn = document.getElementById("calculateBtn");
+const resultsDiv = document.getElementById("results");
+
+calculateBtn.addEventListener("click", () => {
+  if (participants.length === 0 || expenses.length === 0) {
+    alert("Add participants and expenses first.");
+    return;
+  }
+
+  const balances = {};
+
+  // Initialize balances
+  participants.forEach(name => {
+    balances[name] = 0;
+  });
+
+  // Process expenses
+  expenses.forEach(exp => {
+    const share = exp.amount / exp.splitBetween.length;
+
+    // Payer gets full amount
+    balances[exp.paidBy] += exp.amount;
+
+    // Everyone owes their share
+    exp.splitBetween.forEach(person => {
+      balances[person] -= share;
+    });
+  });
+
+  renderResults(balances);
+});
+
+// Show results
+function renderResults(balances) {
+  resultsDiv.innerHTML = "";
+
+  const list = document.createElement("ul");
+
+  Object.keys(balances).forEach(name => {
+    const li = document.createElement("li");
+    const value = balances[name].toFixed(2);
+
+    if (balances[name] > 0) {
+      li.textContent = `${name} gets ${value}`;
+    } else if (balances[name] < 0) {
+      li.textContent = `${name} owes ${Math.abs(value)}`;
+    } else {
+      li.textContent = `${name} is settled`;
+    }
+
+    list.appendChild(li);
+  });
+
+  resultsDiv.appendChild(list);
+}
