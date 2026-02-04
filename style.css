@@ -92,8 +92,9 @@ nav a {
 
 /* SECTIONS */
 .section {
-  padding: 70px 0;
+  padding: 60px 16px;
 }
+
 
 .section.light {
   background: #f9fafb;
@@ -327,4 +328,50 @@ nav a {
 
 .primary-btn {
   margin-top: 12px;
+}
+
+/* =========================
+   PHASE D – MOBILE UX
+========================= */
+
+.calc-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
+  max-width: 520px;
+  margin: 0 auto;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  font-size: 16px;
+}
+
+button {
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Mobile spacing */
+@media (max-width: 600px) {
+  .calc-card {
+    padding: 18px;
+  }
+
+  h2,
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  button {
+    font-size: 15px;
+  }
 }
