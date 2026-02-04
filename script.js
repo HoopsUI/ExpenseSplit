@@ -164,3 +164,66 @@ if (addPersonBtn) {
     });
   }
 }
+
+
+// ===== PHASE 3: EXPENSES =====
+
+let expenses = [];
+
+const expenseTitleInput = document.getElementById("expenseTitle");
+const expenseAmountInput = document.getElementById("expenseAmount");
+const addExpenseBtn = document.getElementById("addExpenseBtn");
+const expenseList = document.getElementById("expenseList");
+
+// Add expense
+addExpenseBtn.addEventListener("click", () => {
+  const title = expenseTitleInput.value.trim() || "Expense";
+  const amount = parseFloat(expenseAmountInput.value);
+  const paidBy = paidBySelect.value;
+
+  const selectedPeople = Array.from(
+    splitBetweenDiv.querySelectorAll("input[type='checkbox']:checked")
+  ).map(cb => cb.value);
+
+  // Validation
+  if (!amount || amount <= 0) {
+    alert("Enter a valid amount.");
+    return;
+  }
+
+  if (!paidBy) {
+    alert("Select who paid.");
+    return;
+  }
+
+  if (selectedPeople.length === 0) {
+    alert("Select at least one person to split with.");
+    return;
+  }
+
+  // Store expense
+  expenses.push({
+    title,
+    amount,
+    paidBy,
+    splitBetween: selectedPeople
+  });
+
+  // Reset inputs
+  expenseTitleInput.value = "";
+  expenseAmountInput.value = "";
+
+  renderExpenses();
+});
+
+// Render expenses
+function renderExpenses() {
+  expenseList.innerHTML = "";
+
+  expenses.forEach((exp, index) => {
+    const li = document.createElement("li");
+    li.textContent = `${exp.title} – ${exp.amount} (Paid by ${exp.paidBy})`;
+    expenseList.appendChild(li);
+  });
+}
+
