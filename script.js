@@ -325,6 +325,10 @@ function renderResults(balances) {
 }
 
 
+  function generateSettlements(balances) {
+  const debtors = [];
+  const creditors = [];
+
   // Separate people
   Object.keys(balances).forEach(name => {
     const amount = Number(balances[name].toFixed(2));
@@ -337,8 +341,8 @@ function renderResults(balances) {
   });
 
   const settlements = [];
-
-  let i = 0, j = 0;
+  let i = 0;
+  let j = 0;
 
   while (i < debtors.length && j < creditors.length) {
     const debtor = debtors[i];
@@ -359,3 +363,4 @@ function renderResults(balances) {
 
   return settlements;
 }
+
