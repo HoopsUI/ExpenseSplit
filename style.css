@@ -162,19 +162,33 @@ nav a {
 }
 
 .advanced-cta {
-  margin-top: 30px;
-  padding: 25px;
-  background: #f9fafb;
+  margin-top: 40px;
+  padding: 20px;
+  background: #f8fafc;
   border-radius: 12px;
   text-align: center;
-  border: 1px dashed #e5e7eb;
+  border: 1px solid #e5e7eb;
 }
 
 .advanced-cta p {
-  margin-bottom: 15px;
-  font-weight: 500;
-  color: #374151;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #4b5563;
 }
+
+.advanced-cta .secondary-btn {
+  display: inline-block;
+  background: transparent;
+  color: #2563eb;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.advanced-cta .secondary-btn:hover {
+  background: #eff6ff;
+}
+
 
 
 
