@@ -161,6 +161,23 @@ nav a {
   margin-bottom: 30px;
 }
 
+.advanced-cta {
+  margin-top: 30px;
+  padding: 25px;
+  background: #f9fafb;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px dashed #e5e7eb;
+}
+
+.advanced-cta p {
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: #374151;
+}
+
+
+
 /* FOOTER */
 .footer {
   padding: 30px 0;
