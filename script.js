@@ -21,7 +21,7 @@ if (peopleInput) {
 
   const splitTypeEl = document.getElementById("splitType");
   const unequalInputs = document.getElementById("unequalInputs");
-  const paidBySelect = document.getElementById("paidBy");
+  
 
 
   if (splitTypeEl && unequalInputs) {
@@ -112,6 +112,7 @@ if (addPersonBtn) {
   const peopleList = document.getElementById("peopleList");
   const paidBySelect = document.getElementById("paidBy");
   const splitBetweenDiv = document.getElementById("splitBetween");
+  
 
   // Add person
   addPersonBtn.addEventListener("click", () => {
