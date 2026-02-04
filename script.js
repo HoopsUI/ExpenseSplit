@@ -279,3 +279,83 @@ if (document.getElementById("calculateBtn")) {
   }
 }
 
+// ===== PHASE 5: SETTLEMENTS =====
+
+function renderResults(balances) {
+  resultsDiv.innerHTML = "";
+
+  // Balances list
+  const balanceList = document.createElement("ul");
+
+  Object.keys(balances).forEach(name => {
+    const li = document.createElement("li");
+    const value = balances[name].toFixed(2);
+
+    if (balances[name] > 0) {
+      li.textContent = `${name} gets ${value}`;
+    } else if (balances[name] < 0) {
+      li.textContent = `${name} owes ${Math.abs(value)}`;
+    } else {
+      li.textContent = `${name} is settled`;
+    }
+
+    balanceList.appendChild(li);
+  });
+
+  resultsDiv.appendChild(balanceList);
+
+  // Settlements
+  const settlements = generateSettlements(balances);
+
+  if (settlements.length > 0) {
+    const heading = document.createElement("h4");
+    heading.textContent = "Settlements";
+    resultsDiv.appendChild(heading);
+
+    const settlementList = document.createElement("ul");
+
+    settlements.forEach(text => {
+      const li = document.createElement("li");
+      li.textContent = text;
+      settlementList.appendChild(li);
+    });
+
+    resultsDiv.appendChild(settlementList);
+  }
+}
+
+
+  // Separate people
+  Object.keys(balances).forEach(name => {
+    const amount = Number(balances[name].toFixed(2));
+
+    if (amount < 0) {
+      debtors.push({ name, amount: -amount });
+    } else if (amount > 0) {
+      creditors.push({ name, amount });
+    }
+  });
+
+  const settlements = [];
+
+  let i = 0, j = 0;
+
+  while (i < debtors.length && j < creditors.length) {
+    const debtor = debtors[i];
+    const creditor = creditors[j];
+
+    const payAmount = Math.min(debtor.amount, creditor.amount);
+
+    settlements.push(
+      `${debtor.name} pays ${creditor.name} ${payAmount.toFixed(2)}`
+    );
+
+    debtor.amount -= payAmount;
+    creditor.amount -= payAmount;
+
+    if (debtor.amount === 0) i++;
+    if (creditor.amount === 0) j++;
+  }
+
+  return settlements;
+}
