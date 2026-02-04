@@ -21,6 +21,8 @@ if (peopleInput) {
 
   const splitTypeEl = document.getElementById("splitType");
   const unequalInputs = document.getElementById("unequalInputs");
+  const paidBySelect = document.getElementById("paidBy");
+
 
   if (splitTypeEl && unequalInputs) {
     splitTypeEl.addEventListener("change", function () {
