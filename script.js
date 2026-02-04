@@ -262,7 +262,9 @@ if (document.getElementById("calculateBtn")) {
 
     Object.keys(balances).forEach(name => {
       const li = document.createElement("li");
-      const value = balances[name].toFixed(2);
+      const currency = getCurrency();
+const value = `${currency}${Math.abs(balances[name]).toFixed(2)}`;
+
 
       if (balances[name] > 0) {
         li.textContent = `${name} gets ${value}`;
@@ -306,7 +308,8 @@ function generateSettlements(balances) {
     const payAmount = Math.min(debtor.amount, creditor.amount);
 
     settlements.push(
-      `${debtor.name} pays ${creditor.name} ${payAmount.toFixed(2)}`
+      `${debtor.name} pays ${creditor.name} ${getCurrency()}${payAmount.toFixed(2)}`
+
     );
 
     debtor.amount -= payAmount;
@@ -317,4 +320,12 @@ function generateSettlements(balances) {
   }
 
   return settlements;
+}
+
+// ===== PHASE C: CURRENCY =====
+
+const currencySelect = document.getElementById("currency");
+
+function getCurrency() {
+  return currencySelect ? currencySelect.value : "";
 }
