@@ -262,6 +262,7 @@ if (document.getElementById("calculateBtn")) {
   function renderResults(balances) {
   
     const list = document.createElement("ul");
+    resultsDiv.innerHTML = "";
 
     Object.keys(balances).forEach(name => {
       const li = document.createElement("li");
@@ -282,7 +283,7 @@ const value = `${currency}${amount}`;
       list.appendChild(li);
     });
 
-    outputDiv.appendChild(list);
+    resultsDiv.appendChild(list);
   }
 }
 
