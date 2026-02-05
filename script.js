@@ -1,5 +1,7 @@
 
-// ===== BASIC CALCULATOR (index.html only) =====
+/***************************************
+ BASIC CALCULATOR (index.html only)
+****************************************/
 const peopleInput = document.getElementById("people");
 
 if (peopleInput) {
@@ -21,8 +23,6 @@ if (peopleInput) {
 
   const splitTypeEl = document.getElementById("splitType");
   const unequalInputs = document.getElementById("unequalInputs");
-  
-
 
   if (splitTypeEl && unequalInputs) {
     splitTypeEl.addEventListener("change", function () {
@@ -31,7 +31,7 @@ if (peopleInput) {
     });
   }
 
-  function calculateSplit() {
+  window.calculateSplit = function () {
     const total = parseFloat(document.getElementById("totalAmount").value);
     const people = parseInt(document.getElementById("people").value);
     const type = document.getElementById("splitType").value;
@@ -48,8 +48,9 @@ if (peopleInput) {
 
     const names = [];
     for (let i = 1; i <= people; i++) {
-      const name = document.getElementById(`name-${i}`).value || `Person ${i}`;
-      names.push(name);
+      names.push(
+        document.getElementById(`name-${i}`).value || `Person ${i}`
+      );
     }
 
     resultTable.innerHTML = "";
@@ -74,12 +75,12 @@ if (peopleInput) {
         .map(Number);
 
       if (shares.length !== people || shares.some(isNaN)) {
-        alert("Please enter valid shares matching number of people.");
+        alert("Please enter valid shares.");
         return;
       }
 
       const sumShares = shares.reduce((a, b) => a + b, 0);
-      summaryText.innerText = `Total expense of ${currency}${total} split unequally based on usage.`;
+      summaryText.innerText = `Total expense of ${currency}${total} split unequally.`;
 
       shares.forEach((s, i) => {
         const amount = ((s / sumShares) * total).toFixed(2);
@@ -90,265 +91,142 @@ if (peopleInput) {
           </tr>`;
       });
     }
-  }
+  };
 }
 
-// ===== SHARED DATA (Advanced Calculator) =====
-let participants = [];
-let expenses = [];
+/***************************************
+ ADVANCED CALCULATOR (advanced.html only)
+****************************************/
+const advancedPage = document.getElementById("addParticipantBtn");
 
+if (advancedPage) {
+  let participants = [];
+  let expenses = [];
 
-// ===== PHASE 2: PARTICIPANTS =====
-
-// Run ONLY if Advanced Calculator exists
-const addPersonBtn = document.getElementById("addPersonBtn");
-
-if (addPersonBtn) {
-  // Data store
-  
-
-  // DOM elements
-  const personInput = document.getElementById("personName");
-  const peopleList = document.getElementById("peopleList");
+  const currencySelect = document.getElementById("currency");
+  const participantInput = document.getElementById("participantName");
+  const participantsList = document.getElementById("participantsList");
   const paidBySelect = document.getElementById("paidBy");
   const splitBetweenDiv = document.getElementById("splitBetween");
-  
 
-  // Add person
-  addPersonBtn.addEventListener("click", () => {
-    const name = personInput.value.trim();
+  const expenseDescInput = document.getElementById("expenseDescription");
+  const expenseAmountInput = document.getElementById("expenseAmount");
+  const expensesList = document.getElementById("expensesList");
 
-    // Validation
-    if (!name) {
-      alert("Please enter a name.");
-      return;
-    }
+  const resultsDiv = document.getElementById("results");
+  const settlementsDiv = document.getElementById("settlements");
 
-    if (participants.includes(name)) {
-      alert("This person already exists.");
-      return;
-    }
+  function getCurrency() {
+    return currencySelect.value;
+  }
+
+  // Load saved data
+  participants = JSON.parse(localStorage.getItem("advParticipants")) || [];
+  expenses = JSON.parse(localStorage.getItem("advExpenses")) || [];
+
+  document.getElementById("addParticipantBtn").addEventListener("click", () => {
+    const name = participantInput.value.trim();
+    if (!name || participants.includes(name)) return;
 
     participants.push(name);
-    personInput.value = "";
+    participantInput.value = "";
+    saveData();
     renderParticipants();
   });
 
-  // Render participants everywhere
   function renderParticipants() {
-    // List
-    peopleList.innerHTML = "";
-    participants.forEach((name) => {
-      const li = document.createElement("li");
-      li.textContent = name;
-      peopleList.appendChild(li);
-    });
-
-    // Paid by dropdown
+    participantsList.innerHTML = "";
     paidBySelect.innerHTML = `<option value="">Select person</option>`;
-    participants.forEach((name) => {
-      const option = document.createElement("option");
-      option.value = name;
-      option.textContent = name;
-      paidBySelect.appendChild(option);
-    });
-
-    // Split between checkboxes
     splitBetweenDiv.innerHTML = "";
-    participants.forEach((name) => {
-      const label = document.createElement("label");
-      label.style.display = "block";
 
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.value = name;
-      checkbox.checked = true;
+    participants.forEach(name => {
+      participantsList.innerHTML += `<li>${name}</li>`;
 
-      label.appendChild(checkbox);
-      label.append(" " + name);
+      paidBySelect.innerHTML += `<option value="${name}">${name}</option>`;
 
-      splitBetweenDiv.appendChild(label);
+      splitBetweenDiv.innerHTML += `
+        <label>
+          <input type="checkbox" value="${name}" checked> ${name}
+        </label><br>`;
     });
   }
-}
 
-
-// ===== PHASE 3: EXPENSES =====
-
-if (document.getElementById("addExpenseBtn")) {
-  const expenseTitleInput = document.getElementById("expenseTitle");
-  const expenseAmountInput = document.getElementById("expenseAmount");
-  const addExpenseBtn = document.getElementById("addExpenseBtn");
-  const expenseList = document.getElementById("expenseList");
-
-  addExpenseBtn.addEventListener("click", () => {
-    const title = expenseTitleInput.value.trim() || "Expense";
+  document.getElementById("addExpenseBtn").addEventListener("click", () => {
     const amount = parseFloat(expenseAmountInput.value);
     const paidBy = paidBySelect.value;
-
-    const selectedPeople = Array.from(
-      splitBetweenDiv.querySelectorAll("input[type='checkbox']:checked")
+    const splitBetween = Array.from(
+      splitBetweenDiv.querySelectorAll("input:checked")
     ).map(cb => cb.value);
 
-    if (!amount || amount <= 0) {
-      alert("Enter a valid amount.");
-      return;
-    }
-
-    if (!paidBy) {
-      alert("Select who paid.");
-      return;
-    }
-
-    if (selectedPeople.length === 0) {
-      alert("Select at least one person to split with.");
-      return;
-    }
+    if (!amount || !paidBy || splitBetween.length === 0) return;
 
     expenses.push({
-      title,
+      desc: expenseDescInput.value || "Expense",
       amount,
       paidBy,
-      splitBetween: selectedPeople
+      splitBetween
     });
 
-    expenseTitleInput.value = "";
+    expenseDescInput.value = "";
     expenseAmountInput.value = "";
-
+    saveData();
     renderExpenses();
   });
 
   function renderExpenses() {
-    expenseList.innerHTML = "";
-    expenses.forEach(exp => {
-      const li = document.createElement("li");
-      li.textContent = `${exp.title} – ${exp.amount} (Paid by ${exp.paidBy})`;
-      expenseList.appendChild(li);
+    expensesList.innerHTML = "";
+    expenses.forEach(e => {
+      expensesList.innerHTML += `<li>${e.desc} — ${getCurrency()}${e.amount} (Paid by ${e.paidBy})</li>`;
     });
   }
-}
 
-// ===== PHASE 4: CALCULATIONS =====
-
-if (document.getElementById("calculateBtn")) {
-  const calculateBtn = document.getElementById("calculateBtn");
-  const resultsDiv = document.getElementById("results");
-
-  calculateBtn.addEventListener("click", () => {
-    if (participants.length === 0 || expenses.length === 0) {
-      alert("Add participants and expenses first.");
-      return;
-    }
-
+  document.getElementById("calculateBtn").addEventListener("click", () => {
     const balances = {};
+    participants.forEach(p => balances[p] = 0);
 
-    participants.forEach(name => {
-      balances[name] = 0;
-    });
-
-    expenses.forEach(exp => {
-      const share = exp.amount / exp.splitBetween.length;
-
-      balances[exp.paidBy] += exp.amount;
-
-      exp.splitBetween.forEach(person => {
-        balances[person] -= share;
-      });
+    expenses.forEach(e => {
+      const share = e.amount / e.splitBetween.length;
+      balances[e.paidBy] += e.amount;
+      e.splitBetween.forEach(p => balances[p] -= share);
     });
 
     renderResults(balances);
+    renderSettlements(balances);
   });
 
   function renderResults(balances) {
-  
-    const list = document.createElement("ul");
-    resultsDiv.innerHTML = "";
-
+    resultsDiv.innerHTML = "<h3>Final Balances</h3>";
     Object.keys(balances).forEach(name => {
-      const li = document.createElement("li");
-      const currency = getCurrency();
-const amount = Math.abs(balances[name]).toFixed(2);
-const value = `${currency}${amount}`;
+      const val = balances[name];
+      resultsDiv.innerHTML += `<p>${name}: ${getCurrency()}${val.toFixed(2)}</p>`;
+    });
+  }
 
+  function renderSettlements(balances) {
+    settlementsDiv.innerHTML = "<h3>Settlements</h3>";
+    const debtors = [], creditors = [];
 
-
-      if (balances[name] > 0) {
-        li.textContent = `${name} gets ${value}`;
-      } else if (balances[name] < 0) {
-        li.textContent = `${name} owes ${value}`;
-      } else {
-        li.textContent = `${name} is settled`;
-      }
-
-      list.appendChild(li);
+    Object.entries(balances).forEach(([name, amt]) => {
+      if (amt < 0) debtors.push({ name, amt: -amt });
+      if (amt > 0) creditors.push({ name, amt });
     });
 
-    resultsDiv.appendChild(list);
-  }
-}
-
-// ===== PHASE 5: SETTLEMENTS =====
-
-function generateSettlements(balances) {
-  const debtors = [];
-  const creditors = [];
-
-  Object.keys(balances).forEach(name => {
-    const amount = Number(balances[name].toFixed(2));
-
-    if (amount < 0) {
-      debtors.push({ name, amount: -amount });
-    } else if (amount > 0) {
-      creditors.push({ name, amount });
+    let i = 0, j = 0;
+    while (i < debtors.length && j < creditors.length) {
+      const pay = Math.min(debtors[i].amt, creditors[j].amt);
+      settlementsDiv.innerHTML += `<p>${debtors[i].name} pays ${creditors[j].name} ${getCurrency()}${pay.toFixed(2)}</p>`;
+      debtors[i].amt -= pay;
+      creditors[j].amt -= pay;
+      if (debtors[i].amt === 0) i++;
+      if (creditors[j].amt === 0) j++;
     }
-  });
-
-  const settlements = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < debtors.length && j < creditors.length) {
-    const debtor = debtors[i];
-    const creditor = creditors[j];
-
-    const payAmount = Math.min(debtor.amount, creditor.amount);
-
-    settlements.push(
-      `${debtor.name} pays ${creditor.name} ${getCurrency()}${payAmount.toFixed(2)}`
-
-    );
-
-    debtor.amount -= payAmount;
-    creditor.amount -= payAmount;
-
-    if (debtor.amount === 0) i++;
-    if (creditor.amount === 0) j++;
   }
 
-  return settlements;
-}
+  function saveData() {
+    localStorage.setItem("advParticipants", JSON.stringify(participants));
+    localStorage.setItem("advExpenses", JSON.stringify(expenses));
+  }
 
-// ===== PHASE C: CURRENCY =====
-
-const currencySelect = document.getElementById("currency");
-
-function getCurrency() {
-  return currencySelect ? currencySelect.value : "";
-}
-
-function displayResults(balances) {
-  const resultsDiv = document.getElementById("results");
-  resultsDiv.innerHTML = "<h3>Final Balances</h3>";
-
-  Object.keys(balances).forEach(name => {
-    const value = balances[name].toFixed(2);
-
-    if (value > 0) {
-      resultsDiv.innerHTML += `<p><strong>${name}</strong> should receive ₹${value}</p>`;
-    } else if (value < 0) {
-      resultsDiv.innerHTML += `<p><strong>${name}</strong> owes ₹${Math.abs(value)}</p>`;
-    } else {
-      resultsDiv.innerHTML += `<p><strong>${name}</strong> is settled</p>`;
-    }
-  });
+  renderParticipants();
+  renderExpenses();
 }
