@@ -15,6 +15,54 @@
   <meta property="og:type" content="website" />
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== PREMIUM OVERLAY ===== */
+    #premiumOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.95);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: var(--radius-lg);
+    }
+
+    #premiumOverlay h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    #premiumOverlay p {
+      margin-bottom: 20px;
+      color: var(--text-muted);
+    }
+
+    #premiumOverlay button {
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 26px;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #premiumOverlay button:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+  </style>
 </head>
 
 <body>
@@ -95,7 +143,7 @@
 </section>
 
 <!-- ADVANCED CALCULATOR -->
-<section class="section light">
+<section class="section light" style="position:relative;">
   <div class="container calculator advanced-calculator">
 
     <div class="form-group">
@@ -158,6 +206,13 @@
       </div>
     </div>
 
+    <!-- PREMIUM OVERLAY -->
+    <div id="premiumOverlay" style="display:none;">
+      <h2>Unlock Advanced Calculator</h2>
+      <p>This premium tool allows you to track who paid what and settle balances instantly.</p>
+      <button onclick="unlockPremium(); initPremiumOverlay();">Unlock Now</button>
+    </div>
+
   </div>
 </section>
 
@@ -191,5 +246,21 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+  // PREMIUM OVERLAY HANDLER
+  function initPremiumOverlay() {
+    const overlay = document.getElementById("premiumOverlay");
+    if (!overlay) return;
+
+    if (typeof isPremiumUser === "function" && isPremiumUser()) {
+      overlay.style.display = "none";
+    } else {
+      overlay.style.display = "flex";
+    }
+  }
+
+  // Init on page load
+  window.addEventListener("DOMContentLoaded", initPremiumOverlay);
+</script>
 </body>
 </html>
