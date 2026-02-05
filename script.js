@@ -282,8 +282,7 @@ const value = `${currency}${amount}`;
       list.appendChild(li);
     });
 
-    document.getElementById("resultsOutput").innerHTML = "";
-document.getElementById("resultsOutput").appendChild(list);
+    outputDiv.appendChild(list);
   }
 }
 
