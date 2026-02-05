@@ -3,140 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Expense Split Calculator | ExpenseSplit</title>
 
-  <title>Advanced Expense Split Calculator – Who Owes Whom</title>
-  <meta name="description" content="Advanced expense split calculator to track who paid what, calculate balances, and see who owes whom. Perfect for trips and groups." />
+  <meta name="description" content="Split expenses easily among friends, trips, roommates, or groups. Calculate who owes whom instantly with our advanced expense split calculator." />
+  <meta name="keywords" content="expense split calculator, split expenses, group expense calculator, trip expense split, splitwise alternative" />
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container nav">
-      <div class="logo">ExpenseSplit</div>
-      <nav>
-        <a href="index.html">Basic Calculator</a>
-        <a href="advanced.html">Advanced Calculator</a>
-      </nav>
-    </div>
+  <header class="site-header">
+    <h1>Advanced Expense Split Calculator</h1>
+    <p>Split group expenses fairly and instantly</p>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-content">
-      <h1>Advanced Expense Split Calculator</h1>
-      <p class="subtitle">
-        Track who paid what, calculate balances, and see who owes whom.
-        Best for trips, groups, and shared expenses.
-      </p>
-    </div>
-  </section>
+  <main class="container">
 
-  
-<section class="section light">
-  <div class="container calculator advanced-calculator">
-    <div class="form-group">
-  <label for="currency">Choose currency</label>
-  <select id="currency">
-    <option value="₹">₹ INR</option>
-    <option value="$">$ USD</option>
-    <option value="€">€ EUR</option>
-    <option value="£">£ GBP</option>
-  </select>
-</div>
+    <!-- Currency Selector -->
+    <section class="card">
+      <label for="currency"><strong>Select Currency</strong></label>
+      <select id="currency">
+        <option value="₹">₹ INR</option>
+        <option value="$">$ USD</option>
+        <option value="€">€ EUR</option>
+      </select>
+    </section>
 
+    <!-- Participants -->
+    <section class="card">
+      <h2>Participants</h2>
+      <input type="text" id="participantName" placeholder="Enter name" />
+      <button id="addParticipantBtn">Add Participant</button>
+      <ul id="participantsList"></ul>
+    </section>
 
+    <!-- Expenses -->
+    <section class="card">
+      <h2>Add Expense</h2>
 
-    <!-- PARTICIPANTS -->
-    <div class="card">
-      <h3>Add Participants</h3>
+      <input type="text" id="expenseDescription" placeholder="Expense description" />
+      <input type="number" id="expenseAmount" placeholder="Amount" />
 
-      <div class="form-group">
-        <input
-          type="text"
-          id="personName"
-          placeholder="Enter name"
-        />
-        <button type="button" id="addPersonBtn">
-          Add Person
-        </button>
-      </div>
+      <label>Paid by</label>
+      <select id="paidBy"></select>
 
-      <ul id="peopleList" class="list">
-        <!-- Names will appear here -->
-      </ul>
-    </div>
+      <label>Split between</label>
+      <div id="splitBetween"></div>
 
-    <!-- EXPENSES -->
-    <div class="card">
-      <h3>Add Expense</h3>
+      <button id="addExpenseBtn">Add Expense</button>
+    </section>
 
-      <div class="form-group">
-        <input
-          type="text"
-          id="expenseTitle"
-          placeholder="Expense name (optional)"
-        />
-      </div>
+    <!-- Expense List -->
+    <section class="card">
+      <h2>Expenses</h2>
+      <ul id="expensesList"></ul>
+    </section>
 
-      <div class="form-group">
-        <input
-          type="number"
-          id="expenseAmount"
-          placeholder="Amount"
-        />
-      </div>
-
-      <div class="form-group">
-        <label>Paid by</label>
-        <select id="paidBy">
-          <option value="">Select person</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Split between</label>
-        <div id="splitBetween">
-          <!-- Checkboxes will appear here -->
-        </div>
-      </div>
-
-      <button type="button" id="addExpenseBtn">
-        Add Expense
+    <!-- Calculate -->
+    <section class="card">
+      <button id="calculateBtn" class="primary-btn">
+        Calculate Balances
       </button>
+    </section>
 
-      <ul id="expenseList" class="list">
-        <!-- Expenses will appear here -->
-      </ul>
-    </div>
+    <!-- Results -->
+    <section class="card">
+      <div id="results"></div>
+      <div id="settlements"></div>
+    </section>
 
-    <!-- RESULTS -->
-    <div class="card">
-      <h3>Results</h3>
+  </main>
 
-      <button type="button" id="calculateBtn" class="primary-btn">
-  Calculate Balances
-</button>
-
-<div id="results" class="results-section">
-  <p class="muted">
-    Add participants and expenses to see results.
-  </p>
-</div>
-    
-
-  </div>
-</section>
-
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <p>© 2026 ExpenseSplit</p>
-    </div>
+  <footer class="site-footer">
+    <p>© 2026 ExpenseSplit · Simple Splitwise Alternative</p>
   </footer>
+
+  <!-- Calculator Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ExpenseSplit Advanced Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "description": "Advanced expense split calculator to divide group expenses and calculate settlements.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
   <script src="script.js"></script>
 
