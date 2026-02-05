@@ -34,6 +34,8 @@
       padding: 20px;
       box-sizing: border-box;
       border-radius: var(--radius-lg);
+      opacity: 1;
+      transition: opacity 0.5s ease;
     }
 
     #premiumOverlay h2 {
@@ -210,7 +212,7 @@
     <div id="premiumOverlay" style="display:none;">
       <h2>Unlock Advanced Calculator</h2>
       <p>This premium tool allows you to track who paid what and settle balances instantly.</p>
-      <button onclick="unlockPremium(); initPremiumOverlay();">Unlock Now</button>
+      <button onclick="unlockPremium();">Unlock Now</button>
     </div>
 
   </div>
@@ -256,7 +258,26 @@
       overlay.style.display = "none";
     } else {
       overlay.style.display = "flex";
+      overlay.style.opacity = 1;
     }
+  }
+
+  function unlockPremium() {
+    const overlay = document.getElementById("premiumOverlay");
+    if (!overlay) return;
+
+    if (typeof setPremiumUser === "function") setPremiumUser(true);
+
+    overlay.style.transition = "opacity 0.5s ease";
+    overlay.style.opacity = 0;
+
+    overlay.addEventListener(
+      "transitionend",
+      () => {
+        overlay.style.display = "none";
+      },
+      { once: true }
+    );
   }
 
   // Init on page load
