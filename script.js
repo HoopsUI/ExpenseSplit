@@ -18,84 +18,13 @@ if (peopleInput) {
         </div>`;
     }
   });
-
-  const splitTypeEl = document.getElementById("splitType");
-  const unequalInputs = document.getElementById("unequalInputs");
-
-  if (splitTypeEl && unequalInputs) {
-    splitTypeEl.addEventListener("change", function () {
-      unequalInputs.style.display =
-        this.value === "unequal" ? "block" : "none";
-    });
-  }
-
-  function calculateSplit() {
-    const total = parseFloat(document.getElementById("totalAmount").value);
-    const people = parseInt(document.getElementById("people").value);
-    const type = document.getElementById("splitType").value;
-    const currency = document.getElementById("currency").value;
-
-    const resultBox = document.getElementById("result");
-    const summaryText = document.getElementById("summaryText");
-    const resultTable = document.getElementById("resultTable");
-
-    if (!total || !people || people <= 0) {
-      alert("Please enter valid values.");
-      return;
-    }
-
-    const names = [];
-    for (let i = 1; i <= people; i++) {
-      const name = document.getElementById(`name-${i}`).value || `Person ${i}`;
-      names.push(name);
-    }
-
-    resultTable.innerHTML = "";
-    resultBox.classList.remove("hidden");
-
-    if (type === "equal") {
-      const share = (total / people).toFixed(2);
-      summaryText.innerText = `Total expense of ${currency}${total} split equally among ${people} people.`;
-
-      names.forEach(name => {
-        resultTable.innerHTML += `
-          <tr>
-            <td>${name}</td>
-            <td>${currency}${share}</td>
-          </tr>`;
-      });
-    }
-
-    if (type === "unequal") {
-      const shares = document.getElementById("shares").value
-        .split(",")
-        .map(Number);
-
-      if (shares.length !== people || shares.some(isNaN)) {
-        alert("Please enter valid shares matching number of people.");
-        return;
-      }
-
-      const sumShares = shares.reduce((a, b) => a + b, 0);
-      summaryText.innerText = `Total expense of ${currency}${total} split unequally based on usage.`;
-
-      shares.forEach((s, i) => {
-        const amount = ((s / sumShares) * total).toFixed(2);
-        resultTable.innerHTML += `
-          <tr>
-            <td>${names[i]}</td>
-            <td>${currency}${amount}</td>
-          </tr>`;
-      });
-    }
-  }
 }
 
 // ===== SHARED DATA (Advanced Calculator) =====
 let participants = [];
 let expenses = [];
 
-// Shared DOM refs
+// Shared DOM refs (FIXED SCOPE ISSUE)
 const paidBySelect = document.getElementById("paidBy");
 const splitBetweenDiv = document.getElementById("splitBetween");
 
@@ -126,14 +55,17 @@ if (addPersonBtn) {
 
   function renderParticipants() {
     peopleList.innerHTML = "";
-    paidBySelect.innerHTML = `<option value="">Select person</option>`;
-    splitBetweenDiv.innerHTML = "";
 
     participants.forEach(name => {
       const li = document.createElement("li");
       li.textContent = name;
       peopleList.appendChild(li);
+    });
 
+    paidBySelect.innerHTML = `<option value="">Select person</option>`;
+    splitBetweenDiv.innerHTML = "";
+
+    participants.forEach(name => {
       const option = document.createElement("option");
       option.value = name;
       option.textContent = name;
@@ -208,7 +140,7 @@ if (document.getElementById("addExpenseBtn")) {
   }
 }
 
-// ===== PHASE 4: BALANCES + SETTLEMENTS =====
+// ===== PHASE 4: CALCULATIONS =====
 if (document.getElementById("calculateBtn")) {
   const calculateBtn = document.getElementById("calculateBtn");
   const resultsDiv = document.getElementById("results");
@@ -229,11 +161,10 @@ if (document.getElementById("calculateBtn")) {
     });
 
     renderResults(balances);
-    renderSettlements(balances);
   });
 
   function renderResults(balances) {
-    resultsDiv.innerHTML = "<h3>Final Balances</h3>";
+    resultsDiv.innerHTML = "";
     const list = document.createElement("ul");
 
     Object.keys(balances).forEach(name => {
@@ -250,59 +181,6 @@ if (document.getElementById("calculateBtn")) {
 
     resultsDiv.appendChild(list);
   }
-
-  function renderSettlements(balances) {
-    const settlements = generateSettlements(balances);
-    if (settlements.length === 0) return;
-
-    const heading = document.createElement("h4");
-    heading.textContent = "Suggested Settlements";
-    heading.style.marginTop = "20px";
-
-    const list = document.createElement("ul");
-
-    settlements.forEach(text => {
-      const li = document.createElement("li");
-      li.textContent = text;
-      list.appendChild(li);
-    });
-
-    resultsDiv.appendChild(heading);
-    resultsDiv.appendChild(list);
-  }
-}
-
-// ===== SETTLEMENT ENGINE =====
-function generateSettlements(balances) {
-  const debtors = [];
-  const creditors = [];
-
-  Object.keys(balances).forEach(name => {
-    const amount = Number(balances[name].toFixed(2));
-    if (amount < 0) debtors.push({ name, amount: -amount });
-    else if (amount > 0) creditors.push({ name, amount });
-  });
-
-  const settlements = [];
-  let i = 0, j = 0;
-
-  while (i < debtors.length && j < creditors.length) {
-    const debtor = debtors[i];
-    const creditor = creditors[j];
-    const payAmount = Math.min(debtor.amount, creditor.amount);
-
-    settlements.push(
-      `${debtor.name} pays ${creditor.name} ${getCurrency()}${payAmount.toFixed(2)}`
-    );
-
-    debtor.amount -= payAmount;
-    creditor.amount -= payAmount;
-
-    if (debtor.amount === 0) i++;
-    if (creditor.amount === 0) j++;
-  }
-
-  return settlements;
 }
 
 // ===== CURRENCY =====
