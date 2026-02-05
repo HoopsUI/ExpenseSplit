@@ -112,8 +112,8 @@ if (advancedPage) {
     premiumLock.style.display = "none";
   }
 
-  if (isPremiumUser()) {
-    premiumLock.style.display = "none";
+  if (!isPremiumUser()) {
+  premiumLock.style.display = "flex";
   }
 
   unlockBtn.addEventListener("click", unlockPremium);
