@@ -41,12 +41,29 @@ function isPremiumUser() {
 // Manual unlock hook (for future payment success)
 function unlockPremium() {
   localStorage.setItem("expenseSplitPremium", "true");
+  initPremiumOverlay(); // immediately hide overlay
 }
 
 // Manual lock (admin / testing)
 function lockPremium() {
   localStorage.removeItem("expenseSplitPremium");
+  initPremiumOverlay(); // immediately show overlay
 }
+
+// Initialize overlay logic
+function initPremiumOverlay() {
+  const overlay = document.getElementById("premiumOverlay");
+  if (!overlay) return;
+
+  if (isPremiumUser()) {
+    overlay.style.display = "none";
+  } else {
+    overlay.style.display = "flex";
+  }
+}
+
+// Run overlay initialization on page load
+window.addEventListener("DOMContentLoaded", initPremiumOverlay);
 
 // ================================
 // SHARED DATA (Advanced Calculator)
