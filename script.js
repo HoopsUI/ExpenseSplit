@@ -266,13 +266,15 @@ if (document.getElementById("calculateBtn")) {
     Object.keys(balances).forEach(name => {
       const li = document.createElement("li");
       const currency = getCurrency();
-const value = `${currency}${Math.abs(balances[name]).toFixed(2)}`;
+const amount = Math.abs(balances[name]).toFixed(2);
+const value = `${currency}${amount}`;
+
 
 
       if (balances[name] > 0) {
         li.textContent = `${name} gets ${value}`;
       } else if (balances[name] < 0) {
-        li.textContent = `${name} owes ${Math.abs(value)}`;
+        li.textContent = `${name} owes ${value}`;
       } else {
         li.textContent = `${name} is settled`;
       }
@@ -331,4 +333,21 @@ const currencySelect = document.getElementById("currency");
 
 function getCurrency() {
   return currencySelect ? currencySelect.value : "";
+}
+
+function displayResults(balances) {
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "<h3>Final Balances</h3>";
+
+  Object.keys(balances).forEach(name => {
+    const value = balances[name].toFixed(2);
+
+    if (value > 0) {
+      resultsDiv.innerHTML += `<p><strong>${name}</strong> should receive ₹${value}</p>`;
+    } else if (value < 0) {
+      resultsDiv.innerHTML += `<p><strong>${name}</strong> owes ₹${Math.abs(value)}</p>`;
+    } else {
+      resultsDiv.innerHTML += `<p><strong>${name}</strong> is settled</p>`;
+    }
+  });
 }
