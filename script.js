@@ -100,6 +100,23 @@ if (peopleInput) {
 const advancedPage = document.getElementById("addParticipantBtn");
 
 if (advancedPage) {
+   const premiumLock = document.getElementById("premiumLock");
+  const unlockBtn = document.getElementById("unlockPreviewBtn");
+
+  function isPremiumUser() {
+    return localStorage.getItem("expenseSplitPremium") === "true";
+  }
+
+  function unlockPremium() {
+    localStorage.setItem("expenseSplitPremium", "true");
+    premiumLock.style.display = "none";
+  }
+
+  if (isPremiumUser()) {
+    premiumLock.style.display = "none";
+  }
+
+  unlockBtn.addEventListener("click", unlockPremium);
   let participants = [];
   let expenses = [];
 
