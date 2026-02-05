@@ -4,207 +4,183 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Advanced Expense Split Calculator – Who Owes Whom</title>
-  <meta name="description" content="Advanced expense split calculator to track who paid what, calculate balances, and see who owes whom. Perfect for trips and groups." />
+  <!-- SEO -->
+  <title>Advanced Expense Split Calculator – Who Owes Whom | ExpenseSplit</title>
+  <meta name="description" content="Advanced expense split calculator to track who paid what, calculate balances, and see who owes whom. Ideal for trips, roommates, and group expenses." />
+  <meta name="keywords" content="advanced expense split, who owes whom calculator, trip expense splitter, group expense tracker" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Advanced Expense Split Calculator – Who Owes Whom" />
+  <meta property="og:description" content="Track payments, calculate balances, and instantly see who owes whom. No signup required." />
+  <meta property="og:type" content="website" />
 
   <link rel="stylesheet" href="style.css">
-
-  <!-- PREMIUM OVERLAY STYLES -->
-  <style>
-    .premium-wrapper {
-      position: relative;
-    }
-
-    .premium-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(4px);
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .premium-box {
-      max-width: 420px;
-      border-radius: 12px;
-      padding: 2rem;
-      background: #ffffff;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-    }
-
-    .premium-box h2 {
-      margin-bottom: 0.5rem;
-    }
-
-    .premium-box p {
-      color: #555;
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-    }
-
-    .premium-box ul {
-      text-align: left;
-      margin-bottom: 1.5rem;
-    }
-
-    .premium-box ul li {
-      margin-bottom: 0.4rem;
-    }
-
-    .premium-btn {
-      display: inline-block;
-      padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      background: #000;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-    }
-  </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container nav">
-      <div class="logo">ExpenseSplit</div>
-      <nav>
-        <a href="index.html">Basic Calculator</a>
-        <a href="advanced.html">Advanced Calculator</a>
-      </nav>
-    </div>
-  </header>
+<!-- HEADER -->
+<header class="header">
+  <div class="container nav">
+    <div class="logo">ExpenseSplit</div>
+    <nav>
+      <a href="index.html">Basic Calculator</a>
+      <a href="advanced.html">Advanced Calculator</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-content">
-      <h1>Advanced Expense Split Calculator</h1>
-      <p class="subtitle">
-        Track who paid what, calculate balances, and see who owes whom.
-        Best for trips, groups, and shared expenses.
-      </p>
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-content">
+    <h1>Advanced Expense Split Calculator</h1>
+    <p class="subtitle">
+      Track who paid what, calculate balances, and clearly see who owes whom.
+      Perfect for trips, roommates, couples, and group expenses.
+    </p>
+  </div>
+</section>
 
-  <section class="section light">
-    <div class="container premium-wrapper">
+<!-- WHO IT'S FOR -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Who Is This For?</h2>
 
-      <!-- 🔒 PREMIUM OVERLAY -->
-      <div id="premiumOverlay" class="premium-overlay">
-        <div class="premium-box">
-          <h2>Unlock Advanced Calculator</h2>
-          <p>
-            The advanced calculator is a premium feature designed for
-            trips, groups, and detailed expense tracking.
-          </p>
-
-          <ul>
-            <li>✔ Track who paid what</li>
-            <li>✔ Split expenses flexibly</li>
-            <li>✔ See exact balances</li>
-            <li>✔ No login required</li>
-          </ul>
-
-          <a href="#" class="premium-btn">
-            Unlock for ₹99 (One-time)
-          </a>
-        </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Trips & Vacations</h3>
+        <p>Track shared expenses across multiple days and people.</p>
       </div>
-
-      <!-- ✅ ACTUAL CALCULATOR (UNCHANGED) -->
-      <div class="calculator advanced-calculator">
-
-        <div class="form-group">
-          <label for="currency">Choose currency</label>
-          <select id="currency">
-            <option value="₹">₹ INR</option>
-            <option value="$">$ USD</option>
-            <option value="€">€ EUR</option>
-            <option value="£">£ GBP</option>
-          </select>
-        </div>
-
-        <!-- PARTICIPANTS -->
-        <div class="card">
-          <h3>Add Participants</h3>
-
-          <div class="form-group">
-            <input type="text" id="personName" placeholder="Enter name" />
-            <button type="button" id="addPersonBtn">Add Person</button>
-          </div>
-
-          <ul id="peopleList" class="list"></ul>
-        </div>
-
-        <!-- EXPENSES -->
-        <div class="card">
-          <h3>Add Expense</h3>
-
-          <div class="form-group">
-            <input type="text" id="expenseTitle" placeholder="Expense name (optional)" />
-          </div>
-
-          <div class="form-group">
-            <input type="number" id="expenseAmount" placeholder="Amount" />
-          </div>
-
-          <div class="form-group">
-            <label>Paid by</label>
-            <select id="paidBy">
-              <option value="">Select person</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Split between</label>
-            <div id="splitBetween"></div>
-          </div>
-
-          <button type="button" id="addExpenseBtn">Add Expense</button>
-
-          <ul id="expenseList" class="list"></ul>
-        </div>
-
-        <!-- RESULTS -->
-        <div class="card">
-          <h3>Results</h3>
-
-          <button type="button" id="calculateBtn" class="primary-btn">
-            Calculate Balances
-          </button>
-
-          <div id="results" class="results-section">
-            <p class="muted">
-              Add participants and expenses to see results.
-            </p>
-          </div>
-        </div>
-
+      <div class="feature-card">
+        <h3>Roommates</h3>
+        <p>Split rent, groceries, utilities, and shared bills fairly.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Groups & Friends</h3>
+        <p>No more confusion about who owes whom after outings.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <p>© 2026 ExpenseSplit</p>
+<!-- HOW IT WORKS -->
+<section class="section light">
+  <div class="container">
+    <h2 class="section-title">How the Advanced Calculator Works</h2>
+
+    <div class="steps">
+      <div class="step">
+        <span>1</span>
+        <p>Add all participants</p>
+      </div>
+      <div class="step">
+        <span>2</span>
+        <p>Enter expenses and who paid</p>
+      </div>
+      <div class="step">
+        <span>3</span>
+        <p>See balances and settlements</p>
+      </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="script.js"></script>
+<!-- ADVANCED CALCULATOR -->
+<section class="section light">
+  <div class="container calculator advanced-calculator">
 
-  <!-- 🔓 PREMIUM CHECK -->
-  <script>
-    if (typeof isPremiumUser === "function" && isPremiumUser()) {
-      const overlay = document.getElementById("premiumOverlay");
-      if (overlay) overlay.style.display = "none";
-    }
-  </script>
+    <div class="form-group">
+      <label for="currency">Choose currency</label>
+      <select id="currency">
+        <option value="₹">₹ INR</option>
+        <option value="$">$ USD</option>
+        <option value="€">€ EUR</option>
+        <option value="£">£ GBP</option>
+      </select>
+    </div>
 
+    <!-- PARTICIPANTS -->
+    <div class="card">
+      <h3>Add Participants</h3>
+      <div class="form-group">
+        <input type="text" id="personName" placeholder="Enter name" />
+        <button type="button" id="addPersonBtn">Add Person</button>
+      </div>
+      <ul id="peopleList"></ul>
+    </div>
+
+    <!-- EXPENSES -->
+    <div class="card">
+      <h3>Add Expense</h3>
+
+      <div class="form-group">
+        <input type="text" id="expenseTitle" placeholder="Expense name (optional)" />
+      </div>
+
+      <div class="form-group">
+        <input type="number" id="expenseAmount" placeholder="Amount" />
+      </div>
+
+      <div class="form-group">
+        <label>Paid by</label>
+        <select id="paidBy">
+          <option value="">Select person</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Split between</label>
+        <div id="splitBetween"></div>
+      </div>
+
+      <button type="button" id="addExpenseBtn">Add Expense</button>
+      <ul id="expenseList"></ul>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="card">
+      <h3>Results</h3>
+      <button type="button" id="calculateBtn" class="primary-btn">
+        Calculate Balances
+      </button>
+
+      <div id="results" class="results-section">
+        <p class="muted">Add participants and expenses to see results.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="feature-card">
+      <h3>Is this calculator free?</h3>
+      <p>Yes. The advanced expense split calculator is completely free to use.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>Do I need to create an account?</h3>
+      <p>No signup or login is required. Everything runs in your browser.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>Can I use this for international trips?</h3>
+      <p>Yes. You can choose multiple currencies including INR, USD, EUR, and GBP.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-content">
+    <p>© 2026 ExpenseSplit</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
