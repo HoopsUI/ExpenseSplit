@@ -1,5 +1,7 @@
 
-// ===== BASIC CALCULATOR (index.html only) =====
+// ================================
+// BASIC CALCULATOR (index.html only)
+// ================================
 const peopleInput = document.getElementById("people");
 
 if (peopleInput) {
@@ -20,15 +22,45 @@ if (peopleInput) {
   });
 }
 
-// ===== SHARED DATA (Advanced Calculator) =====
+// =======================================
+// PREMIUM ACCESS (NON-BREAKING, FUTURE-READY)
+// =======================================
+function isPremiumUser() {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // URL-based access (temporary / testing / post-payment redirect)
+  if (urlParams.get("premium") === "true") {
+    localStorage.setItem("expenseSplitPremium", "true");
+    return true;
+  }
+
+  // Local unlock (post-payment)
+  return localStorage.getItem("expenseSplitPremium") === "true";
+}
+
+// Manual unlock hook (for future payment success)
+function unlockPremium() {
+  localStorage.setItem("expenseSplitPremium", "true");
+}
+
+// Manual lock (admin / testing)
+function lockPremium() {
+  localStorage.removeItem("expenseSplitPremium");
+}
+
+// ================================
+// SHARED DATA (Advanced Calculator)
+// ================================
 let participants = [];
 let expenses = [];
 
-// Shared DOM refs (FIXED SCOPE ISSUE)
+// Shared DOM refs (safe scope)
 const paidBySelect = document.getElementById("paidBy");
 const splitBetweenDiv = document.getElementById("splitBetween");
 
-// ===== PHASE 2: PARTICIPANTS =====
+// ================================
+// PHASE 2: PARTICIPANTS
+// ================================
 const addPersonBtn = document.getElementById("addPersonBtn");
 
 if (addPersonBtn) {
@@ -55,7 +87,6 @@ if (addPersonBtn) {
 
   function renderParticipants() {
     peopleList.innerHTML = "";
-
     participants.forEach(name => {
       const li = document.createElement("li");
       li.textContent = name;
@@ -86,7 +117,9 @@ if (addPersonBtn) {
   }
 }
 
-// ===== PHASE 3: EXPENSES =====
+// ================================
+// PHASE 3: EXPENSES
+// ================================
 if (document.getElementById("addExpenseBtn")) {
   const expenseTitleInput = document.getElementById("expenseTitle");
   const expenseAmountInput = document.getElementById("expenseAmount");
@@ -140,7 +173,9 @@ if (document.getElementById("addExpenseBtn")) {
   }
 }
 
-// ===== PHASE 4: CALCULATIONS =====
+// ================================
+// PHASE 4: CALCULATIONS
+// ================================
 if (document.getElementById("calculateBtn")) {
   const calculateBtn = document.getElementById("calculateBtn");
   const resultsDiv = document.getElementById("results");
@@ -152,12 +187,14 @@ if (document.getElementById("calculateBtn")) {
     }
 
     const balances = {};
-    participants.forEach(name => balances[name] = 0);
+    participants.forEach(name => (balances[name] = 0));
 
     expenses.forEach(exp => {
       const share = exp.amount / exp.splitBetween.length;
       balances[exp.paidBy] += exp.amount;
-      exp.splitBetween.forEach(person => balances[person] -= share);
+      exp.splitBetween.forEach(person => {
+        balances[person] -= share;
+      });
     });
 
     renderResults(balances);
@@ -183,7 +220,9 @@ if (document.getElementById("calculateBtn")) {
   }
 }
 
-// ===== CURRENCY =====
+// ================================
+// CURRENCY
+// ================================
 const currencySelect = document.getElementById("currency");
 
 function getCurrency() {
