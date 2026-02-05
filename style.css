@@ -1,11 +1,12 @@
-/* RESET */
+/* =========================
+   RESET & BASE
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* BASE */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #1f2937;
@@ -24,7 +25,9 @@ a {
   padding: 0 20px;
 }
 
-/* HEADER */
+/* =========================
+   HEADER / NAV
+========================= */
 .header {
   border-bottom: 1px solid #e5e7eb;
   background: #ffffff;
@@ -49,7 +52,9 @@ nav a {
   color: #374151;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 .hero {
   padding: 80px 0;
   background: linear-gradient(to bottom, #f8fafc, #ffffff);
@@ -71,7 +76,9 @@ nav a {
   margin-bottom: 30px;
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
 .primary-btn {
   background: #2563eb;
   color: #ffffff;
@@ -79,6 +86,8 @@ nav a {
   border-radius: 8px;
   font-weight: 600;
   display: inline-block;
+  border: none;
+  cursor: pointer;
 }
 
 .secondary-btn {
@@ -90,11 +99,12 @@ nav a {
   display: inline-block;
 }
 
-/* SECTIONS */
+/* =========================
+   SECTIONS / LANDING
+========================= */
 .section {
   padding: 60px 16px;
 }
-
 
 .section.light {
   background: #f9fafb;
@@ -106,7 +116,9 @@ nav a {
   margin-bottom: 50px;
 }
 
-/* FEATURES */
+/* =========================
+   FEATURES / STEPS
+========================= */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -120,11 +132,6 @@ nav a {
   background: #ffffff;
 }
 
-.feature-card h3 {
-  margin-bottom: 10px;
-}
-
-/* STEPS */
 .steps {
   display: flex;
   justify-content: space-between;
@@ -145,7 +152,9 @@ nav a {
   margin-bottom: 10px;
 }
 
-/* CTA */
+/* =========================
+   CTA
+========================= */
 .cta {
   padding: 80px 0;
   background: #2563eb;
@@ -153,66 +162,32 @@ nav a {
   text-align: center;
 }
 
-.cta h2 {
-  font-size: 2.2rem;
-  margin-bottom: 15px;
-}
-
-.cta p {
-  margin-bottom: 30px;
-}
-
 .advanced-cta {
   margin-top: 40px;
   padding: 20px;
   background: #f8fafc;
   border-radius: 12px;
-  text-align: center;
   border: 1px solid #e5e7eb;
+  text-align: center;
 }
 
-.advanced-cta p {
-  margin-bottom: 12px;
-  font-size: 0.95rem;
-  color: #4b5563;
-}
-
-.advanced-cta .secondary-btn {
-  display: inline-block;
-  background: transparent;
-  color: #2563eb;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-weight: 600;
-}
-
-.advanced-cta .secondary-btn:hover {
-  background: #eff6ff;
-}
-
-
-
-
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 .footer {
   padding: 30px 0;
   border-top: 1px solid #e5e7eb;
-  background: #ffffff;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
 }
 
-.footer-links a {
-  margin-left: 15px;
-  font-size: 0.9rem;
-  color: #4b5563;
-}
-
+/* =========================
+   BASIC CALCULATOR
+========================= */
 .calculator {
   max-width: 500px;
 }
@@ -232,11 +207,6 @@ nav a {
   border: 1px solid #e5e7eb;
 }
 
-.calculator button {
-  margin-top: 30px;
-  width: 100%;
-}
-
 .result-box {
   margin-top: 30px;
   padding: 20px;
@@ -249,10 +219,6 @@ nav a {
   display: none;
 }
 
-.result-box h3 {
-  margin-bottom: 10px;
-}
-
 .result-table {
   width: 100%;
   border-collapse: collapse;
@@ -263,12 +229,6 @@ nav a {
 .result-table td {
   padding: 12px;
   border-bottom: 1px solid #e5e7eb;
-  text-align: left;
-}
-
-.result-table th {
-  background: #f9fafb;
-  font-weight: 600;
 }
 
 .result-table td:last-child {
@@ -280,113 +240,61 @@ nav a {
   margin-top: 15px;
 }
 
-.name-input input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-}
-
-/* ===== ADVANCED CALCULATOR UI POLISH ===== */
-
-.advanced-calculator .card {
+/* =========================
+   ADVANCED CALCULATOR (PREMIUM)
+========================= */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
   margin-bottom: 24px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
 }
 
-#results ul {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 12px;
-}
-
-#results li {
+#participantsList li,
+#expensesList li {
   padding: 10px 14px;
+  background: #f3f4f6;
+  border-radius: 6px;
   margin-bottom: 8px;
-  background: #f6f7f8;
-  border-radius: 6px;
-  font-size: 15px;
-}
-
-#results h4 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-
-#expenseList li,
-#peopleList li {
-  padding: 8px 12px;
-  background: #f2f2f2;
-  border-radius: 6px;
-  margin-bottom: 6px;
 }
 
 #splitBetween label {
+  display: block;
   margin-bottom: 6px;
   cursor: pointer;
 }
 
-.primary-btn {
-  margin-top: 12px;
+#results,
+#settlements {
+  margin-top: 20px;
+}
+
+#results p,
+#settlements p {
+  padding: 10px 14px;
+  background: #f9fafb;
+  border-radius: 6px;
+  margin-bottom: 8px;
 }
 
 /* =========================
-   PHASE D – MOBILE UX
+   MOBILE UX
 ========================= */
-
-.calc-card {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 24px;
-  max-width: 520px;
-  margin: 0 auto;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-}
-
-.form-group {
-  margin-bottom: 16px;
-}
-
-input,
-select,
-button {
-  width: 100%;
-  font-size: 16px;
-}
-
-button {
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: 600;
-}
-
-/* Mobile spacing */
 @media (max-width: 600px) {
-  .calc-card {
-    padding: 18px;
+  h1 {
+    font-size: 1.6rem;
   }
 
-  h2,
-  h3 {
-    font-size: 1.2rem;
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .card {
+    padding: 18px;
   }
 
   button {
     font-size: 15px;
   }
-}
-
-.results-section {
-  margin-top: 20px;
-  padding: 15px;
-  background: #f8f9fa;
-  border-radius: 8px;
-}
-
-.results-section h3 {
-  margin-bottom: 10px;
-}
-
-.results-section p {
-  margin: 6px 0;
 }
