@@ -38,17 +38,11 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "SoftwareApplication",
-        "name": "Advanced Expense Split Calculator",
-        "url": "https://yourwebsite.com/advanced.html",
-        "description": "Advanced expense split calculator to track who paid what, calculate balances, and see who owes whom.",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web",
-        "inLanguage": "en"
-      }
-    ]
+    "@type": "SoftwareApplication",
+    "name": "Advanced Expense Split Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "en"
   }
   </script>
 
@@ -57,42 +51,81 @@
     #premiumOverlay {
       position: fixed;
       inset: 0;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.97);
       z-index: 9999;
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       text-align: center;
-      padding: 20px;
+      padding: 24px;
     }
 
     #premiumOverlay h2 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
+      font-size: 2rem;
+      margin-bottom: 10px;
       color: var(--primary);
     }
 
     #premiumOverlay p {
       margin-bottom: 20px;
       color: var(--text-muted);
+      max-width: 420px;
     }
 
-    #premiumOverlay button {
-      background: var(--primary);
-      color: #ffffff;
-      padding: 14px 26px;
-      border: none;
+    .payment-box {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 24px;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .payment-option {
+      margin-bottom: 20px;
+    }
+
+    .payment-option h4 {
+      margin-bottom: 10px;
+    }
+
+    .upi-box {
+      background: #f9fafb;
+      padding: 14px;
       border-radius: var(--radius-md);
       font-weight: 600;
+      word-break: break-all;
+    }
+
+    .unlock-btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 14px;
+      border: none;
+      width: 100%;
+      border-radius: var(--radius-md);
+      font-weight: 700;
       cursor: pointer;
+      margin-top: 10px;
     }
 
     body.overlay-active {
       overflow: hidden;
     }
 
-    /* ===== CALCULATE BUTTON (PREMIUM STYLE) ===== */
+    .advanced-calculator {
+      filter: blur(6px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    body.premium-unlocked .advanced-calculator {
+      filter: none;
+      pointer-events: auto;
+    }
+
+    /* ===== CALCULATE BUTTON ===== */
     .btn-calculate {
       background: linear-gradient(135deg, #1d4ed8, #2563eb);
       color: #ffffff;
@@ -102,12 +135,6 @@
       font-size: 16px;
       font-weight: 700;
       box-shadow: var(--shadow-md);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .btn-calculate:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 50px rgba(37, 99, 235, 0.35);
     }
   </style>
 </head>
@@ -131,29 +158,7 @@
       <h1>Advanced Expense Split Calculator</h1>
       <p class="subtitle">
         Track who paid what, calculate balances, and clearly see who owes whom.
-        Perfect for trips, roommates, couples, and groups.
       </p>
-    </div>
-  </section>
-
-  <!-- ================= WHO IT’S FOR ================= -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Who Is This For?</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <h3>Trips & Vacations</h3>
-          <p>Track shared expenses across multiple people and days.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Roommates</h3>
-          <p>Split rent, groceries, utilities, and bills fairly.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Friends & Groups</h3>
-          <p>Know exactly who owes whom after outings.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -198,37 +203,41 @@
         <div id="results"></div>
       </div>
 
-      <!-- PREMIUM OVERLAY -->
-      <div id="premiumOverlay" style="display:none;">
-        <h2>Unlock Advanced Calculator</h2>
-        <p>This is a premium tool.</p>
-        <button onclick="unlockPremium()">Unlock Now</button>
-      </div>
-
     </div>
   </section>
 
-  <!-- ================= FAQ ================= -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Frequently Asked Questions</h2>
+  <!-- ================= PREMIUM OVERLAY ================= -->
+  <div id="premiumOverlay">
+    <div class="payment-box">
+      <h2>🔒 Unlock Advanced Calculator</h2>
+      <p>One-time payment to unlock full premium features.</p>
 
-      <div class="feature-card">
-        <h3>Is this calculator free?</h3>
-        <p>No. The advanced calculator is a premium tool.</p>
+      <div class="payment-option">
+        <h4>Pay with PayPal (Global)</h4>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="kanikabhatt15@gmail.com">
+          <input type="hidden" name="item_name" value="ExpenseSplit Advanced Calculator">
+          <input type="hidden" name="amount" value="2">
+          <input type="hidden" name="currency_code" value="USD">
+          <button class="unlock-btn" type="submit">Pay $2 with PayPal</button>
+        </form>
       </div>
 
-      <div class="feature-card">
-        <h3>Do I need to create an account?</h3>
-        <p>No signup or login is required.</p>
+      <div class="payment-option">
+        <h4>Pay with UPI (India)</h4>
+        <div class="upi-box">UPI ID: kanikabhatt15-1@okicici</div>
+        <a
+          class="unlock-btn"
+          href="upi://pay?pa=kanikabhatt15-1@okicici&pn=ExpenseSplit&am=99&cu=INR"
+        >
+          Pay ₹99 via UPI
+        </a>
       </div>
 
-      <div class="feature-card">
-        <h3>Can I use this for international trips?</h3>
-        <p>Yes. Multiple currencies are supported.</p>
-      </div>
+      <button class="unlock-btn" onclick="unlockPremium()">I’ve Paid – Unlock</button>
     </div>
-  </section>
+  </div>
 
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
@@ -239,7 +248,7 @@
 
   <script src="script.js"></script>
   <script>
-  window.addEventListener("DOMContentLoaded", initPremiumOverlay);
-</script>
+    window.addEventListener("DOMContentLoaded", initPremiumOverlay);
+  </script>
 </body>
 </html>
