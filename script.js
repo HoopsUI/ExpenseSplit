@@ -28,41 +28,31 @@ if (peopleInput) {
 function isPremiumUser() {
   const urlParams = new URLSearchParams(window.location.search);
 
-  // URL-based access (temporary / testing / post-payment redirect)
   if (urlParams.get("premium") === "true") {
     localStorage.setItem("expenseSplitPremium", "true");
     return true;
   }
 
-  // Local unlock (post-payment)
   return localStorage.getItem("expenseSplitPremium") === "true";
 }
 
-// Manual unlock hook (for future payment success)
 function unlockPremium() {
   localStorage.setItem("expenseSplitPremium", "true");
-  initPremiumOverlay(); // immediately hide overlay
+  initPremiumOverlay();
 }
 
-// Manual lock (admin / testing)
 function lockPremium() {
   localStorage.removeItem("expenseSplitPremium");
-  initPremiumOverlay(); // immediately show overlay
+  initPremiumOverlay();
 }
 
-// Initialize overlay logic
 function initPremiumOverlay() {
   const overlay = document.getElementById("premiumOverlay");
   if (!overlay) return;
 
-  if (isPremiumUser()) {
-    overlay.style.display = "none";
-  } else {
-    overlay.style.display = "flex";
-  }
+  overlay.style.display = isPremiumUser() ? "none" : "flex";
 }
 
-// Run overlay initialization on page load
 window.addEventListener("DOMContentLoaded", initPremiumOverlay);
 
 // ================================
@@ -71,7 +61,6 @@ window.addEventListener("DOMContentLoaded", initPremiumOverlay);
 let participants = [];
 let expenses = [];
 
-// Shared DOM refs (safe scope)
 const paidBySelect = document.getElementById("paidBy");
 const splitBetweenDiv = document.getElementById("splitBetween");
 
@@ -83,6 +72,9 @@ const addPersonBtn = document.getElementById("addPersonBtn");
 if (addPersonBtn) {
   const personInput = document.getElementById("personName");
   const peopleList = document.getElementById("peopleList");
+
+  // Restyle button
+  addPersonBtn.classList.add("btn-advanced");
 
   addPersonBtn.addEventListener("click", () => {
     const name = personInput.value.trim();
@@ -100,6 +92,9 @@ if (addPersonBtn) {
     participants.push(name);
     personInput.value = "";
     renderParticipants();
+
+    // Event tracking
+    trackEvent("Advanced Calculator", "Add Person", name);
   });
 
   function renderParticipants() {
@@ -143,6 +138,9 @@ if (document.getElementById("addExpenseBtn")) {
   const addExpenseBtn = document.getElementById("addExpenseBtn");
   const expenseList = document.getElementById("expenseList");
 
+  // Restyle button
+  addExpenseBtn.classList.add("btn-advanced");
+
   addExpenseBtn.addEventListener("click", () => {
     if (participants.length === 0) {
       alert("Add participants first.");
@@ -178,6 +176,9 @@ if (document.getElementById("addExpenseBtn")) {
     expenseAmountInput.value = "";
 
     renderExpenses();
+
+    // Event tracking
+    trackEvent("Advanced Calculator", "Add Expense", title);
   });
 
   function renderExpenses() {
@@ -215,6 +216,9 @@ if (document.getElementById("calculateBtn")) {
     });
 
     renderResults(balances);
+
+    // Event tracking
+    trackEvent("Advanced Calculator", "Calculate", "Calculation Performed");
   });
 
   function renderResults(balances) {
@@ -244,4 +248,19 @@ const currencySelect = document.getElementById("currency");
 
 function getCurrency() {
   return currencySelect ? currencySelect.value : "";
+}
+
+// ================================
+// EVENT TRACKING (GA / Plausible)
+// ================================
+function trackEvent(category, action, label) {
+  // Google Analytics gtag
+  if (typeof gtag === "function") {
+    gtag("event", action, { event_category: category, event_label: label });
+  }
+
+  // Plausible
+  if (typeof plausible === "function") {
+    plausible(action, { props: { category, label } });
+  }
 }
