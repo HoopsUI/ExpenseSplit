@@ -1,4 +1,3 @@
-
 // ================================
 // BASIC CALCULATOR (index.html only)
 // ================================
@@ -49,6 +48,7 @@ function isPremiumUser() {
 function unlockPremium() {
   localStorage.setItem("expenseSplitPremium", "true");
   initPremiumOverlay();
+  toggleAdvancedAccess(true);
 
   trackEvent("premium_unlock", {
     source: "advanced_calculator"
@@ -58,16 +58,38 @@ function unlockPremium() {
 function lockPremium() {
   localStorage.removeItem("expenseSplitPremium");
   initPremiumOverlay();
+  toggleAdvancedAccess(false);
 }
 
 function initPremiumOverlay() {
   const overlay = document.getElementById("premiumOverlay");
   if (!overlay) return;
 
-  overlay.style.display = isPremiumUser() ? "none" : "flex";
+  const isPremium = isPremiumUser();
+  overlay.style.display = isPremium ? "none" : "flex";
+  toggleAdvancedAccess(isPremium);
 }
 
 window.addEventListener("DOMContentLoaded", initPremiumOverlay);
+
+// =================================================
+// ADVANCED CALCULATOR ACCESS CONTROL (NEW, SAFE)
+// =================================================
+function toggleAdvancedAccess(enabled) {
+  const advancedSection = document.querySelector(".advanced-calculator");
+  if (!advancedSection) return;
+
+  const controls = advancedSection.querySelectorAll(
+    "input, select, button, textarea"
+  );
+
+  controls.forEach(el => {
+    // Do NOT disable payment overlay buttons
+    if (el.closest("#premiumOverlay")) return;
+
+    el.disabled = !enabled;
+  });
+}
 
 // ================================
 // SHARED DATA (Advanced Calculator)
@@ -90,6 +112,8 @@ if (addPersonBtn) {
   addPersonBtn.classList.add("btn-advanced");
 
   addPersonBtn.addEventListener("click", () => {
+    if (!isPremiumUser()) return;
+
     const name = personInput.value.trim();
 
     if (!name) {
@@ -155,6 +179,8 @@ if (document.getElementById("addExpenseBtn")) {
   addExpenseBtn.classList.add("btn-advanced");
 
   addExpenseBtn.addEventListener("click", () => {
+    if (!isPremiumUser()) return;
+
     if (participants.length === 0) {
       alert("Add participants first.");
       return;
@@ -214,6 +240,8 @@ if (document.getElementById("calculateBtn")) {
   const resultsDiv = document.getElementById("results");
 
   calculateBtn.addEventListener("click", () => {
+    if (!isPremiumUser()) return;
+
     if (participants.length === 0 || expenses.length === 0) {
       alert("Add participants and expenses first.");
       return;
