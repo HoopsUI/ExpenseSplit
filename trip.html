@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Expense Split Calculator – Easy & Free | ExpenseSplit</title>
+  <meta name="description" content="Simplify group travel expenses with our free Trip Expense Split Calculator. Avoid confusion, split costs quickly, and enjoy your trip stress-free!">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Trip Expense Split Calculator – Easy & Free | ExpenseSplit">
+  <meta property="og:description" content="Simplify group travel expenses with our free Trip Expense Split Calculator. Avoid confusion, split costs quickly, and enjoy your trip stress-free!">
+  <meta property="og:url" content="https://hoopsui.github.io/ExpenseSplit/trip.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ExpenseSplit",
+    "url": "https://hoopsui.github.io/ExpenseSplit/",
+    "description": "Free basic expense split calculator for trips, roommates, and friends."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Trip Expense Split Calculator",
+    "operatingSystem": "Web",
+    "applicationCategory": "FinanceApplication",
+    "url": "https://hoopsui.github.io/ExpenseSplit/trip.html",
+    "description": "Calculate and split travel expenses among friends or groups quickly and accurately. Avoid confusing manual calculations.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Trip Expense Split Calculator</h1>
+      <p>Planning a group trip? Easily split expenses among friends, roommates, or family without the headache of manual calculations!</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Calculator Section -->
+    <section id="calculator">
+      <h2>Use the Calculator</h2>
+      <p>Enter each expense, who paid, and who shared. Our tool automatically calculates who owes whom — no more confusion!</p>
+      <div id="expense-calculator">
+        <!-- Embed the same calculator UI as homepage -->
+        <div class="calculator">
+          <label for="numPeople">Number of People:</label>
+          <input type="number" id="numPeople" min="2" value="2">
+
+          <div id="peopleNames"></div>
+
+          <label for="numExpenses">Number of Expenses:</label>
+          <input type="number" id="numExpenses" min="1" value="1">
+
+          <div id="expensesList"></div>
+
+          <button id="calculateBtn">Calculate Split</button>
+
+          <h3>Results:</h3>
+          <div id="results"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Use This Tool Section -->
+    <section id="why-use">
+      <h2>Why Not Manual Calculations?</h2>
+      <p>When traveling in groups, keeping track of who paid what can get messy fast. Manual calculations often lead to errors, confusion, or arguments. Our Trip Expense Split Calculator:</p>
+      <ul>
+        <li>Automatically calculates who owes whom</li>
+        <li>Saves time and avoids mistakes</li>
+        <li>Works on any device — desktop or mobile</li>
+        <li>100% free and requires no signup</li>
+      </ul>
+    </section>
+
+    <!-- How to Use Section -->
+    <section id="how-to-use">
+      <h2>How to Use the Trip Calculator</h2>
+      <ol>
+        <li>Enter the number of people on your trip.</li>
+        <li>Enter each person's name.</li>
+        <li>Add expenses: who paid and how much.</li>
+        <li>Click "Calculate Split" to see the results instantly.</li>
+      </ol>
+      <p>It's that simple! No more confusing spreadsheets or manual math.</p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>Is this tool really free?</h3>
+        <p>Yes! Our Trip Expense Split Calculator is completely free to use and requires no signup.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I use it on my phone?</h3>
+        <p>Absolutely. The calculator is mobile-friendly and works on any device.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can it handle multiple currencies?</h3>
+        <p>Currently, it works best for a single currency per calculation. You can convert manually if needed.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How does it simplify group travel?</h3>
+        <p>It saves time, avoids errors, and makes settling debts among friends quick and painless — no messy spreadsheets required.</p>
+      </div>
+    </section>
+
+    <!-- Internal Links -->
+    <section id="more-tools">
+      <h2>Other Expense Calculators</h2>
+      <ul>
+        <li><a href="index.html">General Expense Split Calculator</a></li>
+        <li><a href="roommates.html">Roommates Expense Calculator</a></li>
+        <li><a href="friends.html">Friends Expense Calculator</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 ExpenseSplit. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms & Conditions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
