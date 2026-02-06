@@ -27,6 +27,46 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://hoopsui.github.io/ExpenseSplit/og-image.png" />
 
+  <!-- STRUCTURED DATA (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://hoopsui.github.io/ExpenseSplit/#website",
+        "url": "https://hoopsui.github.io/ExpenseSplit/",
+        "name": "ExpenseSplit",
+        "description": "ExpenseSplit is a free online expense split calculator to divide bills fairly among friends, roommates, trips, and groups. No signup required.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "ExpenseSplit"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://hoopsui.github.io/ExpenseSplit/#webpage",
+        "url": "https://hoopsui.github.io/ExpenseSplit/",
+        "name": "ExpenseSplit – Free Expense Split Calculator",
+        "description": "Easily split expenses with friends, roommates, trips, or groups using ExpenseSplit's free online calculator.",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@id": "https://hoopsui.github.io/ExpenseSplit/#website"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://hoopsui.github.io/ExpenseSplit/#calculator",
+        "name": "ExpenseSplit Calculator",
+        "operatingSystem": "Web",
+        "applicationCategory": "FinancialApplication",
+        "url": "https://hoopsui.github.io/ExpenseSplit/#tool",
+        "description": "A free web-based expense split calculator to divide bills among friends, roommates, and trips quickly and fairly."
+      }
+    ]
+  }
+  </script>
+
   <!-- STYLES -->
   <link rel="stylesheet" href="style.css">
 
@@ -116,7 +156,7 @@
 </head>
 
 <body>
-
+  <!-- Rest of your original body remains unchanged -->
   <!-- HEADER -->
   <header class="header">
     <div class="container nav">
@@ -145,7 +185,6 @@
   <section id="features" class="section">
     <div class="container">
       <h2 class="section-title">Why Use ExpenseSplit?</h2>
-
       <div class="features-grid">
         <div class="feature-card">
           <h3>Simple & Fast</h3>
@@ -167,7 +206,6 @@
   <section id="how" class="section light">
     <div class="container">
       <h2 class="section-title">How It Works</h2>
-
       <div class="steps">
         <div class="step">
           <span>1</span>
@@ -189,11 +227,8 @@
   <section id="tool" class="section light">
     <div class="container">
       <h2 class="section-title">Expense Split Calculator</h2>
-
       <div class="calc-card calculator">
-
         <form id="calculatorForm" class="calculator-form">
-
           <div class="form-group">
             <label for="currency">Choose currency</label>
             <select id="currency" required>
@@ -203,33 +238,23 @@
               <option value="£">£ GBP</option>
             </select>
           </div>
-
           <div class="form-group">
             <label for="amount">Total Expense Amount</label>
             <input type="number" id="amount" placeholder="Enter total amount" required>
           </div>
-
           <div class="form-group">
             <label for="splitType">Split type</label>
             <select id="splitType">
               <option value="equal">Equal split</option>
             </select>
           </div>
-
           <div class="form-group">
             <label for="people">Number of people</label>
             <input type="number" id="people" placeholder="Enter number of people" required>
           </div>
-
-          <button type="submit" class="primary-btn">
-            Calculate
-          </button>
-
+          <button type="submit" class="primary-btn">Calculate</button>
         </form>
-
-        <!-- RESULT -->
         <div id="result" class="result-box hidden"></div>
-
       </div>
     </div>
   </section>
@@ -237,14 +262,12 @@
   <!-- SEO CONTENT -->
   <section class="section">
     <div class="container seo-content">
-
       <h2>Free Expense Split Calculator for Every Situation</h2>
       <p>
         ExpenseSplit helps you split expenses fairly and quickly without complicated apps or signups.
         Whether you are managing shared household bills, planning a group trip, or splitting dinner costs,
         this free expense split calculator gives instant and accurate results.
       </p>
-
       <h3>Who Should Use ExpenseSplit?</h3>
       <ul>
         <li>Friends splitting restaurant bills or party expenses. Save time and ensure everyone pays fairly without arguments.</li>
@@ -252,7 +275,6 @@
         <li>Groups planning trips and vacations. Quickly calculate who owes what and avoid confusion during trips.</li>
         <li>Anyone who wants a fast and fair bill splitter for daily or occasional shared expenses.</li>
       </ul>
-
       <h3>Why Use an Online Expense Splitter?</h3>
       <p>
         Manually splitting expenses often leads to confusion and mistakes.
@@ -260,7 +282,6 @@
         reduces arguments, and saves time by showing exactly who owes what.
         You can make quick calculations in seconds, no matter the group size.
       </p>
-
       <h3>ExpenseSplit vs Mobile Apps</h3>
       <p>
         Unlike heavy mobile apps, ExpenseSplit works instantly in your browser.
@@ -268,14 +289,12 @@
         Simply open the calculator, enter details, and get results in seconds,
         without worrying about app updates or compatibility issues.
       </p>
-
       <h3>Is ExpenseSplit Really Free?</h3>
       <p>
         Yes, the basic expense split calculator is completely free to use.
         You can split bills as many times as you want without restrictions,
         and there are no hidden fees, trials, or ads that interrupt the process.
       </p>
-
     </div>
   </section>
 
@@ -335,7 +354,7 @@
     });
   </script>
 
-  <!-- FAQ SCHEMA JSON-LD -->
+  <!-- Existing FAQ JSON-LD stays unchanged -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
