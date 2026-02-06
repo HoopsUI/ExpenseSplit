@@ -284,9 +284,12 @@ nav a:hover {
 ========================= */
 .calculator {
   max-width: 520px;
+  width: 100%; /* ensures full width up to max */
 }
 
 .calc-card {
+  max-width: 520px; /* keeps calculator original width */
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -407,6 +410,7 @@ button {
 ========================= */
 .seo-content {
   max-width: 720px;
+  width: 100%; /* ensures full width up to max */
   margin-left: auto;
   margin-right: auto;
   background-color: #f7f9fc;
@@ -485,4 +489,15 @@ button {
   max-height: 500px;
   margin-top: 10px;
   padding-left: 5px;
+}
+
+/* =========================
+   FAQ POLISH SPACING
+========================= */
+.faq-item + .faq-item {
+  margin-top: 15px;
+}
+
+.faq-answer p {
+  margin-bottom: 8px;
 }
