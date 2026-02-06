@@ -433,3 +433,60 @@ section.container li {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* =========================
+   FAQ SECTION STYLING
+========================= */
+.faq-section {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: #f9fafb;
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 15px 0;
+}
+
+.faq-question {
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  padding-right: 25px;
+}
+
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.faq-question.active::after {
+  content: '−';
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding-left: 5px;
+  margin-top: 5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.faq-answer.open {
+  max-height: 500px; /* enough to show full answer */
+  margin-top: 10px;
+  padding-left: 5px;
+}
