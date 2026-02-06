@@ -137,8 +137,7 @@ nav a:hover {
 }
 
 /* =========================
-   ADVANCED ACTION BUTTONS (NEW)
-   Used ONLY for Add Person / Add Expense
+   ADVANCED ACTION BUTTONS
 ========================= */
 .btn-advanced {
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
@@ -281,10 +280,15 @@ nav a:hover {
 }
 
 /* =========================
-   CALCULATOR (SHARED)
+   CALCULATOR
 ========================= */
 .calculator {
   max-width: 520px;
+}
+
+.calc-card {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-group {
@@ -398,49 +402,41 @@ button {
   }
 }
 
-/* SEO Content Spacing */
-section.container h2 {
-  margin-top: 40px;
-  margin-bottom: 20px;
-  line-height: 1.4;
+/* =========================
+   SEO CONTENT
+========================= */
+.seo-content {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f7f9fc;
+  padding: 30px 25px;
+  border-radius: 12px;
+  line-height: 1.7;
 }
 
-section.container h3 {
-  margin-top: 30px;
-  margin-bottom: 12px;
-  line-height: 1.3;
+.seo-content h2,
+.seo-content h3 {
+  margin-top: 25px;
+  margin-bottom: 15px;
   font-weight: 600;
 }
 
-section.container p {
-  margin-bottom: 16px;
-  line-height: 1.6;
-}
-
-section.container ul {
-  margin-bottom: 20px;
+.seo-content ul {
   padding-left: 20px;
-  line-height: 1.6;
 }
 
-section.container li {
-  margin-bottom: 8px;
-}
-
-/* Center Calculator and SEO Content */
-.calc-card,
-.seo-content {
-  margin-left: auto;
-  margin-right: auto;
+.seo-content li {
+  margin-bottom: 10px;
 }
 
 /* =========================
-   FAQ SECTION STYLING
+   FAQ SECTION
 ========================= */
 .faq-section {
-  max-width: 700px;
+  max-width: 720px;
   margin: 50px auto;
-  padding: 20px;
+  padding: 25px 20px;
   border-radius: var(--radius-lg);
   background: #f9fafb;
   box-shadow: var(--shadow-sm);
@@ -486,7 +482,7 @@ section.container li {
 }
 
 .faq-answer.open {
-  max-height: 500px; /* enough to show full answer */
+  max-height: 500px;
   margin-top: 10px;
   padding-left: 5px;
 }
