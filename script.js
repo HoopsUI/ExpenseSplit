@@ -22,6 +22,16 @@ if (peopleInput) {
   });
 }
 
+// Track basic calculator submit
+const calculatorForm = document.getElementById("calculatorForm");
+if (calculatorForm) {
+  calculatorForm.addEventListener("submit", () => {
+    trackEvent("basic_calculate", {
+      people_count: parseInt(peopleInput?.value || 0)
+    });
+  });
+}
+
 // =======================================
 // PREMIUM ACCESS (NON-BREAKING, FUTURE-READY)
 // =======================================
@@ -39,6 +49,10 @@ function isPremiumUser() {
 function unlockPremium() {
   localStorage.setItem("expenseSplitPremium", "true");
   initPremiumOverlay();
+
+  trackEvent("premium_unlock", {
+    source: "advanced_calculator"
+  });
 }
 
 function lockPremium() {
@@ -73,7 +87,6 @@ if (addPersonBtn) {
   const personInput = document.getElementById("personName");
   const peopleList = document.getElementById("peopleList");
 
-  // Restyle button
   addPersonBtn.classList.add("btn-advanced");
 
   addPersonBtn.addEventListener("click", () => {
@@ -93,8 +106,9 @@ if (addPersonBtn) {
     personInput.value = "";
     renderParticipants();
 
-    // Event tracking
-    trackEvent("Advanced Calculator", "Add Person", name);
+    trackEvent("advanced_add_person", {
+      participant_count: participants.length
+    });
   });
 
   function renderParticipants() {
@@ -138,7 +152,6 @@ if (document.getElementById("addExpenseBtn")) {
   const addExpenseBtn = document.getElementById("addExpenseBtn");
   const expenseList = document.getElementById("expenseList");
 
-  // Restyle button
   addExpenseBtn.classList.add("btn-advanced");
 
   addExpenseBtn.addEventListener("click", () => {
@@ -177,8 +190,10 @@ if (document.getElementById("addExpenseBtn")) {
 
     renderExpenses();
 
-    // Event tracking
-    trackEvent("Advanced Calculator", "Add Expense", title);
+    trackEvent("advanced_add_expense", {
+      expense_count: expenses.length,
+      amount: amount
+    });
   });
 
   function renderExpenses() {
@@ -217,8 +232,10 @@ if (document.getElementById("calculateBtn")) {
 
     renderResults(balances);
 
-    // Event tracking
-    trackEvent("Advanced Calculator", "Calculate", "Calculation Performed");
+    trackEvent("advanced_calculate", {
+      participant_count: participants.length,
+      expense_count: expenses.length
+    });
   });
 
   function renderResults(balances) {
@@ -251,16 +268,10 @@ function getCurrency() {
 }
 
 // ================================
-// EVENT TRACKING (GA / Plausible)
+// EVENT TRACKING (GA4 SAFE)
 // ================================
-function trackEvent(category, action, label) {
-  // Google Analytics gtag
+function trackEvent(eventName, params = {}) {
   if (typeof gtag === "function") {
-    gtag("event", action, { event_category: category, event_label: label });
-  }
-
-  // Plausible
-  if (typeof plausible === "function") {
-    plausible(action, { props: { category, label } });
+    gtag("event", eventName, params);
   }
 }
