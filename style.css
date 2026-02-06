@@ -426,3 +426,10 @@ section.container ul {
 section.container li {
   margin-bottom: 8px;
 }
+
+/* Center Calculator and SEO Content */
+.calc-card,
+.seo-content {
+  margin-left: auto;
+  margin-right: auto;
+}
