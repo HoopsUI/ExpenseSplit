@@ -31,14 +31,51 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* SEO content spacing & FAQ collapsibles */
-    .seo-content h2, .seo-content h3 {margin-top: 1.5em; margin-bottom: 0.5em;}
-    .seo-content p, .seo-content ul {margin-bottom: 1em; line-height: 1.6;}
-    .faq-section {margin-top: 2em;}
-    .faq-item {border-bottom: 1px solid #ddd; margin-bottom: 0.5em;}
-    .faq-question {cursor: pointer; padding: 12px; font-weight: bold; background: #f7f7f7; border-radius: 6px;}
-    .faq-answer {padding: 10px 12px; display: none; background: #fff;}
-    .faq-question:hover {background: #e0e0e0;}
+    /* Highlight SEO content */
+    .seo-content {
+      background-color: #f7f9fc;
+      padding: 30px 25px;
+      border-radius: 12px;
+      margin: 40px 0;
+      line-height: 1.7;
+    }
+
+    .seo-content h2, .seo-content h3 {
+      margin-top: 25px;
+      margin-bottom: 15px;
+    }
+
+    .seo-content ul {
+      padding-left: 20px;
+    }
+
+    /* Collapsible FAQ styling */
+    .faq-section {
+      margin-top: 40px;
+    }
+
+    .faq-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .faq-question {
+      cursor: pointer;
+      padding: 18px 20px;
+      font-weight: 600;
+      background-color: #f1f5f9;
+    }
+
+    .faq-answer {
+      padding: 15px 20px;
+      display: none;
+      background-color: #ffffff;
+      line-height: 1.6;
+    }
   </style>
 </head>
 
@@ -52,7 +89,6 @@
         <a href="#how">How it works</a>
         <a href="#features">Features</a>
         <a href="#tool">Calculator</a>
-        <a href="#faq">FAQ</a>
       </nav>
     </div>
   </header>
@@ -73,6 +109,7 @@
   <section id="features" class="section">
     <div class="container">
       <h2 class="section-title">Why Use ExpenseSplit?</h2>
+
       <div class="features-grid">
         <div class="feature-card">
           <h3>Simple & Fast</h3>
@@ -94,10 +131,20 @@
   <section id="how" class="section light">
     <div class="container">
       <h2 class="section-title">How It Works</h2>
+
       <div class="steps">
-        <div class="step"><span>1</span><p>Add people involved</p></div>
-        <div class="step"><span>2</span><p>Enter expenses</p></div>
-        <div class="step"><span>3</span><p>See who owes whom</p></div>
+        <div class="step">
+          <span>1</span>
+          <p>Add people involved</p>
+        </div>
+        <div class="step">
+          <span>2</span>
+          <p>Enter expenses</p>
+        </div>
+        <div class="step">
+          <span>3</span>
+          <p>See who owes whom</p>
+        </div>
       </div>
     </div>
   </section>
@@ -106,8 +153,11 @@
   <section id="tool" class="section light">
     <div class="container">
       <h2 class="section-title">Expense Split Calculator</h2>
+
       <div class="calc-card calculator">
+
         <form id="calculatorForm" class="calculator-form">
+
           <div class="form-group">
             <label for="currency">Choose currency</label>
             <select id="currency" required>
@@ -117,103 +167,138 @@
               <option value="£">£ GBP</option>
             </select>
           </div>
+
           <div class="form-group">
             <label for="amount">Total Expense Amount</label>
             <input type="number" id="amount" placeholder="Enter total amount" required>
           </div>
+
           <div class="form-group">
             <label for="splitType">Split type</label>
             <select id="splitType">
               <option value="equal">Equal split</option>
             </select>
           </div>
+
           <div class="form-group">
             <label for="people">Number of people</label>
             <input type="number" id="people" placeholder="Enter number of people" required>
           </div>
-          <button type="submit" class="primary-btn">Calculate</button>
+
+          <button type="submit" class="primary-btn">
+            Calculate
+          </button>
+
         </form>
+
+        <!-- RESULT -->
         <div id="result" class="result-box hidden"></div>
+
       </div>
     </div>
   </section>
 
   <!-- SEO CONTENT -->
-  <section class="section seo-content">
-    <div class="container">
+  <section class="section">
+    <div class="container seo-content">
+
       <h2>Free Expense Split Calculator for Every Situation</h2>
       <p>
         ExpenseSplit helps you split expenses fairly and quickly without complicated apps or signups.
-        Whether managing household bills, group trips, or dinner costs, this free calculator gives instant and accurate results.
+        Whether you are managing shared household bills, planning a group trip, or splitting dinner costs,
+        this free expense split calculator gives instant and accurate results.
       </p>
 
       <h3>Who Should Use ExpenseSplit?</h3>
       <ul>
-        <li>Friends splitting restaurant bills or party expenses</li>
-        <li>Roommates managing rent, utilities, and groceries</li>
-        <li>Groups planning trips and vacations</li>
-        <li>Anyone who wants a fast and fair bill splitter</li>
+        <li>Friends splitting restaurant bills or party expenses. Save time and ensure everyone pays fairly without arguments.</li>
+        <li>Roommates managing rent, utilities, and groceries. Keep track of shared household expenses with transparency and ease.</li>
+        <li>Groups planning trips and vacations. Quickly calculate who owes what and avoid confusion during trips.</li>
+        <li>Anyone who wants a fast and fair bill splitter for daily or occasional shared expenses.</li>
       </ul>
 
       <h3>Why Use an Online Expense Splitter?</h3>
       <p>
         Manually splitting expenses often leads to confusion and mistakes.
-        ExpenseSplit ensures transparency, reduces arguments, and saves time by showing exactly who owes what.
+        An online expense splitter like ExpenseSplit ensures transparency,
+        reduces arguments, and saves time by showing exactly who owes what.
+        You can make quick calculations in seconds, no matter the group size.
       </p>
 
       <h3>ExpenseSplit vs Mobile Apps</h3>
       <p>
         Unlike heavy mobile apps, ExpenseSplit works instantly in your browser.
-        No installation, no account creation, no learning curve. Open the calculator, enter details, and get results in seconds.
+        There is no installation, no account creation, and no learning curve.
+        Simply open the calculator, enter details, and get results in seconds,
+        without worrying about app updates or compatibility issues.
       </p>
 
       <h3>Is ExpenseSplit Really Free?</h3>
       <p>
         Yes. The basic expense split calculator is completely free to use.
-        Split bills as many times as you want without restrictions.
+        You can split bills as many times as you want without restrictions,
+        and there are no hidden fees, trials, or ads that interrupt the process.
       </p>
+
     </div>
   </section>
 
   <!-- FAQ SECTION -->
-  <section id="faq" class="section faq-section">
+  <section class="section faq-section">
     <div class="container">
       <h2>Frequently Asked Questions (FAQ)</h2>
 
       <div class="faq-item">
-        <div class="faq-question">Is ExpenseSplit really free?</div>
-        <div class="faq-answer">Yes, the basic expense split calculator is completely free to use. You can split bills as many times as you want without restrictions.</div>
+        <div class="faq-question">1. Can I split expenses for any group size?</div>
+        <div class="faq-answer">
+          Yes! ExpenseSplit allows you to split expenses for any number of people.
+          Whether it’s a small dinner with 2 friends or a large group trip with 10 or more people,
+          the calculator handles all cases instantly and accurately.
+        </div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-question">Do I need an account to use ExpenseSplit?</div>
-        <div class="faq-answer">No account is needed. The tool works instantly in your browser without signups.</div>
+        <div class="faq-question">2. Do I need to create an account to use ExpenseSplit?</div>
+        <div class="faq-answer">
+          No account is required. ExpenseSplit works directly in your browser.
+          You can start calculating your shared expenses immediately, without logging in,
+          downloading an app, or providing any personal information.
+        </div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-question">Can I use it for trips or group events?</div>
-        <div class="faq-answer">Absolutely. ExpenseSplit is perfect for splitting bills for trips, parties, and group events.</div>
+        <div class="faq-question">3. Can I use ExpenseSplit on mobile devices?</div>
+        <div class="faq-answer">
+          Absolutely! ExpenseSplit is fully mobile-friendly.
+          The layout and calculator adapt to any screen size, so you can split bills conveniently
+          from your smartphone or tablet while on the go.
+        </div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-question">Does it work on mobile devices?</div>
-        <div class="faq-answer">Yes, ExpenseSplit is fully mobile-friendly and works on smartphones and tablets.</div>
+        <div class="faq-question">4. Is it really free to use?</div>
+        <div class="faq-answer">
+          Yes, the basic calculator is completely free.
+          You can use it as often as you like without any limitations.
+          There are no hidden charges, subscriptions, or intrusive ads.
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- FAQ COLLAPSIBLE SCRIPT -->
+  <!-- FAQ TOGGLE SCRIPT -->
   <script>
-    document.querySelectorAll('.faq-question').forEach(question => {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
       question.addEventListener('click', () => {
         const answer = question.nextElementSibling;
-        const isVisible = answer.style.display === 'block';
-        answer.style.display = isVisible ? 'none' : 'block';
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
       });
     });
   </script>
 
-  <!-- FAQ JSON-LD SCHEMA -->
+  <!-- FAQ SCHEMA JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -221,34 +306,34 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Is ExpenseSplit really free?",
+        "name": "Can I split expenses for any group size?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, the basic expense split calculator is completely free to use. You can split bills as many times as you want without restrictions."
+          "text": "Yes! ExpenseSplit allows you to split expenses for any number of people. Whether it’s a small dinner with 2 friends or a large group trip with 10 or more people, the calculator handles all cases instantly and accurately."
         }
       },
       {
         "@type": "Question",
-        "name": "Do I need an account to use ExpenseSplit?",
+        "name": "Do I need to create an account to use ExpenseSplit?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No account is needed. The tool works instantly in your browser without signups."
+          "text": "No account is required. ExpenseSplit works directly in your browser. You can start calculating your shared expenses immediately, without logging in, downloading an app, or providing any personal information."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I use it for trips or group events?",
+        "name": "Can I use ExpenseSplit on mobile devices?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolutely. ExpenseSplit is perfect for splitting bills for trips, parties, and group events."
+          "text": "Absolutely! ExpenseSplit is fully mobile-friendly. The layout and calculator adapt to any screen size, so you can split bills conveniently from your smartphone or tablet while on the go."
         }
       },
       {
         "@type": "Question",
-        "name": "Does it work on mobile devices?",
+        "name": "Is it really free to use?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, ExpenseSplit is fully mobile-friendly and works on smartphones and tablets."
+          "text": "Yes, the basic calculator is completely free. You can use it as often as you like without any limitations. There are no hidden charges, subscriptions, or intrusive ads."
         }
       }
     ]
