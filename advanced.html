@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -19,7 +19,7 @@
   <style>
     /* ===== PREMIUM OVERLAY ===== */
     #premiumOverlay {
-      position: absolute;
+      position: fixed; /* Full viewport coverage */
       top: 0;
       left: 0;
       width: 100%;
@@ -63,6 +63,11 @@
     #premiumOverlay button:hover {
       transform: translateY(-1px);
       box-shadow: var(--shadow-sm);
+    }
+
+    /* Prevent background scrolling when overlay is active */
+    body.overlay-active {
+      overflow: hidden;
     }
   </style>
 </head>
@@ -249,16 +254,30 @@
 
 <script src="script.js"></script>
 <script>
-  // PREMIUM OVERLAY HANDLER
+  // ===== PREMIUM OVERLAY HANDLER =====
+  let premium = false; // default value
+
+  function isPremiumUser() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("premium") === "true") return true;
+    return premium;
+  }
+
+  function setPremiumUser(value) {
+    premium = value;
+  }
+
   function initPremiumOverlay() {
     const overlay = document.getElementById("premiumOverlay");
     if (!overlay) return;
 
-    if (typeof isPremiumUser === "function" && isPremiumUser()) {
-      overlay.style.display = "none";
-    } else {
+    if (!isPremiumUser()) {
       overlay.style.display = "flex";
       overlay.style.opacity = 1;
+      document.body.classList.add("overlay-active"); // lock scroll
+    } else {
+      overlay.style.display = "none";
+      document.body.classList.remove("overlay-active");
     }
   }
 
@@ -266,7 +285,7 @@
     const overlay = document.getElementById("premiumOverlay");
     if (!overlay) return;
 
-    if (typeof setPremiumUser === "function") setPremiumUser(true);
+    setPremiumUser(true);
 
     overlay.style.transition = "opacity 0.5s ease";
     overlay.style.opacity = 0;
@@ -275,12 +294,12 @@
       "transitionend",
       () => {
         overlay.style.display = "none";
+        document.body.classList.remove("overlay-active"); // unlock scroll
       },
       { once: true }
     );
   }
 
-  // Init on page load
   window.addEventListener("DOMContentLoaded", initPremiumOverlay);
 </script>
 </body>
