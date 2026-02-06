@@ -303,3 +303,14 @@ function trackEvent(eventName, params = {}) {
     gtag("event", eventName, params);
   }
 }
+
+// =========================
+// FAQ COLLAPSIBLE TOGGLE
+// =========================
+document.querySelectorAll('.faq-question').forEach((q) => {
+  q.addEventListener('click', () => {
+    q.classList.toggle('active');
+    const answer = q.nextElementSibling;
+    answer.classList.toggle('open');
+  });
+});
