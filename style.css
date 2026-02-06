@@ -517,3 +517,46 @@ button {
   width: 100%;
   max-width: 720px;
 }
+
+/* =========================
+   TRIP.HTML SPECIFIC CALCULATOR (NEW)
+========================= */
+#peopleNames .name-input,
+#expensesList li,
+#results ul {
+  width: 100%;
+}
+
+#peopleNames input,
+#expensesList input,
+#results li {
+  font-size: 15px;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+#calculateBtn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+#calculateBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Responsive for trip.html */
+@media (max-width: 600px) {
+  #peopleNames input,
+  #expensesList input,
+  #calculateBtn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
