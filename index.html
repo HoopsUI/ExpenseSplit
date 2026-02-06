@@ -31,27 +31,39 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Highlight SEO content */
+    /* =========================
+       SEO CONTENT CENTERING
+    ========================= */
     .seo-content {
       background-color: #f7f9fc;
       padding: 30px 25px;
       border-radius: 12px;
-      margin: 40px 0;
+      margin: 40px auto;
+      max-width: 720px;
       line-height: 1.7;
     }
 
     .seo-content h2, .seo-content h3 {
       margin-top: 25px;
       margin-bottom: 15px;
+      font-weight: 600;
     }
 
     .seo-content ul {
       padding-left: 20px;
     }
 
-    /* Collapsible FAQ styling */
+    .seo-content li {
+      margin-bottom: 10px;
+    }
+
+    /* =========================
+       FAQ STYLING
+    ========================= */
     .faq-section {
-      margin-top: 40px;
+      max-width: 720px;
+      margin: 50px auto;
+      padding: 25px 20px;
     }
 
     .faq-item {
@@ -68,6 +80,21 @@
       padding: 18px 20px;
       font-weight: 600;
       background-color: #f1f5f9;
+      position: relative;
+    }
+
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active::after {
+      content: '−';
     }
 
     .faq-answer {
@@ -75,6 +102,15 @@
       display: none;
       background-color: #ffffff;
       line-height: 1.6;
+    }
+
+    /* =========================
+       CENTER CALCULATOR
+    ========================= */
+    #tool .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   </style>
 </head>
@@ -235,7 +271,7 @@
 
       <h3>Is ExpenseSplit Really Free?</h3>
       <p>
-        Yes. The basic expense split calculator is completely free to use.
+        Yes, the basic expense split calculator is completely free to use.
         You can split bills as many times as you want without restrictions,
         and there are no hidden fees, trials, or ads that interrupt the process.
       </p>
@@ -253,7 +289,7 @@
         <div class="faq-answer">
           Yes! ExpenseSplit allows you to split expenses for any number of people.
           Whether it’s a small dinner with 2 friends or a large group trip with 10 or more people,
-          the calculator handles all cases instantly and accurately.
+          the calculator handles all cases instantly and accurately. It’s designed for both casual and frequent use.
         </div>
       </div>
 
@@ -262,7 +298,7 @@
         <div class="faq-answer">
           No account is required. ExpenseSplit works directly in your browser.
           You can start calculating your shared expenses immediately, without logging in,
-          downloading an app, or providing any personal information.
+          downloading an app, or providing any personal information. This makes it easy for everyone to use.
         </div>
       </div>
 
@@ -271,7 +307,7 @@
         <div class="faq-answer">
           Absolutely! ExpenseSplit is fully mobile-friendly.
           The layout and calculator adapt to any screen size, so you can split bills conveniently
-          from your smartphone or tablet while on the go.
+          from your smartphone or tablet while on the go. The interface remains clear and responsive.
         </div>
       </div>
 
@@ -280,7 +316,7 @@
         <div class="faq-answer">
           Yes, the basic calculator is completely free.
           You can use it as often as you like without any limitations.
-          There are no hidden charges, subscriptions, or intrusive ads.
+          There are no hidden charges, subscriptions, or intrusive ads, ensuring a smooth user experience.
         </div>
       </div>
 
@@ -294,6 +330,7 @@
       question.addEventListener('click', () => {
         const answer = question.nextElementSibling;
         answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        question.classList.toggle('active');
       });
     });
   </script>
@@ -309,7 +346,7 @@
         "name": "Can I split expenses for any group size?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes! ExpenseSplit allows you to split expenses for any number of people. Whether it’s a small dinner with 2 friends or a large group trip with 10 or more people, the calculator handles all cases instantly and accurately."
+          "text": "Yes! ExpenseSplit allows you to split expenses for any number of people. Whether it’s a small dinner with 2 friends or a large group trip with 10 or more people, the calculator handles all cases instantly and accurately. It’s designed for both casual and frequent use."
         }
       },
       {
@@ -317,7 +354,7 @@
         "name": "Do I need to create an account to use ExpenseSplit?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No account is required. ExpenseSplit works directly in your browser. You can start calculating your shared expenses immediately, without logging in, downloading an app, or providing any personal information."
+          "text": "No account is required. ExpenseSplit works directly in your browser. You can start calculating your shared expenses immediately, without logging in, downloading an app, or providing any personal information. This makes it easy for everyone to use."
         }
       },
       {
@@ -325,7 +362,7 @@
         "name": "Can I use ExpenseSplit on mobile devices?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolutely! ExpenseSplit is fully mobile-friendly. The layout and calculator adapt to any screen size, so you can split bills conveniently from your smartphone or tablet while on the go."
+          "text": "Absolutely! ExpenseSplit is fully mobile-friendly. The layout and calculator adapt to any screen size, so you can split bills conveniently from your smartphone or tablet while on the go. The interface remains clear and responsive."
         }
       },
       {
@@ -333,7 +370,7 @@
         "name": "Is it really free to use?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, the basic calculator is completely free. You can use it as often as you like without any limitations. There are no hidden charges, subscriptions, or intrusive ads."
+          "text": "Yes, the basic calculator is completely free. You can use it as often as you like without any limitations. There are no hidden charges, subscriptions, or intrusive ads, ensuring a smooth user experience."
         }
       }
     ]
