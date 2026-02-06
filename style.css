@@ -137,6 +137,33 @@ nav a:hover {
 }
 
 /* =========================
+   ADVANCED ACTION BUTTONS (NEW)
+   Used ONLY for Add Person / Add Expense
+========================= */
+.btn-advanced {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-advanced:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  opacity: 0.95;
+}
+
+.btn-advanced:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* =========================
    SECTIONS
 ========================= */
 .section {
