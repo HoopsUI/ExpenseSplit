@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roommates Expense Calculator – ExpenseSplit</title>
+  <meta name="description" content="Easily split expenses among roommates. Track who paid, calculate shares automatically, and simplify your household bills.">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Roommates Expense Calculator",
+    "description": "Easily split expenses among roommates with ExpenseSplit.",
+    "url": "https://hoopsui.github.io/ExpenseSplit/roommates.html",
+    "mainEntity": {
+      "@type": "WebApplication",
+      "name": "Roommates Expense Calculator",
+      "operatingSystem": "Web",
+      "applicationCategory": "FinanceApplication"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container nav">
+      <div class="logo">ExpenseSplit</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="trip.html">Trip</a>
+        <a href="roommates.html">Roommates</a>
+        <a href="friends.html">Friends</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Roommates Expense Calculator</h1>
+      <p class="subtitle">Stop manually calculating shared bills. Quickly split rent, utilities, and groceries among roommates with zero hassle.</p>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="section">
+    <div class="container calc-card calculator">
+      <div class="form-group">
+        <label for="numPeople">Number of Roommates</label>
+        <input type="number" id="numPeople" min="1" max="20" placeholder="Enter number of roommates">
+      </div>
+
+      <div id="peopleNames" class="form-group"></div>
+
+      <div class="form-group">
+        <label for="numExpenses">Number of Expenses</label>
+        <input type="number" id="numExpenses" min="1" max="50" placeholder="Enter number of expenses">
+      </div>
+
+      <div id="expensesList" class="form-group">
+        <!-- JS will generate expenses inputs dynamically -->
+      </div>
+
+      <button id="calculateBtn" class="primary-btn">Calculate</button>
+
+      <div id="results" class="result-box"></div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="section light seo-content">
+    <h2>Why Use Our Roommates Expense Calculator?</h2>
+    <p>Managing shared expenses among roommates can get messy. From rent to utilities to groceries, manually calculating each person's share often leads to errors, disputes, or delays. ExpenseSplit simplifies everything:</p>
+    <ul>
+      <li>Quickly add roommates and shared expenses.</li>
+      <li>Automatic calculation of who owes whom.</li>
+      <li>Track multiple expenses in one place.</li>
+      <li>Zero signup required, fast and easy.</li>
+    </ul>
+
+    <h3>Easy to Use</h3>
+    <p>Simply enter the number of roommates, their names, expenses, who paid, and who shared. Click calculate and get instant results. It’s like having a mini Splitwise right in your browser!</p>
+
+    <h3>Perfect for:</h3>
+    <ul>
+      <li>Roommates splitting rent and bills.</li>
+      <li>Flatmates tracking shared groceries.</li>
+      <li>Household budgeting without conflicts.</li>
+    </ul>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">Do roommates need to create an account?</div>
+      <div class="faq-answer"><p>No. ExpenseSplit works instantly in your browser. No signup required.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can I track multiple types of expenses?</div>
+      <div class="faq-answer"><p>Yes. You can add any number of expenses, from rent to utilities to groceries.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Is it mobile-friendly?</div>
+      <div class="faq-answer"><p>Absolutely. ExpenseSplit is fully responsive and works on all devices.</p></div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>&copy; 2026 ExpenseSplit</div>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="contact.html">Contact</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
