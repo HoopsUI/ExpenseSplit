@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trip Expense Split Calculator – Easy & Free | ExpenseSplit</title>
-  <meta name="description" content="Simplify group travel expenses with our free Trip Expense Split Calculator. Avoid confusion, split costs quickly, and enjoy your trip stress-free!">
-  <link rel="stylesheet" href="style.css">
-  <meta property="og:title" content="Trip Expense Split Calculator – Easy & Free | ExpenseSplit">
-  <meta property="og:description" content="Simplify group travel expenses with our free Trip Expense Split Calculator. Avoid confusion, split costs quickly, and enjoy your trip stress-free!">
-  <meta property="og:url" content="https://hoopsui.github.io/ExpenseSplit/trip.html">
-  <meta property="og:type" content="website">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "ExpenseSplit",
-    "url": "https://hoopsui.github.io/ExpenseSplit/",
-    "description": "Free basic expense split calculator for trips, roommates, and friends."
-  }
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Trip Expense Split Calculator – Free & Easy | ExpenseSplit</title>
+  <meta name="description" content="Split trip expenses easily with our free Trip Expense Split Calculator. Avoid confusing manual calculations and settle travel costs instantly." />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Trip Expense Split Calculator – Free & Easy | ExpenseSplit" />
+  <meta property="og:description" content="Split group travel expenses instantly. No signup, no confusion — perfect for trips with friends or family." />
+  <meta property="og:url" content="https://hoopsui.github.io/ExpenseSplit/trip.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Trip Expense Split Calculator",
-    "operatingSystem": "Web",
     "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
     "url": "https://hoopsui.github.io/ExpenseSplit/trip.html",
-    "description": "Calculate and split travel expenses among friends or groups quickly and accurately. Avoid confusing manual calculations.",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -36,108 +32,134 @@
   }
   </script>
 </head>
+
 <body>
-  <header>
-    <div class="container">
-      <h1>Trip Expense Split Calculator</h1>
-      <p>Planning a group trip? Easily split expenses among friends, roommates, or family without the headache of manual calculations!</p>
-    </div>
-  </header>
 
-  <main class="container">
-    <!-- Calculator Section -->
-    <section id="calculator">
-      <h2>Use the Calculator</h2>
-      <p>Enter each expense, who paid, and who shared. Our tool automatically calculates who owes whom — no more confusion!</p>
-      <div id="expense-calculator">
-        <!-- Embed the same calculator UI as homepage -->
-        <div class="calculator">
-          <label for="numPeople">Number of People:</label>
-          <input type="number" id="numPeople" min="2" value="2">
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container nav">
+    <div class="logo">ExpenseSplit</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="trip.html">Trip</a>
+      <a href="roommates.html">Roommates</a>
+      <a href="friends.html">Friends</a>
+    </nav>
+  </div>
+</header>
 
-          <div id="peopleNames"></div>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="container hero-content">
+    <h1>Trip Expense Split Calculator</h1>
+    <p class="subtitle">
+      Traveling in a group? Stop arguing over money. Split trip expenses instantly and fairly — no spreadsheets, no confusion.
+    </p>
+    <a href="#tool" class="primary-btn">Use Free Calculator</a>
+  </div>
+</section>
 
-          <label for="numExpenses">Number of Expenses:</label>
-          <input type="number" id="numExpenses" min="1" value="1">
+<!-- ================= CALCULATOR ================= -->
+<section id="tool" class="section">
+  <div class="container calculator">
 
-          <div id="expensesList"></div>
+    <div class="calc-card">
+      <form id="calculatorForm">
 
-          <button id="calculateBtn">Calculate Split</button>
-
-          <h3>Results:</h3>
-          <div id="results"></div>
+        <div class="form-group">
+          <label for="people">Number of people on the trip</label>
+          <input type="number" id="people" min="2" max="20" placeholder="e.g. 4" />
         </div>
-      </div>
-    </section>
 
-    <!-- Why Use This Tool Section -->
-    <section id="why-use">
-      <h2>Why Not Manual Calculations?</h2>
-      <p>When traveling in groups, keeping track of who paid what can get messy fast. Manual calculations often lead to errors, confusion, or arguments. Our Trip Expense Split Calculator:</p>
-      <ul>
-        <li>Automatically calculates who owes whom</li>
-        <li>Saves time and avoids mistakes</li>
-        <li>Works on any device — desktop or mobile</li>
-        <li>100% free and requires no signup</li>
-      </ul>
-    </section>
+        <div id="namesContainer"></div>
 
-    <!-- How to Use Section -->
-    <section id="how-to-use">
-      <h2>How to Use the Trip Calculator</h2>
-      <ol>
-        <li>Enter the number of people on your trip.</li>
-        <li>Enter each person's name.</li>
-        <li>Add expenses: who paid and how much.</li>
-        <li>Click "Calculate Split" to see the results instantly.</li>
-      </ol>
-      <p>It's that simple! No more confusing spreadsheets or manual math.</p>
-    </section>
+        <div class="form-group">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="$">$ USD</option>
+            <option value="₹">₹ INR</option>
+            <option value="€">€ EUR</option>
+            <option value="£">£ GBP</option>
+          </select>
+        </div>
 
-    <!-- FAQ Section -->
-    <section id="faq">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <h3>Is this tool really free?</h3>
-        <p>Yes! Our Trip Expense Split Calculator is completely free to use and requires no signup.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Can I use it on my phone?</h3>
-        <p>Absolutely. The calculator is mobile-friendly and works on any device.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Can it handle multiple currencies?</h3>
-        <p>Currently, it works best for a single currency per calculation. You can convert manually if needed.</p>
-      </div>
-      <div class="faq-item">
-        <h3>How does it simplify group travel?</h3>
-        <p>It saves time, avoids errors, and makes settling debts among friends quick and painless — no messy spreadsheets required.</p>
-      </div>
-    </section>
+        <button type="submit" class="primary-btn">Calculate</button>
+      </form>
 
-    <!-- Internal Links -->
-    <section id="more-tools">
-      <h2>Other Expense Calculators</h2>
-      <ul>
-        <li><a href="index.html">General Expense Split Calculator</a></li>
-        <li><a href="roommates.html">Roommates Expense Calculator</a></li>
-        <li><a href="friends.html">Friends Expense Calculator</a></li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 ExpenseSplit. All rights reserved.</p>
-      <ul class="footer-links">
-        <li><a href="about.html">About</a></li>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms & Conditions</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <div class="result-box hidden" id="resultBox"></div>
     </div>
-  </footer>
 
-  <script src="script.js"></script>
+  </div>
+</section>
+
+<!-- ================= SEO CONTENT ================= -->
+<section class="section light">
+  <div class="seo-content">
+    <h2>Why Manual Trip Expense Calculations Fail</h2>
+    <p>
+      During trips, multiple people pay for hotels, food, transport, and activities. Manually tracking who paid what quickly becomes confusing and error-prone.
+    </p>
+
+    <ul>
+      <li>People forget shared expenses</li>
+      <li>Unequal payments cause disputes</li>
+      <li>Spreadsheets are slow and messy</li>
+      <li>Calculations often end up wrong</li>
+    </ul>
+
+    <p>
+      This Trip Expense Split Calculator removes all that stress by calculating fair splits automatically in seconds.
+    </p>
+
+    <h3>Perfect For</h3>
+    <ul>
+      <li>Group vacations</li>
+      <li>Road trips</li>
+      <li>International travel</li>
+      <li>Weekend getaways</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq-section">
+  <h2>Trip Expense FAQs</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">Is this trip calculator free?</div>
+    <div class="faq-answer">
+      <p>Yes. ExpenseSplit is 100% free and requires no signup.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Does it work on mobile?</div>
+    <div class="faq-answer">
+      <p>Absolutely. The calculator is fully mobile-friendly.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Can I use it internationally?</div>
+    <div class="faq-answer">
+      <p>Yes. Choose a currency and split expenses instantly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-content">
+    <p>© 2026 ExpenseSplit</p>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
