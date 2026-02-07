@@ -67,13 +67,6 @@
       <form id="calculatorForm">
 
         <div class="form-group">
-          <label for="people">Number of roommates</label>
-          <input type="number" id="people" min="2" max="20" placeholder="e.g. 3" />
-        </div>
-
-        <div id="namesContainer"></div>
-
-        <div class="form-group">
           <label for="currency">Currency</label>
           <select id="currency">
             <option value="$">$ USD</option>
@@ -83,10 +76,23 @@
           </select>
         </div>
 
+        <!-- ✅ ADDED: Total amount -->
+        <div class="form-group">
+          <label for="amount">Total Household Expense</label>
+          <input type="number" id="amount" placeholder="e.g. 1200" required />
+        </div>
+
+        <div class="form-group">
+          <label for="people">Number of roommates</label>
+          <input type="number" id="people" min="2" max="20" placeholder="e.g. 3" required />
+        </div>
+
         <button type="submit" class="primary-btn">Calculate</button>
       </form>
 
-      <div class="result-box hidden" id="resultBox"></div>
+      <!-- ✅ ADDED: Compatible result container -->
+      <div id="result" class="result-box hidden"></div>
+
     </div>
 
   </div>
@@ -159,6 +165,42 @@
     </div>
   </div>
 </footer>
+
+<!-- ✅ SAME WORKING CALCULATOR SCRIPT -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("calculatorForm");
+    const amountInput = document.getElementById("amount");
+    const peopleInput = document.getElementById("people");
+    const currencySelect = document.getElementById("currency");
+    const resultBox = document.getElementById("result");
+
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const amount = parseFloat(amountInput.value);
+      const people = parseInt(peopleInput.value);
+      const currency = currencySelect.value;
+
+      if (isNaN(amount) || isNaN(people) || people <= 0) {
+        resultBox.classList.remove("hidden");
+        resultBox.innerHTML = "Please enter valid values.";
+        return;
+      }
+
+      const perPerson = (amount / people).toFixed(2);
+
+      resultBox.classList.remove("hidden");
+      resultBox.innerHTML = `
+        <strong>Total:</strong> ${currency}${amount}<br>
+        <strong>Roommates:</strong> ${people}<br>
+        <strong>Each person pays:</strong> ${currency}${perPerson}
+      `;
+    });
+  });
+</script>
 
 <script src="script.js"></script>
 </body>
