@@ -7,6 +7,7 @@
   <meta name="description" content="Split expenses easily among friends. Track shared costs, calculate who owes whom, and manage group outings or events effortlessly.">
   <link rel="stylesheet" href="style.css">
   <script defer src="script.js"></script>
+
   <!-- Structured Data for SEO -->
   <script type="application/ld+json">
   {
@@ -24,6 +25,7 @@
   }
   </script>
 </head>
+
 <body>
   <!-- HEADER -->
   <header class="header">
@@ -42,36 +44,47 @@
   <section class="hero">
     <div class="container hero-content">
       <h1>Friends Expense Calculator</h1>
-      <p class="subtitle">Keep group outings stress-free! Split restaurant bills, trips, or event costs among friends in seconds.</p>
+      <p class="subtitle">
+        Keep group outings stress-free! Split restaurant bills, trips,
+        or event costs among friends in seconds.
+      </p>
     </div>
   </section>
 
-  <!-- CALCULATOR -->
-  <section class="section">
-    <div class="container calc-card calculator">
-      <div class="form-group">
-        <label for="numPeople">Number of Friends</label>
-        <input type="number" id="numPeople" min="1" max="20" placeholder="Enter number of friends">
+  <!-- CALCULATOR (FIXED & FUNCTIONAL) -->
+  <section class="section light">
+    <div class="container">
+      <div class="calc-card calculator">
+        <form id="calculatorForm" class="calculator-form">
+          <div class="form-group">
+            <label for="currency">Choose currency</label>
+            <select id="currency" required>
+              <option value="₹">₹ INR</option>
+              <option value="$">$ USD</option>
+              <option value="€">€ EUR</option>
+              <option value="£">£ GBP</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Total Expense Amount</label>
+            <input type="number" id="amount" placeholder="Enter total amount" required>
+          </div>
+
+          <div class="form-group">
+            <label for="people">Number of Friends</label>
+            <input type="number" id="people" placeholder="Enter number of friends" required>
+          </div>
+
+          <button type="submit" class="primary-btn">Calculate</button>
+        </form>
+
+        <div id="result" class="result-box hidden"></div>
       </div>
-
-      <div id="peopleNames" class="form-group"></div>
-
-      <div class="form-group">
-        <label for="numExpenses">Number of Expenses</label>
-        <input type="number" id="numExpenses" min="1" max="50" placeholder="Enter number of expenses">
-      </div>
-
-      <div id="expensesList" class="form-group">
-        <!-- JS will generate expenses inputs dynamically -->
-      </div>
-
-      <button id="calculateBtn" class="primary-btn">Calculate</button>
-
-      <div id="results" class="result-box"></div>
     </div>
   </section>
 
-  <!-- SEO CONTENT -->
+  <!-- SEO CONTENT (UNCHANGED) -->
   <section class="section light seo-content">
     <h2>Why Use Our Friends Expense Calculator?</h2>
     <p>Sharing costs with friends can get confusing fast. Whether it’s a dinner, trip, or event, manually figuring out who owes what leads to mistakes and awkward conversations. ExpenseSplit simplifies the process:</p>
@@ -83,7 +96,11 @@
     </ul>
 
     <h3>Easy to Use</h3>
-    <p>Enter the number of friends, their names, expenses, who paid, and who shared. Click calculate and get instant results. Perfect for splitting costs in any group scenario.</p>
+    <p>
+      Simply enter the total expense amount and number of friends.
+      ExpenseSplit instantly shows how much each person needs to pay,
+      making group expenses simple and transparent.
+    </p>
 
     <h3>Perfect for:</h3>
     <ul>
@@ -104,14 +121,13 @@
 
     <div class="faq-item">
       <div class="faq-question">Can I track multiple expenses at once?</div>
-      <div class="faq-answer"><p>Yes. You can add as many expenses as needed for your group.</p></div>
+      <div class="faq-answer"><p>For now, the basic calculator splits total expenses equally. Advanced features will be added in the future.</p></div>
     </div>
 
     <div class="faq-item">
       <div class="faq-question">Is it mobile-friendly?</div>
       <div class="faq-answer"><p>Absolutely. Works on all devices, desktop and mobile alike.</p></div>
     </div>
-
   </section>
 
   <!-- FOOTER -->
@@ -126,5 +142,41 @@
       </div>
     </div>
   </footer>
+
+  <!-- BASIC CALCULATOR LOGIC (SAFE INLINE FIX) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("calculatorForm");
+      const amountInput = document.getElementById("amount");
+      const peopleInput = document.getElementById("people");
+      const currencySelect = document.getElementById("currency");
+      const resultBox = document.getElementById("result");
+
+      if (!form) return;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const amount = parseFloat(amountInput.value);
+        const people = parseInt(peopleInput.value);
+        const currency = currencySelect.value;
+
+        if (isNaN(amount) || isNaN(people) || people <= 0) {
+          resultBox.classList.remove("hidden");
+          resultBox.innerHTML = "Please enter valid values.";
+          return;
+        }
+
+        const perPerson = (amount / people).toFixed(2);
+
+        resultBox.classList.remove("hidden");
+        resultBox.innerHTML = `
+          <strong>Total:</strong> ${currency}${amount}<br>
+          <strong>Friends:</strong> ${people}<br>
+          <strong>Each person pays:</strong> ${currency}${perPerson}
+        `;
+      });
+    });
+  </script>
 </body>
 </html>
