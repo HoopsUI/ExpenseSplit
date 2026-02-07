@@ -422,6 +422,41 @@
     </div>
   </footer>
 
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("calculatorForm");
+    const amountInput = document.getElementById("amount");
+    const peopleInput = document.getElementById("people");
+    const currencySelect = document.getElementById("currency");
+    const resultBox = document.getElementById("result");
+
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const amount = parseFloat(amountInput.value);
+      const people = parseInt(peopleInput.value);
+      const currency = currencySelect.value;
+
+      if (isNaN(amount) || isNaN(people) || people <= 0) {
+        resultBox.classList.remove("hidden");
+        resultBox.innerHTML = "Please enter valid values.";
+        return;
+      }
+
+      const perPerson = (amount / people).toFixed(2);
+
+      resultBox.classList.remove("hidden");
+      resultBox.innerHTML = `
+        <strong>Total:</strong> ${currency}${amount}<br>
+        <strong>People:</strong> ${people}<br>
+        <strong>Each person pays:</strong> ${currency}${perPerson}
+      `;
+    });
+  });
+</script>
+
   <script src="script.js"></script>
 </body>
 </html>
