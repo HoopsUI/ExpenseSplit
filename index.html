@@ -72,6 +72,55 @@
 
   <style>
     /* =========================
+       DROPDOWN MENU FIX
+    ========================= */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      font: inherit;
+      cursor: pointer;
+      padding: 8px 0;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      min-width: 220px;
+      z-index: 999;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 14px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f1f5f9;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      display: block;
+    }
+    /* =========================
        SEO CONTENT CENTERING
     ========================= */
     .seo-content {
