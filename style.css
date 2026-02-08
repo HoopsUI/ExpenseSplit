@@ -561,41 +561,38 @@ button {
   }
 }
 
-/* Dropdown Menu */
+/* Add this to your style.css */
 .dropdown {
   position: relative;
   display: inline-block;
 }
-
 .dropbtn {
   background: none;
   border: none;
   color: white;
   font-size: 1rem;
   cursor: pointer;
-  padding: 0;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #ffffff;
-  min-width: 200px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 999;
+  background-color: #fff;
+  min-width: 180px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  z-index: 1;
 }
-
 .dropdown-content a {
   color: #000;
   padding: 10px 15px;
   text-decoration: none;
   display: block;
 }
-
 .dropdown-content a:hover {
-  background-color: #f2f2f2;
+  background-color: #f1f1f1;
 }
-
 .dropdown:hover .dropdown-content {
   display: block;
+}
+.dropbtn:hover {
+  color: #ffd700; /* Optional hover effect */
 }
