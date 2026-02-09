@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Core Calculator Pages -->
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/trip.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/roommates.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/friends.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Content / SEO Pages -->
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/tips-for-using-expensesplit.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/how-to-split-expenses.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/group-expense-management.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/faq.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal / Trust Pages (CRITICAL FOR ADSENSE) -->
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/about.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/privacy.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/contact.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://hoopsui.github.io/ExpenseSplit/terms.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
