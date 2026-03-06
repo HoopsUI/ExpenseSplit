@@ -105,26 +105,167 @@ if (tripPeopleInput) {
 }
 
 // ================================
-// BASIC CALCULATOR (index.html only)
+// HOMEPAGE CALCULATOR (index.html)
 // ================================
-const peopleInput = document.getElementById("people");
 
-if (peopleInput) {
-  const namesContainer = document.getElementById("namesContainer");
+const addPersonBtn = document.getElementById("addPerson");
+const personInput = document.getElementById("personName");
+const peopleList = document.getElementById("peopleList");
 
-  peopleInput.addEventListener("input", () => {
-    const count = parseInt(peopleInput.value);
-    namesContainer.innerHTML = "";
+const addExpenseBtn = document.getElementById("addExpense");
+const expenseTitle = document.getElementById("expenseTitle");
+const expenseAmount = document.getElementById("expenseAmount");
+const paidBySelectHome = document.getElementById("paidBy");
 
-    if (!count || count <= 0 || count > 20) return;
+const expenseList = document.getElementById("expenseList");
+const calculateBtnHome = document.getElementById("calculateBtn");
+const resultBoxHome = document.getElementById("result");
 
-    for (let i = 1; i <= count; i++) {
-      namesContainer.innerHTML += `
-        <div class="name-input">
-          <input type="text" placeholder="Person ${i} name" id="name-${i}">
-        </div>`;
+let homeParticipants = [];
+let homeExpenses = [];
+
+if (addPersonBtn) {
+
+  addPersonBtn.addEventListener("click", () => {
+
+    const name = personInput.value.trim();
+
+    if (!name) {
+      alert("Enter a name");
+      return;
     }
+
+    if (homeParticipants.includes(name)) {
+      alert("Person already added");
+      return;
+    }
+
+    homeParticipants.push(name);
+    personInput.value = "";
+
+    renderPeople();
   });
+
+  function renderPeople() {
+
+    peopleList.innerHTML = "";
+    paidBySelectHome.innerHTML = `<option value="">Paid by</option>`;
+
+    homeParticipants.forEach(name => {
+
+      const li = document.createElement("li");
+      li.textContent = name;
+      peopleList.appendChild(li);
+
+      const option = document.createElement("option");
+      option.value = name;
+      option.textContent = name;
+
+      paidBySelectHome.appendChild(option);
+
+    });
+  }
+
+}
+
+if (addExpenseBtn) {
+
+  addExpenseBtn.addEventListener("click", () => {
+
+    const title = expenseTitle.value.trim() || "Expense";
+    const amount = parseFloat(expenseAmount.value);
+    const paidBy = paidBySelectHome.value;
+
+    if (!amount || amount <= 0) {
+      alert("Enter valid amount");
+      return;
+    }
+
+    if (!paidBy) {
+      alert("Select who paid");
+      return;
+    }
+
+    homeExpenses.push({ title, amount, paidBy });
+
+    expenseTitle.value = "";
+    expenseAmount.value = "";
+
+    renderExpenses();
+
+  });
+
+  function renderExpenses() {
+
+    expenseList.innerHTML = "";
+
+    homeExpenses.forEach(exp => {
+
+      const li = document.createElement("li");
+      li.textContent = `${exp.title} – ${getCurrency()}${exp.amount} (Paid by ${exp.paidBy})`;
+      expenseList.appendChild(li);
+
+    });
+
+  }
+
+}
+
+if (calculateBtnHome) {
+
+  calculateBtnHome.addEventListener("click", () => {
+
+    if (homeParticipants.length === 0 || homeExpenses.length === 0) {
+      alert("Add people and expenses first");
+      return;
+    }
+
+    const balances = {};
+
+    homeParticipants.forEach(p => balances[p] = 0);
+
+    homeExpenses.forEach(exp => {
+
+      const share = exp.amount / homeParticipants.length;
+
+      balances[exp.paidBy] += exp.amount;
+
+      homeParticipants.forEach(p => {
+        balances[p] -= share;
+      });
+
+    });
+
+    renderResults(balances);
+
+  });
+
+  function renderResults(balances) {
+
+    resultBoxHome.innerHTML = "";
+
+    const list = document.createElement("ul");
+
+    Object.keys(balances).forEach(name => {
+
+      const li = document.createElement("li");
+      const amount = Math.abs(balances[name]).toFixed(2);
+
+      if (balances[name] > 0)
+        li.textContent = `${name} should receive ${getCurrency()}${amount}`;
+      else if (balances[name] < 0)
+        li.textContent = `${name} owes ${getCurrency()}${amount}`;
+      else
+        li.textContent = `${name} is settled`;
+
+      list.appendChild(li);
+
+    });
+
+    resultBoxHome.appendChild(list);
+
+  }
+
 }
 
 // Track basic calculator submit
