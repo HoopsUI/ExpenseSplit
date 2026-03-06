@@ -105,134 +105,26 @@ if (tripPeopleInput) {
 }
 
 // ================================
-// HOMEPAGE CALCULATOR (index.html)
+// BASIC CALCULATOR (index.html only)
 // ================================
+const peopleInput = document.getElementById("people");
 
-let people = [];
-let expenses = [];
+if (peopleInput) {
+  const namesContainer = document.getElementById("namesContainer");
 
-const peopleList = document.getElementById("people-list");
-const paidBySelect = document.getElementById("paid-by");
+  peopleInput.addEventListener("input", () => {
+    const count = parseInt(peopleInput.value);
+    namesContainer.innerHTML = "";
 
-document.getElementById("add-person-btn").addEventListener("click", () => {
+    if (!count || count <= 0 || count > 20) return;
 
-const name = prompt("Enter person name");
-
-if(!name) return;
-
-people.push(name);
-
-renderPeople();
-
-});
-
-function renderPeople(){
-
-peopleList.innerHTML="";
-paidBySelect.innerHTML="";
-
-people.forEach(person =>{
-
-const div=document.createElement("div");
-
-div.innerHTML=`<input type="text" value="${person}" disabled>`;
-
-peopleList.appendChild(div);
-
-const option=document.createElement("option");
-option.value=person;
-option.textContent=person;
-
-paidBySelect.appendChild(option);
-
-});
-
-}
-
-document.getElementById("add-expense-btn").addEventListener("click",()=>{
-
-const name=document.getElementById("expense-name").value;
-const amount=parseFloat(document.getElementById("expense-amount").value);
-const paidBy=document.getElementById("paid-by").value;
-
-if(!name || !amount) return alert("Enter expense details");
-
-expenses.push({name,amount,paidBy});
-
-renderExpenses();
-
-document.getElementById("expense-name").value="";
-document.getElementById("expense-amount").value="";
-
-});
-
-function renderExpenses(){
-
-const container=document.getElementById("expenses-list");
-
-container.innerHTML="";
-
-expenses.forEach(expense=>{
-
-const div=document.createElement("div");
-div.className="expense-item";
-
-div.innerHTML=`
-<strong>${expense.name}</strong><br>
-₹${expense.amount} paid by ${expense.paidBy}
-`;
-
-container.appendChild(div);
-
-});
-
-}
-
-document.getElementById("calculate-btn").addEventListener("click",()=>{
-
-if(people.length===0 || expenses.length===0){
-
-alert("Add people and expenses first");
-return;
-
-}
-
-const total=expenses.reduce((sum,e)=>sum+e.amount,0);
-
-const perPerson=total/people.length;
-
-let balances={};
-
-people.forEach(p=>balances[p]=0);
-
-expenses.forEach(e=>{
-
-balances[e.paidBy]+=e.amount;
-
-});
-
-people.forEach(p=>{
-
-balances[p]-=perPerson;
-
-});
-
-showResults(balances);
-
-});
-
-function showResults(balances){
-
-let resultHTML="<h3>Settlement</h3>";
-
-for(const person in balances){
-
-resultHTML+=`${person}: ₹${balances[person].toFixed(2)}<br>`;
-
-}
-
-document.getElementById("results").innerHTML=resultHTML;
-
+    for (let i = 1; i <= count; i++) {
+      namesContainer.innerHTML += `
+        <div class="name-input">
+          <input type="text" placeholder="Person ${i} name" id="name-${i}">
+        </div>`;
+    }
+  });
 }
 
 // Track basic calculator submit
