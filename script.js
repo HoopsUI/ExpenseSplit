@@ -108,163 +108,130 @@ if (tripPeopleInput) {
 // HOMEPAGE CALCULATOR (index.html)
 // ================================
 
-const addPersonBtn = document.getElementById("addPerson");
-const personInput = document.getElementById("personName");
-const peopleList = document.getElementById("peopleList");
+let people = [];
+let expenses = [];
 
-const addExpenseBtn = document.getElementById("addExpense");
-const expenseTitle = document.getElementById("expenseTitle");
-const expenseAmount = document.getElementById("expenseAmount");
-const paidBySelectHome = document.getElementById("paidBy");
+const peopleList = document.getElementById("people-list");
+const paidBySelect = document.getElementById("paid-by");
 
-const expenseList = document.getElementById("expenseList");
-const calculateBtnHome = document.getElementById("calculateBtn");
-const resultBoxHome = document.getElementById("result");
+document.getElementById("add-person-btn").addEventListener("click", () => {
 
-let homeParticipants = [];
-let homeExpenses = [];
+const name = prompt("Enter person name");
 
-if (addPersonBtn) {
+if(!name) return;
 
-  addPersonBtn.addEventListener("click", () => {
+people.push(name);
 
-    const name = personInput.value.trim();
+renderPeople();
 
-    if (!name) {
-      alert("Enter a name");
-      return;
-    }
+});
 
-    if (homeParticipants.includes(name)) {
-      alert("Person already added");
-      return;
-    }
+function renderPeople(){
 
-    homeParticipants.push(name);
-    personInput.value = "";
+peopleList.innerHTML="";
+paidBySelect.innerHTML="";
 
-    renderPeople();
-  });
+people.forEach(person =>{
 
-  function renderPeople() {
+const div=document.createElement("div");
 
-    peopleList.innerHTML = "";
-    paidBySelectHome.innerHTML = `<option value="">Paid by</option>`;
+div.innerHTML=`<input type="text" value="${person}" disabled>`;
 
-    homeParticipants.forEach(name => {
+peopleList.appendChild(div);
 
-      const li = document.createElement("li");
-      li.textContent = name;
-      peopleList.appendChild(li);
+const option=document.createElement("option");
+option.value=person;
+option.textContent=person;
 
-      const option = document.createElement("option");
-      option.value = name;
-      option.textContent = name;
+paidBySelect.appendChild(option);
 
-      paidBySelectHome.appendChild(option);
-
-    });
-  }
+});
 
 }
 
-if (addExpenseBtn) {
+document.getElementById("add-expense-btn").addEventListener("click",()=>{
 
-  addExpenseBtn.addEventListener("click", () => {
+const name=document.getElementById("expense-name").value;
+const amount=parseFloat(document.getElementById("expense-amount").value);
+const paidBy=document.getElementById("paid-by").value;
 
-    const title = expenseTitle.value.trim() || "Expense";
-    const amount = parseFloat(expenseAmount.value);
-    const paidBy = paidBySelectHome.value;
+if(!name || !amount) return alert("Enter expense details");
 
-    if (!amount || amount <= 0) {
-      alert("Enter valid amount");
-      return;
-    }
+expenses.push({name,amount,paidBy});
 
-    if (!paidBy) {
-      alert("Select who paid");
-      return;
-    }
+renderExpenses();
 
-    homeExpenses.push({ title, amount, paidBy });
+document.getElementById("expense-name").value="";
+document.getElementById("expense-amount").value="";
 
-    expenseTitle.value = "";
-    expenseAmount.value = "";
+});
 
-    renderExpenses();
+function renderExpenses(){
 
-  });
+const container=document.getElementById("expenses-list");
 
-  function renderExpenses() {
+container.innerHTML="";
 
-    expenseList.innerHTML = "";
+expenses.forEach(expense=>{
 
-    homeExpenses.forEach(exp => {
+const div=document.createElement("div");
+div.className="expense-item";
 
-      const li = document.createElement("li");
-      li.textContent = `${exp.title} – ${getCurrency()}${exp.amount} (Paid by ${exp.paidBy})`;
-      expenseList.appendChild(li);
+div.innerHTML=`
+<strong>${expense.name}</strong><br>
+₹${expense.amount} paid by ${expense.paidBy}
+`;
 
-    });
+container.appendChild(div);
 
-  }
+});
 
 }
 
-if (calculateBtnHome) {
+document.getElementById("calculate-btn").addEventListener("click",()=>{
 
-  calculateBtnHome.addEventListener("click", () => {
+if(people.length===0 || expenses.length===0){
 
-    if (homeParticipants.length === 0 || homeExpenses.length === 0) {
-      alert("Add people and expenses first");
-      return;
-    }
+alert("Add people and expenses first");
+return;
 
-    const balances = {};
+}
 
-    homeParticipants.forEach(p => balances[p] = 0);
+const total=expenses.reduce((sum,e)=>sum+e.amount,0);
 
-    homeExpenses.forEach(exp => {
+const perPerson=total/people.length;
 
-      const share = exp.amount / homeParticipants.length;
+let balances={};
 
-      balances[exp.paidBy] += exp.amount;
+people.forEach(p=>balances[p]=0);
 
-      homeParticipants.forEach(p => {
-        balances[p] -= share;
-      });
+expenses.forEach(e=>{
 
-    });
+balances[e.paidBy]+=e.amount;
 
-    renderResults(balances);
+});
 
-  });
+people.forEach(p=>{
 
-  function renderResults(balances) {
+balances[p]-=perPerson;
 
-    resultBoxHome.innerHTML = "";
+});
 
-    const list = document.createElement("ul");
+showResults(balances);
 
-    Object.keys(balances).forEach(name => {
+});
 
-      const li = document.createElement("li");
-      const amount = Math.abs(balances[name]).toFixed(2);
+function showResults(balances){
 
-      if (balances[name] > 0)
-        li.textContent = `${name} should receive ${getCurrency()}${amount}`;
-      else if (balances[name] < 0)
-        li.textContent = `${name} owes ${getCurrency()}${amount}`;
-      else
-        li.textContent = `${name} is settled`;
+let resultHTML="<h3>Settlement</h3>";
 
-      list.appendChild(li);
+for(const person in balances){
 
-    });
+resultHTML+=`${person}: ₹${balances[person].toFixed(2)}<br>`;
 
-    resultBoxHome.appendChild(list);
+}
 
-  }
+document.getElementById("results").innerHTML=resultHTML;
 
 }
 
