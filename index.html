@@ -19,7 +19,7 @@
   <meta name="author" content="ExpenseSplit" />
 
   <!-- CANONICAL -->
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://expensessplit.com/" />
 
   <!-- OPEN GRAPH -->
@@ -282,39 +282,45 @@
 
   <!-- CALCULATOR -->
   <section id="tool" class="section light">
-    <div class="container">
-      <h2 class="section-title">Expense Split Calculator</h2>
-      <div class="calc-card calculator">
-        <form id="calculatorForm" class="calculator-form">
-          <div class="form-group">
-            <label for="currency">Choose currency</label>
-            <select id="currency" required>
-              <option value="₹">₹ INR</option>
-              <option value="$">$ USD</option>
-              <option value="€">€ EUR</option>
-              <option value="£">£ GBP</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="amount">Total Expense Amount</label>
-            <input type="number" id="amount" placeholder="Enter total amount" required>
-          </div>
-          <div class="form-group">
-            <label for="splitType">Split type</label>
-            <select id="splitType">
-              <option value="equal">Equal split</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="people">Number of people</label>
-            <input type="number" id="people" placeholder="Enter number of people" required>
-          </div>
-          <button type="submit" class="primary-btn">Calculate</button>
-        </form>
-        <div id="result" class="result-box hidden"></div>
-      </div>
-    </div>
-  </section>
+<div class="container">
+
+<h2 class="section-title">Expense Split Calculator</h2>
+
+<div class="calc-card calculator">
+
+<h3>Add People</h3>
+
+<div id="peopleContainer"></div>
+
+<button type="button" id="addPersonBtn" class="secondary-btn">Add Person</button>
+
+<hr>
+
+<h3>Add Expense</h3>
+
+<div class="expense-row">
+
+<input type="text" id="expenseName" placeholder="Expense name (Dinner, Taxi)">
+<input type="number" id="expenseAmount" placeholder="Amount">
+
+<select id="expensePayer"></select>
+
+<button type="button" id="addExpenseBtn" class="primary-btn">Add</button>
+
+</div>
+
+<div id="expenseList"></div>
+
+<hr>
+
+<button id="calculateBtn" class="primary-btn">Calculate Split</button>
+
+<div id="result" class="result-box hidden"></div>
+
+</div>
+
+</div>
+</section>
 
   <!-- Add this AFTER your calculator section (#tool) and BEFORE the SEO CONTENT section -->
 <section id="more-tools" class="section">
@@ -477,41 +483,6 @@
 </div>
     </div>
   </footer>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("calculatorForm");
-    const amountInput = document.getElementById("amount");
-    const peopleInput = document.getElementById("people");
-    const currencySelect = document.getElementById("currency");
-    const resultBox = document.getElementById("result");
-
-    if (!form) return;
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const amount = parseFloat(amountInput.value);
-      const people = parseInt(peopleInput.value);
-      const currency = currencySelect.value;
-
-      if (isNaN(amount) || isNaN(people) || people <= 0) {
-        resultBox.classList.remove("hidden");
-        resultBox.innerHTML = "Please enter valid values.";
-        return;
-      }
-
-      const perPerson = (amount / people).toFixed(2);
-
-      resultBox.classList.remove("hidden");
-      resultBox.innerHTML = `
-        <strong>Total:</strong> ${currency}${amount}<br>
-        <strong>People:</strong> ${people}<br>
-        <strong>Each person pays:</strong> ${currency}${perPerson}
-      `;
-    });
-  });
-</script>
 
   <script src="script.js"></script>
 </body>
