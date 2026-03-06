@@ -596,3 +596,50 @@ button {
 .dropbtn:hover {
   color: #ffd700; /* Optional hover effect */
 }
+
+#peopleContainer input{
+width:100%;
+margin-bottom:10px;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.expense-row{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:15px;
+}
+
+.expense-row input,
+.expense-row select{
+flex:1;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+#expenseList{
+margin-top:15px;
+}
+
+.expense-item{
+padding:10px;
+background:#f4f6fa;
+border-radius:6px;
+margin-bottom:8px;
+}
+
+.secondary-btn{
+background:#f1f5f9;
+border:none;
+padding:10px 14px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.secondary-btn:hover{
+background:#e2e8f0;
+}
+
