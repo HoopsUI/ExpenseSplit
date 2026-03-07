@@ -762,15 +762,3 @@ background:#e2e8f0;
   opacity: 0.9;
 }
 
-.btn-reset{
-margin-top:10px;
-background:#f3f3f3;
-border:1px solid #ddd;
-padding:10px 16px;
-border-radius:6px;
-cursor:pointer;
-}
-
-.btn-reset:hover{
-background:#e8e8e8;
-}
