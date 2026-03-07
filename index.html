@@ -286,32 +286,75 @@
       <h2 class="section-title">Expense Split Calculator</h2>
       <div class="calc-card calculator">
         <form id="calculatorForm" class="calculator-form">
-          <div class="form-group">
-            <label for="currency">Choose currency</label>
-            <select id="currency" required>
-              <option value="₹">₹ INR</option>
-              <option value="$">$ USD</option>
-              <option value="€">€ EUR</option>
-              <option value="£">£ GBP</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="amount">Total Expense Amount</label>
-            <input type="number" id="amount" placeholder="Enter total amount" required>
-          </div>
-          <div class="form-group">
-            <label for="splitType">Split type</label>
-            <select id="splitType">
-              <option value="equal">Equal split</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="people">Number of people</label>
-            <input type="number" id="people" placeholder="Enter number of people" required>
-          </div>
-          <button type="submit" class="primary-btn">Calculate</button>
-        </form>
-        <div id="result" class="result-box hidden"></div>
+
+  <!-- Currency -->
+  <div class="form-group">
+    <label for="currency">Currency</label>
+    <select id="currency">
+      <option value="₹">₹ INR</option>
+      <option value="$">$ USD</option>
+      <option value="€">€ EUR</option>
+      <option value="£">£ GBP</option>
+    </select>
+  </div>
+
+  <!-- Add People -->
+  <div class="form-group">
+    <label>Add People</label>
+    <div class="people-input">
+      <input type="text" id="personName" placeholder="Enter name">
+      <button type="button" id="addPersonBtn">Add</button>
+    </div>
+    <ul id="peopleList"></ul>
+  </div>
+
+  <!-- Add Expense -->
+  <div class="form-group">
+    <label>Add Expense</label>
+
+    <input type="text" id="expenseName" placeholder="Expense name (Dinner, Taxi)">
+
+    <input type="number" id="expenseAmount" placeholder="Amount">
+
+    <select id="paidBy">
+      <option value="">Who paid?</option>
+    </select>
+
+    <button type="button" id="addExpenseBtn">Add Expense</button>
+  </div>
+
+  <!-- Expense List -->
+  <div id="expenseList"></div>
+
+  <!-- Split Type -->
+  <div class="form-group">
+    <label for="splitType">Split Type</label>
+    <select id="splitType">
+      <option value="equal">Equal Split</option>
+      <option value="unequal">Unequal Split</option>
+      <option value="fair">Fair Contribution</option>
+    </select>
+  </div>
+
+  <!-- Total Display -->
+  <div class="form-group">
+    <label>Total Expense</label>
+    <div id="totalExpense">0</div>
+  </div>
+
+  <button type="button" id="calculateBtn" class="primary-btn">
+    Calculate Split
+  </button>
+
+</form>
+
+<!-- RESULT PANEL -->
+<div id="result" class="result-box hidden"></div>
+
+<!-- SHARE BUTTON -->
+<div class="share-box hidden" id="shareBox">
+  <button id="copyResultsBtn">Copy Results</button>
+</div>
       </div>
     </div>
   </section>
