@@ -762,3 +762,16 @@ background:#e2e8f0;
   opacity: 0.9;
 }
 
+#resetCalculatorBtn{
+background:#111;
+color:#fff;
+border:none;
+padding:10px 16px;
+border-radius:6px;
+cursor:pointer;
+margin-left:10px;
+}
+
+#resetCalculatorBtn:hover{
+background:#333;
+}
