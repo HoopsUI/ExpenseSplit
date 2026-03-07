@@ -775,3 +775,74 @@ margin-left:10px;
 #resetCalculatorBtn:hover{
 background:#333;
 }
+
+/* SEO ARTICLE PAGES */
+
+.seo-header{
+padding:60px 20px;
+text-align:center;
+background:#f7f7f7;
+}
+
+.seo-header h1{
+font-size:38px;
+margin-bottom:20px;
+}
+
+.seo-header p{
+max-width:750px;
+margin:auto;
+font-size:18px;
+line-height:1.6;
+color:#555;
+}
+
+.seo-section{
+padding:40px 20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+.seo-section h2{
+font-size:28px;
+margin-bottom:20px;
+}
+
+.seo-section h3{
+font-size:20px;
+margin-top:20px;
+margin-bottom:10px;
+}
+
+.seo-section p{
+line-height:1.7;
+margin-bottom:16px;
+color:#444;
+}
+
+.seo-section ul{
+padding-left:20px;
+margin-bottom:20px;
+}
+
+.seo-section li{
+margin-bottom:8px;
+}
+
+.primary-btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 22px;
+background:#2b6cff;
+color:white;
+text-decoration:none;
+border-radius:6px;
+font-weight:600;
+}
+
+.primary-btn:hover{
+background:#1f52d6;
+}
