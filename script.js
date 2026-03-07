@@ -425,7 +425,7 @@ document.querySelectorAll('.faq-question').forEach((q) => {
 // HOMEPAGE EXPENSE CALCULATOR (SAFE ADD)
 // =======================================
 
-const personInput = document.getElementById("personName");
+const personInputHome = document.getElementById("personName");
 const addPersonBtnHome = document.getElementById("addPersonBtn");
 const peopleListHome = document.getElementById("peopleList");
 
@@ -453,7 +453,7 @@ let homeExpenses = [];
 if (addPersonBtnHome) {
   addPersonBtnHome.addEventListener("click", () => {
 
-    const name = personInput.value.trim();
+    const name = personInputHome.value.trim();
     if (!name) return;
 
     if (homeParticipants.includes(name)) {
@@ -462,7 +462,7 @@ if (addPersonBtnHome) {
     }
 
     homeParticipants.push(name);
-    personInput.value = "";
+    personInputHome.value = "";
 
     renderPeople();
   });
