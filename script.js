@@ -782,3 +782,35 @@ function renderSplitOptions(){
 }
 
 })();
+
+// =====================
+// RESET CALCULATOR
+// =====================
+
+const resetCalculatorBtn = document.getElementById("resetCalculatorBtn");
+
+if (resetCalculatorBtn) {
+
+  resetCalculatorBtn.addEventListener("click", () => {
+
+    homeParticipants = [];
+    homeExpenses = [];
+
+    peopleListHome.innerHTML = "";
+    expenseListHome.innerHTML = "";
+    resultBoxHome.innerHTML = "";
+    splitOptions.innerHTML = "";
+
+    totalExpenseDisplay.textContent = getCurrency() + "0.00";
+
+    personInputHome.value = "";
+    expenseNameInput.value = "";
+    expenseAmountInputHome.value = "";
+
+    paidByHome.innerHTML = `<option value="">Who paid?</option>`;
+
+    shareBox.classList.add("hidden");
+
+  });
+
+}
