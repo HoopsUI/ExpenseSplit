@@ -439,6 +439,7 @@ const calculateBtnHome = document.getElementById("calculateBtn");
 
 const resultBoxHome = document.getElementById("result");
 const totalExpenseDisplay = document.getElementById("totalExpense");
+const splitTypeSelect = document.getElementById("splitType");
 
 const copyResultsBtn = document.getElementById("copyResultsBtn");
 const shareBox = document.getElementById("shareBox");
@@ -483,6 +484,8 @@ function renderPeople() {
     option.textContent = name;
     paidByHome.appendChild(option);
   });
+
+  renderSplitOptions();
 }
 
 // =====================
@@ -644,6 +647,8 @@ if (splitType === "fair") {
 // =====================
 // RENDER RESULTS
 // =====================
+
+renderHomeResults(balances);
 function renderHomeResults(balances) {
 
   resultBoxHome.classList.remove("hidden");
@@ -714,7 +719,7 @@ function renderHomeResults(balances) {
 // SPLIT TYPE OPTIONS (HOMEPAGE)
 // ================================
 
-const splitTypeSelect = document.getElementById("splitType");
+
 const splitOptions = document.getElementById("splitOptions");
 
 if (splitTypeSelect) {
