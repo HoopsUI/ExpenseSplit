@@ -643,3 +643,121 @@ cursor:pointer;
 background:#e2e8f0;
 }
 
+/* =========================
+   HOMEPAGE CALCULATOR UPGRADE
+========================= */
+
+/* People input row */
+.people-input {
+  display: flex;
+  gap: 10px;
+}
+
+.people-input input {
+  flex: 1;
+}
+
+.people-input button {
+  width: auto;
+  padding: 10px 16px;
+  margin-top: 0;
+}
+
+/* People list */
+#peopleList {
+  margin-top: 10px;
+  list-style: none;
+}
+
+#peopleList li {
+  background: #f3f4f6;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+/* Expense form inputs */
+#expenseName,
+#expenseAmount,
+#paidBy {
+  margin-bottom: 10px;
+}
+
+/* Add expense button */
+#addExpenseBtn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  background: var(--dark);
+  color: #fff;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+}
+
+#addExpenseBtn:hover {
+  opacity: 0.9;
+}
+
+/* Expense list */
+#expenseList {
+  margin-top: 15px;
+}
+
+.expense-entry {
+  background: #f8fafc;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Total expense display */
+#totalExpense {
+  font-weight: 700;
+  font-size: 18px;
+  padding: 10px;
+  background: #f1f5f9;
+  border-radius: var(--radius-sm);
+}
+
+/* Result panel styling */
+.result-box {
+  margin-top: 30px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Settlement items */
+.result-item {
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
+
+/* Share results section */
+.share-box {
+  margin-top: 15px;
+  text-align: center;
+}
+
+#copyResultsBtn {
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+#copyResultsBtn:hover {
+  opacity: 0.9;
+}
