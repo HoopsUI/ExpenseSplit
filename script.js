@@ -422,8 +422,10 @@ document.querySelectorAll('.faq-question').forEach((q) => {
 });
 
 // =======================================
-// HOMEPAGE EXPENSE CALCULATOR (SAFE ADD)
+// HOMEPAGE EXPENSE CALCULATOR (ISOLATED)
 // =======================================
+
+(function(){
 
 const personInputHome = document.getElementById("personName");
 const addPersonBtnHome = document.getElementById("addPersonBtn");
@@ -443,37 +445,40 @@ const splitTypeSelect = document.getElementById("splitType");
 
 const copyResultsBtn = document.getElementById("copyResultsBtn");
 const shareBox = document.getElementById("shareBox");
+const splitOptions = document.getElementById("splitOptions");
+
+if(!personInputHome) return;
 
 let homeParticipants = [];
 let homeExpenses = [];
 
+
 // =====================
 // ADD PERSON
 // =====================
-if (addPersonBtnHome) {
-  addPersonBtnHome.addEventListener("click", () => {
 
-    const name = personInputHome.value.trim();
-    if (!name) return;
+addPersonBtnHome.addEventListener("click", () => {
 
-    if (homeParticipants.includes(name)) {
-      alert("Person already added.");
-      return;
-    }
+  const name = personInputHome.value.trim();
+  if(!name) return;
 
-    homeParticipants.push(name);
-    personInputHome.value = "";
+  if(homeParticipants.includes(name)){
+    alert("Person already added");
+    return;
+  }
 
-    renderPeople();
-  });
-}
+  homeParticipants.push(name);
+  personInputHome.value = "";
 
-function renderPeople() {
+  renderPeople();
+});
+
+function renderPeople(){
 
   peopleListHome.innerHTML = "";
   paidByHome.innerHTML = `<option value="">Who paid?</option>`;
 
-  homeParticipants.forEach(name => {
+  homeParticipants.forEach(name=>{
 
     const li = document.createElement("li");
     li.textContent = name;
@@ -483,57 +488,57 @@ function renderPeople() {
     option.value = name;
     option.textContent = name;
     paidByHome.appendChild(option);
+
   });
 
   renderSplitOptions();
 }
 
+
 // =====================
 // ADD EXPENSE
 // =====================
-if (addExpenseBtnHome) {
 
-  addExpenseBtnHome.addEventListener("click", () => {
+addExpenseBtnHome.addEventListener("click", ()=>{
 
-    if (homeParticipants.length === 0) {
-      alert("Add people first.");
-      return;
-    }
+  if(homeParticipants.length === 0){
+    alert("Add people first");
+    return;
+  }
 
-    const title = expenseNameInput.value || "Expense";
-    const amount = parseFloat(expenseAmountInputHome.value);
-    const paidBy = paidByHome.value;
+  const title = expenseNameInput.value || "Expense";
+  const amount = parseFloat(expenseAmountInputHome.value);
+  const paidBy = paidByHome.value;
 
-    if (!amount || amount <= 0) {
-      alert("Enter valid amount.");
-      return;
-    }
+  if(!amount || amount <= 0){
+    alert("Enter valid amount");
+    return;
+  }
 
-    if (!paidBy) {
-      alert("Select who paid.");
-      return;
-    }
+  if(!paidBy){
+    alert("Select who paid");
+    return;
+  }
 
-    homeExpenses.push({
-      title,
-      amount,
-      paidBy
-    });
-
-    expenseNameInput.value = "";
-    expenseAmountInputHome.value = "";
-
-    renderExpenses();
+  homeExpenses.push({
+    title,
+    amount,
+    paidBy
   });
-}
 
-function renderExpenses() {
+  expenseNameInput.value = "";
+  expenseAmountInputHome.value = "";
+
+  renderExpenses();
+});
+
+
+function renderExpenses(){
 
   expenseListHome.innerHTML = "";
-
   let total = 0;
 
-  homeExpenses.forEach(exp => {
+  homeExpenses.forEach(exp=>{
 
     total += exp.amount;
 
@@ -544,112 +549,113 @@ function renderExpenses() {
       `${exp.title} – ${getCurrency()}${exp.amount} (Paid by ${exp.paidBy})`;
 
     expenseListHome.appendChild(div);
+
   });
 
   totalExpenseDisplay.textContent = getCurrency() + total.toFixed(2);
 }
 
-// =====================
-// CALCULATE SPLIT
-// =====================
-if (calculateBtnHome) {
-
-  calculateBtnHome.addEventListener("click", () => {
-
-    if (homeParticipants.length === 0 || homeExpenses.length === 0) {
-      alert("Add people and expenses first.");
-      return;
-    }
-
-    const balances = {};
-homeParticipants.forEach(name => balances[name] = 0);
-
-const splitType = splitTypeSelect.value;
 
 // =====================
-// EQUAL SPLIT
+// CALCULATE
 // =====================
-if (splitType === "equal") {
 
-  homeExpenses.forEach(exp => {
+calculateBtnHome.addEventListener("click", ()=>{
 
-    const share = exp.amount / homeParticipants.length;
+  if(homeParticipants.length === 0 || homeExpenses.length === 0){
+    alert("Add people and expenses first");
+    return;
+  }
 
-    balances[exp.paidBy] += exp.amount;
+  const balances = {};
+  homeParticipants.forEach(name => balances[name] = 0);
 
-    homeParticipants.forEach(p => {
-      balances[p] -= share;
+  const splitType = splitTypeSelect.value;
+
+
+  // EQUAL
+  if(splitType === "equal"){
+
+    homeExpenses.forEach(exp=>{
+
+      const share = exp.amount / homeParticipants.length;
+
+      balances[exp.paidBy] += exp.amount;
+
+      homeParticipants.forEach(p=>{
+        balances[p] -= share;
+      });
+
     });
 
-  });
+  }
 
-}
+
+  // UNEQUAL
+  if(splitType === "unequal"){
+
+    const inputs = document.querySelectorAll(".unequal-input");
+
+    inputs.forEach(input=>{
+
+      const person = input.dataset.person;
+      const value = parseFloat(input.value) || 0;
+
+      balances[person] -= value;
+
+    });
+
+    homeExpenses.forEach(exp=>{
+      balances[exp.paidBy] += exp.amount;
+    });
+
+  }
+
+
+  // FAIR
+  if(splitType === "fair"){
+
+    const inputs = document.querySelectorAll(".fair-input");
+
+    let totalPercent = 0;
+    const contributions = {};
+
+    inputs.forEach(input=>{
+
+      const person = input.dataset.person;
+      const percent = parseFloat(input.value) || 0;
+
+      contributions[person] = percent;
+      totalPercent += percent;
+
+    });
+
+    const totalExpense = homeExpenses.reduce((sum,e)=>sum + e.amount,0);
+
+    Object.keys(contributions).forEach(person=>{
+
+      const share = (contributions[person] / totalPercent) * totalExpense;
+
+      balances[person] -= share;
+
+    });
+
+    homeExpenses.forEach(exp=>{
+      balances[exp.paidBy] += exp.amount;
+    });
+
+  }
+
+  renderHomeResults(balances);
+
+});
+
 
 // =====================
-// UNEQUAL SPLIT
-// =====================
-if (splitType === "unequal") {
-
-  const inputs = document.querySelectorAll(".unequal-input");
-
-  inputs.forEach(input => {
-
-    const person = input.dataset.person;
-    const value = parseFloat(input.value) || 0;
-
-    balances[person] -= value;
-
-  });
-
-  homeExpenses.forEach(exp => {
-    balances[exp.paidBy] += exp.amount;
-  });
-
-}
-
-// =====================
-// FAIR CONTRIBUTION
-// =====================
-if (splitType === "fair") {
-
-  const inputs = document.querySelectorAll(".fair-input");
-
-  let totalPercent = 0;
-
-  const contributions = {};
-
-  inputs.forEach(input => {
-
-    const person = input.dataset.person;
-    const percent = parseFloat(input.value) || 0;
-
-    contributions[person] = percent;
-    totalPercent += percent;
-
-  });
-
-  const totalExpense = homeExpenses.reduce((sum, e) => sum + e.amount, 0);
-
-  Object.keys(contributions).forEach(person => {
-
-    const share = (contributions[person] / totalPercent) * totalExpense;
-
-    balances[person] -= share;
-
-  });
-
-  homeExpenses.forEach(exp => {
-    balances[exp.paidBy] += exp.amount;
-  });
-
-}
-
-// =====================
-// RENDER RESULTS
+// RESULTS
 // =====================
 
-renderHomeResults(balances);
-function renderHomeResults(balances) {
+function renderHomeResults(balances){
 
   resultBoxHome.classList.remove("hidden");
   resultBoxHome.innerHTML = "<strong>Settlement</strong><br><br>";
@@ -659,26 +665,28 @@ function renderHomeResults(balances) {
   const creditors = [];
   const debtors = [];
 
-  Object.keys(balances).forEach(name => {
+  Object.keys(balances).forEach(name=>{
 
     const amount = balances[name];
 
-    if (amount > 0) creditors.push({ name, amount });
-    if (amount < 0) debtors.push({ name, amount: Math.abs(amount) });
+    if(amount > 0) creditors.push({name,amount});
+    if(amount < 0) debtors.push({name,amount:Math.abs(amount)});
+
   });
 
-  creditors.forEach(c => {
 
-    debtors.forEach(d => {
+  creditors.forEach(c=>{
 
-      if (d.amount === 0) return;
+    debtors.forEach(d=>{
 
-      const payment = Math.min(c.amount, d.amount);
+      if(d.amount === 0) return;
 
-      if (payment > 0) {
+      const payment = Math.min(c.amount,d.amount);
+
+      if(payment > 0){
 
         const line =
-          `${d.name} pays ${c.name} ${getCurrency()}${payment.toFixed(2)}`;
+        `${d.name} pays ${c.name} ${getCurrency()}${payment.toFixed(2)}`;
 
         const div = document.createElement("div");
         div.className = "result-item";
@@ -690,6 +698,7 @@ function renderHomeResults(balances) {
 
         c.amount -= payment;
         d.amount -= payment;
+
       }
 
     });
@@ -698,59 +707,48 @@ function renderHomeResults(balances) {
 
   shareBox.classList.remove("hidden");
 
-  // COPY RESULTS
-  if (copyResultsBtn) {
+  if(copyResultsBtn){
 
-    copyResultsBtn.onclick = () => {
+    copyResultsBtn.onclick = ()=>{
 
       navigator.clipboard.writeText(summaryText);
 
       copyResultsBtn.textContent = "Copied!";
-      setTimeout(() => {
+      setTimeout(()=>{
         copyResultsBtn.textContent = "Copy Results";
-      }, 2000);
+      },2000);
+
     };
 
   }
 
 }
 
-// ================================
-// SPLIT TYPE OPTIONS (HOMEPAGE)
-// ================================
 
+// =====================
+// SPLIT OPTIONS
+// =====================
 
-const splitOptions = document.getElementById("splitOptions");
+splitTypeSelect.addEventListener("change", renderSplitOptions);
 
-if (splitTypeSelect) {
-
-  splitTypeSelect.addEventListener("change", renderSplitOptions);
-
-}
-
-function renderSplitOptions() {
-
-  if (!splitOptions) return;
+function renderSplitOptions(){
 
   splitOptions.innerHTML = "";
 
   const type = splitTypeSelect.value;
 
-  if (homeParticipants.length === 0) return;
+  if(homeParticipants.length === 0) return;
 
-  // =====================
-  // UNEQUAL SPLIT
-  // =====================
-  if (type === "unequal") {
 
-    homeParticipants.forEach(name => {
+  if(type === "unequal"){
+
+    homeParticipants.forEach(name=>{
 
       const label = document.createElement("label");
       label.textContent = `${name} amount`;
 
       const input = document.createElement("input");
       input.type = "number";
-      input.placeholder = "Enter amount";
       input.dataset.person = name;
       input.classList.add("unequal-input");
 
@@ -761,19 +759,16 @@ function renderSplitOptions() {
 
   }
 
-  // =====================
-  // FAIR CONTRIBUTION
-  // =====================
-  if (type === "fair") {
 
-    homeParticipants.forEach(name => {
+  if(type === "fair"){
+
+    homeParticipants.forEach(name=>{
 
       const label = document.createElement("label");
       label.textContent = `${name} contribution %`;
 
       const input = document.createElement("input");
       input.type = "number";
-      input.placeholder = "Enter %";
       input.dataset.person = name;
       input.classList.add("fair-input");
 
@@ -785,3 +780,5 @@ function renderSplitOptions() {
   }
 
 }
+
+})();
