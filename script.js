@@ -420,3 +420,363 @@ document.querySelectorAll('.faq-question').forEach((q) => {
     answer.classList.toggle('open');
   });
 });
+
+// =======================================
+// HOMEPAGE EXPENSE CALCULATOR (SAFE ADD)
+// =======================================
+
+const personInput = document.getElementById("personName");
+const addPersonBtnHome = document.getElementById("addPersonBtn");
+const peopleListHome = document.getElementById("peopleList");
+
+const expenseNameInput = document.getElementById("expenseName");
+const expenseAmountInputHome = document.getElementById("expenseAmount");
+const addExpenseBtnHome = document.getElementById("addExpenseBtn");
+const expenseListHome = document.getElementById("expenseList");
+
+const paidByHome = document.getElementById("paidBy");
+const calculateBtnHome = document.getElementById("calculateBtn");
+
+const resultBoxHome = document.getElementById("result");
+const totalExpenseDisplay = document.getElementById("totalExpense");
+
+const copyResultsBtn = document.getElementById("copyResultsBtn");
+const shareBox = document.getElementById("shareBox");
+
+let homeParticipants = [];
+let homeExpenses = [];
+
+// =====================
+// ADD PERSON
+// =====================
+if (addPersonBtnHome) {
+  addPersonBtnHome.addEventListener("click", () => {
+
+    const name = personInput.value.trim();
+    if (!name) return;
+
+    if (homeParticipants.includes(name)) {
+      alert("Person already added.");
+      return;
+    }
+
+    homeParticipants.push(name);
+    personInput.value = "";
+
+    renderPeople();
+  });
+}
+
+function renderPeople() {
+
+  peopleListHome.innerHTML = "";
+  paidByHome.innerHTML = `<option value="">Who paid?</option>`;
+
+  homeParticipants.forEach(name => {
+
+    const li = document.createElement("li");
+    li.textContent = name;
+    peopleListHome.appendChild(li);
+
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    paidByHome.appendChild(option);
+  });
+}
+
+// =====================
+// ADD EXPENSE
+// =====================
+if (addExpenseBtnHome) {
+
+  addExpenseBtnHome.addEventListener("click", () => {
+
+    if (homeParticipants.length === 0) {
+      alert("Add people first.");
+      return;
+    }
+
+    const title = expenseNameInput.value || "Expense";
+    const amount = parseFloat(expenseAmountInputHome.value);
+    const paidBy = paidByHome.value;
+
+    if (!amount || amount <= 0) {
+      alert("Enter valid amount.");
+      return;
+    }
+
+    if (!paidBy) {
+      alert("Select who paid.");
+      return;
+    }
+
+    homeExpenses.push({
+      title,
+      amount,
+      paidBy
+    });
+
+    expenseNameInput.value = "";
+    expenseAmountInputHome.value = "";
+
+    renderExpenses();
+  });
+}
+
+function renderExpenses() {
+
+  expenseListHome.innerHTML = "";
+
+  let total = 0;
+
+  homeExpenses.forEach(exp => {
+
+    total += exp.amount;
+
+    const div = document.createElement("div");
+    div.className = "expense-entry";
+
+    div.textContent =
+      `${exp.title} – ${getCurrency()}${exp.amount} (Paid by ${exp.paidBy})`;
+
+    expenseListHome.appendChild(div);
+  });
+
+  totalExpenseDisplay.textContent = getCurrency() + total.toFixed(2);
+}
+
+// =====================
+// CALCULATE SPLIT
+// =====================
+if (calculateBtnHome) {
+
+  calculateBtnHome.addEventListener("click", () => {
+
+    if (homeParticipants.length === 0 || homeExpenses.length === 0) {
+      alert("Add people and expenses first.");
+      return;
+    }
+
+    const balances = {};
+homeParticipants.forEach(name => balances[name] = 0);
+
+const splitType = splitTypeSelect.value;
+
+// =====================
+// EQUAL SPLIT
+// =====================
+if (splitType === "equal") {
+
+  homeExpenses.forEach(exp => {
+
+    const share = exp.amount / homeParticipants.length;
+
+    balances[exp.paidBy] += exp.amount;
+
+    homeParticipants.forEach(p => {
+      balances[p] -= share;
+    });
+
+  });
+
+}
+
+// =====================
+// UNEQUAL SPLIT
+// =====================
+if (splitType === "unequal") {
+
+  const inputs = document.querySelectorAll(".unequal-input");
+
+  inputs.forEach(input => {
+
+    const person = input.dataset.person;
+    const value = parseFloat(input.value) || 0;
+
+    balances[person] -= value;
+
+  });
+
+  homeExpenses.forEach(exp => {
+    balances[exp.paidBy] += exp.amount;
+  });
+
+}
+
+// =====================
+// FAIR CONTRIBUTION
+// =====================
+if (splitType === "fair") {
+
+  const inputs = document.querySelectorAll(".fair-input");
+
+  let totalPercent = 0;
+
+  const contributions = {};
+
+  inputs.forEach(input => {
+
+    const person = input.dataset.person;
+    const percent = parseFloat(input.value) || 0;
+
+    contributions[person] = percent;
+    totalPercent += percent;
+
+  });
+
+  const totalExpense = homeExpenses.reduce((sum, e) => sum + e.amount, 0);
+
+  Object.keys(contributions).forEach(person => {
+
+    const share = (contributions[person] / totalPercent) * totalExpense;
+
+    balances[person] -= share;
+
+  });
+
+  homeExpenses.forEach(exp => {
+    balances[exp.paidBy] += exp.amount;
+  });
+
+}
+
+// =====================
+// RENDER RESULTS
+// =====================
+function renderHomeResults(balances) {
+
+  resultBoxHome.classList.remove("hidden");
+  resultBoxHome.innerHTML = "<strong>Settlement</strong><br><br>";
+
+  let summaryText = "Expense Settlement:\n";
+
+  const creditors = [];
+  const debtors = [];
+
+  Object.keys(balances).forEach(name => {
+
+    const amount = balances[name];
+
+    if (amount > 0) creditors.push({ name, amount });
+    if (amount < 0) debtors.push({ name, amount: Math.abs(amount) });
+  });
+
+  creditors.forEach(c => {
+
+    debtors.forEach(d => {
+
+      if (d.amount === 0) return;
+
+      const payment = Math.min(c.amount, d.amount);
+
+      if (payment > 0) {
+
+        const line =
+          `${d.name} pays ${c.name} ${getCurrency()}${payment.toFixed(2)}`;
+
+        const div = document.createElement("div");
+        div.className = "result-item";
+        div.textContent = line;
+
+        resultBoxHome.appendChild(div);
+
+        summaryText += line + "\n";
+
+        c.amount -= payment;
+        d.amount -= payment;
+      }
+
+    });
+
+  });
+
+  shareBox.classList.remove("hidden");
+
+  // COPY RESULTS
+  if (copyResultsBtn) {
+
+    copyResultsBtn.onclick = () => {
+
+      navigator.clipboard.writeText(summaryText);
+
+      copyResultsBtn.textContent = "Copied!";
+      setTimeout(() => {
+        copyResultsBtn.textContent = "Copy Results";
+      }, 2000);
+    };
+
+  }
+
+}
+
+// ================================
+// SPLIT TYPE OPTIONS (HOMEPAGE)
+// ================================
+
+const splitTypeSelect = document.getElementById("splitType");
+const splitOptions = document.getElementById("splitOptions");
+
+if (splitTypeSelect) {
+
+  splitTypeSelect.addEventListener("change", renderSplitOptions);
+
+}
+
+function renderSplitOptions() {
+
+  if (!splitOptions) return;
+
+  splitOptions.innerHTML = "";
+
+  const type = splitTypeSelect.value;
+
+  if (homeParticipants.length === 0) return;
+
+  // =====================
+  // UNEQUAL SPLIT
+  // =====================
+  if (type === "unequal") {
+
+    homeParticipants.forEach(name => {
+
+      const label = document.createElement("label");
+      label.textContent = `${name} amount`;
+
+      const input = document.createElement("input");
+      input.type = "number";
+      input.placeholder = "Enter amount";
+      input.dataset.person = name;
+      input.classList.add("unequal-input");
+
+      splitOptions.appendChild(label);
+      splitOptions.appendChild(input);
+
+    });
+
+  }
+
+  // =====================
+  // FAIR CONTRIBUTION
+  // =====================
+  if (type === "fair") {
+
+    homeParticipants.forEach(name => {
+
+      const label = document.createElement("label");
+      label.textContent = `${name} contribution %`;
+
+      const input = document.createElement("input");
+      input.type = "number";
+      input.placeholder = "Enter %";
+      input.dataset.person = name;
+      input.classList.add("fair-input");
+
+      splitOptions.appendChild(label);
+      splitOptions.appendChild(input);
+
+    });
+
+  }
+
+}
