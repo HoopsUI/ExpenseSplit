@@ -355,14 +355,26 @@ Using an online expense split calculator is the easiest way to divide group expe
 
 <script>
 
-const faqQuestions=document.querySelectorAll('.faq-question');
+document.addEventListener("DOMContentLoaded", function(){
+
+const faqQuestions = document.querySelectorAll('.faq-question');
 
 faqQuestions.forEach(q=>{
-q.addEventListener('click',()=>{
-const a=q.nextElementSibling;
+  q.addEventListener('click',()=>{
 
-a.style.display=a.style.display==="active"?'none':"active";
+    const answer = q.nextElementSibling;
+
+    document.querySelectorAll('.faq-answer').forEach(a=>{
+      if(a !== answer){
+        a.style.display="none";
+      }
+    });
+
+    answer.style.display = answer.style.display === "block" ? "none" : "block";
+
+  });
 });
+
 });
 
 </script>
