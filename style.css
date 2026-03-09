@@ -451,9 +451,12 @@ button {
   margin-bottom: 30px;
 }
 
-.faq-item {
-  border-bottom: 1px solid var(--border);
-  padding: 15px 0;
+.faq-item{
+background:#fff;
+border:1px solid #ddd;
+border-radius:8px;
+margin-bottom:15px;
+overflow:visible;
 }
 
 .faq-question {
@@ -479,7 +482,7 @@ button {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease, padding 0.35s ease;
-  padding-left: 5px;
+  padding-left: 18px 20px;
   margin-top: 5px;
   color: var(--text-muted);
   line-height: 1.6;
@@ -488,7 +491,7 @@ button {
 .faq-answer.open {
   max-height: 500px;
   margin-top: 10px;
-  padding-left: 5px;
+  padding-left: 18px 20px;
 }
 
 /* =========================
