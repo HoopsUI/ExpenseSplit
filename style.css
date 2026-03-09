@@ -846,3 +846,15 @@ font-weight:600;
 .primary-btn:hover{
 background:#1f52d6;
 }
+
+/* SEO content links */
+
+.seo-content a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.seo-content a:hover {
+  color: #1d4ed8;
+}
