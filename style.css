@@ -858,3 +858,11 @@ background:#1f52d6;
 .seo-content a:hover {
   color: #1d4ed8;
 }
+
+.faq-answer {
+  display: none;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
