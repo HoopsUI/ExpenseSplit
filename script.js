@@ -817,16 +817,20 @@ if (resetCalculatorBtn) {
 
 // FAQ toggle
 
-document.querySelectorAll(".seo-section h3").forEach((question)=>{
-question.addEventListener("click",()=>{
+document.querySelectorAll(".faq-question").forEach((question) => {
 
-const answer = question.nextElementSibling;
+  question.addEventListener("click", () => {
 
-if(answer.style.display==="block"){
-answer.style.display="none";
-}else{
-answer.style.display="block";
-}
+    const item = question.parentElement;
 
-});
+    document.querySelectorAll(".faq-item").forEach(faq=>{
+      if(faq !== item){
+        faq.classList.remove("active");
+      }
+    });
+
+    item.classList.toggle("active");
+
+  });
+
 });
