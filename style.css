@@ -859,10 +859,31 @@ background:#1f52d6;
   color: #1d4ed8;
 }
 
-.faq-answer {
-  display: none;
+.faq-answer{
+display:none;
+padding:18px 20px;
+line-height:1.6;
+background:#ffffff;
+border-top:1px solid #eee;
 }
 
-.faq-item.active .faq-answer {
-  display: block;
+.faq-question{
+cursor:pointer;
+padding:18px 20px;
+font-weight:600;
+background:#f1f5f9;
+position:relative;
+}
+
+.faq-question::after{
+content:"+";
+position:absolute;
+right:20px;
+top:50%;
+transform:translateY(-50%);
+font-size:18px;
+}
+
+.faq-question.active::after{
+content:"−";
 }
