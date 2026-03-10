@@ -891,3 +891,11 @@ background:#1f52d6;
   margin-top:6px;
   margin-left:16px;
 }
+
+.tool-subtitle{
+  text-align:center;
+  max-width:600px;
+  margin:10px auto 30px;
+  color:#555;
+  font-size:16px;
+}
