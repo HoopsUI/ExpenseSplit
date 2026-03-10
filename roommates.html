@@ -66,100 +66,425 @@
 
 <!-- ================= CALCULATOR ================= -->
 <section id="tool" class="section">
-  <div class="container">
-      <h2 class="section-title">Split Expenses With Roommates</h2>
-  <div class="container calculator">
+<div class="container">
+<h2 class="section-title">Advanced Roommate Expense Calculator</h2>
 
-    <div class="calc-card">
-      <form id="calculatorForm">
+<div class="calculator">
 
-        <div class="form-group">
-          <label for="currency">Currency</label>
-          <select id="currency">
-            <option value="$">$ USD</option>
-            <option value="₹">₹ INR</option>
-            <option value="€">€ EUR</option>
-            <option value="£">£ GBP</option>
-          </select>
-        </div>
+<div class="calc-card">
 
-        <!-- ✅ ADDED: Total amount -->
-        <div class="form-group">
-          <label for="amount">Total Household Expense</label>
-          <input type="number" id="amount" placeholder="e.g. 1200" required />
-        </div>
+<!-- Currency -->
+<div class="form-group">
+<label>Currency</label>
+<select id="currency">
+<option value="$">$ USD</option>
+<option value="₹">₹ INR</option>
+<option value="€">€ EUR</option>
+<option value="£">£ GBP</option>
+</select>
+</div>
 
-        <div class="form-group">
-          <label for="people">Number of roommates</label>
-          <input type="number" id="people" min="2" max="20" placeholder="e.g. 3" required />
-        </div>
+<!-- Rent -->
+<h3>Monthly Rent</h3>
 
-        <button type="submit" class="primary-btn">Calculate</button>
-      </form>
+<div class="form-group">
+<label>Total Rent</label>
+<input type="number" id="rent" placeholder="e.g. 1500">
+</div>
 
-      <!-- ✅ ADDED: Compatible result container -->
-      <div id="result" class="result-box hidden"></div>
+<!-- Roommates -->
+<h3>Roommates</h3>
 
-    </div>
+<div id="roommates"></div>
 
-  </div>
+<button id="addRoommate" class="secondary-btn">+ Add Roommate</button>
+
+<!-- Utilities -->
+<h3>Shared Utilities</h3>
+
+<div class="form-group">
+<label>Electricity</label>
+<input type="number" id="electricity" placeholder="0">
+</div>
+
+<div class="form-group">
+<label>Water</label>
+<input type="number" id="water" placeholder="0">
+</div>
+
+<div class="form-group">
+<label>Internet</label>
+<input type="number" id="internet" placeholder="0">
+</div>
+
+<div class="form-group">
+<label>Groceries</label>
+<input type="number" id="groceries" placeholder="0">
+</div>
+
+<div class="form-group">
+<label>Other Expenses</label>
+<input type="number" id="other" placeholder="0">
+</div>
+
+<button id="calculate" class="primary-btn">Calculate Split</button>
+
+<div id="results" class="result-box hidden"></div>
+
+</div>
+</div>
+</div>
 </section>
 
+<script>
+
+const roommatesDiv = document.getElementById("roommates")
+const addBtn = document.getElementById("addRoommate")
+const calculateBtn = document.getElementById("calculate")
+const resultsDiv = document.getElementById("results")
+
+let roommateCount = 0
+
+function addRoommate(){
+
+roommateCount++
+
+const div = document.createElement("div")
+div.className = "roommate-row"
+
+div.innerHTML = `
+<h4>Roommate ${roommateCount}</h4>
+
+<div class="form-group">
+<label>Name</label>
+<input type="text" class="name" placeholder="Name">
+</div>
+
+<div class="form-group">
+<label>Amount Paid</label>
+<input type="number" class="paid" placeholder="0">
+</div>
+`
+
+roommatesDiv.appendChild(div)
+
+}
+
+addBtn.addEventListener("click", addRoommate)
+
+addRoommate()
+addRoommate()
+
+calculateBtn.addEventListener("click", function(){
+
+const currency = document.getElementById("currency").value
+
+const rent = parseFloat(document.getElementById("rent").value) || 0
+const electricity = parseFloat(document.getElementById("electricity").value) || 0
+const water = parseFloat(document.getElementById("water").value) || 0
+const internet = parseFloat(document.getElementById("internet").value) || 0
+const groceries = parseFloat(document.getElementById("groceries").value) || 0
+const other = parseFloat(document.getElementById("other").value) || 0
+
+const utilities = electricity + water + internet + groceries + other
+
+const total = rent + utilities
+
+const names = document.querySelectorAll(".name")
+const paidInputs = document.querySelectorAll(".paid")
+
+const people = names.length
+
+if(people < 1){
+alert("Add roommates")
+return
+}
+
+const share = total / people
+
+let resultHTML = `
+<h3>Expense Summary</h3>
+Total Household Expenses: ${currency}${total.toFixed(2)}<br>
+Each Person Should Pay: ${currency}${share.toFixed(2)}<br><br>
+`
+
+let balances = []
+
+for(let i=0;i<people;i++){
+
+const name = names[i].value || `Roommate ${i+1}`
+const paid = parseFloat(paidInputs[i].value) || 0
+const balance = paid - share
+
+balances.push({name,balance})
+
+resultHTML += `
+<strong>${name}</strong><br>
+Paid: ${currency}${paid.toFixed(2)}<br>
+Balance: ${currency}${balance.toFixed(2)}<br><br>
+`
+
+}
+
+resultHTML += "<h3>Settlement</h3>"
+
+balances.forEach(person=>{
+
+if(person.balance < 0){
+
+resultHTML += `${person.name} owes ${currency}${Math.abs(person.balance).toFixed(2)}<br>`
+
+}
+
+if(person.balance > 0){
+
+resultHTML += `${person.name} should receive ${currency}${person.balance.toFixed(2)}<br>`
+
+}
+
+})
+
+resultsDiv.classList.remove("hidden")
+resultsDiv.innerHTML = resultHTML
+
+})
+
+</script>
+
 <!-- ================= SEO CONTENT ================= -->
-<section class="section light">
-  <div class="seo-content">
-    <h2>Why Manual Roommate Expense Tracking Fails</h2>
-    <p>
-      Shared living means shared bills — rent, electricity, internet, groceries, and more. Manually tracking who paid what often leads to confusion and unnecessary conflicts.
-    </p>
+<section class="section">
+<div class="seo-content">
 
-    <ul>
-      <li>People forget shared payments</li>
-      <li>Unequal contributions cause tension</li>
-      <li>Spreadsheets become messy</li>
-      <li>Calculations are often wrong</li>
-    </ul>
+<h2>Roommate Expense Calculator: The Easiest Way to Split Rent and Bills</h2>
 
-    <p>
-      The Roommates Expense Calculator makes splitting household expenses quick, fair, and stress-free.
-    </p>
+<p>
+Living with roommates can be one of the best ways to reduce living costs, especially in expensive cities. But when it comes to splitting rent, utilities, groceries, and shared household expenses, things can quickly become confusing. Who paid for the internet bill last month? Did everyone contribute equally to groceries? Is the rent split fair if one roommate has a bigger bedroom?
+</p>
 
-    <h3>Perfect For</h3>
-    <ul>
-      <li>Roommates splitting rent</li>
-      <li>Flatmates sharing utility bills</li>
-      <li>Shared grocery expenses</li>
-      <li>Household budgeting</li>
-    </ul>
-  </div>
+<p>
+Our <strong>Roommate Expense Calculator</strong> helps solve these problems instantly. Instead of using messy spreadsheets or trying to calculate everything manually, you can quickly split household costs among roommates with just a few clicks.
+</p>
+
+<p>
+This free tool works for anyone sharing a home — roommates, flatmates, housemates, college students, or co-living groups. Whether you're dividing monthly rent, splitting utility bills, or calculating shared grocery expenses, this calculator helps ensure everyone pays their fair share.
+</p>
+
+<h3>Common Roommate Expenses You Can Split</h3>
+
+<p>
+Most shared households have several recurring costs. Our roommate bill split calculator helps divide these common expenses easily:
+</p>
+
+<ul>
+<li>Monthly rent</li>
+<li>Electricity and water bills</li>
+<li>Internet and WiFi</li>
+<li>Groceries and shared food</li>
+<li>Cleaning supplies</li>
+<li>Streaming subscriptions</li>
+<li>Furniture and shared purchases</li>
+</ul>
+
+<p>
+Instead of constantly asking “who owes who,” you can calculate the split instantly and keep things transparent among roommates.
+</p>
+
+<h3>Why Use a Roommate Expense Calculator Instead of Spreadsheets?</h3>
+
+<p>
+Many roommates initially try to track expenses manually using notes or spreadsheets. While that might work temporarily, it often becomes difficult to maintain over time.
+</p>
+
+<p>
+A <strong>roommate expense calculator</strong> simplifies the entire process and avoids common mistakes like incorrect calculations or forgotten payments.
+</p>
+
+<ul>
+<li>Instantly split rent between roommates</li>
+<li>Avoid awkward money conversations</li>
+<li>Calculate equal expense splits in seconds</li>
+<li>Keep household finances fair and transparent</li>
+<li>No sign-up or complicated setup required</li>
+</ul>
+
+<p>
+If you're also splitting costs for trips or group activities, you can try our 
+<a href="trip.html">Trip Expense Calculator</a> or the 
+<a href="friends.html">Friends Bill Split Calculator</a> to manage shared expenses outside the house.
+</p>
+
+<h2>How to Split Rent Between Roommates Fairly</h2>
+
+<p>
+One of the most searched questions online is <strong>“how to split rent between roommates fairly.”</strong> While splitting rent equally is the most common solution, it may not always be the fairest option.
+</p>
+
+<p>
+For example, if one roommate has a larger bedroom or a private bathroom, they may choose to pay slightly more rent. Some households also split rent based on income to keep housing costs balanced.
+</p>
+
+<p>
+Here are three common methods used by roommates:
+</p>
+
+<h3>1. Equal Rent Split</h3>
+
+<p>
+The total rent is divided equally between all roommates. This is the simplest and most common approach.
+</p>
+
+<h3>2. Room Size Based Split</h3>
+
+<p>
+Rent is adjusted based on bedroom size or private amenities such as attached bathrooms or balconies.
+</p>
+
+<h3>3. Income Based Rent Split</h3>
+
+<p>
+Some roommates split rent proportionally based on income so that housing costs remain affordable for everyone.
+</p>
+
+<p>
+If you want to explore fair splitting strategies, check our detailed guide:
+<a href="how-to-split-expenses.html">How to Split Expenses Fairly</a>.
+</p>
+
+<h2>Best Way to Manage Shared Household Expenses</h2>
+
+<p>
+Splitting rent is only one part of roommate finances. In most homes, multiple shared expenses occur throughout the month.
+</p>
+
+<p>
+The best way to manage these costs is by creating a simple routine:
+</p>
+
+<ol>
+<li>Track all shared expenses during the month</li>
+<li>Calculate the total cost</li>
+<li>Divide the expenses using a calculator</li>
+<li>Settle balances between roommates</li>
+</ol>
+
+<p>
+Our roommate expense calculator makes this process extremely fast. Instead of spending time calculating numbers manually, you simply enter the total expense and the number of roommates to get an instant result.
+</p>
+
+<p>
+For more tips on managing shared finances efficiently, read:
+<a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>.
+</p>
+
+<h2>Who Should Use This Roommate Bill Split Tool?</h2>
+
+<p>
+This calculator is designed for any situation where multiple people share household costs.
+</p>
+
+<ul>
+<li>College students sharing apartments</li>
+<li>Young professionals living with roommates</li>
+<li>Friends renting a house together</li>
+<li>Flatmates sharing utilities</li>
+<li>Co-living spaces</li>
+<li>Couples living with other roommates</li>
+</ul>
+
+<p>
+If you frequently split expenses with multiple people outside your home as well, you may also find these tools helpful:
+</p>
+
+<ul>
+<li><a href="friends.html">Split Bills With Friends Calculator</a></li>
+<li><a href="trip.html">Trip Expense Split Calculator</a></li>
+<li><a href="group-expense-management.html">Guide to Group Expense Management</a></li>
+</ul>
+
+<h2>Tips for Avoiding Money Conflicts With Roommates</h2>
+
+<p>
+Money disagreements are one of the most common causes of roommate conflicts. Fortunately, a few simple habits can prevent most issues.
+</p>
+
+<ul>
+<li>Agree on how expenses will be split before moving in</li>
+<li>Track shared purchases regularly</li>
+<li>Use a calculator to keep payments transparent</li>
+<li>Settle balances monthly instead of letting them accumulate</li>
+<li>Communicate openly about large shared purchases</li>
+</ul>
+
+<p>
+Using a simple <strong>roommate expense split calculator</strong> like this one helps everyone understand exactly what they owe, which keeps the living situation stress-free.
+</p>
+
+</div>
 </section>
 
 <!-- ================= FAQ ================= -->
 <section class="section faq-section">
-    <div class="container">
-  <h2>Roommates Expense FAQs</h2>
+<div class="container">
 
-  <div class="faq-item">
-    <div class="faq-question">1. Do roommates need an account?</div>
-    <div class="faq-answer">
-      No. ExpenseSplit works instantly without signup.
-    </div>
-  </div>
+<h2>Roommates Expense Calculator FAQs</h2>
 
-  <div class="faq-item">
-    <div class="faq-question">2. Can I use this every month?</div>
-    <div class="faq-answer">
-      Yes. Use it as often as needed for recurring household expenses.
-    </div>
-  </div>
+<div class="faq-item">
+<div class="faq-question">1. How do roommates split rent fairly?</div>
+<div class="faq-answer">
+The most common method is to divide rent equally among roommates. However, some households adjust the split based on bedroom size, private bathrooms, or income differences. Using a roommate rent calculator helps ensure everyone pays a fair amount.
+</div>
+</div>
 
-  <div class="faq-item">
-    <div class="faq-question">3. Is it mobile-friendly?</div>
-    <div class="faq-answer">
-      Yes. The calculator works perfectly on phones, tablets, and desktops.
-    </div>
-  </div>
-      </div>
+<div class="faq-item">
+<div class="faq-question">2. What expenses should roommates split?</div>
+<div class="faq-answer">
+Roommates typically split rent, electricity, water, internet, groceries, and shared household supplies. Some households also share streaming subscriptions, cleaning services, or furniture costs.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">3. Is splitting rent equally always fair?</div>
+<div class="faq-answer">
+Not always. If one roommate has a larger bedroom or private bathroom, they may choose to pay slightly more rent. Many households adjust the split to reflect room size or amenities.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">4. What is the easiest way to split bills with roommates?</div>
+<div class="faq-answer">
+The easiest way is to calculate the total expense and divide it by the number of roommates using an expense split calculator. This avoids manual math and ensures accurate results.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">5. How do you track shared expenses with roommates?</div>
+<div class="faq-answer">
+Many roommates track shared costs monthly and then calculate the final split. Using a dedicated roommate expense calculator makes it faster and reduces confusion about who owes what.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">6. Can this calculator split rent and utilities together?</div>
+<div class="faq-answer">
+Yes. You can enter the total household expenses including rent, utilities, groceries, or other shared bills, and the calculator will divide the total between roommates instantly.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">7. Is this roommate expense calculator free?</div>
+<div class="faq-answer">
+Yes. ExpenseSplit calculators are completely free to use and require no account or signup.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">8. Can I use this calculator every month?</div>
+<div class="faq-answer">
+Absolutely. Many roommates use the calculator monthly to split recurring expenses like rent and utilities.
+</div>
+</div>
+
+</div>
 </section>
 
 <!-- ================= FOOTER ================= -->
