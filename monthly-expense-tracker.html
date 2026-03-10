@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Monthly Expense Tracker – Free Online Budget & Spending Tracker</title>
+
+<meta name="description" content="Track your monthly expenses with this free online monthly expense tracker. Easily monitor spending, categorize expenses, and understand where your money goes." />
+
+<meta name="keywords" content="monthly expense tracker, expense tracker online, monthly spending tracker, personal expense calculator, track expenses monthly" />
+
+<link rel="canonical" href="https://expensessplit.com/monthly-expense-tracker.html">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.tracker-card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+max-width:720px;
+margin:auto;
+}
+
+.expense-row{
+display:flex;
+gap:10px;
+margin-bottom:10px;
+flex-wrap:wrap;
+}
+
+.expense-row input,
+.expense-row select{
+padding:8px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+.expense-table{
+width:100%;
+margin-top:15px;
+border-collapse:collapse;
+}
+
+.expense-table th,
+.expense-table td{
+border:1px solid #ddd;
+padding:8px;
+text-align:left;
+}
+
+.summary-box{
+margin-top:20px;
+background:#f7f9fc;
+padding:15px;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+<div class="container nav">
+<div class="logo">ExpenseSplit</div>
+
+<nav>
+<a href="/">Home</a>
+<a href="trip.html">Trip</a>
+<a href="roommates.html">Roommates</a>
+<a href="friends.html">Friends</a>
+<a href="how-to-split-expenses.html">How to Split Expenses</a>
+<a href="tips-for-using-expensesplit.html">Tips</a>
+<a href="faq.html">FAQ</a>
+<a href="group-expense-management.html">Group Expenses</a>
+</nav>
+
+</div>
+</header>
+
+<section class="hero">
+<div class="container hero-content">
+
+<h1>Monthly Expense Tracker</h1>
+
+<p class="subtitle">
+Track your spending, understand your budget, and control your finances with this simple monthly expense tracker.
+</p>
+
+<a href="#tool" class="primary-btn">Start Tracking Expenses</a>
+
+</div>
+</section>
+
+<section id="tool" class="section light">
+
+<div class="container">
+
+<h2 class="section-title">Free Monthly Expense Tracker Tool</h2>
+
+<div class="tracker-card">
+
+<div class="expense-row">
+<input type="text" id="expenseName" placeholder="Expense name (Rent, Groceries)">
+<input type="number" id="expenseAmount" placeholder="Amount">
+<select id="expenseCategory">
+<option>Housing</option>
+<option>Food</option>
+<option>Transport</option>
+<option>Entertainment</option>
+<option>Utilities</option>
+<option>Shopping</option>
+<option>Other</option>
+</select>
+
+<button onclick="addExpense()">Add</button>
+</div>
+
+<table class="expense-table" id="expenseTable">
+<thead>
+<tr>
+<th>Expense</th>
+<th>Category</th>
+<th>Amount</th>
+<th>Remove</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+</table>
+
+<div class="summary-box">
+
+<p><strong>Total Expenses:</strong> ₹ <span id="total">0</span></p>
+
+<p><strong>Top Category:</strong> <span id="topCategory">None</span></p>
+
+</div>
+
+<button onclick="resetTracker()">Reset Tracker</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="more-tools" class="section">
+<div class="container">
+
+<h2 class="section-title">Other Expense Tools</h2>
+
+<ul>
+
+<li><a href="trip.html">Trip Expense Calculator</a></li>
+
+<li><a href="roommates.html">Roommate Expense Calculator</a></li>
+
+<li><a href="friends.html">Friends Expense Split Calculator</a></li>
+
+<li><a href="/">Group Expense Split Tool</a></li>
+
+</ul>
+
+</div>
+</section>
+
+
+<section class="section">
+
+<div class="container seo-content">
+
+<h2>Why Tracking Monthly Expenses Is Important</h2>
+
+<p>
+A monthly expense tracker is one of the most powerful tools for improving personal finances. Many people struggle with budgeting simply because they don’t know exactly where their money goes each month. By tracking expenses consistently, you gain a clear picture of your spending habits and can make smarter financial decisions.
+</p>
+
+<p>
+This free monthly expense tracker allows you to record expenses, categorize spending, and instantly see your total monthly spending. Whether you're managing a household budget, living with roommates, or planning savings goals, tracking expenses helps you stay financially organized.
+</p>
+
+<h3>Common Monthly Expenses People Track</h3>
+
+<ul>
+<li>Rent or mortgage payments</li>
+<li>Groceries and food spending</li>
+<li>Transportation and fuel</li>
+<li>Utilities such as electricity and internet</li>
+<li>Entertainment and subscriptions</li>
+<li>Shopping and personal purchases</li>
+</ul>
+
+<p>
+When these expenses are tracked in one place, it becomes much easier to identify unnecessary spending and prioritize savings goals.
+</p>
+
+<h3>How to Use the Monthly Expense Tracker</h3>
+
+<p>
+Using the tracker is simple:
+</p>
+
+<ul>
+
+<li>Enter the expense name such as rent, groceries, or taxi.</li>
+
+<li>Enter the amount spent.</li>
+
+<li>Select a category for the expense.</li>
+
+<li>Add the expense to your list.</li>
+
+<li>The tracker automatically calculates your total monthly spending.</li>
+
+</ul>
+
+<p>
+Over time, this simple process builds a complete picture of your financial habits.
+</p>
+
+<h3>Example Scenario</h3>
+
+<p>
+Imagine a student living in a shared apartment. They track their expenses for one month:
+</p>
+
+<ul>
+
+<li>Rent: ₹12,000</li>
+
+<li>Groceries: ₹3,000</li>
+
+<li>Transport: ₹1,200</li>
+
+<li>Dining Out: ₹2,500</li>
+
+<li>Subscriptions: ₹500</li>
+
+</ul>
+
+<p>
+After tracking these expenses, they realize dining out accounts for a large portion of their spending. By reducing restaurant visits slightly, they can easily save ₹1,000 per month.
+</p>
+
+<h3>Monthly Expense Tracking vs Budgeting</h3>
+
+<p>
+Expense tracking and budgeting are closely related but slightly different. Expense tracking focuses on recording what you already spent. Budgeting focuses on planning how much you should spend in the future.
+</p>
+
+<p>
+Many people use both methods together. They track expenses first to understand spending patterns, then create a budget based on that information.
+</p>
+
+<h3>Who Should Use an Expense Tracker?</h3>
+
+<p>
+Expense trackers are useful for many situations:
+</p>
+
+<ul>
+
+<li>Students managing monthly allowances</li>
+
+<li>Families tracking household spending</li>
+
+<li>Couples sharing bills</li>
+
+<li>Roommates splitting rent and groceries</li>
+
+<li>Freelancers monitoring business expenses</li>
+
+</ul>
+
+<p>
+If you frequently split costs with others, you can also use our
+<a href="/">expense split calculator</a>,
+<a href="trip.html">trip expense calculator</a>, or
+<a href="roommates.html">roommate expense calculator</a>
+to divide shared bills fairly.
+</p>
+
+<h3>Tips for Better Expense Tracking</h3>
+
+<ul>
+
+<li>Record expenses immediately after spending</li>
+
+<li>Categorize spending consistently</li>
+
+<li>Review your totals weekly</li>
+
+<li>Look for patterns in unnecessary spending</li>
+
+<li>Set monthly savings goals</li>
+
+</ul>
+
+<p>
+Even small adjustments to spending habits can lead to significant long-term savings.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="section faq-section">
+
+<div class="container">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+<div class="faq-question">What is a monthly expense tracker?</div>
+<div class="faq-answer">
+A monthly expense tracker is a tool used to record and categorize spending throughout the month. It helps individuals understand where their money goes and identify opportunities to save.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Is this expense tracker free?</div>
+<div class="faq-answer">
+Yes. This tracker is completely free and works directly in your browser without any signup or installation.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Can I track expenses on mobile?</div>
+<div class="faq-answer">
+Yes. The tracker is mobile-friendly and works on phones, tablets, and desktop devices.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Does the tracker save my data?</div>
+<div class="faq-answer">
+No personal data is stored on the server. The tracker simply helps you calculate totals during your session.
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<footer class="footer">
+<div class="container footer-content">
+
+<p>© 2026 ExpenseSplit. All rights reserved.</p>
+
+<div class="footer-links">
+
+<a href="privacy.html">Privacy Policy</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="terms.html">Terms & Conditions</a>
+
+</div>
+
+</div>
+</footer>
+
+
+<script>
+
+let expenses=[]
+let total=0
+
+function addExpense(){
+
+const name=document.getElementById("expenseName").value
+const amount=parseFloat(document.getElementById("expenseAmount").value)
+const category=document.getElementById("expenseCategory").value
+
+if(!name || isNaN(amount)) return
+
+expenses.push({name,amount,category})
+
+renderExpenses()
+
+}
+
+function renderExpenses(){
+
+const tbody=document.querySelector("#expenseTable tbody")
+tbody.innerHTML=""
+
+total=0
+
+let categories={}
+
+expenses.forEach((e,i)=>{
+
+total+=e.amount
+
+categories[e.category]=(categories[e.category]||0)+e.amount
+
+const row=document.createElement("tr")
+
+row.innerHTML=`
+
+<td>${e.name}</td>
+<td>${e.category}</td>
+<td>₹ ${e.amount}</td>
+<td><button onclick="removeExpense(${i})">X</button></td>
+
+`
+
+tbody.appendChild(row)
+
+})
+
+document.getElementById("total").textContent=total
+
+let top="None"
+let max=0
+
+for(let c in categories){
+if(categories[c]>max){
+max=categories[c]
+top=c
+}
+}
+
+document.getElementById("topCategory").textContent=top
+
+}
+
+function removeExpense(i){
+
+expenses.splice(i,1)
+
+renderExpenses()
+
+}
+
+function resetTracker(){
+
+expenses=[]
+
+renderExpenses()
+
+}
+
+</script>
+
+</body>
+</html>
