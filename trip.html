@@ -59,36 +59,19 @@
     <p class="subtitle">
       Traveling in a group? Stop arguing over money. Split trip expenses instantly and fairly — no spreadsheets, no confusion.
     </p>
-    <p>Perfect For</p>
+    <h2>Trip Expense Calculator Works Best For</h2>
 
-<ul>
-<li>✔ Trips with friends</li>
-<li>✔ Group vacations</li>
-<li>✔ Road trips</li>
-<li>✔ Family travel</li>
-<li>✔ Destination weddings</li>
-<li>✔ Bachelor trips</li>
-</ul>
+<ol>
+<li>Trips with friends</li>
+<li>Group vacations</li>
+<li>Road trips</li>
+<li>Family travel</li>
+<li>Destination weddings</li>
+<li>Bachelor trips</li>
+</ol>
 
     <a href="#tool" class="primary-btn">Use Free Calculator</a>
-
-   <div class="tool-intro">
-  <h3>How To Use This Trip Expense Calculator</h3>
-
-  <ol>
-    <li>Add travelers joining the trip.</li>
-    <li>Add expenses like hotel, food, or transport.</li>
-    <li>Select who paid for each expense.</li>
-    <li>Click <strong>Calculate Trip Split</strong> to see who owes who.</li>
-  </ol>
-
-  <p class="example-note">
-    Tip: Try the example below to see how the calculator works.
-  </p>
-
-  <button id="loadExample" class="secondary-btn">Load Example Trip</button>
-</div>
-  
+   
   </div>
 </section>
 
@@ -97,6 +80,10 @@
 <div class="container">
 
 <h2 class="section-title">Trip Expense Split Calculator</h2>
+
+<p class="tool-subtitle">
+Add travelers, record trip expenses, and instantly see who owes who.
+</p>
 
 <div class="container calculator">
 <div class="calc-card">
@@ -113,40 +100,28 @@
 </select>
 </div>
 
-<h3>Add Travelers</h3>
+<h3>➕ Add Travelers</h3>
 
 <div id="participants"></div>
 
 <button type="button" class="primary-btn" id="addTraveler">
-+ Add Traveler
+Add Traveler
 </button>
 
 <hr>
 
-<h3>Add Expenses</h3>
-  <div class="expense-types">
-  <p><strong>Common Trip Expenses:</strong></p>
-
-  <ul>
-    <li>🏨 Hotel / Accommodation</li>
-    <li>🍽️ Food & Restaurants</li>
-    <li>🚕 Transport / Taxi / Fuel</li>
-    <li>🎟️ Activities & Tickets</li>
-    <li>🛒 Groceries</li>
-    <li>🎉 Entertainment</li>
-  </ul>
-</div>
+<h3>💳 Add Expenses</h3>
 
 <div id="expenseList"></div>
 
 <button type="button" class="primary-btn" id="addExpense">
-+ Add Expense
+Add Expense
 </button>
 
 <br><br>
 
 <button type="submit" class="primary-btn">
-Calculate Who Owes Who
+🧮 Calculate Who Owes Who
 </button>
 
 </form>
@@ -687,6 +662,30 @@ document.getElementById("loadExample").addEventListener("click", function() {
 
 });
 
+</script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const addTravelerBtn = document.querySelector(".add-traveler-btn");
+
+  if(addTravelerBtn){
+    addTravelerBtn.click();
+  }
+
+});
+</script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const addExpenseBtn = document.querySelector(".add-expense-btn");
+
+  if(addExpenseBtn){
+    addExpenseBtn.click();
+  }
+
+});
 </script>
 
 <script src="script.js"></script>
