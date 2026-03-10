@@ -129,7 +129,7 @@ Track monthly spending, understand your budget, and manage finances with this fr
 <option>Other</option>
 </select>
 
-<button onclick="addExpense()">Add Expense</button>
+<button onclick="addExpense()" class="primary-btn">Add Expense</button>
 </div>
 
 <table class="expense-table" id="expenseTable">
@@ -160,11 +160,11 @@ Track monthly spending, understand your budget, and manage finances with this fr
 
 </div>
 
-<div class="chart-container">
+<div class="chart-container" id="chartContainer" style="display:none;">
 <canvas id="expenseChart"></canvas>
 </div>
 
-<button onclick="resetTracker()">Reset Tracker</button>
+<button onclick="resetTracker()" class="primary-btn">Reset Tracker</button>
 
 </div>
 
@@ -508,6 +508,8 @@ list.appendChild(li)
 
 function renderChart(categories){
 
+document.getElementById("chartContainer").style.display = "block";
+
 const ctx=document.getElementById("expenseChart")
 
 const labels=Object.keys(categories)
@@ -543,11 +545,12 @@ expenses=[]
 
 saveData()
 
+document.getElementById("chartContainer").style.display = "none";
+
 renderExpenses()
 
 }
 
-renderExpenses()
 
 </script>
 
