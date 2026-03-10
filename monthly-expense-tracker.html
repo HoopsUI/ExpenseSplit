@@ -119,8 +119,9 @@ Track your spending, understand your budget, and control your finances with this
 <option>Other</option>
 </select>
 
-<button onclick="addExpense()">Add</button>
-</div>
+<button type="button" id="calculateBtn" class="primary-btn">
+    Add
+  </button>
 
 <table class="expense-table" id="expenseTable">
 <thead>
@@ -143,7 +144,7 @@ Track your spending, understand your budget, and control your finances with this
 
 </div>
 
-<button onclick="resetTracker()">Reset Tracker</button>
+<button id="resetCalculatorBtn">Reset</button>
 
 </div>
 
@@ -186,7 +187,7 @@ A monthly expense tracker is one of the most powerful tools for improving person
 This free monthly expense tracker allows you to record expenses, categorize spending, and instantly see your total monthly spending. Whether you're managing a household budget, living with roommates, or planning savings goals, tracking expenses helps you stay financially organized.
 </p>
 
-<h3>Common Monthly Expenses People Track</h3>
+<h2>Common Monthly Expenses People Track</h2>
 
 <ul>
 <li>Rent or mortgage payments</li>
@@ -201,7 +202,7 @@ This free monthly expense tracker allows you to record expenses, categorize spen
 When these expenses are tracked in one place, it becomes much easier to identify unnecessary spending and prioritize savings goals.
 </p>
 
-<h3>How to Use the Monthly Expense Tracker</h3>
+<h2>How to Use the Monthly Expense Tracker</h2>
 
 <p>
 Using the tracker is simple:
@@ -225,7 +226,7 @@ Using the tracker is simple:
 Over time, this simple process builds a complete picture of your financial habits.
 </p>
 
-<h3>Example Scenario</h3>
+<h2>Example Scenario</h2>
 
 <p>
 Imagine a student living in a shared apartment. They track their expenses for one month:
@@ -249,7 +250,7 @@ Imagine a student living in a shared apartment. They track their expenses for on
 After tracking these expenses, they realize dining out accounts for a large portion of their spending. By reducing restaurant visits slightly, they can easily save ₹1,000 per month.
 </p>
 
-<h3>Monthly Expense Tracking vs Budgeting</h3>
+<h2>Monthly Expense Tracking vs Budgeting</h2>
 
 <p>
 Expense tracking and budgeting are closely related but slightly different. Expense tracking focuses on recording what you already spent. Budgeting focuses on planning how much you should spend in the future.
@@ -259,7 +260,7 @@ Expense tracking and budgeting are closely related but slightly different. Expen
 Many people use both methods together. They track expenses first to understand spending patterns, then create a budget based on that information.
 </p>
 
-<h3>Who Should Use an Expense Tracker?</h3>
+<h2>Who Should Use an Expense Tracker?</h2>
 
 <p>
 Expense trackers are useful for many situations:
@@ -287,7 +288,7 @@ If you frequently split costs with others, you can also use our
 to divide shared bills fairly.
 </p>
 
-<h3>Tips for Better Expense Tracking</h3>
+<h2>Tips for Better Expense Tracking</h2>
 
 <ul>
 
@@ -319,28 +320,28 @@ Even small adjustments to spending habits can lead to significant long-term savi
 <h2>Frequently Asked Questions</h2>
 
 <div class="faq-item">
-<div class="faq-question">What is a monthly expense tracker?</div>
+<div class="faq-question">1. What is a monthly expense tracker?</div>
 <div class="faq-answer">
 A monthly expense tracker is a tool used to record and categorize spending throughout the month. It helps individuals understand where their money goes and identify opportunities to save.
 </div>
 </div>
 
 <div class="faq-item">
-<div class="faq-question">Is this expense tracker free?</div>
+<div class="faq-question">2. Is this expense tracker free?</div>
 <div class="faq-answer">
 Yes. This tracker is completely free and works directly in your browser without any signup or installation.
 </div>
 </div>
 
 <div class="faq-item">
-<div class="faq-question">Can I track expenses on mobile?</div>
+<div class="faq-question">3. Can I track expenses on mobile?</div>
 <div class="faq-answer">
 Yes. The tracker is mobile-friendly and works on phones, tablets, and desktop devices.
 </div>
 </div>
 
 <div class="faq-item">
-<div class="faq-question">Does the tracker save my data?</div>
+<div class="faq-question">4. Does the tracker save my data?</div>
 <div class="faq-answer">
 No personal data is stored on the server. The tracker simply helps you calculate totals during your session.
 </div>
@@ -451,6 +452,23 @@ renderExpenses()
 }
 
 </script>
+
+  <script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+
+    answer.style.display =
+      answer.style.display === 'block' ? 'none' : 'block';
+
+    question.classList.toggle('active');
+  });
+});
+</script>
+
+<script src="script.js"></script>
 
 </body>
 </html>
