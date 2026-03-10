@@ -129,22 +129,30 @@
 
   <!-- FAQ -->
   <section class="section faq-section">
+    <div class="container">
     <h2>Frequently Asked Questions</h2>
 
     <div class="faq-item">
-      <div class="faq-question">Do friends need to create an account?</div>
-      <div class="faq-answer"><p>No. ExpenseSplit works instantly in your browser. No signup required.</p></div>
+      <div class="faq-question">1. Do friends need to create an account?</div>
+      <div class="faq-answer">
+        No. ExpenseSplit works instantly in your browser. No signup required.
+      </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">Can I track multiple expenses at once?</div>
-      <div class="faq-answer"><p>For now, the basic calculator splits total expenses equally. Advanced features will be added in the future.</p></div>
+      <div class="faq-question">2. Can I track multiple expenses at once?</div>
+      <div class="faq-answer">
+        For now, the basic calculator splits total expenses equally. Advanced features will be added in the future.
+      </div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">Is it mobile-friendly?</div>
-      <div class="faq-answer"><p>Absolutely. Works on all devices, desktop and mobile alike.</p></div>
+      <div class="faq-question">3. Is it mobile-friendly?</div>
+      <div class="faq-answer">
+       Absolutely. Works on all devices, desktop and mobile alike.
+      </div>
     </div>
+       </div>
   </section>
 
   <!-- FOOTER -->
@@ -195,5 +203,24 @@
       });
     });
   </script>
+
+  </script>
+
+<script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+
+    answer.style.display =
+      answer.style.display === 'block' ? 'none' : 'block';
+
+    question.classList.toggle('active');
+  });
+});
+</script>
+
+<script src="script.js"></script>
 </body>
 </html>
