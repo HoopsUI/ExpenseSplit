@@ -64,6 +64,26 @@
   </div>
 </section>
 
+  <section class="section">
+<div class="container">
+
+<h2>Free Roommate Rent & Bill Split Calculator</h2>
+
+<p>
+Living with roommates can save a lot of money, but managing shared expenses can quickly become confusing. Rent, electricity, water, internet, groceries, and other household costs often need to be divided fairly between everyone living in the home. Without a clear system, it’s easy for misunderstandings to happen about who paid what or how much each person owes.
+</p>
+
+<p>
+Our <strong>Roommate Expense Calculator</strong> makes splitting shared bills simple. Instead of manually calculating expenses or using complicated spreadsheets, you can instantly divide rent and utilities between roommates and see exactly who owes who. Just enter your total rent, add shared expenses, and record what each roommate has already paid.
+</p>
+
+<p>
+The calculator will automatically show the total household cost, each person’s fair share, and the final settlement amount. This makes it much easier to manage shared finances and avoid awkward money conversations with roommates or flatmates.
+</p>
+
+</div>
+</section>
+
 <!-- ================= CALCULATOR ================= -->
 <section id="tool" class="section">
 <div class="container">
@@ -131,6 +151,12 @@
 
 <div id="results" class="result-box hidden"></div>
 
+</div>
+
+  <div class="result-actions hidden" id="resultActions">
+<button id="copyBtn" class="secondary-btn">Copy Summary</button>
+<button id="shareBtn" class="secondary-btn">Share</button>
+<button id="downloadBtn" class="secondary-btn">Download</button>
 </div>
 </div>
 </div>
@@ -246,6 +272,55 @@ resultHTML += `${person.name} should receive ${currency}${person.balance.toFixed
 
 resultsDiv.classList.remove("hidden")
 resultsDiv.innerHTML = resultHTML
+showActions()
+})
+
+  const copyBtn = document.getElementById("copyBtn")
+const shareBtn = document.getElementById("shareBtn")
+const downloadBtn = document.getElementById("downloadBtn")
+const resultActions = document.getElementById("resultActions")
+
+function showActions(){
+resultActions.classList.remove("hidden")
+}
+
+copyBtn.addEventListener("click",function(){
+
+const text = resultsDiv.innerText
+
+navigator.clipboard.writeText(text)
+
+alert("Summary copied!")
+
+})
+
+shareBtn.addEventListener("click",function(){
+
+if(navigator.share){
+
+navigator.share({
+title:"Roommate Expense Split",
+text:resultsDiv.innerText,
+url:window.location.href
+})
+
+}else{
+
+alert("Sharing not supported on this device")
+
+}
+
+})
+
+downloadBtn.addEventListener("click",function(){
+
+const text = resultsDiv.innerText
+const blob = new Blob([text], {type:"text/plain"})
+const link = document.createElement("a")
+
+link.href = URL.createObjectURL(blob)
+link.download = "roommate-expense-summary.txt"
+link.click()
 
 })
 
