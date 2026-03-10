@@ -59,7 +59,36 @@
     <p class="subtitle">
       Traveling in a group? Stop arguing over money. Split trip expenses instantly and fairly — no spreadsheets, no confusion.
     </p>
+    <p>Perfect For</p>
+
+<ul>
+<li>✔ Trips with friends</li>
+<li>✔ Group vacations</li>
+<li>✔ Road trips</li>
+<li>✔ Family travel</li>
+<li>✔ Destination weddings</li>
+<li>✔ Bachelor trips</li>
+</ul>
+
     <a href="#tool" class="primary-btn">Use Free Calculator</a>
+
+   <div class="tool-intro">
+  <h3>How To Use This Trip Expense Calculator</h3>
+
+  <ol>
+    <li>Add travelers joining the trip.</li>
+    <li>Add expenses like hotel, food, or transport.</li>
+    <li>Select who paid for each expense.</li>
+    <li>Click <strong>Calculate Trip Split</strong> to see who owes who.</li>
+  </ol>
+
+  <p class="example-note">
+    Tip: Try the example below to see how the calculator works.
+  </p>
+
+  <button id="loadExample" class="secondary-btn">Load Example Trip</button>
+</div>
+  
   </div>
 </section>
 
@@ -95,6 +124,18 @@
 <hr>
 
 <h3>Add Expenses</h3>
+  <div class="expense-types">
+  <p><strong>Common Trip Expenses:</strong></p>
+
+  <ul>
+    <li>🏨 Hotel / Accommodation</li>
+    <li>🍽️ Food & Restaurants</li>
+    <li>🚕 Transport / Taxi / Fuel</li>
+    <li>🎟️ Activities & Tickets</li>
+    <li>🛒 Groceries</li>
+    <li>🎉 Entertainment</li>
+  </ul>
+</div>
 
 <div id="expenseList"></div>
 
@@ -105,7 +146,7 @@
 <br><br>
 
 <button type="submit" class="primary-btn">
-Calculate Trip Split
+Calculate Who Owes Who
 </button>
 
 </form>
@@ -613,6 +654,39 @@ faqQuestions.forEach(question => {
     question.classList.toggle('active');
   });
 });
+</script>
+
+  <script>
+
+document.getElementById("loadExample").addEventListener("click", function() {
+
+  // Clear existing inputs if needed
+  const travelerContainer = document.querySelector("#travelerContainer");
+  const expenseContainer = document.querySelector("#expenseContainer");
+
+  travelerContainer.innerHTML = "";
+  expenseContainer.innerHTML = "";
+
+  // Example Travelers
+  const travelers = ["Alex", "Jamie", "Chris"];
+
+  travelers.forEach(name => {
+    addTraveler(name);
+  });
+
+  // Example Expenses
+  const exampleExpenses = [
+    { title: "Hotel", category: "Hotel", payer: "Alex", amount: 400 },
+    { title: "Food", category: "Food", payer: "Jamie", amount: 180 },
+    { title: "Transport", category: "Transport", payer: "Chris", amount: 120 }
+  ];
+
+  exampleExpenses.forEach(exp => {
+    addExpense(exp.title, exp.category, exp.payer, exp.amount);
+  });
+
+});
+
 </script>
 
 <script src="script.js"></script>
