@@ -135,29 +135,31 @@
 </section>
 
 <!-- ================= FAQ ================= -->
-<section class="faq-section">
+<section class="section faq-section">
+    <div class="container">
   <h2>Roommates Expense FAQs</h2>
 
   <div class="faq-item">
-    <div class="faq-question">Do roommates need an account?</div>
+    <div class="faq-question">1. Do roommates need an account?</div>
     <div class="faq-answer">
-      <p>No. ExpenseSplit works instantly without signup.</p>
+      No. ExpenseSplit works instantly without signup.
     </div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-question">Can I use this every month?</div>
+    <div class="faq-question">2. Can I use this every month?</div>
     <div class="faq-answer">
-      <p>Yes. Use it as often as needed for recurring household expenses.</p>
+      Yes. Use it as often as needed for recurring household expenses.
     </div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-question">Is it mobile-friendly?</div>
+    <div class="faq-question">3. Is it mobile-friendly?</div>
     <div class="faq-answer">
-      <p>Yes. The calculator works perfectly on phones, tablets, and desktops.</p>
+      Yes. The calculator works perfectly on phones, tablets, and desktops.
     </div>
   </div>
+      </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
@@ -207,6 +209,21 @@
       `;
     });
   });
+</script>
+
+  <script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+
+    answer.style.display =
+      answer.style.display === 'block' ? 'none' : 'block';
+
+    question.classList.toggle('active');
+  });
+});
 </script>
 
 <script src="script.js"></script>
