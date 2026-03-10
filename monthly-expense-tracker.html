@@ -7,13 +7,15 @@
 
 <title>Monthly Expense Tracker – Free Online Budget & Spending Tracker</title>
 
-<meta name="description" content="Track your monthly expenses with this free online monthly expense tracker. Easily monitor spending, categorize expenses, and understand where your money goes." />
+<meta name="description" content="Track your monthly expenses with this free online monthly expense tracker. Monitor spending, categorize expenses, and understand where your money goes each month." />
 
-<meta name="keywords" content="monthly expense tracker, expense tracker online, monthly spending tracker, personal expense calculator, track expenses monthly" />
+<meta name="keywords" content="monthly expense tracker, personal expense tracker, online expense tracker, monthly spending tracker, track monthly spending, budget expense tracker" />
 
 <link rel="canonical" href="https://expensessplit.com/monthly-expense-tracker.html">
 
 <link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
@@ -60,6 +62,14 @@ padding:15px;
 border-radius:8px;
 }
 
+.category-breakdown{
+margin-top:15px;
+}
+
+.chart-container{
+margin-top:25px;
+}
+
 </style>
 
 </head>
@@ -90,7 +100,7 @@ border-radius:8px;
 <h1>Monthly Expense Tracker</h1>
 
 <p class="subtitle">
-Track your spending, understand your budget, and control your finances with this simple monthly expense tracker.
+Track monthly spending, understand your budget, and manage finances with this free online expense tracker.
 </p>
 
 <a href="#tool" class="primary-btn">Start Tracking Expenses</a>
@@ -107,8 +117,8 @@ Track your spending, understand your budget, and control your finances with this
 <div class="tracker-card">
 
 <div class="expense-row">
-<input type="text" id="expenseName" placeholder="Expense name (Rent, Groceries)">
-<input type="number" id="expenseAmount" placeholder="Amount">
+<input type="text" id="expenseName" placeholder="Expense (Groceries, Netflix, Rent)">
+<input type="number" id="expenseAmount" placeholder="Amount spent">
 <select id="expenseCategory">
 <option>Housing</option>
 <option>Food</option>
@@ -119,11 +129,11 @@ Track your spending, understand your budget, and control your finances with this
 <option>Other</option>
 </select>
 
-<button type="button" id="calculateBtn" class="primary-btn">
-    Add
-  </button>
+<button onclick="addExpense()">Add Expense</button>
+</div>
 
 <table class="expense-table" id="expenseTable">
+
 <thead>
 <tr>
 <th>Expense</th>
@@ -134,23 +144,34 @@ Track your spending, understand your budget, and control your finances with this
 </thead>
 
 <tbody></tbody>
+
 </table>
 
 <div class="summary-box">
 
-<p><strong>Total Expenses:</strong> ₹ <span id="total">0</span></p>
+<p><strong>Total Monthly Expenses:</strong> ₹ <span id="total">0</span></p>
 
-<p><strong>Top Category:</strong> <span id="topCategory">None</span></p>
+<p><strong>Top Spending Category:</strong> <span id="topCategory">None</span></p>
+
+<div class="category-breakdown">
+<strong>Category Totals:</strong>
+<ul id="categoryTotals"></ul>
+</div>
 
 </div>
 
-<button id="resetCalculatorBtn">Reset</button>
+<div class="chart-container">
+<canvas id="expenseChart"></canvas>
+</div>
+
+<button onclick="resetTracker()">Reset Tracker</button>
 
 </div>
 
 </div>
 
 </section>
+
 
 <section id="more-tools" class="section">
 <div class="container">
@@ -177,175 +198,139 @@ Track your spending, understand your budget, and control your finances with this
 
 <div class="container seo-content">
 
-<h2>Why Tracking Monthly Expenses Is Important</h2>
+<h2>Monthly Expense Tracker: The Smart Way to Manage Your Money</h2>
 
 <p>
-A monthly expense tracker is one of the most powerful tools for improving personal finances. Many people struggle with budgeting simply because they don’t know exactly where their money goes each month. By tracking expenses consistently, you gain a clear picture of your spending habits and can make smarter financial decisions.
+A monthly expense tracker is one of the most powerful tools for improving personal finances. Many people struggle with budgeting simply because they don’t know exactly where their money goes each month. By using an online expense tracker, you can monitor spending patterns, understand your financial habits, and make smarter money decisions.
 </p>
 
 <p>
-This free monthly expense tracker allows you to record expenses, categorize spending, and instantly see your total monthly spending. Whether you're managing a household budget, living with roommates, or planning savings goals, tracking expenses helps you stay financially organized.
+This free monthly spending tracker helps you record expenses, categorize purchases, and see exactly how much you spend in different categories. Whether you're managing a household budget, planning savings goals, or simply trying to track monthly spending more carefully, a personal expense tracker provides valuable insights.
 </p>
 
-<h2>Common Monthly Expenses People Track</h2>
+<h2>Common Expenses People Track Each Month</h2>
 
 <ul>
 <li>Rent or mortgage payments</li>
-<li>Groceries and food spending</li>
+<li>Groceries and food purchases</li>
 <li>Transportation and fuel</li>
-<li>Utilities such as electricity and internet</li>
-<li>Entertainment and subscriptions</li>
-<li>Shopping and personal purchases</li>
+<li>Utility bills such as electricity, water, and internet</li>
+<li>Entertainment and streaming subscriptions</li>
+<li>Shopping and lifestyle purchases</li>
 </ul>
 
 <p>
-When these expenses are tracked in one place, it becomes much easier to identify unnecessary spending and prioritize savings goals.
+When these expenses are tracked consistently, it becomes easier to identify unnecessary spending and optimize your monthly budget.
 </p>
 
-<h2>How to Use the Monthly Expense Tracker</h2>
-
-<p>
-Using the tracker is simple:
-</p>
+<h2>How to Use This Online Expense Tracker</h2>
 
 <ul>
 
-<li>Enter the expense name such as rent, groceries, or taxi.</li>
-
-<li>Enter the amount spent.</li>
-
-<li>Select a category for the expense.</li>
-
-<li>Add the expense to your list.</li>
-
-<li>The tracker automatically calculates your total monthly spending.</li>
+<li>Enter the expense name such as groceries, Netflix, taxi, or rent.</li>
+<li>Add the amount you spent.</li>
+<li>Select the appropriate category.</li>
+<li>The tracker automatically calculates totals and visualizes your spending.</li>
 
 </ul>
 
 <p>
-Over time, this simple process builds a complete picture of your financial habits.
+The chart and category totals help you instantly understand where most of your money is going.
 </p>
+
+<h2>Benefits of Tracking Monthly Expenses</h2>
+    
+<p>
+Tracking monthly expenses helps you gain control over your financial habits. Many people underestimate how much they spend on small daily purchases like coffee, subscriptions, or food delivery. Over time, these small expenses can add up to a significant portion of your monthly budget.
+</p>
+    
+<p>
+Using a monthly spending tracker allows you to identify patterns in your spending. For example, you may notice that entertainment or dining out consumes more money than expected. Once you understand these patterns, you can make small adjustments that lead to meaningful savings.
+</p>
+
+<p>
+Expense tracking is also one of the first steps toward building better financial habits and reaching long-term goals such as emergency savings, travel budgets, or debt repayment.
+</p>     
+
 
 <h2>Example Scenario</h2>
 
 <p>
-Imagine a student living in a shared apartment. They track their expenses for one month:
+Imagine a young professional tracking their monthly expenses:
 </p>
 
 <ul>
 
-<li>Rent: ₹12,000</li>
-
-<li>Groceries: ₹3,000</li>
-
-<li>Transport: ₹1,200</li>
-
-<li>Dining Out: ₹2,500</li>
-
-<li>Subscriptions: ₹500</li>
+<li>Rent: ₹15,000</li>
+<li>Groceries: ₹4,500</li>
+<li>Transport: ₹2,000</li>
+<li>Dining Out: ₹3,000</li>
+<li>Subscriptions: ₹600</li>
 
 </ul>
 
 <p>
-After tracking these expenses, they realize dining out accounts for a large portion of their spending. By reducing restaurant visits slightly, they can easily save ₹1,000 per month.
+After reviewing their monthly spending tracker, they realize dining out costs more than expected. By reducing restaurant spending slightly, they could save thousands of rupees each year.
 </p>
 
-<h2>Monthly Expense Tracking vs Budgeting</h2>
+<h2>Best Categories for Expense Tracking</h2>
+    
+<p>
+When using a personal expense tracker, organizing expenses into categories helps you analyze spending more effectively. The most common categories include housing, food, transportation, utilities, entertainment, and shopping.
+</p>
+    
+<p>
+Housing usually represents the largest expense for most people, including rent or mortgage payments. Food expenses may include groceries as well as dining out. Transportation includes fuel, public transit, or ride-sharing costs.
+</p>
 
 <p>
-Expense tracking and budgeting are closely related but slightly different. Expense tracking focuses on recording what you already spent. Budgeting focuses on planning how much you should spend in the future.
+Tracking categories separately allows you to quickly see where your money is going each month. This insight makes it easier to adjust spending habits and improve your monthly budget over time.
+</p>     
+
+<h2>Expense Tracking vs Budgeting</h2>
+
+<p>
+Tracking expenses shows what you already spent, while budgeting helps plan what you should spend in the future. Many people first track expenses for a few months using a personal expense tracker before creating a structured monthly budget.
+</p>
+
+<h2>Why Use an Online Expense Tracker Instead of Apps</h2>
+    
+<p>
+Many people rely on mobile apps to track spending, but an online expense tracker offers several advantages. First, it requires no downloads or installations. You can simply open the page in your browser and start tracking expenses immediately.
+</p>
+    
+<p>
+Online trackers are also easier to access from multiple devices, including phones, tablets, and desktop computers. This flexibility makes it convenient to record expenses anytime.
 </p>
 
 <p>
-Many people use both methods together. They track expenses first to understand spending patterns, then create a budget based on that information.
-</p>
-
-<h2>Who Should Use an Expense Tracker?</h2>
+Another advantage is simplicity. Many financial apps include dozens of features that can overwhelm new users. A simple monthly expense tracker focuses on the most important task — recording spending and understanding where your money goes.
+</p>    
 
 <p>
-Expense trackers are useful for many situations:
-</p>
+For users who frequently share costs with others, tools like the ExpenseSplit calculator, trip expense calculator, and roommate expense calculator can also help divide shared expenses fairly.
+</p>      
+
+    
+<h2>Who Should Use a Monthly Expense Tracker?</h2>
 
 <ul>
 
 <li>Students managing monthly allowances</li>
-
 <li>Families tracking household spending</li>
-
-<li>Couples sharing bills</li>
-
+<li>Couples managing shared expenses</li>
 <li>Roommates splitting rent and groceries</li>
-
-<li>Freelancers monitoring business expenses</li>
+<li>Freelancers tracking income and spending</li>
 
 </ul>
 
 <p>
-If you frequently split costs with others, you can also use our
+If you frequently share expenses with others, you can also use our
 <a href="/">expense split calculator</a>,
 <a href="trip.html">trip expense calculator</a>, or
 <a href="roommates.html">roommate expense calculator</a>
-to divide shared bills fairly.
+to divide bills fairly.
 </p>
-
-<h2>Tips for Better Expense Tracking</h2>
-
-<ul>
-
-<li>Record expenses immediately after spending</li>
-
-<li>Categorize spending consistently</li>
-
-<li>Review your totals weekly</li>
-
-<li>Look for patterns in unnecessary spending</li>
-
-<li>Set monthly savings goals</li>
-
-</ul>
-
-<p>
-Even small adjustments to spending habits can lead to significant long-term savings.
-</p>
-
-</div>
-
-</section>
-
-
-<section class="section faq-section">
-
-<div class="container">
-
-<h2>Frequently Asked Questions</h2>
-
-<div class="faq-item">
-<div class="faq-question">1. What is a monthly expense tracker?</div>
-<div class="faq-answer">
-A monthly expense tracker is a tool used to record and categorize spending throughout the month. It helps individuals understand where their money goes and identify opportunities to save.
-</div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">2. Is this expense tracker free?</div>
-<div class="faq-answer">
-Yes. This tracker is completely free and works directly in your browser without any signup or installation.
-</div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">3. Can I track expenses on mobile?</div>
-<div class="faq-answer">
-Yes. The tracker is mobile-friendly and works on phones, tablets, and desktop devices.
-</div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">4. Does the tracker save my data?</div>
-<div class="faq-answer">
-No personal data is stored on the server. The tracker simply helps you calculate totals during your session.
-</div>
-</div>
 
 </div>
 
@@ -358,12 +343,10 @@ No personal data is stored on the server. The tracker simply helps you calculate
 <p>© 2026 ExpenseSplit. All rights reserved.</p>
 
 <div class="footer-links">
-
 <a href="privacy.html">Privacy Policy</a>
 <a href="about.html">About</a>
 <a href="contact.html">Contact</a>
 <a href="terms.html">Terms & Conditions</a>
-
 </div>
 
 </div>
@@ -372,8 +355,13 @@ No personal data is stored on the server. The tracker simply helps you calculate
 
 <script>
 
-let expenses=[]
-let total=0
+let expenses = JSON.parse(localStorage.getItem("expenses")) || []
+
+let chart
+
+function saveData(){
+localStorage.setItem("expenses", JSON.stringify(expenses))
+}
 
 function addExpense(){
 
@@ -385,6 +373,8 @@ if(!name || isNaN(amount)) return
 
 expenses.push({name,amount,category})
 
+saveData()
+
 renderExpenses()
 
 }
@@ -394,25 +384,21 @@ function renderExpenses(){
 const tbody=document.querySelector("#expenseTable tbody")
 tbody.innerHTML=""
 
-total=0
-
+let total=0
 let categories={}
 
 expenses.forEach((e,i)=>{
 
 total+=e.amount
-
 categories[e.category]=(categories[e.category]||0)+e.amount
 
 const row=document.createElement("tr")
 
 row.innerHTML=`
-
 <td>${e.name}</td>
 <td>${e.category}</td>
 <td>₹ ${e.amount}</td>
 <td><button onclick="removeExpense(${i})">X</button></td>
-
 `
 
 tbody.appendChild(row)
@@ -433,11 +419,54 @@ top=c
 
 document.getElementById("topCategory").textContent=top
 
+renderCategoryTotals(categories)
+renderChart(categories)
+
+}
+
+function renderCategoryTotals(categories){
+
+const list=document.getElementById("categoryTotals")
+list.innerHTML=""
+
+for(let c in categories){
+
+const li=document.createElement("li")
+
+li.textContent = `${c}: ₹${categories[c]}`
+
+list.appendChild(li)
+
+}
+
+}
+
+function renderChart(categories){
+
+const ctx=document.getElementById("expenseChart")
+
+const labels=Object.keys(categories)
+const data=Object.values(categories)
+
+if(chart){
+chart.destroy()
+}
+
+chart=new Chart(ctx,{
+type:'pie',
+data:{
+labels:labels,
+datasets:[{data:data}]
+}
+})
+
 }
 
 function removeExpense(i){
 
 expenses.splice(i,1)
+
+saveData()
 
 renderExpenses()
 
@@ -447,13 +476,17 @@ function resetTracker(){
 
 expenses=[]
 
+saveData()
+
 renderExpenses()
 
 }
 
+renderExpenses()
+
 </script>
 
-  <script>
+    <script>
 const faqQuestions = document.querySelectorAll('.faq-question');
 
 faqQuestions.forEach(question => {
