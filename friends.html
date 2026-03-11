@@ -625,24 +625,62 @@ document.getElementById("owesResult").innerHTML =
 
 function calculateMulti(){
 
-let rows=document.querySelectorAll("#expenseTable tr");
-let balances={};
+let rows = document.querySelectorAll("#expenseTable tr");
+
+let paid = {};
+let total = 0;
 
 for(let i=1;i<rows.length;i++){
 
-let name=rows[i].cells[1].querySelector("input").value;
-let amt=parseFloat(rows[i].cells[2].querySelector("input").value)||0;
+let name = rows[i].cells[1].querySelector("input").value.trim();
+let amt = parseFloat(rows[i].cells[2].querySelector("input").value) || 0;
 
-balances[name]=(balances[name]||0)+amt;
+if(!name) continue;
+
+paid[name] = (paid[name] || 0) + amt;
+total += amt;
 
 }
 
+let people = Object.keys(paid);
+let share = total / people.length;
 
-let result="";
+let creditors = [];
+let debtors = [];
 
-for(let person in balances){
+people.forEach(name => {
 
-result+=person+" paid "+balances[person]+"<br>";
+let balance = paid[name] - share;
+
+if(balance > 0){
+
+creditors.push({name:name, amount:balance});
+
+}else if(balance < 0){
+
+debtors.push({name:name, amount:Math.abs(balance)});
+
+}
+
+});
+
+let result = "<strong>Total Expense:</strong> $" + total.toFixed(2) + "<br>";
+result += "<strong>Each Person Should Pay:</strong> $" + share.toFixed(2) + "<br><br>";
+
+while(debtors.length && creditors.length){
+
+let debtor = debtors[0];
+let creditor = creditors[0];
+
+let payment = Math.min(debtor.amount, creditor.amount);
+
+result += debtor.name + " pays " + creditor.name + " $" + payment.toFixed(2) + "<br>";
+
+debtor.amount -= payment;
+creditor.amount -= payment;
+
+if(debtor.amount <= 0) debtors.shift();
+if(creditor.amount <= 0) creditors.shift();
 
 }
 
@@ -650,19 +688,6 @@ document.getElementById("multiResult").innerHTML =
 "<strong>Payment Summary</strong><br><br>" + result;
 
 }
-
-
-function addExpenseRow(){
-
-let table=document.getElementById("expenseTable");
-
-let row=table.insertRow();
-
-row.innerHTML=
-"<td><input></td><td><input></td><td><input type='number'></td>";
-
-}
-
 
 /* UNEVEN */
 
