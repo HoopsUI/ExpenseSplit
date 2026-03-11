@@ -737,9 +737,20 @@ alert("Sharing not supported");
 
 }
 
-    <script>
+/* TAB SWITCHING */
+function openTab(evt, tabName){
 
-/* existing calculator code here */
+let tabs = document.querySelectorAll(".tab-content");
+tabs.forEach(tab => tab.classList.remove("active"));
+
+let buttons = document.querySelectorAll(".tab-btn");
+buttons.forEach(btn => btn.classList.remove("active"));
+
+document.getElementById(tabName).classList.add("active");
+evt.currentTarget.classList.add("active");
+
+}
+
 
 
 /* ADD FRIEND */
