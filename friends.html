@@ -115,8 +115,6 @@ Choose Calculator Type
 
 <button class="primary-btn" onclick="calculateEqual()">Calculate</button>
 
-  <p class="settlement-title">Recommended Payments:</p>
-
 <div id="equalResult" class="result-box"></div>
 
 <button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
@@ -151,7 +149,7 @@ Choose Calculator Type
 
 <button class="primary-btn small-btn" onclick="addOwesRow()">Add Friend</button>
 <button class="primary-btn" onclick="calculateOwes()">Calculate</button>
-<p class="settlement-title">Recommended Payments:</p>
+  
 <div id="owesResult" class="result-box"></div>
 
 <button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
@@ -189,7 +187,7 @@ Simply enter how much each friend paid and the calculator will determine
 
 <button class="primary-btn small-btn" onclick="addOwesRow()">Add Expense</button>
 <button class="primary-btn" onclick="calculateMulti()">Calculate</button>
-<p class="settlement-title">Recommended Payments:</p>
+
 <div id="multiResult" class="result-box"></div>
 
 <button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
@@ -227,7 +225,7 @@ Simply enter how much each friend paid and the calculator will determine
 
 <button class="primary-btn small-btn" onclick="addOwesRow()">Add Friend</button>
 <button class="primary-btn" onclick="calculateUneven()">Calculate</button>
-<p class="settlement-title">Recommended Payments:</p>
+
 <div id="unevenResult" class="result-box"></div>
 
 <button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
@@ -549,8 +547,9 @@ let finalTotal = total + tipAmount;
 let each = finalTotal / people;
 
 document.getElementById("equalResult").innerHTML =
-"Total with tip: " + finalTotal.toFixed(2) +
-"<br>Each pays: " + each.toFixed(2);
+"<strong>Payment Summary</strong><br><br>" +
+"<strong>Total with tip:</strong> " + finalTotal.toFixed(2) +
+"<br><strong>Each pays:</strong> " + each.toFixed(2);
 
 }
 
@@ -614,7 +613,8 @@ if(creditor.amount <= 0) creditors.shift();
 
 }
 
-document.getElementById("owesResult").innerHTML = result;
+document.getElementById("owesResult").innerHTML =
+"<strong>Payment Summary</strong><br><br>" + result;
 
 }
 
@@ -642,7 +642,8 @@ result+=person+" paid "+balances[person]+"<br>";
 
 }
 
-document.getElementById("multiResult").innerHTML=result;
+document.getElementById("multiResult").innerHTML =
+"<strong>Payment Summary</strong><br><br>" + result;
 
 }
 
@@ -679,8 +680,8 @@ result+=name+" pays "+share.toFixed(2)+"<br>";
 
 }
 
-document.getElementById("unevenResult").innerHTML=result;
-
+document.getElementById("unevenResult").innerHTML =
+"<strong>Payment Summary</strong><br><br>" + result;
 }
 
 
