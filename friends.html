@@ -141,13 +141,14 @@ With multiple built-in tools, you can split expenses equally, calculate who owes
 
 </table>
 
-<button onclick="addOwesRow()">Add Friend</button>
+<button class="primary-btn small-btn" onclick="addOwesRow()">Add Friend</button>
 <button class="primary-btn" onclick="calculateOwes()">Calculate</button>
 
 <div id="owesResult" class="result-box"></div>
 
-<button onclick="copyResult('owesResult')">Copy Result</button>
-<button onclick="shareResult('owesResult')">Share</button>
+<button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
+
+<button class="primary-btn small-btn" onclick="shareResult('equalResult')">Share</button>
 
 </div>
 
@@ -172,13 +173,14 @@ With multiple built-in tools, you can split expenses equally, calculate who owes
 
 </table>
 
-<button onclick="addExpenseRow()">Add Expense</button>
+<button class="primary-btn small-btn" onclick="addOwesRow()">Add Expense</button>
 <button class="primary-btn" onclick="calculateMulti()">Calculate</button>
 
 <div id="multiResult" class="result-box"></div>
 
-<button onclick="copyResult('multiResult')">Copy Result</button>
-<button onclick="shareResult('multiResult')">Share</button>
+<button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
+
+<button class="primary-btn small-btn" onclick="shareResult('equalResult')">Share</button>
 
 </div>
 
@@ -209,13 +211,14 @@ With multiple built-in tools, you can split expenses equally, calculate who owes
 
 </table>
 
-<button onclick="addUnevenRow()">Add Friend</button>
+<button class="primary-btn small-btn" onclick="addOwesRow()">Add Friend</button>
 <button class="primary-btn" onclick="calculateUneven()">Calculate</button>
 
 <div id="unevenResult" class="result-box"></div>
 
-<button onclick="copyResult('unevenResult')">Copy Result</button>
-<button onclick="shareResult('unevenResult')">Share</button>
+<button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
+
+<button class="primary-btn small-btn" onclick="shareResult('equalResult')">Share</button>
 
 </div>
 
@@ -506,11 +509,11 @@ Because the tool is fast and lightweight, it’s often easier to use than full e
 
 function openTab(evt, tabName){
 
-document.querySelectorAll(".tab-content")
-.forEach(t => t.classList.remove("active"));
+let tabs = document.querySelectorAll(".tab-content");
+tabs.forEach(tab => tab.classList.remove("active"));
 
-document.querySelectorAll(".tab-btn")
-.forEach(b => b.classList.remove("active"));
+let buttons = document.querySelectorAll(".tab-btn");
+buttons.forEach(btn => btn.classList.remove("active"));
 
 document.getElementById(tabName).classList.add("active");
 evt.currentTarget.classList.add("active");
