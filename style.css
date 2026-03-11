@@ -927,3 +927,11 @@ background:#2a7ae2;
 color:white;
 border-color:#2a7ae2;
 }
+
+.tab-content{
+display:none;
+}
+
+.tab-content.active{
+display:block;
+}
