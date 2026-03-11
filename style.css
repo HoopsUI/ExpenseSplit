@@ -966,3 +966,10 @@ scrollbar-width:none;
 .tabs::-webkit-scrollbar{
 display:none;
 }
+
+.result-box strong:first-child{
+font-size:16px;
+color:#2a7ae2;
+display:block;
+margin-bottom:8px;
+}
