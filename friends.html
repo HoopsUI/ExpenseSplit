@@ -62,7 +62,7 @@ Splitting expenses with friends should be simple, but it often becomes confusing
 <p class="calculator-intro">
 With multiple built-in tools, you can split expenses equally, calculate who owes whom, track multiple group expenses, or divide costs unevenly based on each person's share. This makes it perfect for situations like <strong>group dinners, travel expenses, shared purchases, and party planning</strong>. Simply enter the details, and the calculator will instantly show how much each friend should pay — helping you avoid confusion and keep group spending transparent.
 </p>
-      <p class="subtitle">
+      
       <ul class="calculator-features">
 <li>Split bills equally among friends</li>
 <li>Calculate who owes whom in group expenses</li>
@@ -70,7 +70,6 @@ With multiple built-in tools, you can split expenses equally, calculate who owes
 <li>Split costs unevenly based on percentage</li>
 <li>Automatically include tip calculations</li>
 </ul>
-      </p>
 
       <!-- CTA BUTTON (ADDED) -->
       <a href="#calculator" class="primary-btn hero-btn">
@@ -130,6 +129,9 @@ Choose Calculator Type
 <h3>Who Owes Who Calculator</h3>
 
 <table id="owesTable">
+  <small class="helper-text">
+Enter how much each friend paid. The calculator will determine who should reimburse whom.
+</small>
 <tr>
 <th>Friend</th>
 <th>Paid</th>
@@ -228,9 +230,9 @@ Simply enter how much each friend paid and the calculator will determine
 
 <div id="unevenResult" class="result-box"></div>
 
-<button class="primary-btn small-btn" onclick="copyResult('unequalResult')">Copy Result</button>
+<button class="primary-btn small-btn" onclick="copyResult('unevenResult')">Copy Result</button>
 
-<button class="primary-btn small-btn" onclick="shareResult('unequalResult')">Share</button>
+<button class="primary-btn small-btn" onclick="shareResult('unevenResult')">Share</button>
 
 </div>
 
@@ -573,19 +575,6 @@ total += paid;
 
 }
 
-  function addFriend(){
-
-let table = document.getElementById("owesTable");
-
-let row = table.insertRow(-1);
-
-let cell1 = row.insertCell(0);
-let cell2 = row.insertCell(1);
-
-cell1.innerHTML = '<input placeholder="Name">';
-cell2.innerHTML = '<input type="number" placeholder="Amount Paid">';
-
-}
 
 let share = total / people.length;
 
@@ -648,21 +637,6 @@ balances[name]=(balances[name]||0)+amt;
 
 }
 
-  function addExpense(){
-
-let table = document.getElementById("expenseTable");
-
-let row = table.insertRow(-1);
-
-let cell1 = row.insertCell(0);
-let cell2 = row.insertCell(1);
-let cell3 = row.insertCell(2);
-
-cell1.innerHTML = '<input placeholder="Expense (Dinner, Taxi)">';
-cell2.innerHTML = '<input placeholder="Paid By">';
-cell3.innerHTML = '<input type="number" placeholder="Amount">';
-
-}
 
 let result="";
 
@@ -714,19 +688,6 @@ document.getElementById("unevenResult").innerHTML =
 "<strong>Payment Summary</strong><br><br>" + result;
 }
 
-    function addUnevenFriend(){
-
-let table = document.getElementById("unevenTable");
-
-let row = table.insertRow(-1);
-
-let cell1 = row.insertCell(0);
-let cell2 = row.insertCell(1);
-
-cell1.innerHTML = '<input placeholder="Name">';
-cell2.innerHTML = '<input type="number" placeholder="% Share">';
-
-}
 
 
 function addUnevenRow(){
@@ -776,9 +737,65 @@ alert("Sharing not supported");
 
 }
 
+    <script>
+
+/* existing calculator code here */
+
+
+/* ADD FRIEND */
+
+function addFriend(){
+
+let table = document.getElementById("owesTable");
+
+let row = table.insertRow(-1);
+
+let cell1 = row.insertCell(0);
+let cell2 = row.insertCell(1);
+
+cell1.innerHTML = '<input placeholder="Name">';
+cell2.innerHTML = '<input type="number" placeholder="Amount Paid">';
+
+}
+
+
+/* ADD EXPENSE */
+
+function addExpense(){
+
+let table = document.getElementById("expenseTable");
+
+let row = table.insertRow(-1);
+
+let cell1 = row.insertCell(0);
+let cell2 = row.insertCell(1);
+let cell3 = row.insertCell(2);
+
+cell1.innerHTML = '<input placeholder="Expense (Dinner, Taxi)">';
+cell2.innerHTML = '<input placeholder="Paid By">';
+cell3.innerHTML = '<input type="number" placeholder="Amount">';
+
+}
+
+
+/* ADD UNEVEN FRIEND */
+
+function addUnevenFriend(){
+
+let table = document.getElementById("unevenTable");
+
+let row = table.insertRow(-1);
+
+let cell1 = row.insertCell(0);
+let cell2 = row.insertCell(1);
+
+cell1.innerHTML = '<input placeholder="Name">';
+cell2.innerHTML = '<input type="number" placeholder="% Share">';
+
+}
+
 </script>
 
-  </script>
 
 <script>
 const faqQuestions = document.querySelectorAll('.faq-question');
@@ -795,6 +812,5 @@ faqQuestions.forEach(question => {
 });
 </script>
 
-<script src="script.js"></script>
 </body>
 </html>
