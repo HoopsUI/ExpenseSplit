@@ -827,3 +827,13 @@ document.querySelectorAll(".faq-question").forEach((question) => {
 
   });
 });
+
+/* MOBILE MENU TOGGLE */
+
+function toggleMenu(){
+
+const menu = document.getElementById("navMenu");
+
+menu.classList.toggle("show");
+
+}
