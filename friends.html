@@ -146,8 +146,14 @@ Choose Calculator Type
 </tr>
 
 </table>
+  <div id="friendsList">
+  <div class="friend-row">
+    <input type="text" placeholder="Friend Name">
+    <input type="number" placeholder="Amount Paid">
+  </div>
+</div>
 
-<button class="primary-btn small-btn" onclick="addOwesRow()">Add Friend</button>
+<button class="secondary-btn" onclick="addFriend()">Add Friend</button>
 <button class="primary-btn" onclick="calculateOwes()">Calculate</button>
   
 <div id="owesResult" class="result-box"></div>
@@ -185,7 +191,16 @@ Simply enter how much each friend paid and the calculator will determine
 
 </table>
 
-<button class="primary-btn small-btn" onclick="addOwesRow()">Add Expense</button>
+  <div id="expenseList">
+
+  <div class="expense-row">
+    <input type="text" placeholder="Expense Name (Dinner, Taxi)">
+    <input type="number" placeholder="Amount">
+  </div>
+
+</div>
+
+<button onclick="addExpense()" class="secondary-btn">Add Expense</button>
 <button class="primary-btn" onclick="calculateMulti()">Calculate</button>
 
 <div id="multiResult" class="result-box"></div>
@@ -222,8 +237,14 @@ Simply enter how much each friend paid and the calculator will determine
 </tr>
 
 </table>
+  <div id="friendsList">
+  <div class="friend-row">
+    <input type="text" placeholder="Friend Name">
+    <input type="number" placeholder="Amount Paid">
+  </div>
+</div>
 
-<button class="primary-btn small-btn" onclick="addOwesRow()">Add Friend</button>
+<button class="secondary-btn" onclick="addFriend()">Add Friend</button>
 <button class="primary-btn" onclick="calculateUneven()">Calculate</button>
 
 <div id="unevenResult" class="result-box"></div>
@@ -573,6 +594,23 @@ total += paid;
 
 }
 
+  function addFriend(){
+
+let container = document.getElementById("friendsList");
+
+let row = document.createElement("div");
+
+row.className = "friend-row";
+
+row.innerHTML = `
+<input type="text" placeholder="Friend Name">
+<input type="number" placeholder="Amount Paid">
+`;
+
+container.appendChild(row);
+
+}
+
 let share = total / people.length;
 
 let creditors = [];
@@ -634,6 +672,23 @@ balances[name]=(balances[name]||0)+amt;
 
 }
 
+  function addExpense(){
+
+let container = document.getElementById("expenseList");
+
+let row = document.createElement("div");
+
+row.className = "expense-row";
+
+row.innerHTML = `
+<input type="text" placeholder="Expense Name (Dinner, Taxi)">
+<input type="number" placeholder="Amount">
+`;
+
+container.appendChild(row);
+
+}
+
 let result="";
 
 for(let person in balances){
@@ -682,6 +737,23 @@ result+=name+" pays "+share.toFixed(2)+"<br>";
 
 document.getElementById("unevenResult").innerHTML =
 "<strong>Payment Summary</strong><br><br>" + result;
+}
+
+    function addFriend(){
+
+let container = document.getElementById("friendsList");
+
+let row = document.createElement("div");
+
+row.className = "friend-row";
+
+row.innerHTML = `
+<input type="text" placeholder="Friend Name">
+<input type="number" placeholder="Amount Paid">
+`;
+
+container.appendChild(row);
+
 }
 
 
