@@ -62,6 +62,7 @@ Splitting expenses with friends should be simple, but it often becomes confusing
 <p class="calculator-intro">
 With multiple built-in tools, you can split expenses equally, calculate who owes whom, track multiple group expenses, or divide costs unevenly based on each person's share. This makes it perfect for situations like <strong>group dinners, travel expenses, shared purchases, and party planning</strong>. Simply enter the details, and the calculator will instantly show how much each friend should pay — helping you avoid confusion and keep group spending transparent.
 </p>
+      <p class="subtitle">
       <ul class="calculator-features">
 <li>Split bills equally among friends</li>
 <li>Calculate who owes whom in group expenses</li>
@@ -69,6 +70,7 @@ With multiple built-in tools, you can split expenses equally, calculate who owes
 <li>Split costs unevenly based on percentage</li>
 <li>Automatically include tip calculations</li>
 </ul>
+      </p>
 
       <!-- CTA BUTTON (ADDED) -->
       <a href="#calculator" class="primary-btn hero-btn">
@@ -83,12 +85,16 @@ With multiple built-in tools, you can split expenses equally, calculate who owes
 
 <h2 class="section-title">Advanced Friends Expense Calculator</h2>
 
+<h3 class="calculator-type-title">
+Choose Calculator Type
+</h3>
+
 <div class="tabs">
 
-<button class="tab-btn active" onclick="openTab(event,'equal')">Equal Split</button>
-<button class="tab-btn" onclick="openTab(event,'owes')">Who Owes Who</button>
-<button class="tab-btn" onclick="openTab(event,'multi')">Multi Expense</button>
-<button class="tab-btn" onclick="openTab(event,'uneven')">Uneven Split</button>
+<button class="tab-btn active" onclick="openTab(event,'equal')">🍽 Equal Split</button>
+<button class="tab-btn" onclick="openTab(event,'owes')">💰 Who Owes Who</button>
+<button class="tab-btn" onclick="openTab(event,'multi')">📊 Multi Expense</button>
+<button class="tab-btn" onclick="openTab(event,'uneven')">⚖ Uneven Split</button>
 
 </div>
 
@@ -108,6 +114,8 @@ With multiple built-in tools, you can split expenses equally, calculate who owes
 <input type="number" id="friendCount">
 
 <button class="primary-btn" onclick="calculateEqual()">Calculate</button>
+
+  <p class="settlement-title">Recommended Payments:</p>
 
 <div id="equalResult" class="result-box"></div>
 
@@ -143,12 +151,18 @@ With multiple built-in tools, you can split expenses equally, calculate who owes
 
 <button class="primary-btn small-btn" onclick="addOwesRow()">Add Friend</button>
 <button class="primary-btn" onclick="calculateOwes()">Calculate</button>
-
+<p class="settlement-title">Recommended Payments:</p>
 <div id="owesResult" class="result-box"></div>
 
 <button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
 
 <button class="primary-btn small-btn" onclick="shareResult('equalResult')">Share</button>
+
+  <p class="tool-explanation">
+This tool works as a <strong>group expense settlement calculator</strong>. 
+Simply enter how much each friend paid and the calculator will determine 
+<strong>who owes whom</strong> and the exact payments required to settle the group expenses.
+</p>
 
 </div>
 
@@ -175,7 +189,7 @@ With multiple built-in tools, you can split expenses equally, calculate who owes
 
 <button class="primary-btn small-btn" onclick="addOwesRow()">Add Expense</button>
 <button class="primary-btn" onclick="calculateMulti()">Calculate</button>
-
+<p class="settlement-title">Recommended Payments:</p>
 <div id="multiResult" class="result-box"></div>
 
 <button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
@@ -213,7 +227,7 @@ With multiple built-in tools, you can split expenses equally, calculate who owes
 
 <button class="primary-btn small-btn" onclick="addOwesRow()">Add Friend</button>
 <button class="primary-btn" onclick="calculateUneven()">Calculate</button>
-
+<p class="settlement-title">Recommended Payments:</p>
 <div id="unevenResult" class="result-box"></div>
 
 <button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
@@ -546,6 +560,7 @@ document.getElementById("equalResult").innerHTML =
 function calculateOwes(){
 
 let rows = document.querySelectorAll("#owesTable tr");
+
 let people = [];
 let total = 0;
 
@@ -555,39 +570,53 @@ let name = rows[i].cells[0].querySelector("input").value;
 let paid = parseFloat(rows[i].cells[1].querySelector("input").value)||0;
 
 people.push({name,paid});
-total+=paid;
+total += paid;
 
 }
 
-let avg = total/people.length;
+let share = total / people.length;
 
-let result="";
+let creditors = [];
+let debtors = [];
 
 people.forEach(p=>{
-let diff=p.paid-avg;
 
-if(diff<0){
-result+=p.name+" owes "+Math.abs(diff).toFixed(2)+"<br>";
+let balance = p.paid - share;
+
+if(balance > 0){
+
+creditors.push({name:p.name, amount:balance});
+
+}else if(balance < 0){
+
+debtors.push({name:p.name, amount:Math.abs(balance)});
+
 }
 
 });
 
-document.getElementById("owesResult").innerHTML=result;
+let result = "";
+
+while(debtors.length && creditors.length){
+
+let debtor = debtors[0];
+let creditor = creditors[0];
+
+let payment = Math.min(debtor.amount, creditor.amount);
+
+result += debtor.name + " pays " + creditor.name + " $" + payment.toFixed(2) + "<br>";
+
+debtor.amount -= payment;
+creditor.amount -= payment;
+
+if(debtor.amount <= 0) debtors.shift();
+if(creditor.amount <= 0) creditors.shift();
 
 }
 
-
-function addOwesRow(){
-
-let table=document.getElementById("owesTable");
-
-let row=table.insertRow();
-
-row.innerHTML=
-"<td><input placeholder='Name'></td><td><input type='number'></td>";
+document.getElementById("owesResult").innerHTML = result;
 
 }
-
 
 /* MULTI EXPENSE */
 
