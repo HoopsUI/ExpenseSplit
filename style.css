@@ -902,34 +902,28 @@ background:#1f52d6;
 
 .tabs{
 display:flex;
-gap:10px;
-margin-bottom:20px;
 flex-wrap:wrap;
+gap:8px;
+margin-bottom:20px;
+justify-content:center;
 }
 
 .tab-btn{
-padding:10px 16px;
-background:#eee;
-border:none;
+padding:8px 14px;
+font-size:14px;
+background:#f1f1f1;
+border:1px solid #ddd;
+border-radius:6px;
 cursor:pointer;
+transition:0.2s;
+}
+
+.tab-btn:hover{
+background:#e6e6e6;
 }
 
 .tab-btn.active{
 background:#2a7ae2;
 color:white;
-}
-
-.tab-content{
-display:none;
-}
-
-.tab-content.active{
-display:block;
-}
-
-.result-box{
-margin-top:15px;
-padding:15px;
-background:#f4f4f4;
-border-radius:6px;
+border-color:#2a7ae2;
 }
