@@ -935,3 +935,12 @@ display:none;
 .tab-content.active{
 display:block;
 }
+.tab-content{
+display:none;
+animation:fade .25s ease-in-out;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
