@@ -1055,12 +1055,12 @@ flex:1;
   display: block;
 }
 
-.nav-cta {
-  background: #4f46e5;
-  color: white !important;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 14px;
+.nav-cta{
+background:#4f46e5;
+padding:10px 18px;
+border-radius:8px;
+font-weight:600;
+color:white;
 }
 
 .nav-cta:hover {
@@ -1110,3 +1110,33 @@ flex:1;
   }
 
 }
+.header{
+position: sticky;
+top: 0;
+z-index: 1000;
+background: white;
+border-bottom: 1px solid #eee;
+}
+
+.nav-menu a,
+.dropbtn{
+transition: color 0.2s ease;
+}
+
+.nav-menu a:hover,
+.dropbtn:hover{
+color:#4f46e5;
+}
+
+.dropdown-content{
+border:1px solid #eee;
+border-radius:10px;
+padding:8px 0;
+}
+.logo a{
+font-weight:700;
+font-size:20px;
+color:#4f46e5;
+text-decoration:none;
+}
+
