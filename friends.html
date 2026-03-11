@@ -146,21 +146,15 @@ Choose Calculator Type
 </tr>
 
 </table>
-  <div id="friendsList">
-  <div class="friend-row">
-    <input type="text" placeholder="Friend Name">
-    <input type="number" placeholder="Amount Paid">
-  </div>
-</div>
 
 <button class="secondary-btn" onclick="addFriend()">Add Friend</button>
 <button class="primary-btn" onclick="calculateOwes()">Calculate</button>
   
 <div id="owesResult" class="result-box"></div>
 
-<button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
+<button class="primary-btn small-btn" onclick="copyResult('owesResult')">Copy Result</button>
 
-<button class="primary-btn small-btn" onclick="shareResult('equalResult')">Share</button>
+<button class="primary-btn small-btn" onclick="shareResult('owesResult')">Share</button>
 
   <p class="tool-explanation">
 This tool works as a <strong>group expense settlement calculator</strong>. 
@@ -191,23 +185,14 @@ Simply enter how much each friend paid and the calculator will determine
 
 </table>
 
-  <div id="expenseList">
-
-  <div class="expense-row">
-    <input type="text" placeholder="Expense Name (Dinner, Taxi)">
-    <input type="number" placeholder="Amount">
-  </div>
-
-</div>
-
 <button onclick="addExpense()" class="secondary-btn">Add Expense</button>
 <button class="primary-btn" onclick="calculateMulti()">Calculate</button>
 
 <div id="multiResult" class="result-box"></div>
 
-<button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
+<button class="primary-btn small-btn" onclick="copyResult('multiResult')">Copy Result</button>
 
-<button class="primary-btn small-btn" onclick="shareResult('equalResult')">Share</button>
+<button class="primary-btn small-btn" onclick="shareResult('multiResult')">Share</button>
 
 </div>
 
@@ -237,21 +222,15 @@ Simply enter how much each friend paid and the calculator will determine
 </tr>
 
 </table>
-  <div id="friendsList">
-  <div class="friend-row">
-    <input type="text" placeholder="Friend Name">
-    <input type="number" placeholder="Amount Paid">
-  </div>
-</div>
 
-<button class="secondary-btn" onclick="addFriend()">Add Friend</button>
+<button class="secondary-btn" onclick="addUnevenFriend()">Add Friend</button>
 <button class="primary-btn" onclick="calculateUneven()">Calculate</button>
 
 <div id="unevenResult" class="result-box"></div>
 
-<button class="primary-btn small-btn" onclick="copyResult('equalResult')">Copy Result</button>
+<button class="primary-btn small-btn" onclick="copyResult('unequalResult')">Copy Result</button>
 
-<button class="primary-btn small-btn" onclick="shareResult('equalResult')">Share</button>
+<button class="primary-btn small-btn" onclick="shareResult('unequalResult')">Share</button>
 
 </div>
 
@@ -596,18 +575,15 @@ total += paid;
 
   function addFriend(){
 
-let container = document.getElementById("friendsList");
+let table = document.getElementById("owesTable");
 
-let row = document.createElement("div");
+let row = table.insertRow(-1);
 
-row.className = "friend-row";
+let cell1 = row.insertCell(0);
+let cell2 = row.insertCell(1);
 
-row.innerHTML = `
-<input type="text" placeholder="Friend Name">
-<input type="number" placeholder="Amount Paid">
-`;
-
-container.appendChild(row);
+cell1.innerHTML = '<input placeholder="Name">';
+cell2.innerHTML = '<input type="number" placeholder="Amount Paid">';
 
 }
 
@@ -674,18 +650,17 @@ balances[name]=(balances[name]||0)+amt;
 
   function addExpense(){
 
-let container = document.getElementById("expenseList");
+let table = document.getElementById("expenseTable");
 
-let row = document.createElement("div");
+let row = table.insertRow(-1);
 
-row.className = "expense-row";
+let cell1 = row.insertCell(0);
+let cell2 = row.insertCell(1);
+let cell3 = row.insertCell(2);
 
-row.innerHTML = `
-<input type="text" placeholder="Expense Name (Dinner, Taxi)">
-<input type="number" placeholder="Amount">
-`;
-
-container.appendChild(row);
+cell1.innerHTML = '<input placeholder="Expense (Dinner, Taxi)">';
+cell2.innerHTML = '<input placeholder="Paid By">';
+cell3.innerHTML = '<input type="number" placeholder="Amount">';
 
 }
 
@@ -739,20 +714,17 @@ document.getElementById("unevenResult").innerHTML =
 "<strong>Payment Summary</strong><br><br>" + result;
 }
 
-    function addFriend(){
+    function addUnevenFriend(){
 
-let container = document.getElementById("friendsList");
+let table = document.getElementById("unevenTable");
 
-let row = document.createElement("div");
+let row = table.insertRow(-1);
 
-row.className = "friend-row";
+let cell1 = row.insertCell(0);
+let cell2 = row.insertCell(1);
 
-row.innerHTML = `
-<input type="text" placeholder="Friend Name">
-<input type="number" placeholder="Amount Paid">
-`;
-
-container.appendChild(row);
+cell1.innerHTML = '<input placeholder="Name">';
+cell2.innerHTML = '<input type="number" placeholder="% Share">';
 
 }
 
