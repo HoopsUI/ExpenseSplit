@@ -1145,3 +1145,26 @@ text-decoration:none;
 .nav-cta:hover{
 color:white !important;
 }
+
+.expense-table{
+width:100%;
+border-collapse:collapse;
+margin:20px 0;
+font-size:15px;
+}
+
+.expense-table th,
+.expense-table td{
+border:1px solid #ddd;
+padding:10px;
+text-align:left;
+}
+
+.expense-table th{
+background:#f4f4f4;
+font-weight:600;
+}
+
+.expense-table tr:nth-child(even){
+background:#fafafa;
+}
