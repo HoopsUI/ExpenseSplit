@@ -1183,25 +1183,3 @@ font-weight:600;
 background:#fafafa;
 }
 
-.owe-diagram {
-  display:flex;
-  justify-content: space-around;
-  margin:20px 0;
-}
-
-.person {
-  background:#4f46e5; /* matches site color */
-  color:white;
-  padding:10px 15px;
-  border-radius:8px;
-  text-align:center;
-  font-weight:600;
-}
-
-.arrows {
-  position:relative;
-  height:120px;
-  margin-top:10px;
-  font-size:14px;
-  color:#333;
-}
