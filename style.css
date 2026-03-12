@@ -1146,22 +1146,36 @@ text-decoration:none;
 color:white !important;
 }
 
+/* FORCE TABLE STRUCTURE */
 .expense-table{
 width:100%;
 border-collapse:collapse;
-margin:20px 0;
-font-size:15px;
+margin:30px 0;
+display:table;
+}
+
+.expense-table thead{
+display:table-header-group;
+}
+
+.expense-table tbody{
+display:table-row-group;
+}
+
+.expense-table tr{
+display:table-row;
 }
 
 .expense-table th,
 .expense-table td{
+display:table-cell;
 border:1px solid #ddd;
-padding:10px;
+padding:12px;
 text-align:left;
 }
 
 .expense-table th{
-background:#f4f4f4;
+background-color:#f5f5f5;
 font-weight:600;
 }
 
