@@ -183,7 +183,6 @@ If you're planning a full group trip budget, you may also want to try our
 
 <div id="result" class="result-box"></div>
 
-<button class="primary-btn small-btn" onclick="copyResult('result')">Copy Result</button>
 
 <button class="primary-btn small-btn" onclick="shareResult('result')">Share</button>
 
@@ -445,6 +444,16 @@ Because group travel expenses can quickly add up, using a simple <strong>group a
 
 </p>
 
+<p>
+If you're new to splitting expenses with groups, you might also find these guides helpful:
+</p>
+
+<ul>
+<li><a href="how-to-split-expenses.html">How to Split Expenses Fairly</a></li>
+<li><a href="group-expense-management.html">Group Expense Management Guide</a></li>
+<li><a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a></li>
+</ul>
+
 </section>
 
 
@@ -575,6 +584,28 @@ document.getElementById("result").innerHTML =
 "Cost Per Night: $"+perNight.toFixed(2)+"<br>"+
 
 "Each Guest Pays: $"+perGuest.toFixed(2);
+
+}
+
+/* SHARE RESULT */
+
+function shareResult(id){
+
+let text = document.getElementById(id).innerText;
+
+if(navigator.share){
+
+navigator.share({
+title: "ExpenseSplit Result",
+text: text,
+url: window.location.href
+});
+
+}else{
+
+alert("Sharing is not supported on this browser");
+
+}
 
 }
 
