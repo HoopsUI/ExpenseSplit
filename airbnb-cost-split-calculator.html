@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Airbnb Cost Split Calculator – Split Airbnb & Vacation Rental Costs Between Friends</title>
+
+<meta name="description" content="Use our Airbnb cost split calculator to easily split Airbnb and vacation rental costs between friends. Calculate rent, cleaning fees, nights, and guest share instantly.">
+<link rel="canonical" href="https://expensessplit.com/airbnb-cost-split-calculator.html">
+
+<link rel="stylesheet" href="style.css">
+
+<script defer src="script.js"></script>
+
+<!-- STRUCTURED DATA -->
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"WebPage",
+"name":"Airbnb Cost Split Calculator",
+"description":"Split Airbnb or vacation rental costs between friends easily.",
+"url":"https://expensessplit.com/airbnb-cost-split-calculator.html",
+"mainEntity":{
+"@type":"WebApplication",
+"name":"Airbnb Cost Split Calculator",
+"applicationCategory":"FinanceApplication",
+"operatingSystem":"Web"
+}
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="container nav">
+
+<div class="logo">
+<a href="/">ExpenseSplit</a>
+</div>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav class="nav-menu" id="navMenu">
+
+<a href="/">Home</a>
+
+<div class="dropdown">
+<button class="dropbtn">Calculators ▾</button>
+
+<div class="dropdown-content">
+
+<a href="friends.html">🍽 Friends Expense Calculator</a>
+
+<a href="trip.html">✈️ Trip Expense Calculator</a>
+
+<a href="roommates.html">🏠 Roommate Expense Calculator</a>
+
+<a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+
+<a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+
+</div>
+</div>
+
+<div class="dropdown">
+
+<button class="dropbtn">Guides ▾</button>
+
+<div class="dropdown-content">
+
+<a href="split-bills-with-friends.html">Split Bills With Friends</a>
+
+<a href="how-to-split-expenses.html">How to Split Expenses</a>
+
+<a href="group-expense-management.html">Group Expense Management</a>
+
+<a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
+
+<a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+
+</div>
+</div>
+
+<a href="faq.html">FAQ</a>
+
+</nav>
+</div>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="container hero-content">
+
+<h1>Airbnb Cost Split Calculator</h1>
+
+<p class="subtitle">
+Quickly split Airbnb or vacation rental costs between friends. Calculate rent, cleaning fees, nights, and guest shares in seconds.
+</p>
+
+<a href="#calculator" class="primary-btn">Use Free Calculator</a>
+
+</div>
+
+</section>
+
+
+<!-- INTRO -->
+
+<section class="section">
+
+<div class="container">
+
+<p class="subtitle">
+
+Planning a trip with friends is exciting, but splitting accommodation costs can quickly become confusing. 
+Whether you're booking an <strong>Airbnb, vacation rental, or shared holiday home</strong>, figuring out how much each person should pay can be tricky when cleaning fees, service charges, and multiple nights are involved.
+
+</p>
+
+<p>
+
+Our <strong>Airbnb Cost Split Calculator</strong> helps you divide vacation rental expenses fairly between friends. 
+Simply enter the total rent, cleaning fee, number of nights, and number of guests. 
+The calculator will instantly determine how much each person should contribute for the stay.
+
+</p>
+
+  <p>
+If you're planning a full group trip budget, you may also want to try our 
+<a href="trip.html">Trip Expense Calculator</a> which helps track travel expenses like transportation, food, and activities for your entire group.
+</p>
+
+<ul class="calculator-features">
+
+<li>Split Airbnb cost between friends instantly</li>
+<li>Include cleaning fees and extra charges</li>
+<li>Calculate cost per night</li>
+<li>Determine each guest's share automatically</li>
+<li>Works for Airbnb, hotels, and vacation rentals</li>
+
+</ul>
+
+</div>
+</section>
+
+
+<!-- CALCULATOR -->
+
+<section class="section light" id="calculator">
+
+<div class="container">
+
+<h2 class="section-title">Split Airbnb Cost Calculator</h2>
+
+<label>Total Airbnb Rent</label>
+
+<input type="number" id="rent">
+
+<label>Cleaning Fee</label>
+
+<input type="number" id="cleaning">
+
+<label>Number of Nights</label>
+
+<input type="number" id="nights">
+
+<label>Number of Guests</label>
+
+<input type="number" id="guests">
+
+<button class="primary-btn" onclick="calculateAirbnb()">Calculate Split</button>
+
+<div id="result" class="result-box"></div>
+
+<button class="primary-btn small-btn" onclick="copyResult('result')">Copy Result</button>
+
+<button class="primary-btn small-btn" onclick="shareResult('result')">Share</button>
+
+</div>
+
+</section>
+
+
+<!-- SEO CONTENT -->
+
+<section class="section seo-content">
+
+<h2>How to Split Airbnb Costs Between Friends</h2>
+
+<p>
+
+When multiple friends book an Airbnb together, splitting the cost fairly becomes an important part of trip planning. 
+Most vacation rentals include several fees such as nightly rent, cleaning charges, and sometimes additional service fees. 
+This makes it difficult to calculate everyone's share manually.
+
+</p>
+
+<p>
+
+Using an <strong>Airbnb cost split calculator</strong> simplifies this process. 
+Instead of dividing numbers manually or using spreadsheets, the calculator instantly determines how much each guest should pay based on the total cost and group size.
+
+</p>
+
+<p>
+
+Many travelers search online for solutions such as <em>"split Airbnb cost between friends"</em> or <em>"vacation rental cost splitter"</em>. 
+Our tool was designed specifically for these situations to make group travel budgeting simple and transparent.
+
+</p>
+
+<p>
+If your group is also splitting meals, transportation, and activities during the trip, you can use our 
+<a href="friends.html">Friends Expense Calculator</a> to track multiple shared expenses and calculate who owes whom.
+</p>
+
+<h2>Why Splitting Vacation Rental Costs Can Be Complicated</h2>
+
+<p>
+
+Vacation rental pricing usually includes more than just the nightly rate. 
+For example, Airbnb listings often include additional fees such as:
+
+</p>
+
+<ul>
+
+<li>Cleaning fees</li>
+
+<li>Service fees</li>
+
+<li>Taxes</li>
+
+<li>Extra guest charges</li>
+
+<li>Weekend price differences</li>
+
+</ul>
+
+<p>
+
+Because of these extra charges, the final total is often higher than expected. 
+A <strong>vacation rental cost splitter</strong> helps you calculate the exact share for each guest quickly.
+
+</p>
+
+  <h2>How to Calculate Airbnb Cost Per Person</h2>
+
+<p>
+One of the most common questions travelers ask is how to calculate the <strong>Airbnb cost per person</strong>. 
+When multiple people stay in the same vacation rental, the total cost must be divided fairly among everyone in the group.
+</p>
+
+<p>
+The total Airbnb price usually includes several components:
+</p>
+
+<ul>
+<li>Nightly rent</li>
+<li>Cleaning fees</li>
+<li>Service fees</li>
+<li>Local taxes</li>
+</ul>
+
+<p>
+Instead of calculating these manually, our <strong>Airbnb cost split calculator</strong> adds everything together and determines how much each guest should pay.
+</p>
+
+<p>
+For example, imagine a group books a vacation rental with the following costs:
+</p>
+
+<ul>
+<li>Total Airbnb rent: $1,200</li>
+<li>Cleaning fee: $200</li>
+<li>Total guests: 7</li>
+</ul>
+
+<p>
+The total accommodation cost becomes $1,400. Using a <strong>split Airbnb cost per person calculator</strong>, each guest would pay $200 for the stay.
+</p>
+
+  <h2>How Groups Usually Split Vacation Rental Costs</h2>
+
+<p>
+When booking group accommodation, most people prefer to split the total price equally. 
+However, there are several different ways groups divide vacation rental costs depending on the situation.
+</p>
+
+<p>
+The most common ways to <strong>split Airbnb cost between friends</strong> include:
+</p>
+
+<ul>
+<li><strong>Equal split</strong> – Each guest pays the same amount.</li>
+<li><strong>Room-based split</strong> – Guests staying in larger or private rooms pay slightly more.</li>
+<li><strong>Night-based split</strong> – Guests staying fewer nights pay a smaller share.</li>
+<li><strong>Couple vs single split</strong> – Couples may pay more if they occupy larger rooms.</li>
+</ul>
+
+<p>
+For most group trips, the equal split method is the simplest approach. Our <strong>vacation rental cost splitter</strong> automatically calculates each guest’s share based on the total price and number of people staying at the property.
+</p>
+
+<h2>When Should You Use an Airbnb Cost Split Calculator?</h2>
+
+<p>
+A <strong>vacation rental cost splitter</strong> can be useful in many travel situations. 
+Whenever multiple people share the cost of accommodation, calculating everyone's share manually can become confusing.
+</p>
+
+<p>
+Using an Airbnb cost split calculator makes group travel planning much easier.
+</p>
+
+<p>
+Common situations where this tool is helpful include:
+</p>
+
+<ul>
+<li>Weekend trips with friends</li>
+<li>Group Airbnb bookings</li>
+<li>Beach house or cabin rentals</li>
+<li>Ski trip accommodations</li>
+<li>Festival or event travel stays</li>
+<li>Bachelor and bachelorette party trips</li>
+</ul>
+
+<p>
+Instead of estimating costs or using spreadsheets, the calculator instantly determines each guest's share of the total accommodation price.
+</p>
+
+<h2>Example Scenario: Splitting an Airbnb Stay</h2>
+
+<p>
+
+Imagine five friends booking an Airbnb for a weekend trip.
+
+</p>
+
+<ul>
+
+<li>Total rent: $900</li>
+<li>Cleaning fee: $150</li>
+<li>Nights: 3</li>
+<li>Guests: 5</li>
+
+</ul>
+
+<p>
+
+The total accommodation cost becomes $1050.
+
+</p>
+
+<p>
+
+Using the calculator, each friend would pay <strong>$210 for the entire stay</strong>. 
+Instead of doing manual calculations, the tool instantly provides a clear breakdown.
+
+</p>
+
+<p>
+
+If you're managing other travel costs like food or transportation, you may also want to use our 
+<a href="trip.html">Trip Expense Calculator</a> to track total vacation spending.
+
+</p>
+
+<h2>When Should You Use an Airbnb Cost Split Calculator?</h2>
+
+<p>
+
+This calculator is useful in many group travel situations, including:
+
+</p>
+
+<ul>
+
+<li>Weekend trips with friends</li>
+
+<li>Group vacation rentals</li>
+
+<li>Shared Airbnb stays</li>
+
+<li>Holiday house bookings</li>
+
+<li>Destination wedding accommodations</li>
+
+</ul>
+
+<p>
+
+If you are also sharing everyday expenses with housemates, check out our 
+<a href="roommates.html">Roommate Expense Calculator</a> which helps split rent and utilities fairly.
+
+</p>
+
+<h2>Equal vs Unequal Vacation Rental Splits</h2>
+
+<p>
+
+Most groups split Airbnb costs equally because everyone shares the same property. 
+However, some groups may choose uneven splits if certain guests stay fewer nights or use larger rooms.
+
+</p>
+
+<p>
+
+If your group needs more advanced expense splitting, you can use our 
+<a href="friends.html">Friends Expense Calculator</a> which supports uneven splits and multi-expense tracking.
+
+</p>
+
+<h2>Benefits of Using an Airbnb Cost Split Calculator</h2>
+
+<ul>
+
+<li>Prevents confusion about accommodation costs</li>
+
+<li>Ensures fair payments between friends</li>
+
+<li>Quickly calculates per-person costs</li>
+
+<li>Works for Airbnb, hotels, and rental homes</li>
+
+<li>Helps groups plan travel budgets more accurately</li>
+
+</ul>
+
+<p>
+
+Because group travel expenses can quickly add up, using a simple <strong>group accommodation cost split calculator</strong> ensures everyone contributes fairly.
+
+</p>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section faq-section">
+
+<div class="container">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+
+<div class="faq-question">How do you split Airbnb costs between friends?</div>
+
+<div class="faq-answer">
+
+The easiest way is to use an Airbnb cost split calculator. Enter the total rent, cleaning fees, number of nights, and number of guests. The calculator will instantly determine each person's share.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Should Airbnb costs be split equally?</div>
+
+<div class="faq-answer">
+
+Most groups split vacation rental costs equally. However, if some guests stay fewer nights or use different rooms, you may prefer an uneven split.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Do cleaning fees get split between guests?</div>
+
+<div class="faq-answer">
+
+Yes. Cleaning fees are typically shared between all guests staying at the property. Our calculator automatically includes cleaning fees when calculating each person's share.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Can this calculator work for hotels or vacation homes?</div>
+
+<div class="faq-answer">
+
+Yes. While it is designed as an Airbnb cost split calculator, it also works for hotels, vacation rentals, cabins, and holiday homes.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Is the calculator free to use?</div>
+
+<div class="faq-answer">
+
+Yes. ExpenseSplit tools are completely free and work instantly in your browser without any signup or account creation.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="container footer-content">
+
+<div>© 2026 ExpenseSplit</div>
+
+<div class="footer-links">
+
+<a href="about.html">About</a>
+
+<a href="privacy.html">Privacy Policy</a>
+
+<a href="contact.html">Contact & Conditions</a>
+
+<a href="terms.html">Terms</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- CALCULATOR SCRIPT -->
+
+<script>
+
+function calculateAirbnb(){
+
+let rent = parseFloat(document.getElementById("rent").value)||0;
+
+let cleaning = parseFloat(document.getElementById("cleaning").value)||0;
+
+let nights = parseInt(document.getElementById("nights").value)||1;
+
+let guests = parseInt(document.getElementById("guests").value)||1;
+
+let total = rent + cleaning;
+
+let perGuest = total / guests;
+
+let perNight = total / nights;
+
+document.getElementById("result").innerHTML =
+
+"<strong>Cost Breakdown</strong><br><br>"+
+
+"Total Cost: $"+total.toFixed(2)+"<br>"+
+
+"Cost Per Night: $"+perNight.toFixed(2)+"<br>"+
+
+"Each Guest Pays: $"+perGuest.toFixed(2);
+
+}
+
+</script>
+
+  <script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+
+    answer.style.display =
+      answer.style.display === 'block' ? 'none' : 'block';
+
+    question.classList.toggle('active');
+  });
+});
+</script>
+
+</body>
+</html>
