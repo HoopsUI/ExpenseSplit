@@ -122,7 +122,7 @@ If you're tracking multiple shared expenses like drinks, transportation, or acti
 
 </p>
 
-<h2>What This Restaurant Bill Split Calculator Can Do</h2>
+<p>What This Restaurant Bill Split Calculator Can Do</p>
 
 <ul class="calculator-features">
 <li>Split restaurant bills evenly between friends</li>
@@ -144,23 +144,36 @@ If you're tracking multiple shared expenses like drinks, transportation, or acti
 <h2 class="section-title">Split Restaurant Bill Calculator</h2>
 
 <label>Total Bill Amount</label>
-<input type="number" id="bill">
+<input type="number" id="bill" placeholder="$100">
 
 <label>Tax (%)</label>
-<input type="number" id="tax">
+<input type="number" id="tax" value="8">
 
 <label>Tip (%)</label>
-<input type="number" id="tip">
+<input type="number" id="tip" value="15">
+
+<div class="tip-buttons">
+<button onclick="setTip(15)">15%</button>
+<button onclick="setTip(18)">18%</button>
+<button onclick="setTip(20)">20%</button>
+</div>
 
 <label>Number of People</label>
-<input type="number" id="people">
+<input type="number" id="people" value="2">
 
-<label>Extra Items (Optional uneven cost)</label>
-<input type="number" id="extra">
+<label>Additional Fees (optional)</label>
+<input type="number" id="fees" placeholder="Service charge, delivery etc">
+
+<label>Extra Item Ordered By One Person (optional)</label>
+<input type="number" id="extraItem" placeholder="Example: someone ordered a $20 drink">
 
 <button class="primary-btn" onclick="calculateRestaurant()">Calculate Split</button>
 
 <div id="result" class="result-box"></div>
+
+<p class="result-note">
+Share this result with friends so everyone knows their exact dinner cost.
+</p>
 
 <button class="primary-btn small-btn" onclick="shareResult('result')">Share</button>
 
@@ -256,7 +269,7 @@ For more complex group spending situations, you may want to use the <a href="iou
 
 <p>
 
-Imagine four friends go to dinner at a restaurant.
+<strong>Example 1:</strong> Imagine four friends go to dinner at a restaurant.
 
 </p>
 
@@ -290,6 +303,39 @@ Using the <strong>split dinner bill calculator</strong>, each person would pay <
 <p>
 
 Without a calculator, most people would have to manually calculate percentages and divide totals, which often leads to rounding errors.
+
+</p>
+
+<p>
+
+<strong>Example 2:</strong> Imagine six friends go to a restaurant together and order different meals.
+
+</p>
+
+<ul>
+
+<li>Total food bill: $210</li>
+<li>Tax: 7%</li>
+<li>Tip: 18%</li>
+<li>Number of people: 6</li>
+
+</ul>
+
+<p>
+
+After tax and tip, the total bill becomes $266.70.
+
+</p>
+
+<p>
+
+Using the <strong>split dinner bill calculator</strong>, each person would pay <strong>$44.45</strong> per person.
+
+</p>
+
+<p>
+
+Instead of calculating percentages manually, the calculator instantly determines the correct cost per diner.
 
 </p>
 
@@ -450,6 +496,18 @@ Yes. The calculator automatically includes tax percentage and tip percentage whe
 
 <div class="faq-item">
 
+<div class="faq-question">How do you calculate tip when splitting a bill?</div>
+
+<div class="faq-answer">
+
+The easiest way is to calculate the tip percentage on the total bill first. Once the tip and tax are added, divide the final amount by the number of diners. A restaurant bill split calculator automatically handles these calculations so everyone pays the correct share.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
 <div class="faq-question">Is this restaurant bill split calculator free?</div>
 
 <div class="faq-answer">
@@ -484,29 +542,47 @@ Yes. All calculators on ExpenseSplit are completely free and work instantly in y
 
 <script>
 
+function setTip(percent){
+document.getElementById("tip").value = percent;
+}
+
 function calculateRestaurant(){
 
-let bill=parseFloat(document.getElementById("bill").value)||0;
-let tax=parseFloat(document.getElementById("tax").value)||0;
-let tip=parseFloat(document.getElementById("tip").value)||0;
-let people=parseInt(document.getElementById("people").value)||1;
-let extra=parseFloat(document.getElementById("extra").value)||0;
+let bill = parseFloat(document.getElementById("bill").value) || 0;
+let tax = parseFloat(document.getElementById("tax").value) || 0;
+let tip = parseFloat(document.getElementById("tip").value) || 0;
+let people = parseInt(document.getElementById("people").value) || 1;
+let fees = parseFloat(document.getElementById("fees").value) || 0;
+let extraItem = parseFloat(document.getElementById("extraItem").value) || 0;
 
-let taxAmount=bill*(tax/100);
-let tipAmount=bill*(tip/100);
+let taxAmount = bill * (tax/100);
+let tipAmount = bill * (tip/100);
 
-let total=bill+taxAmount+tipAmount+extra;
+let sharedTotal = bill + taxAmount + tipAmount + fees;
 
-let perPerson=total/people;
+let perPerson = sharedTotal / people;
 
-document.getElementById("result").innerHTML=
+let personWithExtra = perPerson + extraItem;
+
+let finalTotal = sharedTotal + extraItem;
+
+document.getElementById("result").innerHTML =
 
 "<strong>Bill Breakdown</strong><br><br>"+
-"Original Bill: $"+bill.toFixed(2)+"<br>"+
-"Tax: $"+taxAmount.toFixed(2)+"<br>"+
-"Tip: $"+tipAmount.toFixed(2)+"<br>"+
-"Total Bill: $"+total.toFixed(2)+"<br>"+
-"<strong>Cost Per Person: $"+perPerson.toFixed(2)+"</strong>";
+
+"Original Bill: $" + bill.toFixed(2) + "<br>"+
+
+"Tax ("+tax+"%): $" + taxAmount.toFixed(2) + "<br>"+
+
+"Tip ("+tip+"%): $" + tipAmount.toFixed(2) + "<br>"+
+
+"Additional Fees: $" + fees.toFixed(2) + "<br>"+
+
+"<br><strong>Total Bill: $" + finalTotal.toFixed(2) + "</strong><br><br>"+
+
+"Each Person Pays: $" + perPerson.toFixed(2) + "<br>"+
+
+"Person With Extra Item Pays: $" + personWithExtra.toFixed(2);
 
 }
 
