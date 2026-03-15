@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Who Owes Whom Calculator | IOU & Debt Simplifier Tool</title>
+
+<meta name="description" content="Free IOU calculator and who owes whom calculator. Simplify group debts, minimize payments, and instantly calculate who owes who in shared expenses.">
+
+<link rel="canonical" href="https://expensessplit.com/iou-calculator.html">
+
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"WebApplication",
+"name":"Who Owes Whom Calculator",
+"applicationCategory":"FinanceApplication",
+"operatingSystem":"Web",
+"description":"Free IOU calculator and debt simplifier tool that calculates who owes whom and minimizes transactions."
+}
+</script>
+
+</head>
+
+<body>
+  <!-- HEADER -->
+<header class="header">
+  <div class="container nav">
+
+    <div class="logo">
+      <a href="/">ExpenseSplit</a>
+    </div>
+
+    <!-- MOBILE MENU BUTTON -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+      ☰
+    </div>
+
+    <nav class="nav-menu" id="navMenu">
+
+      <a href="/">Home</a>
+
+      <!-- CALCULATORS -->
+      <div class="dropdown">
+        <button class="dropbtn">Calculators ▾</button>
+
+        <div class="dropdown-content">
+          <a href="friends.html">🍽 Friends Expense Calculator</a>
+          <a href="trip.html">✈️ Trip Expense Calculator</a>
+          <a href="roommates.html">🏠 Roommate Expense Calculator</a>
+          
+          <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+        </div>
+      </div>
+
+      <!-- GUIDES -->
+      <div class="dropdown">
+        <button class="dropbtn">Guides ▾</button>
+
+        <div class="dropdown-content">
+          <a href="split-bills-with-friends.html">Split Bills With Friends</a>
+          <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="group-expense-management.html">Group Expense Management</a>
+          <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
+          <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+        </div>
+      </div>
+
+      <a href="faq.html">FAQ</a>
+
+    </nav>
+
+  </div>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+<div class="container hero-content">
+
+<h1>IOU Calculator – Who Owes Whom</h1>
+
+<p class="subtitle">
+Quickly calculate <strong>who owes whom</strong> in group expenses.  
+Our <strong>IOU calculator</strong> simplifies debts and minimizes the number of payments needed to settle group expenses.
+</p>
+
+<a href="#calculator" class="primary-btn">Use Free Calculator</a>
+
+</div>
+</section>
+
+
+<!-- INTRO -->
+
+<section class="section">
+<div class="container">
+
+<p class="subtitle">
+
+Keeping track of money between friends, roommates, or travel groups can become confusing very quickly. One person pays for dinner, another covers transportation, and someone else books the hotel. By the end of the day, everyone is asking the same question:
+
+<strong>Who owes whom?</strong>
+
+</p>
+
+<p>
+
+Our <strong>IOU calculator</strong> and <strong>debt simplifier calculator</strong> helps solve this problem instantly. Simply enter how much each person paid, and the calculator will determine the fairest way to settle the group expenses.
+
+Instead of multiple payments between people, the tool also <strong>minimizes transactions</strong> so the group can settle the debt with the smallest number of payments possible.
+
+</p>
+
+<ul class="calculator-features">
+
+<li>Calculate who owes whom instantly</li>
+<li>Simplify group debts automatically</li>
+<li>Minimize transactions between people</li>
+<li>Track IOUs between friends or roommates</li>
+<li>Works for trips, dinners, and shared expenses</li>
+
+</ul>
+
+</div>
+</section>
+
+
+<!-- CALCULATOR -->
+
+<section class="section light" id="calculator">
+<div class="container">
+
+<h2 class="section-title">Who Owes Whom Calculator</h2>
+
+<p class="helper-text">
+Enter each person's name and how much they paid.  
+The calculator will determine who should reimburse whom.
+</p>
+
+<table id="iouTable">
+
+<tr>
+<th>Person</th>
+<th>Amount Paid</th>
+</tr>
+
+<tr>
+<td><input placeholder="Name"></td>
+<td><input type="number"></td>
+</tr>
+
+<tr>
+<td><input placeholder="Name"></td>
+<td><input type="number"></td>
+</tr>
+
+</table>
+
+<button class="secondary-btn" onclick="addPerson()">Add Person</button>
+
+<button class="primary-btn" onclick="calculateIOU()">Calculate</button>
+
+<div id="iouResult" class="result-box"></div>
+
+<button class="primary-btn small-btn" onclick="copyResult('iouResult')">Copy Result</button>
+
+<button class="primary-btn small-btn" onclick="shareResult('iouResult')">Share</button>
+
+</div>
+</section>
+
+
+<!-- SEO CONTENT -->
+
+<section class="section seo-content">
+
+<h2>What Is a Who Owes Whom Calculator?</h2>
+
+<p>
+
+A <strong>who owes whom calculator</strong> is a tool designed to simplify shared expenses within a group. Instead of manually calculating balances, the calculator analyzes how much each person contributed and determines the exact payments required to settle the group.
+
+This is commonly used when splitting:
+
+</p>
+
+<ul>
+
+<li>Group dinner bills</li>
+<li>Vacation expenses</li>
+<li>Shared apartment costs</li>
+<li>Road trip budgets</li>
+<li>Group gifts</li>
+
+</ul>
+
+<p>
+
+Tools like this are extremely popular because they remove the confusion that often happens when multiple people pay for different items.
+
+</p>
+
+
+<h2>How the IOU Debt Simplifier Works</h2>
+
+<p>
+
+Our calculator uses a <strong>debt simplification algorithm</strong> similar to the one used in popular expense apps. The goal is to reduce the number of transactions required to settle group expenses.
+
+For example, consider this situation:
+
+</p>
+
+<ul>
+
+<li>Alice owes Bob $20</li>
+<li>Bob owes Charlie $20</li>
+
+</ul>
+
+<p>
+
+Instead of making two payments, the calculator simplifies the debt to:
+
+</p>
+
+<p><strong>Alice pays Charlie $20</strong></p>
+
+<p>
+
+This process is called <strong>debt simplification</strong> or <strong>transaction minimization</strong>. It helps groups settle expenses quickly without unnecessary payments between multiple people.
+
+</p>
+
+
+<h2>Example Scenario: Splitting Trip Expenses</h2>
+
+<p>
+
+Imagine four friends take a weekend trip.
+
+</p>
+
+<ul>
+
+<li>Alex paid $120 for dinner</li>
+<li>Jamie paid $60 for transportation</li>
+<li>Chris paid $20 for snacks</li>
+<li>Taylor paid nothing</li>
+
+</ul>
+
+<p>
+
+Instead of calculating everything manually, the <strong>who owes whom calculator</strong> determines each person's fair share and produces the simplest payment solution.
+
+</p>
+
+<p>
+Shared expenses happen in many everyday situations, which is why people frequently search for tools like a 
+<strong>money owed calculator</strong>, <strong>IOU tracker</strong>, or <strong>who owes who calculator</strong>. 
+Below are some common real-life scenarios where a <strong>group debt calculator</strong> can simplify payments and make it easier for everyone to settle expenses fairly.
+</p>
+
+<h3>Example 1: Splitting a Dinner Bill With Friends</h3>
+
+<p>
+Imagine four friends go out for dinner together. Instead of paying separately, one person pays the entire restaurant bill while another friend covers drinks. Later, everyone needs to calculate who owes what.
+</p>
+
+<ul>
+<li>Emma paid $120 for dinner</li>
+<li>Liam paid $40 for drinks</li>
+<li>Noah paid $0</li>
+<li>Olivia paid $0</li>
+</ul>
+
+<p>
+The total group expense is $160, which means each person should pay $40. Using the <strong>who owes whom calculator</strong>, the result becomes:
+</p>
+
+<ul>
+<li>Noah pays Emma $40</li>
+<li>Olivia pays Emma $40</li>
+<li>Liam paid slightly more than his share, so he receives a small reimbursement</li>
+</ul>
+
+<p>
+Instead of manually calculating the math, a <strong>split group expenses calculator</strong> instantly determines the correct payments.
+</p>
+
+<p>
+If you regularly split restaurant bills with friends, you may also want to try our 
+<a href="friends.html">Friends Expense Calculator</a>, which is designed specifically for splitting dinner bills, group outings, and shared events.
+</p>
+
+<h3>Example 2: Simplifying Debts Between Roommates</h3>
+
+<p>
+Roommates often share expenses such as groceries, internet bills, cleaning supplies, or utilities. Over time, these small payments can become difficult to track without a proper system.
+</p>
+
+<p>
+For example:
+</p>
+
+<ul>
+<li>Alex paid $80 for groceries</li>
+<li>Jordan paid $40 for internet</li>
+<li>Sam paid $20 for cleaning supplies</li>
+</ul>
+
+<p>
+The total expense is $140, so each roommate should contribute about $46.67.
+</p>
+
+<p>
+The <strong>debt simplifier calculator</strong> automatically calculates who owes money and produces the simplest settlement:
+</p>
+
+<ul>
+<li>Sam pays Alex</li>
+<li>Jordan pays Alex</li>
+</ul>
+
+<p>
+Instead of multiple confusing payments between roommates, the <strong>simplify debts calculator</strong> ensures that the group settles the expenses with the minimum number of transactions.
+</p>
+
+<p>
+For ongoing shared living expenses, you can also use our 
+<a href="roommates.html">Roommate Expense Calculator</a>, which is designed to track rent, utilities, groceries, and other shared household costs.
+</p>
+
+<h3>Example 3: Simplifying Chain Debts Between Friends</h3>
+
+<p>
+Sometimes group expenses create a chain of debts where multiple people owe each other money. This is where a <strong>debt simplification calculator</strong> becomes extremely helpful.
+</p>
+
+<p>
+Example situation:
+</p>
+
+<ul>
+<li>Alice owes Ben $30</li>
+<li>Ben owes Chris $30</li>
+</ul>
+
+<p>
+Instead of making two separate payments, the <strong>who owes whom simplifier</strong> reduces the transaction to:
+</p>
+
+<p>
+<strong>Alice pays Chris $30</strong>
+</p>
+
+<p>
+This process is called <strong>transaction minimization</strong> and is commonly used in group expense apps to simplify payments. A <strong>minimize transactions calculator</strong> ensures that the group settles debts using the fewest payments possible.
+</p>
+
+<h3>Example 4: Splitting Costs During a Group Vacation</h3>
+
+<p>
+Group vacations often involve many shared expenses such as hotels, transportation, food, and activities. During a trip, different people may pay for different things, which makes it difficult to track the final balance.
+</p>
+
+<p>
+For example:
+</p>
+
+<ul>
+<li>Chris paid $300 for the hotel</li>
+<li>Sarah paid $120 for meals</li>
+<li>Daniel paid $60 for taxi rides</li>
+<li>Emma paid $20 for snacks</li>
+</ul>
+
+<p>
+Instead of calculating the balance manually, a <strong>money owed calculator</strong> analyzes all contributions and determines who should reimburse whom.
+</p>
+
+<p>
+If you're planning a vacation or road trip with friends, you may also find our 
+<a href="trip.html">Trip Expense Calculator</a> helpful for tracking travel budgets and shared costs across multiple days.
+</p>
+
+<h3>Why Example-Based Expense Calculations Matter</h3>
+
+<p>
+Real-life examples make it easier to understand how a <strong>who owes who calculator</strong> works. Whether you're splitting a dinner bill, tracking roommate expenses, or managing group travel budgets, a <strong>group expense calculator</strong> ensures that everyone pays their fair share.
+</p>
+
+<p>
+Instead of estimating payments or relying on memory, you can simply enter the amounts into the <strong>IOU calculator</strong> and instantly see the most efficient way to settle the group expenses.
+</p>
+
+<p>
+For more strategies on managing shared finances, you can also read our guide 
+<a href="how-to-split-expenses.html">How to Split Expenses Fairly</a>, which explains the best methods for dividing costs between friends, roommates, and travel groups.
+</p>
+
+
+<h2>Why Use an IOU Calculator?</h2>
+
+<p>
+
+Manual expense calculations can lead to mistakes and confusion. A dedicated <strong>IOU tracker</strong> ensures that everyone pays their fair share and that the group settles expenses quickly.
+
+</p>
+
+<ul>
+
+<li>Prevents awkward money conversations</li>
+<li>Ensures fair cost distribution</li>
+<li>Simplifies complex group payments</li>
+<li>Saves time compared to manual calculations</li>
+<li>Works instantly without downloading apps</li>
+
+</ul>
+
+
+<h2>Common Situations Where People Use a Who Owes Whom Calculator</h2>
+
+<p>
+
+People search for <strong>who owes whom calculator</strong> thousands of times every month because shared expenses happen frequently in everyday life.
+
+</p>
+
+<ul>
+
+<li>Splitting restaurant bills with friends</li>
+<li>Tracking shared vacation costs</li>
+<li>Managing roommate expenses</li>
+<li>Dividing group purchases</li>
+<li>Splitting event or party costs</li>
+
+</ul>
+
+<p>
+
+If you frequently split bills with roommates, you may also want to use our  
+<a href="roommates.html">Roommate Expense Calculator</a> which helps track recurring shared costs like rent and utilities.
+
+</p>
+
+
+<h2>How to Split Expenses Fairly in a Group</h2>
+
+<p>
+
+The key to managing group expenses successfully is transparency. Everyone in the group should know how much was spent and who contributed what amount.
+
+</p>
+
+<p>
+
+Using tools like an <strong>expense split calculator</strong> ensures that payments are calculated accurately and fairly.
+
+</p>
+
+<p>
+
+If you're new to splitting expenses, our guide  
+<a href="how-to-split-expenses.html">How to Split Expenses</a> explains the best strategies for handling shared costs.
+
+</p>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section faq-section">
+<div class="container">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+<div class="faq-question">What is an IOU calculator?</div>
+<div class="faq-answer">
+An IOU calculator helps track money owed between people and determines who needs to reimburse whom after shared expenses.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">How does the who owes whom calculator work?</div>
+<div class="faq-answer">
+The calculator analyzes how much each person paid and calculates the fairest way to settle expenses while minimizing the number of transactions.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Can this calculator simplify group debts?</div>
+<div class="faq-answer">
+Yes. The tool automatically simplifies debts so fewer payments are needed between people.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Is this similar to Splitwise?</div>
+<div class="faq-answer">
+Yes. The calculator uses a similar concept to Splitwise's debt simplification algorithm but works instantly without requiring an account.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Can I use this calculator for trips?</div>
+<div class="faq-answer">
+Yes. The calculator works perfectly for travel expenses, group dinners, events, and shared purchases.
+</div>
+</div>
+
+</div>
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+<div class="container footer-content">
+
+<div>© 2026 ExpenseSplit</div>
+
+<div class="footer-links">
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</div>
+
+</div>
+</footer>
+
+
+<script>
+
+function addPerson(){
+
+let table=document.getElementById("iouTable");
+let row=table.insertRow();
+
+row.innerHTML="<td><input placeholder='Name'></td><td><input type='number'></td>";
+
+}
+
+function calculateIOU(){
+
+let rows=document.querySelectorAll("#iouTable tr");
+
+let people=[];
+let total=0;
+
+for(let i=1;i<rows.length;i++){
+
+let name=rows[i].cells[0].querySelector("input").value;
+let paid=parseFloat(rows[i].cells[1].querySelector("input").value)||0;
+
+people.push({name,paid});
+total+=paid;
+
+}
+
+let share=total/people.length;
+
+let creditors=[];
+let debtors=[];
+
+people.forEach(p=>{
+
+let balance=p.paid-share;
+
+if(balance>0){
+
+creditors.push({name:p.name,amount:balance});
+
+}else if(balance<0){
+
+debtors.push({name:p.name,amount:Math.abs(balance)});
+
+}
+
+});
+
+let result="";
+
+while(debtors.length && creditors.length){
+
+let debtor=debtors[0];
+let creditor=creditors[0];
+
+let payment=Math.min(debtor.amount, creditor.amount);
+
+result+=debtor.name+" pays "+creditor.name+" $"+payment.toFixed(2)+"<br>";
+
+debtor.amount-=payment;
+creditor.amount-=payment;
+
+if(debtor.amount<=0) debtors.shift();
+if(creditor.amount<=0) creditors.shift();
+
+}
+
+document.getElementById("iouResult").innerHTML="<strong>Payment Summary</strong><br><br>"+result;
+
+}
+
+</script>
+
+  <script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+
+    answer.style.display =
+      answer.style.display === 'block' ? 'none' : 'block';
+
+    question.classList.toggle('active');
+  });
+});
+</script>
+
+</body>
+</html>
