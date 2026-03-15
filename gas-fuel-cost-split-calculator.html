@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gas Cost Split Calculator – Split Road Trip Fuel Costs Between Friends</title>
+
+<meta name="description" content="Use our gas cost split calculator to easily divide fuel costs for road trips. Enter miles, fuel price, fuel efficiency and passengers to calculate each person's share.">
+
+<link rel="canonical" href="https://expensessplit.com/gas-cost-split-calculator.html">
+
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"WebPage",
+"name":"Gas Cost Split Calculator",
+"description":"Calculate how to split fuel or gas costs between passengers on a road trip.",
+"url":"https://expensessplit.com/gas-cost-split-calculator.html",
+"mainEntity":{
+"@type":"WebApplication",
+"name":"Gas Cost Split Calculator",
+"applicationCategory":"FinanceApplication",
+"operatingSystem":"Web"
+}
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+<div class="container nav">
+
+<div class="logo">
+<a href="/">ExpenseSplit</a>
+</div>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav class="nav-menu" id="navMenu">
+
+<a href="/">Home</a>
+
+<div class="dropdown">
+<button class="dropbtn">Calculators ▾</button>
+
+<div class="dropdown-content">
+
+<a href="friends.html">🍽 Friends Expense Calculator</a>
+<a href="trip.html">✈️ Trip Expense Calculator</a>
+<a href="roommates.html">🏠 Roommate Expense Calculator</a>
+<a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+<a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+
+</div>
+</div>
+
+<div class="dropdown">
+
+<button class="dropbtn">Guides ▾</button>
+
+<div class="dropdown-content">
+
+<a href="split-bills-with-friends.html">Split Bills With Friends</a>
+<a href="how-to-split-expenses.html">How to Split Expenses</a>
+<a href="group-expense-management.html">Group Expense Management</a>
+<a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
+<a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+
+</div>
+</div>
+
+<a href="faq.html">FAQ</a>
+
+</nav>
+</div>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="container hero-content">
+
+<h1>Gas / Fuel Cost Split Calculator</h1>
+
+<p class="subtitle">
+
+Easily split road trip fuel costs between passengers. Enter trip distance, fuel price, fuel efficiency, and number of passengers to instantly calculate how much each person should pay.
+
+</p>
+
+<a href="#calculator" class="primary-btn">Use Free Calculator</a>
+
+</div>
+</section>
+
+
+<!-- INTRO -->
+
+<section class="section">
+
+<div class="container">
+
+<p class="subtitle">
+
+Planning a road trip with friends can be one of the best travel experiences. However, figuring out how to split fuel costs fairly between everyone in the car can sometimes become confusing. Fuel prices change frequently, vehicles have different fuel efficiency, and trip distances can vary widely.
+
+</p>
+
+<p>
+
+Our <strong>Gas Cost Split Calculator</strong> helps you quickly calculate how much each passenger should contribute toward fuel expenses. Simply enter the total miles of the trip, the price of fuel, your vehicle's fuel efficiency, and the number of passengers sharing the cost.
+
+</p>
+
+<p>
+
+The calculator automatically estimates the total fuel cost and divides it equally between everyone traveling. This makes it much easier to manage group travel expenses and ensures everyone contributes fairly.
+
+</p>
+
+<p>
+
+If you want to track additional travel expenses such as hotels, meals, or activities during your trip, you can also use our 
+<a href="trip.html">Trip Expense Calculator</a> to manage the full group travel budget.
+
+</p>
+
+<ul class="calculator-features">
+
+<li>Calculate total road trip fuel cost</li>
+<li>Split gas cost between passengers instantly</li>
+<li>Works for long trips or short drives</li>
+<li>Useful for carpools and group travel</li>
+<li>Simple and free to use</li>
+
+</ul>
+
+</div>
+</section>
+
+
+<!-- CALCULATOR -->
+
+<section class="section light" id="calculator">
+
+<div class="container">
+
+<h2 class="section-title">Road Trip Gas Split Calculator</h2>
+
+<label>Total Trip Miles (One Way)</label>
+<input type="number" id="miles">
+
+<label>Trip Type</label>
+<select id="triptype">
+<option value="1">One Way</option>
+<option value="2">Round Trip</option>
+</select>
+
+<label>Fuel Price (per gallon)</label>
+<input type="number" id="fuelprice">
+
+<label>Vehicle Fuel Efficiency (MPG)</label>
+<input type="number" id="mpg">
+
+<label>Number of Passengers</label>
+<input type="number" id="passengers">
+
+<button class="primary-btn" onclick="calculateFuel()">Calculate Split</button>
+
+<div id="result" class="result-box"></div>
+
+<button class="primary-btn small-btn" onclick="shareResult('result')">Share</button>
+
+</div>
+</section>
+
+
+<!-- SEO CONTENT -->
+
+<section class="section seo-content">
+
+<h2>How to Split Gas Costs for a Road Trip</h2>
+
+<p>
+
+One of the most common questions people ask before a group road trip is <em>“how should we split gas money?”</em>. Fuel costs can be significant, especially for longer trips, so it's important to divide them fairly among everyone traveling.
+
+</p>
+
+<p>
+
+A <strong>gas cost split calculator</strong> makes this process simple. Instead of guessing or estimating, you can calculate the total fuel cost using the trip distance, fuel price, and vehicle efficiency. Once you know the total cost, it can be divided equally between passengers.
+
+</p>
+
+<p>
+
+Many people search online for solutions like <em>split gas cost calculator</em>, <em>fuel cost split calculator</em>, or <em>road trip gas split</em>. This tool was created specifically to solve those problems quickly.
+
+</p>
+
+<p>
+
+If your group is also sharing restaurant bills or other expenses during the trip, our 
+<a href="friends.html">Friends Expense Calculator</a> can help manage multiple shared costs between friends.
+
+</p>
+
+<h2>Gas Cost Formula for Road Trips</h2>
+
+<p>
+Fuel cost for a road trip can be estimated using a simple formula:
+</p>
+
+<p><strong>Total Fuel Cost = (Trip Miles ÷ Vehicle MPG) × Fuel Price</strong></p>
+
+<p>
+For example, if your trip distance is 350 miles, your vehicle gets 28 miles per gallon, and gas costs $3.70 per gallon, the calculation would be:
+</p>
+
+<ul>
+<li>Fuel required = 350 ÷ 28 = 12.5 gallons</li>
+<li>Total fuel cost = 12.5 × $3.70 = $46.25</li>
+</ul>
+
+<p>
+If four passengers are sharing the trip, each person would contribute approximately <strong>$11.56</strong>.
+</p>
+
+<p>
+Instead of doing this calculation manually, our <strong>gas cost split calculator</strong> automatically performs the math and divides the cost evenly between passengers.
+</p>
+
+<h2>Why Splitting Fuel Costs Matters on Group Trips</h2>
+
+<p>
+
+Fuel is often one of the largest expenses during a road trip. When several people travel together in one vehicle, the driver usually pays for fuel initially. Without a clear system, it can be difficult to determine how much each passenger should reimburse.
+
+</p>
+
+<p>
+
+Using a <strong>fuel cost split calculator</strong> ensures fairness. Everyone pays their share based on the total fuel used for the trip rather than guessing or estimating the amount.
+
+</p>
+
+<p>
+
+This approach is especially helpful when traveling long distances, where fuel costs may become a significant part of the overall travel budget.
+
+</p>
+
+
+<h2>How the Gas Cost Split Calculator Works</h2>
+
+<p>
+
+Our calculator estimates total fuel cost using a simple formula based on three main factors:
+
+</p>
+
+<ul>
+
+<li>Total trip distance in miles</li>
+<li>Vehicle fuel efficiency (miles per gallon)</li>
+<li>Fuel price per gallon</li>
+
+</ul>
+
+<p>
+
+The formula calculates how many gallons of fuel the trip will require and multiplies that by the price of fuel. Once the total fuel cost is calculated, the tool divides the cost between all passengers.
+
+</p>
+
+<p>
+
+For example, imagine the following road trip scenario:
+
+</p>
+
+<ul>
+
+<li>Total trip distance: 300 miles</li>
+<li>Fuel efficiency: 30 MPG</li>
+<li>Fuel price: $3.50 per gallon</li>
+<li>Passengers: 4</li>
+
+</ul>
+
+<p>
+
+The trip would require approximately 10 gallons of fuel. At $3.50 per gallon, the total fuel cost becomes $35. When split between four passengers, each person would contribute about $8.75.
+
+</p>
+
+<h2>Should the Driver Pay for Gas on a Road Trip?</h2>
+
+<p>
+One of the most common questions on group trips is whether the driver should pay the same amount as passengers for fuel.
+</p>
+
+<p>
+There is no universal rule, but most groups follow one of these common approaches:
+</p>
+
+<ul>
+
+<li><strong>Equal split</strong> – Everyone, including the driver, pays the same share.</li>
+
+<li><strong>Driver discount</strong> – Passengers cover slightly more since the driver provides the vehicle.</li>
+
+<li><strong>Passenger split</strong> – Only passengers split the fuel cost while the driver pays nothing.</li>
+
+</ul>
+
+<p>
+The best method depends on your group and trip length. A <strong>fuel cost split calculator</strong> helps estimate total fuel expenses so everyone understands the cost before the trip begins.
+</p>
+
+<h2>Example Scenario: Splitting Gas on a Weekend Trip</h2>
+
+<p>
+
+Imagine four friends driving to a nearby city for a weekend getaway. The total driving distance for the trip is 400 miles including the return journey.
+
+</p>
+
+<ul>
+
+<li>Distance: 400 miles</li>
+<li>Vehicle efficiency: 25 MPG</li>
+<li>Fuel price: $3.80 per gallon</li>
+<li>Passengers: 4</li>
+
+</ul>
+
+<p>
+
+The car would use approximately 16 gallons of fuel. At $3.80 per gallon, the total fuel cost would be $60.80.
+
+</p>
+
+<p>
+
+Using the <strong>road trip gas split calculator</strong>, each passenger would pay about $15.20 toward fuel.
+
+</p>
+
+<p>
+
+If your trip also includes accommodation costs, you can use our 
+<a href="airbnb-cost-split-calculator.html">Airbnb Cost Split Calculator</a> to divide vacation rental costs between friends.
+
+</p>
+
+
+<h2>When Should You Use a Fuel Cost Split Calculator?</h2>
+
+<p>
+
+This calculator can be helpful in many travel situations where multiple people share a vehicle.
+
+</p>
+
+<ul>
+
+<li>Group road trips</li>
+<li>Weekend getaways</li>
+<li>Carpool commuting</li>
+<li>Festival travel</li>
+<li>College trips with friends</li>
+<li>Shared vacation drives</li>
+
+</ul>
+
+<p>
+
+When multiple shared expenses occur during a trip, combining tools can help manage everything easily. Our 
+<a href="iou-calculator.html">Who Owes Whom Calculator</a> helps determine final balances between friends when multiple people pay for different expenses.
+
+</p>
+
+
+<h2>Benefits of Splitting Gas Costs Fairly</h2>
+
+<p>
+
+Fair cost sharing helps maintain transparency and prevents awkward conversations between friends. Everyone knows exactly how much they should contribute, and the driver is not left covering the entire fuel bill.
+
+</p>
+
+<p>
+
+Using a <strong>fuel cost split calculator</strong> also helps groups budget their trips more accurately. When travelers know their approximate fuel contribution in advance, planning the overall trip budget becomes easier.
+
+</p>
+
+<p>
+
+For example, if your group also shares accommodation, food, and activities, you may want to read our guide on 
+<a href="group-expense-management.html">Group Expense Management</a> which explains how to handle shared expenses during travel.
+
+</p>
+
+<p>
+
+You can also learn general strategies for fair cost sharing in our guide 
+<a href="how-to-split-expenses.html">How to Split Expenses</a>.
+
+</p>
+
+<h2>People Also Search For</h2>
+
+<p>Travelers often search for tools like:</p>
+
+<ul>
+
+<li>split gas cost calculator</li>
+
+<li>road trip gas split calculator</li>
+
+<li>fuel cost per person calculator</li>
+
+<li>how to split gas money between friends</li>
+
+<li>road trip fuel calculator</li>
+
+<li>trip gas cost calculator</li>
+
+</ul>
+
+<p>
+Our <strong>Gas Cost Split Calculator</strong> was designed specifically to help travelers divide fuel expenses quickly and fairly.
+</p>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section faq-section">
+
+<div class="container">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+
+<div class="faq-question">How do you split gas costs on a road trip?</div>
+
+<div class="faq-answer">
+The simplest way is to calculate the total fuel cost for the trip and divide it by the number of passengers. Our gas cost split calculator automatically estimates total fuel usage and determines each person's share.
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">What information do I need to calculate fuel cost?</div>
+
+<div class="faq-answer">
+You need the total trip distance, your vehicle's fuel efficiency (MPG), the price of fuel, and the number of passengers sharing the cost.
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Should the driver pay less for fuel?</div>
+
+<div class="faq-answer">
+Some groups choose to reduce the driver's share because they provide the vehicle and do the driving. However, many groups simply split fuel costs equally between all passengers.
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Does the calculator work for long road trips?</div>
+
+<div class="faq-answer">
+Yes. The calculator works for both short and long trips. Simply enter the total trip miles and the tool will estimate the fuel cost.
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Is this fuel cost split calculator free?</div>
+
+<div class="faq-answer">
+Yes. All ExpenseSplit calculators are completely free and can be used directly in your browser without creating an account.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="container footer-content">
+
+<div>© 2026 ExpenseSplit</div>
+
+<div class="footer-links">
+
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="contact.html">Contact & Conditions</a>
+<a href="terms.html">Terms</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<script>
+
+function calculateFuel(){
+
+let miles = parseFloat(document.getElementById("miles").value)||0;
+let triptype = parseFloat(document.getElementById("triptype").value)||1;
+let fuelprice = parseFloat(document.getElementById("fuelprice").value)||0;
+let mpg = parseFloat(document.getElementById("mpg").value)||1;
+let passengers = parseInt(document.getElementById("passengers").value)||1;
+
+/* adjust miles for round trip */
+
+let totalMiles = miles * triptype;
+
+/* fuel calculation */
+
+let gallons = totalMiles / mpg;
+let totalCost = gallons * fuelprice;
+let perPerson = totalCost / passengers;
+
+document.getElementById("result").innerHTML =
+
+"<strong>Fuel Cost Breakdown</strong><br><br>"+
+
+"Total Trip Distance: "+totalMiles.toFixed(2)+" miles<br>"+
+
+"Estimated Fuel Needed: "+gallons.toFixed(2)+" gallons<br>"+
+
+"Total Fuel Cost: $"+totalCost.toFixed(2)+"<br>"+
+
+"Each Passenger Pays: $"+perPerson.toFixed(2);
+
+}
+
+function shareResult(id){
+
+let text = document.getElementById(id).innerText;
+
+if(navigator.share){
+navigator.share({
+title:"ExpenseSplit Result",
+text:text,
+url:window.location.href
+});
+}else{
+alert("Sharing not supported on this browser");
+}
+
+}
+
+</script>
+   <script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+
+    answer.style.display =
+      answer.style.display === 'block' ? 'none' : 'block';
+
+    question.classList.toggle('active');
+  });
+});
+</script>
+
+</body>
+</html>
