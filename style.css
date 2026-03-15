@@ -1183,3 +1183,18 @@ font-weight:600;
 background:#fafafa;
 }
 
+.tip-buttons{
+margin:10px 0;
+}
+
+.tip-buttons button{
+margin-right:8px;
+padding:6px 12px;
+cursor:pointer;
+}
+
+.result-note{
+font-size:14px;
+opacity:0.8;
+margin-top:10px;
+}
