@@ -158,8 +158,14 @@ If you want to track additional travel expenses such as hotels, meals, or activi
 
 <h2 class="section-title">Road Trip Gas Split Calculator</h2>
 
-<label>Total Trip Miles (One Way)</label>
-<input type="number" id="miles">
+<label>Total Trip Distance</label>
+<input type="number" id="distance" placeholder="Example: 300">
+
+<label>Distance Unit</label>
+<select id="distanceunit">
+<option value="miles">Miles</option>
+<option value="km">Kilometers</option>
+</select>
 
 <label>Trip Type</label>
 <select id="triptype">
@@ -167,11 +173,23 @@ If you want to track additional travel expenses such as hotels, meals, or activi
 <option value="2">Round Trip</option>
 </select>
 
-<label>Fuel Price (per gallon)</label>
-<input type="number" id="fuelprice">
+<label>Fuel Price</label>
+<input type="number" id="fuelprice" placeholder="Example: 3.50">
 
-<label>Vehicle Fuel Efficiency (MPG)</label>
-<input type="number" id="mpg">
+<label>Fuel Unit</label>
+<select id="fuelunit">
+<option value="gallon">Per Gallon</option>
+<option value="liter">Per Liter</option>
+</select>
+
+<label>Vehicle Fuel Efficiency</label>
+<input type="number" id="efficiency" placeholder="Example: 30">
+
+<label>Efficiency Unit</label>
+<select id="efficiencyunit">
+<option value="mpg">Miles per Gallon (MPG)</option>
+<option value="kmpl">Kilometers per Liter (km/L)</option>
+</select>
 
 <label>Number of Passengers</label>
 <input type="number" id="passengers">
@@ -182,6 +200,9 @@ If you want to track additional travel expenses such as hotels, meals, or activi
 
 <button class="primary-btn small-btn" onclick="shareResult('result')">Share</button>
 
+<p class="micro-text">
+Supports miles, kilometers, gallons, and liters for international travelers.
+</p>
 </div>
 </section>
 
@@ -393,6 +414,24 @@ When multiple shared expenses occur during a trip, combining tools can help mana
 
 </p>
 
+<h2>Other Ways to Split Road Trip Costs</h2>
+
+<p>
+Fuel is only one part of a road trip budget. Travelers often split other costs as well including food, accommodation, and activities.
+</p>
+
+<ul>
+<li>Gas or fuel expenses</li>
+<li>Tolls and parking fees</li>
+<li>Hotel or Airbnb stays</li>
+<li>Restaurant bills</li>
+<li>Travel activities</li>
+</ul>
+
+<p>
+If you want to track all shared expenses during a trip, you can use our 
+<a href="trip.html">Trip Expense Calculator</a> to manage the entire group budget.
+</p>
 
 <h2>Benefits of Splitting Gas Costs Fairly</h2>
 
@@ -538,29 +577,59 @@ Yes. All ExpenseSplit calculators are completely free and can be used directly i
 
 function calculateFuel(){
 
-let miles = parseFloat(document.getElementById("miles").value)||0;
-let triptype = parseFloat(document.getElementById("triptype").value)||1;
-let fuelprice = parseFloat(document.getElementById("fuelprice").value)||0;
-let mpg = parseFloat(document.getElementById("mpg").value)||1;
+let distance = parseFloat(document.getElementById("distance").value)||0;
+let distanceUnit = document.getElementById("distanceunit").value;
+
+let efficiency = parseFloat(document.getElementById("efficiency").value)||1;
+let efficiencyUnit = document.getElementById("efficiencyunit").value;
+
+let fuelPrice = parseFloat(document.getElementById("fuelprice").value)||0;
+let fuelUnit = document.getElementById("fuelunit").value;
+
 let passengers = parseInt(document.getElementById("passengers").value)||1;
 
-/* adjust miles for round trip */
+let miles = distance;
+let mpg = efficiency;
 
-let totalMiles = miles * triptype;
+/* Convert KM to Miles */
 
-/* fuel calculation */
+if(distanceUnit === "km"){
+miles = distance * 0.621371;
+}
 
-let gallons = totalMiles / mpg;
-let totalCost = gallons * fuelprice;
+/* Convert km/L to MPG */
+
+if(efficiencyUnit === "kmpl"){
+mpg = efficiency * 2.35215;
+}
+
+/* Calculate gallons needed */
+
+let gallons = miles / mpg;
+
+/* Convert price per liter to gallon */
+
+if(fuelUnit === "liter"){
+fuelPrice = fuelPrice * 3.78541;
+}
+
+/* Total fuel cost */
+
+let totalCost = gallons * fuelPrice;
+
+/* Per person */
+
 let perPerson = totalCost / passengers;
+
+/* Convert gallons to liters for display */
+
+let liters = gallons * 3.78541;
 
 document.getElementById("result").innerHTML =
 
 "<strong>Fuel Cost Breakdown</strong><br><br>"+
 
-"Total Trip Distance: "+totalMiles.toFixed(2)+" miles<br>"+
-
-"Estimated Fuel Needed: "+gallons.toFixed(2)+" gallons<br>"+
+"Estimated Fuel Needed: "+gallons.toFixed(2)+" gallons ("+liters.toFixed(2)+" liters)<br>"+
 
 "Total Fuel Cost: $"+totalCost.toFixed(2)+"<br>"+
 
