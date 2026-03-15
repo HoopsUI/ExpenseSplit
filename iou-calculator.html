@@ -167,8 +167,6 @@ The calculator will determine who should reimburse whom.
 
 <div id="iouResult" class="result-box"></div>
 
-<button class="primary-btn small-btn" onclick="copyResult('iouResult')">Copy Result</button>
-
 <button class="primary-btn small-btn" onclick="shareResult('iouResult')">Share</button>
 
 </div>
@@ -608,6 +606,27 @@ if(creditor.amount<=0) creditors.shift();
 }
 
 document.getElementById("iouResult").innerHTML="<strong>Payment Summary</strong><br><br>"+result;
+
+}
+  /* SHARE RESULT */
+
+function shareResult(id){
+
+let text = document.getElementById(id).innerText;
+
+if(navigator.share){
+
+navigator.share({
+title: "ExpenseSplit Result",
+text: text,
+url: window.location.href
+});
+
+}else{
+
+alert("Sharing is not supported on this browser");
+
+}
 
 }
 
