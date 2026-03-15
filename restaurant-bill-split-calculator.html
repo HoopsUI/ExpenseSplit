@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Restaurant Bill Split Calculator (With Tip & Tax) – Split Dinner Bill Per Person</title>
+
+<meta name="description" content="Free restaurant bill split calculator with tip and tax. Easily split dinner bills, calculate cost per person, and divide restaurant expenses between friends fairly.">
+
+<link rel="canonical" href="https://expensessplit.com/restaurant-bill-split-calculator.html">
+
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"WebPage",
+"name":"Restaurant Bill Split Calculator",
+"description":"Split restaurant bills between friends including tip and tax.",
+"url":"https://expensessplit.com/restaurant-bill-split-calculator.html",
+"mainEntity":{
+"@type":"WebApplication",
+"name":"Restaurant Bill Split Calculator",
+"applicationCategory":"FinanceApplication",
+"operatingSystem":"Web"
+}
+}
+</script>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="container nav">
+
+<div class="logo">
+<a href="/">ExpenseSplit</a>
+</div>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav class="nav-menu" id="navMenu">
+
+<a href="/">Home</a>
+
+<div class="dropdown">
+<button class="dropbtn">Calculators ▾</button>
+
+<div class="dropdown-content">
+
+<a href="friends.html">🍽 Friends Expense Calculator</a>
+<a href="trip.html">✈️ Trip Expense Calculator</a>
+<a href="roommates.html">🏠 Roommate Expense Calculator</a>
+<a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+<a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+
+</div>
+</div>
+
+<div class="dropdown">
+
+<button class="dropbtn">Guides ▾</button>
+
+<div class="dropdown-content">
+
+<a href="split-bills-with-friends.html">Split Bills With Friends</a>
+<a href="how-to-split-expenses.html">How to Split Expenses</a>
+<a href="group-expense-management.html">Group Expense Management</a>
+<a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
+<a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+
+</div>
+
+</div>
+
+<a href="faq.html">FAQ</a>
+
+</nav>
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container hero-content">
+
+<h1>Restaurant Bill Split Calculator (With Tip & Tax)</h1>
+
+<p class="subtitle">
+Easily split restaurant bills between friends. Calculate tip, tax, and dinner cost per person instantly.
+</p>
+
+<a href="#calculator" class="primary-btn">Use Free Calculator</a>
+
+</div>
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<p class="subtitle">
+
+Splitting a restaurant bill with friends should be simple, but it often becomes confusing when taxes, tips, and different meal prices are involved. Whether you're dining out with friends, coworkers, or family, calculating everyone's share manually can be frustrating.
+
+</p>
+
+<p>
+
+Our <strong>Restaurant Bill Split Calculator (with Tip & Tax)</strong> makes splitting dinner bills quick and fair. Enter the total bill amount, tip percentage, tax, and number of people. The calculator will instantly determine the <strong>dinner cost per person</strong> and show a clear breakdown of how much each person should pay.
+
+</p>
+
+<p>
+
+If you're tracking multiple shared expenses like drinks, transportation, or activities, you can also use our <a href="friends.html">Friends Expense Calculator</a> to manage group expenses and calculate who owes whom.
+
+</p>
+
+<h2>What This Restaurant Bill Split Calculator Can Do</h2>
+
+<ul class="calculator-features">
+<li>Split restaurant bills evenly between friends</li>
+<li>Calculate tip percentage automatically</li>
+<li>Add tax to the total bill</li>
+<li>Calculate dinner cost per person instantly</li>
+<li>Adjust for uneven orders or extra items</li>
+<li>Works for restaurants, cafes, and group dinners</li>
+
+</ul>
+
+</div>
+</section>
+
+<section class="section light" id="calculator">
+
+<div class="container">
+
+<h2 class="section-title">Split Restaurant Bill Calculator</h2>
+
+<label>Total Bill Amount</label>
+<input type="number" id="bill">
+
+<label>Tax (%)</label>
+<input type="number" id="tax">
+
+<label>Tip (%)</label>
+<input type="number" id="tip">
+
+<label>Number of People</label>
+<input type="number" id="people">
+
+<label>Extra Items (Optional uneven cost)</label>
+<input type="number" id="extra">
+
+<button class="primary-btn" onclick="calculateRestaurant()">Calculate Split</button>
+
+<div id="result" class="result-box"></div>
+
+<button class="primary-btn small-btn" onclick="shareResult('result')">Share</button>
+
+</div>
+</section>
+
+<section class="section seo-content">
+
+<h2>How to Split a Restaurant Bill Fairly</h2>
+
+<p>
+
+Dining out with friends is one of the most common situations where people need to split expenses. However, restaurant bills usually include more than just the food cost. Taxes, service charges, and tips can make it difficult to calculate how much each person should pay.
+
+</p>
+
+<p>
+
+Many people search online for tools like a <strong>split restaurant bill calculator</strong> or a <strong>split dinner bill calculator</strong> because doing the math manually can lead to confusion. Our calculator solves this problem by automatically calculating the final total and dividing it between everyone at the table.
+
+</p>
+
+<p>
+
+Instead of using your phone calculator or guessing the numbers, the tool instantly shows the exact <strong>cost per person for dinner</strong>.
+
+</p>
+
+<h2>What Is a Restaurant Bill Split Calculator?</h2>
+
+<p>
+
+A <strong>restaurant bill split calculator</strong> is a simple tool designed to divide a dinner bill between multiple people. It takes into account the total bill amount, taxes, tips, and number of diners to calculate each person's share.
+
+</p>
+
+<p>
+
+People often search for solutions like:
+
+</p>
+
+<ul>
+
+<li>split restaurant bill calculator</li>
+<li>bill split with tip calculator</li>
+<li>split dinner bill calculator</li>
+<li>dinner cost per person calculator</li>
+
+</ul>
+
+<p>
+
+Our tool combines all these functions in one place so you can quickly determine how much each person should contribute.
+
+</p>
+
+<h2>How the Restaurant Bill Split Calculator Works</h2>
+
+<p>
+
+The calculator follows a simple process to determine the cost per person.
+
+</p>
+
+<ul>
+
+<li>Enter the total restaurant bill.</li>
+<li>Add the tax percentage.</li>
+<li>Include the tip percentage.</li>
+<li>Enter the number of people splitting the bill.</li>
+</ul>
+
+<p>
+
+The calculator adds the tax and tip to the original bill and then divides the final total evenly between everyone.
+
+</p>
+
+<p>
+
+If some diners ordered more expensive meals, you can also include extra costs to adjust the final split.
+
+</p>
+
+<p>
+
+For more complex group spending situations, you may want to use the <a href="iou-calculator.html">Who Owes Whom Calculator</a> to track multiple payments between friends.
+
+</p>
+
+<h2>Example Scenario: Splitting a Dinner Bill</h2>
+
+<p>
+
+Imagine four friends go to dinner at a restaurant.
+
+</p>
+
+<ul>
+
+<li>Total bill: $120</li>
+<li>Tax: 8%</li>
+<li>Tip: 15%</li>
+<li>Number of people: 4</li>
+
+</ul>
+
+<p>
+
+The tax adds $9.60 and the tip adds $18 to the bill.
+
+</p>
+
+<p>
+
+The final total becomes $147.60.
+
+</p>
+
+<p>
+
+Using the <strong>split dinner bill calculator</strong>, each person would pay <strong>$36.90</strong>.
+
+</p>
+
+<p>
+
+Without a calculator, most people would have to manually calculate percentages and divide totals, which often leads to rounding errors.
+
+</p>
+
+<h2>When Should You Use a Dinner Cost Per Person Calculator?</h2>
+
+<p>
+
+A dinner cost per person calculator is useful in many everyday situations.
+
+</p>
+
+<ul>
+
+<li>Dining out with friends</li>
+<li>Group dinners at restaurants</li>
+<li>Birthday celebrations</li>
+<li>Work lunches or office outings</li>
+<li>Family dinners at restaurants</li>
+
+</ul>
+
+<p>
+
+If you are also planning trips with friends, you might find our <a href="trip.html">Trip Expense Calculator</a> helpful for managing travel costs like accommodation, food, and activities.
+
+</p>
+
+<h2>Equal vs Unequal Restaurant Bill Splits</h2>
+
+<p>
+
+Most groups choose to split the restaurant bill equally. However, there are times when an uneven split is more fair.
+
+</p>
+
+<p>
+
+For example:
+
+</p>
+
+<ul>
+
+<li>Someone ordered drinks while others did not</li>
+<li>One person ordered a significantly more expensive meal</li>
+<li>Some people shared dishes</li>
+
+</ul>
+
+<p>
+
+In these cases, using an uneven bill split method may be more accurate. You can learn more about this approach in our <a href="uneven-bill-split-calculator.html">Uneven Bill Split Guide</a>.
+
+</p>
+
+<h2>Benefits of Using a Bill Split Calculator</h2>
+
+<ul>
+
+<li>Eliminates confusion about restaurant payments</li>
+<li>Calculates tax and tip automatically</li>
+<li>Ensures fair cost distribution</li>
+<li>Saves time compared to manual calculations</li>
+<li>Works instantly on any device</li>
+
+</ul>
+
+<p>
+
+If you're frequently sharing expenses with roommates or housemates, the <a href="roommates.html">Roommate Expense Calculator</a> can help split rent, utilities, and groceries easily.
+
+</p>
+
+<h2>Tips for Splitting Bills in Groups</h2>
+
+<p>
+
+Splitting expenses with friends can sometimes create awkward situations if the calculations are unclear. Using a transparent system makes things easier for everyone involved.
+
+</p>
+
+<p>
+
+Some helpful tips include:
+
+</p>
+
+<ul>
+
+<li>Decide how the bill will be split before ordering</li>
+<li>Use a calculator to avoid mistakes</li>
+<li>Include tax and tip in the total</li>
+<li>Adjust for uneven items if necessary</li>
+
+</ul>
+
+<p>
+
+For more strategies on managing shared costs, check out our guide on <a href="group-expense-management.html">Group Expense Management</a>.
+
+</p>
+
+</section>
+
+<section class="section faq-section">
+
+<div class="container">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+
+<div class="faq-question">How do you split a restaurant bill with tip?</div>
+
+<div class="faq-answer">
+
+Add the tip percentage to the total bill and divide the final amount by the number of people. Our restaurant bill split calculator automatically includes tip and tax to calculate the correct amount per person.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">What is the easiest way to split a dinner bill?</div>
+
+<div class="faq-answer">
+
+The easiest way is to use a dinner bill split calculator. Enter the bill amount, tax, tip, and number of diners to instantly calculate the cost per person.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Should restaurant bills be split evenly?</div>
+
+<div class="faq-answer">
+
+Many groups split bills evenly, but if some people order significantly more food or drinks, an uneven split may be more fair.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Does this calculator include tax and tip?</div>
+
+<div class="faq-answer">
+
+Yes. The calculator automatically includes tax percentage and tip percentage when calculating the final bill split.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Is this restaurant bill split calculator free?</div>
+
+<div class="faq-answer">
+
+Yes. All calculators on ExpenseSplit are completely free and work instantly in your browser.
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<footer class="footer">
+
+<div class="container footer-content">
+
+<div>© 2026 ExpenseSplit</div>
+
+<div class="footer-links">
+
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="contact.html">Contact & Conditions</a>
+<a href="terms.html">Terms</a>
+
+</div>
+
+</div>
+
+</footer>
+
+<script>
+
+function calculateRestaurant(){
+
+let bill=parseFloat(document.getElementById("bill").value)||0;
+let tax=parseFloat(document.getElementById("tax").value)||0;
+let tip=parseFloat(document.getElementById("tip").value)||0;
+let people=parseInt(document.getElementById("people").value)||1;
+let extra=parseFloat(document.getElementById("extra").value)||0;
+
+let taxAmount=bill*(tax/100);
+let tipAmount=bill*(tip/100);
+
+let total=bill+taxAmount+tipAmount+extra;
+
+let perPerson=total/people;
+
+document.getElementById("result").innerHTML=
+
+"<strong>Bill Breakdown</strong><br><br>"+
+"Original Bill: $"+bill.toFixed(2)+"<br>"+
+"Tax: $"+taxAmount.toFixed(2)+"<br>"+
+"Tip: $"+tipAmount.toFixed(2)+"<br>"+
+"Total Bill: $"+total.toFixed(2)+"<br>"+
+"<strong>Cost Per Person: $"+perPerson.toFixed(2)+"</strong>";
+
+}
+
+function shareResult(id){
+
+let text=document.getElementById(id).innerText;
+
+if(navigator.share){
+
+navigator.share({
+title:"ExpenseSplit Result",
+text:text,
+url:window.location.href
+});
+
+}else{
+
+alert("Sharing is not supported on this browser");
+
+}
+
+}
+
+</script>
+
+<script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+
+    answer.style.display =
+      answer.style.display === 'block' ? 'none' : 'block';
+
+    question.classList.toggle('active');
+  });
+});
+</script>
+
+</body>
+</html>
