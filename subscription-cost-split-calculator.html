@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Subscription Cost Split Calculator – Split Netflix, Spotify & Shared Subscriptions</title>
+
+<meta name="description" content="Split Netflix, Spotify, YouTube Premium or any shared subscription cost easily. Use our subscription cost split calculator to calculate how much each person should pay.">
+
+<link rel="canonical" href="https://expensessplit.com/subscription-cost-split-calculator.html">
+
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+
+<!-- STRUCTURED DATA -->
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"WebPage",
+"name":"Subscription Cost Split Calculator",
+"description":"Split shared subscription costs like Netflix, Spotify, and YouTube Premium between friends or family.",
+"url":"https://expensessplit.com/subscription-cost-split-calculator.html",
+"mainEntity":{
+"@type":"WebApplication",
+"name":"Subscription Cost Split Calculator",
+"applicationCategory":"FinanceApplication",
+"operatingSystem":"Web"
+}
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+<div class="container nav">
+
+<div class="logo">
+<a href="/">ExpenseSplit</a>
+</div>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav class="nav-menu" id="navMenu">
+
+<a href="/">Home</a>
+
+<div class="dropdown">
+<button class="dropbtn">Calculators ▾</button>
+
+<div class="dropdown-content">
+
+<a href="friends.html">🍽 Friends Expense Calculator</a>
+
+<a href="trip.html">✈️ Trip Expense Calculator</a>
+
+<a href="roommates.html">🏠 Roommate Expense Calculator</a>
+
+<a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+
+<a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+
+</div>
+</div>
+
+<div class="dropdown">
+
+<button class="dropbtn">Guides ▾</button>
+
+<div class="dropdown-content">
+
+<a href="split-bills-with-friends.html">Split Bills With Friends</a>
+
+<a href="how-to-split-expenses.html">How to Split Expenses</a>
+
+<a href="group-expense-management.html">Group Expense Management</a>
+
+<a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
+
+<a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+
+</div>
+</div>
+
+<a href="faq.html">FAQ</a>
+
+</nav>
+</div>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="container hero-content">
+
+<h1>Subscription Cost Split Calculator</h1>
+
+<p class="subtitle">
+Split Netflix, Spotify, YouTube Premium or any shared subscription cost instantly. Calculate how much each person should pay for a shared plan.
+</p>
+
+<a href="#calculator" class="primary-btn">Use Free Calculator</a>
+
+</div>
+</section>
+
+
+<!-- INTRO -->
+
+<section class="section">
+
+<div class="container">
+
+<p class="subtitle">
+
+Shared subscription services are becoming extremely common. Many families, roommates, and groups of friends share accounts for services like <strong>Netflix, Spotify, YouTube Premium, Disney+, and Apple Music</strong>. While these family plans are designed to be shared, calculating how much each person should contribute can sometimes be confusing.
+
+</p>
+
+<p>
+
+Our <strong>Subscription Cost Split Calculator</strong> makes it simple to divide the total cost of a shared subscription between multiple users. Instead of manually calculating payments every month, you can instantly determine the fair price per person using this free tool.
+
+</p>
+
+<p>
+
+Simply enter the total monthly subscription cost, the number of people sharing the account, and any additional charges such as taxes. The calculator will instantly show how much each person should pay.
+
+</p>
+
+<p>
+
+If you're splitting other expenses with friends or roommates, you may also want to try our 
+<a href="friends.html">Friends Expense Calculator</a> which helps track shared expenses and determine who owes whom.
+
+</p>
+
+<ul class="calculator-features">
+
+<li>Split Netflix subscription cost between friends</li>
+<li>Calculate shared Spotify family plan cost</li>
+<li>Divide YouTube Premium family plan payments</li>
+<li>Instant cost per person calculation</li>
+<li>Works for any shared subscription service</li>
+
+</ul>
+
+</div>
+</section>
+
+
+<!-- CALCULATOR -->
+
+<section class="section light" id="calculator">
+
+<div class="container">
+
+<h2 class="section-title">Shared Subscription Cost Calculator</h2>
+
+<label>Subscription Name</label>
+<input type="text" id="service" placeholder="Example: Netflix">
+
+<label>Select Popular Subscription (Optional)</label>
+
+<select id="preset" onchange="loadPreset()">
+
+<option value="">Choose a service</option>
+
+<option value="Netflix|22">Netflix Family Plan ($22)</option>
+
+<option value="Spotify|16">Spotify Family Plan ($16)</option>
+
+<option value="YouTube Premium|23">YouTube Premium Family ($23)</option>
+
+<option value="Disney+|14">Disney+ Premium ($14)</option>
+
+<option value="Apple Music|17">Apple Music Family ($17)</option>
+
+</select>
+
+<label>Total Monthly Subscription Cost</label>
+<input type="number" id="cost">
+
+<label>Additional Fees or Taxes</label>
+<input type="number" id="fees">
+
+<label>Number of People Sharing</label>
+<input type="number" id="people">
+
+<label>Who Paid for the Subscription? (Optional)</label>
+
+<input type="text" id="payer" placeholder="Example: Alex">
+
+<button class="primary-btn" onclick="calculateSubscription()">Calculate Split</button>
+
+<div id="result" class="result-box"></div>
+
+<button class="primary-btn small-btn" onclick="shareResult('result')">Share</button>
+
+</div>
+
+</section>
+
+
+<!-- SEO CONTENT -->
+
+<section class="section seo-content">
+
+<h2>How to Split Subscription Costs Between Friends</h2>
+
+<p>
+
+Streaming services and digital subscriptions are designed for convenience, but they often become shared expenses between multiple people. Family plans allow several users to access the same account, making it much more affordable when the cost is divided between everyone using the service.
+
+</p>
+
+<p>
+
+Many people search for solutions like <strong>"split Netflix cost calculator"</strong> or <strong>"shared subscription calculator"</strong> because they want to make sure everyone contributes fairly. Instead of estimating costs or using spreadsheets, a simple calculator can instantly determine the correct amount each person should pay.
+
+</p>
+
+<p>
+
+Our <strong>subscription cost split calculator</strong> takes the total monthly price and divides it by the number of users sharing the account. This makes it easy for roommates, couples, or families to split subscription costs without confusion.
+
+</p>
+
+<p>
+
+If you're also sharing rent or household expenses, you may want to try our 
+<a href="roommates.html">Roommate Expense Calculator</a> which helps split rent, utilities, and shared bills.
+
+</p>
+
+<h2>Popular Shared Subscriptions People Split</h2>
+
+<p>
+Shared subscriptions are extremely common today. Many platforms offer family plans that allow several users to share a single account. Because of this, people frequently search for ways to calculate the cost per person.
+</p>
+
+<p>
+Some of the most common subscriptions people split include streaming services, music platforms, and premium online tools.
+</p>
+
+<ul>
+
+<li><strong>Netflix Family Plan</strong> – One of the most commonly shared streaming subscriptions.</li>
+
+<li><strong>Spotify Premium Family</strong> – Allows multiple music listeners to share one subscription.</li>
+
+<li><strong>YouTube Premium Family</strong> – Shared ad-free video streaming and YouTube Music.</li>
+
+<li><strong>Disney+</strong> – Frequently shared between friends or family members.</li>
+
+<li><strong>Apple Music Family Plan</strong> – Music streaming shared between several users.</li>
+
+<li><strong>Amazon Prime</strong> – Some families share Prime benefits and streaming access.</li>
+
+</ul>
+
+<p>
+Using a <strong>subscription cost split calculator</strong> makes it easy to divide these plans fairly between everyone using the account.
+</p>
+
+<p>
+If you frequently share other types of group expenses like meals or activities, our 
+<a href="split-bills-with-friends.html">guide on splitting bills with friends</a> explains several fair ways to divide costs.
+</p>
+
+<h2>Example Scenario: Splitting a Netflix Family Plan</h2>
+
+<p>
+
+Imagine a group of five friends sharing a Netflix family plan that costs $20 per month.
+
+</p>
+
+<ul>
+
+<li>Total monthly subscription: $20</li>
+<li>Number of users: 5</li>
+
+</ul>
+
+<p>
+
+Using a <strong>split Netflix cost calculator</strong>, the monthly payment per person would be $4.
+
+</p>
+
+<p>
+
+Instead of one person paying the full amount every month, each user contributes their share. This makes premium streaming services much more affordable.
+
+</p>
+
+<h2>Example Scenario: Splitting Spotify Premium</h2>
+
+<p>
+
+Spotify Premium family plans are another common example of shared subscriptions.
+
+</p>
+
+<ul>
+
+<li>Total Spotify subscription: $16</li>
+<li>Number of people sharing: 4</li>
+
+</ul>
+
+<p>
+
+Each person would pay $4 per month using a <strong>shared subscription calculator</strong>.
+
+</p>
+
+<p>
+
+Using a calculator helps ensure that everyone pays the same amount and avoids awkward payment discussions between friends.
+
+</p>
+
+<h2>When Should You Use a Subscription Cost Split Calculator?</h2>
+
+<p>
+
+A <strong>shared subscription calculator</strong> can be useful whenever multiple people share digital services or recurring monthly costs.
+
+</p>
+
+<p>
+
+Common situations where this tool is helpful include:
+
+</p>
+
+<ul>
+
+<li>Friends sharing Netflix or streaming services</li>
+<li>Roommates splitting Spotify family plans</li>
+<li>Families sharing YouTube Premium accounts</li>
+<li>Groups sharing productivity tools or software</li>
+<li>Online communities splitting subscription costs</li>
+
+</ul>
+
+<p>
+
+Instead of manually calculating payments each month, the calculator instantly determines how much each user should pay.
+
+</p>
+
+<h2>Benefits of Splitting Subscription Costs</h2>
+
+<ul>
+
+<li>Reduces monthly entertainment expenses</li>
+<li>Makes premium subscriptions more affordable</li>
+<li>Ensures fair payment between users</li>
+<li>Simplifies shared digital expenses</li>
+<li>Prevents confusion about who pays what</li>
+
+</ul>
+
+<p>
+
+Many people combine subscription splitting with other shared expenses such as meals, trips, or group purchases. If you're managing group spending, our 
+<a href="iou-calculator.html">Who Owes Whom Calculator</a> can help track payments between friends.
+
+</p>
+
+<h2>Managing Multiple Shared Expenses</h2>
+
+<p>
+
+Subscription costs are just one part of shared finances. Groups of friends often share many different expenses including travel, meals, and entertainment.
+
+</p>
+
+<p>
+
+If you are organizing a vacation or group activity, our 
+<a href="trip.html">Trip Expense Calculator</a> can help divide transportation, hotel, and activity costs between travelers.
+
+</p>
+
+<p>
+
+Learning how to divide costs fairly is an important part of financial planning. If you want to understand different methods for splitting bills, read our guide on 
+<a href="how-to-split-expenses.html">how to split expenses fairly</a>.
+
+</p>
+
+<p>
+
+You can also explore our complete guide on 
+<a href="group-expense-management.html">group expense management</a> to learn how friends and roommates manage shared finances effectively.
+
+</p>
+
+<h2>How to Calculate Shared Subscription Cost Per Person</h2>
+
+<p>
+Calculating the cost per person for a shared subscription is actually very simple. You only need three pieces of information:
+</p>
+
+<ul>
+
+<li>Total monthly subscription price</li>
+<li>Any additional taxes or service fees</li>
+<li>Number of people sharing the subscription</li>
+
+</ul>
+
+<p>
+The basic formula used by a <strong>shared subscription calculator</strong> is:
+</p>
+
+<p><strong>Total Subscription Cost ÷ Number of Users = Cost Per Person</strong></p>
+
+<p>
+For example, imagine a group of six friends sharing a YouTube Premium family plan that costs $23 per month.
+</p>
+
+<ul>
+
+<li>Total monthly subscription: $23</li>
+<li>People sharing: 6</li>
+
+</ul>
+
+<p>
+Using a <strong>split subscription cost calculator</strong>, each user would pay approximately <strong>$3.83 per month</strong>.
+</p>
+
+<p>
+This small monthly payment allows everyone in the group to enjoy premium streaming services at a much lower cost.
+</p>
+
+<p>
+If your group shares multiple expenses like trips, meals, and entertainment, you may also want to use our 
+<a href="uneven-bill-split-calculator.html">Uneven Bill Split Calculator</a> which allows you to divide costs in different proportions.
+</p>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section faq-section">
+
+<div class="container">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+
+<div class="faq-question">How do you split a Netflix subscription between friends?</div>
+
+<div class="faq-answer">
+
+Enter the total monthly Netflix subscription cost and the number of people sharing the account into the calculator. It will instantly show how much each person should pay.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Is it cheaper to share subscription services?</div>
+
+<div class="faq-answer">
+
+Yes. Family plans allow multiple users to share a single subscription. Splitting the cost between several people significantly reduces the monthly price per person.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Can roommates split streaming services?</div>
+
+<div class="faq-answer">
+
+Yes. Many roommates share subscriptions like Netflix, Spotify, or Disney+. Splitting the cost evenly ensures everyone pays a fair share.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">What is a shared subscription calculator?</div>
+
+<div class="faq-answer">
+
+A shared subscription calculator divides the total cost of a subscription by the number of users sharing the account to determine each person's payment.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Is this subscription cost split calculator free?</div>
+
+<div class="faq-answer">
+
+Yes. The calculator is completely free and works instantly in your browser without requiring any signup.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="container footer-content">
+
+<div>© 2026 ExpenseSplit</div>
+
+<div class="footer-links">
+
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="contact.html">Contact & Conditions</a>
+<a href="terms.html">Terms</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- CALCULATOR SCRIPT -->
+
+<script>
+
+function calculateSubscription(){
+
+let service = document.getElementById("service").value || "Subscription";
+
+let cost = parseFloat(document.getElementById("cost").value)||0;
+
+let fees = parseFloat(document.getElementById("fees").value)||0;
+
+let people = parseInt(document.getElementById("people").value)||1;
+
+let payer = document.getElementById("payer") ? document.getElementById("payer").value : "";
+
+let total = cost + fees;
+
+let perPerson = total / people;
+
+let yearlyPerPerson = perPerson * 12;
+
+let resultHTML =
+
+"<strong>"+service+" Cost Breakdown</strong><br><br>"+
+
+"Total Monthly Cost: $"+total.toFixed(2)+"<br>"+
+
+"People Sharing: "+people+"<br><br>"+
+
+"<strong>Each Person Pays</strong><br>"+
+
+"$"+perPerson.toFixed(2)+" per month<br>"+
+
+"$"+yearlyPerPerson.toFixed(2)+" per year";
+
+
+// If payer is entered calculate reimbursement
+
+if(payer && people > 1){
+
+let others = people - 1;
+
+let owed = perPerson * others;
+
+resultHTML += "<br><br><strong>"+payer+" should receive:</strong> $"+owed.toFixed(2)+" from others.";
+
+}
+
+
+// Payment breakdown list
+
+let list = "<br><br><strong>Payment Breakdown</strong><ul>";
+
+for(let i=1;i<=people;i++){
+
+list += "<li>User "+i+": $"+perPerson.toFixed(2)+"</li>";
+
+}
+
+list += "</ul>";
+
+resultHTML += list;
+
+document.getElementById("result").innerHTML = resultHTML;
+
+}
+
+
+// PRESET SERVICES
+
+function loadPreset(){
+
+let preset = document.getElementById("preset").value;
+
+if(preset){
+
+let data = preset.split("|");
+
+document.getElementById("service").value = data[0];
+
+document.getElementById("cost").value = data[1];
+
+}
+
+}
+
+
+// SHARE RESULT
+
+function shareResult(id){
+
+let text = document.getElementById(id).innerText;
+
+if(navigator.share){
+
+navigator.share({
+title:"ExpenseSplit Result",
+text:text,
+url:window.location.href
+});
+
+}else{
+
+alert("Sharing is not supported on this browser");
+
+}
+
+}
+
+</script>
+
+
+<script>
+
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+
+question.addEventListener('click', () => {
+
+const answer = question.nextElementSibling;
+
+answer.style.display =
+answer.style.display === 'block' ? 'none' : 'block';
+
+question.classList.toggle('active');
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
