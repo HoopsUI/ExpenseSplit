@@ -181,20 +181,28 @@ If you regularly share other household costs, you may also want to try our
 
 <h3>Itemized Grocery Split</h3>
 
+<label>People Sharing Groceries (comma separated)</label>
+<input type="text" id="peopleNames" placeholder="Example: Alex, Sam, Chris">
+
+<label>Who Paid For The Groceries?</label>
+<input type="text" id="payerName" placeholder="Example: Alex">
+
+<hr style="margin:25px 0;">
+
 <label>Item Name</label>
-<input type="text" id="itemName">
+<input type="text" id="itemName" placeholder="Milk, Eggs, Bread">
 
 <label>Item Price</label>
 <input type="number" id="itemPrice">
 
-<label>Number of People Sharing This Item</label>
-<input type="number" id="itemPeople">
+<label>Shared By</label>
+<input type="text" id="itemSharedBy" placeholder="Example: Alex, Sam">
 
-<button class="primary-btn small-btn" onclick="addItem()">Add Grocery Item</button>
+<button class="primary-btn small-btn" onclick="addItem()">Add Item</button>
 
 <div id="itemsList"></div>
 
-<button class="primary-btn" onclick="calculateItemized()">Calculate Itemized Split</button>
+<button class="primary-btn" onclick="calculateItemized()">Calculate Grocery Split</button>
 
 <div id="result" class="result-box"></div>
 
@@ -613,7 +621,7 @@ Yes. All tools on ExpenseSplit are completely free and work directly in your bro
 
 <script>
 
-let items = [];
+let groceryItems = [];
 
 function equalSplit(){
 
@@ -653,37 +661,79 @@ function addItem(){
 
 let name = document.getElementById("itemName").value;
 let price = parseFloat(document.getElementById("itemPrice").value)||0;
-let people = parseInt(document.getElementById("itemPeople").value)||1;
+let sharedBy = document.getElementById("itemSharedBy").value.split(",");
 
-items.push({name,price,people});
+sharedBy = sharedBy.map(p=>p.trim());
 
-document.getElementById("itemsList").innerHTML +=
-"<p>"+name+" - $" + price + " shared by " + people + " people</p>";
+groceryItems.push({name,price,sharedBy});
 
-}
+displayItems();
 
-
-
-function calculateItemized(){
-
-let totals = {};
-let resultHTML="<strong>Itemized Grocery Split</strong><br><br>";
-
-items.forEach(item=>{
-
-let share = item.price/item.people;
-
-for(let i=1;i<=item.people;i++){
-
-totals[i] = (totals[i]||0)+share;
+document.getElementById("itemName").value="";
+document.getElementById("itemPrice").value="";
+document.getElementById("itemSharedBy").value="";
 
 }
+
+function displayItems(){
+
+let list="";
+
+groceryItems.forEach((item,index)=>{
+
+list+=`<p>
+<strong>${item.name}</strong> - $${item.price} shared by ${item.sharedBy.join(", ")}
+<button onclick="removeItem(${index})">Remove</button>
+</p>`;
 
 });
 
-Object.keys(totals).forEach(person=>{
+document.getElementById("itemsList").innerHTML=list;
 
-resultHTML += "Person "+person+" pays: $" + totals[person].toFixed(2) + "<br>";
+}
+
+function removeItem(index){
+
+groceryItems.splice(index,1);
+
+displayItems();
+
+}
+
+function calculateItemized(){
+
+let people = document.getElementById("peopleNames").value.split(",").map(p=>p.trim());
+let payer = document.getElementById("payerName").value.trim();
+
+let balances = {};
+
+people.forEach(p=>{
+balances[p]=0;
+});
+
+groceryItems.forEach(item=>{
+
+let share = item.price / item.sharedBy.length;
+
+item.sharedBy.forEach(p=>{
+balances[p]+=share;
+});
+
+});
+
+let payerTotal = groceryItems.reduce((sum,item)=>sum+item.price,0);
+
+balances[payer]-=payerTotal;
+
+let resultHTML="<strong>Who Owes Who</strong><br><br>";
+
+Object.keys(balances).forEach(person=>{
+
+if(person!==payer){
+
+resultHTML+=person+" owes "+payer+" $"+balances[person].toFixed(2)+"<br>";
+
+}
 
 });
 
