@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wedding Cost Split Calculator – Split Wedding Expenses Between Families</title>
+
+<meta name="description" content="Use our wedding cost split calculator to divide wedding expenses between the bride's family, groom's family, and the couple. Plan a fair wedding budget easily.">
+
+<link rel="canonical" href="https://expensessplit.com/wedding-cost-split-calculator.html">
+
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"WebPage",
+"name":"Wedding Cost Split Calculator",
+"description":"Calculate how to split wedding costs between families and couples.",
+"url":"https://expensessplit.com/wedding-cost-split-calculator.html",
+"mainEntity":{
+"@type":"WebApplication",
+"name":"Wedding Expense Split Calculator",
+"applicationCategory":"FinanceApplication",
+"operatingSystem":"Web"
+}
+}
+</script>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="container nav">
+
+<div class="logo">
+<a href="/">ExpenseSplit</a>
+</div>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav class="nav-menu" id="navMenu">
+
+<a href="/">Home</a>
+
+<div class="dropdown">
+<button class="dropbtn">Calculators ▾</button>
+
+<div class="dropdown-content">
+
+<a href="friends.html">🍽 Friends Expense Calculator</a>
+<a href="trip.html">✈️ Trip Expense Calculator</a>
+<a href="roommates.html">🏠 Roommate Expense Calculator</a>
+<a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+<a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+
+</div>
+</div>
+
+<div class="dropdown">
+
+<button class="dropbtn">Guides ▾</button>
+
+<div class="dropdown-content">
+
+<a href="split-bills-with-friends.html">Split Bills With Friends</a>
+<a href="how-to-split-expenses.html">How to Split Expenses</a>
+<a href="group-expense-management.html">Group Expense Management</a>
+<a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
+<a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+
+</div>
+</div>
+
+<a href="faq.html">FAQ</a>
+
+</nav>
+</div>
+</header>
+
+
+<section class="hero">
+
+<div class="container hero-content">
+
+<h1>Wedding Cost Split Calculator</h1>
+
+<p class="subtitle">
+Plan a fair wedding budget by splitting expenses between the bride's family, groom's family, and the couple. Instantly calculate who pays what.
+</p>
+
+<a href="#calculator" class="primary-btn">Use Free Calculator</a>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="container">
+
+<p class="subtitle">
+
+Planning a wedding is exciting, but one of the biggest challenges couples face is deciding <strong>who pays for wedding expenses</strong>. Traditionally, wedding costs were divided between families in specific ways, but modern weddings often involve shared contributions from the bride’s family, groom’s family, and the couple themselves.
+
+</p>
+
+<p>
+
+Our <strong>Wedding Cost Split Calculator</strong> makes this process simple. Enter the main wedding costs like venue, catering, decorations, and number of guests. Then add how much each family or the couple plans to contribute. The calculator instantly shows how the wedding budget is split and whether any additional costs need to be covered.
+
+</p>
+
+<p>
+
+If you're planning other shared events or travel around the wedding, you might also want to try our 
+<a href="trip.html">Trip Expense Calculator</a> which helps groups split travel and accommodation expenses.
+
+</p>
+
+<ul class="calculator-features">
+
+<li>Split wedding expenses between families</li>
+<li>Calculate guest cost per person</li>
+<li>Plan a fair wedding budget</li>
+<li>See contribution differences instantly</li>
+<li>Works for traditional and modern weddings</li>
+
+</ul>
+
+</div>
+</section>
+
+
+<section class="section light" id="calculator">
+
+<div class="container">
+
+<h2 class="section-title">Wedding Expense Split Calculator</h2>
+
+<h3>Wedding Expenses</h3>
+
+<label>Venue Cost</label>
+<input type="number" id="venue">
+
+<label>Catering Cost</label>
+<input type="number" id="catering">
+
+<label>Decoration Cost</label>
+<input type="number" id="decor">
+
+<label>Photography / Videography</label>
+<input type="number" id="photo">
+
+<label>Entertainment / DJ</label>
+<input type="number" id="music">
+
+<label>Other Wedding Costs</label>
+<input type="number" id="misc">
+
+<label>Number of Guests</label>
+<input type="number" id="guests">
+
+<label>Split Method</label>
+
+<select id="splitMethod">
+
+<option value="custom">Custom Contributions</option>
+
+<option value="equal">Split Remaining Cost Equally</option>
+
+<option value="families">Split Between Both Families</option>
+
+</select>
+
+<h3>Family Contributions</h3>
+
+<label>Bride Family Contribution</label>
+<input type="number" id="brideFamily">
+
+<label>Groom Family Contribution</label>
+<input type="number" id="groomFamily">
+
+<label>Couple Contribution</label>
+<input type="number" id="couple">
+
+<button class="primary-btn" onclick="calculateWedding()">Calculate Wedding Split</button>
+
+<div id="result" class="result-box"></div>
+
+<button class="primary-btn small-btn" onclick="shareResult('result')">Share</button>
+
+</div>
+
+</section>
+
+
+<section class="section seo-content">
+
+<h2>How to Split Wedding Costs Between Families</h2>
+
+<p>
+
+Wedding planning involves dozens of expenses, from venue rental to catering and decorations. Because weddings are often family events, deciding <strong>how to split wedding costs</strong> can sometimes become confusing.
+
+</p>
+
+<p>
+
+In traditional weddings, the bride's family often covered most of the ceremony costs while the groom's family contributed to specific parts like rehearsal dinners. However, modern weddings are much more flexible, with couples and both families sharing the overall wedding budget.
+
+</p>
+
+<p>
+
+A <strong>wedding expense split calculator</strong> helps families understand the financial breakdown clearly. Instead of estimating costs manually or using spreadsheets, the calculator instantly calculates the total wedding cost and shows how contributions from each party compare.
+
+</p>
+
+<p>
+If you're managing group payments for pre-wedding events like bachelor parties or dinners, you can also use our 
+<a href="friends.html">Friends Expense Calculator</a>.
+</p>
+
+<h2>Typical Wedding Expenses to Include in a Budget</h2>
+
+<p>
+
+When using a <strong>wedding budget calculator</strong>, it's important to include all major wedding expenses to get an accurate total. Most weddings include several large cost categories.
+
+</p>
+
+<ul>
+
+<li>Wedding venue rental</li>
+<li>Catering and food services</li>
+<li>Decorations and floral arrangements</li>
+<li>Photography and videography</li>
+<li>Wedding attire</li>
+<li>Entertainment and music</li>
+
+</ul>
+
+<p>
+
+Our calculator focuses on the most common wedding expenses such as venue, catering, and decorations. These usually represent the largest portion of the wedding budget.
+
+</p>
+
+<h2>How Wedding Expenses Are Traditionally Split</h2>
+
+<p>
+Although modern weddings are more flexible, traditional wedding etiquette often divided expenses between the bride's family and groom's family in specific ways.
+</p>
+
+<p>
+These traditional guidelines are still useful for couples who want a starting point for their wedding budget planning.
+</p>
+
+<ul>
+
+<li><strong>Bride's family</strong> – ceremony, reception, decorations, catering</li>
+<li><strong>Groom's family</strong> – rehearsal dinner and some travel expenses</li>
+<li><strong>The couple</strong> – honeymoon, rings, and personal expenses</li>
+
+</ul>
+
+<p>
+However, modern couples often choose a more balanced approach where both families and the couple share the costs equally or based on income.
+</p>
+
+<p>
+If your wedding includes shared travel or group accommodations for guests, you can also use our 
+<a href="roommates.html">Roommate Expense Calculator</a> to split lodging costs between friends or family members.
+</p>
+
+
+<h2>Wedding Budget Formula Used by the Calculator</h2>
+
+<p>
+Our <strong>wedding budget split calculator</strong> uses a simple formula to determine the total wedding cost and each party's contribution.
+</p>
+
+<p>
+The calculator first adds together the main wedding expenses entered by the user.
+</p>
+
+<ul>
+
+<li>Venue cost</li>
+<li>Catering cost</li>
+<li>Decoration cost</li>
+
+</ul>
+
+<p>
+These values create the total wedding budget.
+</p>
+
+<p>
+Next, the calculator compares that total with the contributions entered for the bride's family, groom's family, and the couple. If the total contributions are lower than the total wedding cost, the calculator will show the remaining amount that still needs to be covered.
+</p>
+
+<p>
+It also calculates the <strong>wedding cost per guest</strong>, which is a useful number when planning guest lists and catering expenses.
+</p>
+
+
+<h2>Example Scenario: Splitting Wedding Costs</h2>
+
+<p>
+
+Imagine a wedding with the following expenses:
+
+</p>
+
+<ul>
+
+<li>Venue: $10,000</li>
+<li>Catering: $8,000</li>
+<li>Decorations: $2,000</li>
+<li>Guests: 120</li>
+
+</ul>
+
+<p>
+
+The total wedding cost becomes $20,000.
+
+</p>
+
+<p>
+
+Now imagine the contributions are split as follows:
+
+</p>
+
+<ul>
+
+<li>Bride's family contributes $8,000</li>
+<li>Groom's family contributes $7,000</li>
+<li>The couple contributes $3,000</li>
+
+</ul>
+
+<p>
+
+The calculator will instantly show the remaining balance that still needs to be covered and how much each guest effectively costs within the total wedding budget.
+
+</p>
+
+<p>
+
+For accommodation during destination weddings, you may also want to try our 
+<a href="roommates.html">Roommate Expense Calculator</a> to split shared hotel or rental costs.
+
+</p>
+
+<h2>Why Wedding Budget Planning Is Important</h2>
+
+<p>
+
+Weddings can quickly become expensive. Without careful planning, costs can exceed expectations and create unnecessary stress for couples and families.
+
+</p>
+
+<p>
+
+Using a <strong>wedding budget split calculator</strong> helps couples plan their event responsibly by clearly understanding how much each party contributes.
+
+</p>
+
+<p>
+
+Benefits of using a wedding cost calculator include:
+
+</p>
+
+<ul>
+
+<li>Clear financial transparency between families</li>
+<li>Better wedding budget planning</li>
+<li>Reduced financial misunderstandings</li>
+<li>Faster cost calculations</li>
+<li>Easy guest cost estimates</li>
+
+</ul>
+
+<p>
+
+If you are also organizing group dinners, rehearsal events, or wedding travel, you can use our 
+<a href="iou-calculator.html">Who Owes Whom Calculator</a> to track shared payments between guests.
+
+</p>
+
+<h2>How Guest Count Affects Wedding Costs</h2>
+
+<p>
+
+One of the biggest factors affecting the total wedding budget is the number of guests attending the event. Catering costs, seating arrangements, invitations, and venue size are often directly tied to guest count.
+
+</p>
+
+<p>
+
+By calculating the <strong>wedding cost per guest</strong>, couples can better understand how expanding or reducing the guest list affects their total budget.
+
+</p>
+
+<p>
+
+For example, if a wedding costs $20,000 with 100 guests, the average cost per guest is $200. Increasing the guest list to 150 people could raise the total cost significantly due to additional catering and seating expenses.
+
+</p>
+
+<p>
+
+Our wedding calculator automatically estimates this cost per guest to help couples make smarter budgeting decisions.
+
+</p>
+
+<h2>Planning Destination Weddings and Shared Travel</h2>
+
+<p>
+
+Destination weddings often involve additional shared costs such as group travel, accommodations, and activities. Guests may need to split hotel rooms, transportation, or excursion expenses during the wedding trip.
+
+</p>
+
+<p>
+
+To manage these situations effectively, couples and guests can also use our 
+<a href="uneven-bill-split-calculator.html">Uneven Bill Split Calculator</a> which allows different people to contribute different amounts.
+
+</p>
+
+<p>
+
+If you're new to managing shared expenses for large groups, you may also find this helpful guide:
+<a href="group-expense-management.html">Group Expense Management</a>.
+
+</p>
+
+<h2>Tips for Reducing Wedding Costs</h2>
+
+<p>
+Many couples look for ways to reduce wedding costs without sacrificing the overall experience. With careful planning, it's possible to significantly lower expenses while still creating a memorable event.
+</p>
+
+<p>
+Here are a few strategies that couples commonly use:
+</p>
+
+<ul>
+
+<li>Reduce the guest list to lower catering costs</li>
+<li>Choose off-season wedding dates</li>
+<li>Use smaller venues or outdoor locations</li>
+<li>Limit expensive decorations</li>
+<li>Host smaller rehearsal dinners</li>
+
+</ul>
+
+<p>
+Using a <strong>wedding budget calculator</strong> helps couples experiment with different budget scenarios and find the most affordable plan.
+</p>
+
+
+<h2>When Should You Use a Wedding Cost Split Calculator?</h2>
+
+<p>
+A <strong>wedding expense split calculator</strong> can be useful at several stages during the wedding planning process.
+</p>
+
+<ul>
+
+<li>When families are deciding how much to contribute</li>
+<li>When planning the total wedding budget</li>
+<li>When adjusting the guest list</li>
+<li>When comparing venue and catering costs</li>
+<li>When planning destination weddings</li>
+
+</ul>
+
+<p>
+For other shared wedding expenses such as group dinners, rehearsal parties, or travel costs, you can also try our 
+<a href="friends.html">Friends Expense Calculator</a>.
+</p>
+
+</section>
+
+
+<section class="section faq-section">
+
+<div class="container">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+
+<div class="faq-question">How do you split wedding expenses between families?</div>
+
+<div class="faq-answer">
+
+Wedding expenses can be divided between the bride's family, groom's family, and the couple depending on the agreement between families. A wedding cost split calculator helps determine each party's share based on total wedding expenses and contributions.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Who traditionally pays for wedding costs?</div>
+
+<div class="faq-answer">
+
+Traditionally, the bride's family paid for the ceremony and reception while the groom's family covered rehearsal dinners and certain other expenses. Modern weddings often involve shared contributions between families and the couple.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">What is the average cost per guest for a wedding?</div>
+
+<div class="faq-answer">
+
+The average wedding cost per guest varies depending on location and venue. Many weddings range between $100 and $300 per guest when including food, venue, and decorations.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Is this wedding calculator free to use?</div>
+
+<div class="faq-answer">
+
+Yes. The Wedding Expense Split Calculator on ExpenseSplit is completely free and works instantly in your browser without requiring any account or signup.
+
+</div>
+
+</div>
+
+<div class="faq-item">
+
+<div class="faq-question">Can this tool help plan a destination wedding?</div>
+
+<div class="faq-answer">
+
+Yes. While it focuses on wedding expenses, you can combine it with other ExpenseSplit tools to manage travel, accommodation, and group activities for destination weddings.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer class="footer">
+
+<div class="container footer-content">
+
+<div>© 2026 ExpenseSplit</div>
+
+<div class="footer-links">
+
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy Policy</a>
+<a href="contact.html">Contact & Conditions</a>
+<a href="terms.html">Terms</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<script>
+
+function calculateWedding(){
+
+let venue = parseFloat(document.getElementById("venue").value)||0;
+let catering = parseFloat(document.getElementById("catering").value)||0;
+let decor = parseFloat(document.getElementById("decor").value)||0;
+let photo = parseFloat(document.getElementById("photo").value)||0;
+let music = parseFloat(document.getElementById("music").value)||0;
+let misc = parseFloat(document.getElementById("misc").value)||0;
+
+let guests = parseInt(document.getElementById("guests").value)||1;
+
+let bride = parseFloat(document.getElementById("brideFamily").value)||0;
+let groom = parseFloat(document.getElementById("groomFamily").value)||0;
+let couple = parseFloat(document.getElementById("couple").value)||0;
+
+let splitMethod = document.getElementById("splitMethod").value;
+
+let total = venue + catering + decor + photo + music + misc;
+
+let contributions = bride + groom + couple;
+
+let remaining = total - contributions;
+
+let perGuest = total / guests;
+
+/* AUTO SPLIT OPTIONS */
+
+if(splitMethod === "equal" && remaining > 0){
+
+let split = remaining / 3;
+
+bride += split;
+groom += split;
+couple += split;
+
+}
+
+if(splitMethod === "families" && remaining > 0){
+
+let split = remaining / 2;
+
+bride += split;
+groom += split;
+
+}
+
+/* PERCENTAGES */
+
+let bridePercent = (bride / total) * 100;
+let groomPercent = (groom / total) * 100;
+let couplePercent = (couple / total) * 100;
+
+document.getElementById("result").innerHTML =
+
+"<strong>Wedding Cost Breakdown</strong><br><br>"+
+
+"Total Wedding Cost: $"+total.toFixed(2)+"<br>"+
+
+"Cost Per Guest: $"+perGuest.toFixed(2)+"<br><br>"+
+
+"<strong>Contributions</strong><br>"+
+
+"Bride Family: $"+bride.toFixed(2)+" ("+bridePercent.toFixed(1)+"%)<br>"+
+
+"Groom Family: $"+groom.toFixed(2)+" ("+groomPercent.toFixed(1)+"%)<br>"+
+
+"Couple: $"+couple.toFixed(2)+" ("+couplePercent.toFixed(1)+"%)<br><br>"+
+
+"Remaining Budget: $"+remaining.toFixed(2);
+
+}
+
+function shareResult(id){
+
+let text=document.getElementById(id).innerText;
+
+if(navigator.share){
+
+navigator.share({
+title:"ExpenseSplit Result",
+text:text,
+url:window.location.href
+});
+
+}else{
+
+alert("Sharing is not supported on this browser");
+
+}
+
+}
+
+</script>
+
+<script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+
+    answer.style.display =
+      answer.style.display === 'block' ? 'none' : 'block';
+
+    question.classList.toggle('active');
+  });
+});
+</script>
+
+</body>
+</html>
