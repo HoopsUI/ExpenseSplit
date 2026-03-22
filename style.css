@@ -1395,11 +1395,10 @@ margin-top:10px;
 /* INITIAL STATE */
 .reveal-base {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
+  transform: translateY(60px); /* 👈 stronger movement */
+  transition: all 0.8s ease;
 }
 
-/* WHEN VISIBLE */
 .reveal-active {
   opacity: 1;
   transform: translateY(0);
