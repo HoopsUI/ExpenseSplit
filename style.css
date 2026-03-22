@@ -1391,3 +1391,5 @@ margin-top:10px;
     transform: translateY(0);
   }
 }
+
+console.log("Reveal script loaded");
