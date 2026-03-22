@@ -1319,3 +1319,29 @@ margin-top:10px;
   background: rgba(255,255,255,0.9);
   backdrop-filter: blur(8px);
 }
+/* INITIAL STATE (HIDDEN) */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s ease;
+}
+
+/* WHEN VISIBLE */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* OPTIONAL VARIANTS */
+.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal-left.active,
+.reveal-right.active {
+  transform: translateX(0);
+}
