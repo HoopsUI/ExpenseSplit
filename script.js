@@ -837,3 +837,9 @@ const menu = document.getElementById("navMenu");
 menu.classList.toggle("show");
 
 }
+
+<script>
+window.addEventListener("scroll", function() {
+  document.querySelector(".main-header").classList.toggle("scrolled", window.scrollY > 10);
+});
+</script>
