@@ -1379,3 +1379,15 @@ margin-top:10px;
 .reveal-fade {
   transform: none;
 }
+.hero {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFade 0.8s ease forwards;
+}
+
+@keyframes heroFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
