@@ -1202,97 +1202,116 @@ margin-top:10px;
   position: sticky;
   top: 0;
   width: 100%;
-  background: #ffffff;
-  border-bottom: 1px solid #eee;
   z-index: 1000;
+  
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .main-header .container {
+  max-width: 1200px;
+  margin: auto;
   display: flex;
-  align-items: center;
+  align-items: center; /* 🔥 FIX ALIGNMENT */
   justify-content: space-between;
-  padding: 15px 40px;
+  padding: 14px 20px;
 }
 
+/* LOGO */
 .logo a {
   font-size: 20px;
-  font-weight: 600;
-  color: #111;
   text-decoration: none;
 }
 
+.logo-black {
+  font-weight: 700;
+  color: #111;
+}
+
+.logo-blue {
+  font-weight: 700;
+  color: #2563eb;
+}
+
+/* NAV */
 .nav {
   display: flex;
-  gap: 25px;
-  align-items: center;
+  align-items: center; /* 🔥 CRITICAL FIX */
+  gap: 28px;
 }
 
 .nav a {
-  text-decoration: none;
-  color: #333;
   font-size: 15px;
-  transition: color 0.2s ease;
+  color: #333;
+  text-decoration: none;
+  line-height: 1; /* 🔥 ALIGNMENT FIX */
+  display: flex;
+  align-items: center;
+  height: 40px; /* 🔥 SAME HEIGHT FOR ALL */
 }
 
 .nav a:hover {
-  color: #007BFF;
+  color: #2563eb;
 }
 
-/* CTA BUTTON */
+/* CTA */
 .cta a {
-  background: #007BFF;
+  background: #2563eb;
   color: #fff;
-  padding: 8px 16px;
-  border-radius: 6px;
+  padding: 8px 18px;
+  border-radius: 8px;
   text-decoration: none;
   font-size: 14px;
-  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  height: 40px;
 }
 
 .cta a:hover {
-  background: #0056b3;
+  background: #1e4ed8;
 }
 
 /* DROPDOWN */
 .dropdown {
   position: relative;
-}
-
-.dropbtn {
-  background: none;
-  border: none;
-  font-size: 15px;
-  cursor: pointer;
-  color: #333;
+  display: flex;
+  align-items: center;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 30px;
+  top: 45px;
+  left: 0;
   background: #fff;
   min-width: 180px;
-  border: 1px solid #eee;
-  border-radius: 6px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  padding: 8px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
 .dropdown-content a {
+  padding: 10px 16px;
   display: block;
-  padding: 10px 15px;
-  color: #333;
+  height: auto;
 }
 
 .dropdown-content a:hover {
-  background: #f8f8f8;
+  background: #f5f7fb;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
+.nav a {
+  transition: all 0.2s ease;
+}
+
 .nav a:hover {
-  color: #007BFF;
   transform: translateY(-1px);
 }
 
