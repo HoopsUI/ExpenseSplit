@@ -843,19 +843,24 @@ window.addEventListener("scroll", function() {
   document.querySelector(".main-header").classList.toggle("scrolled", window.scrollY > 10);
 });
 </script>
-function revealOnScroll() {
-  const elements = document.querySelectorAll('.reveal');
+document.addEventListener("DOMContentLoaded", function () {
+  function revealOnScroll() {
+    const elements = document.querySelectorAll('.reveal');
 
-  elements.forEach((el) => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    const revealPoint = 100;
+    elements.forEach((el) => {
+      const windowHeight = window.innerHeight;
+      const elementTop = el.getBoundingClientRect().top;
+      const revealPoint = 120;
 
-    if (elementTop < windowHeight - revealPoint) {
-      el.classList.add('active');
-    }
-  });
-}
+      if (elementTop < windowHeight - revealPoint) {
+        el.classList.add('active');
+      }
+    });
+  }
 
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', revealOnScroll);
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll(); // trigger on load
+});
+
+console.log("Reveal script loaded");
+
