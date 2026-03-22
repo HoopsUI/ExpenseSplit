@@ -843,11 +843,10 @@ window.addEventListener("scroll", function() {
   document.querySelector(".main-header").classList.toggle("scrolled", window.scrollY > 10);
 });
 </script>
+
 document.addEventListener("DOMContentLoaded", function () {
 
-  const elements = document.querySelectorAll(
-    "h1, h2, .container, section, .calculator, .seo-content, .faq"
-  );
+  const elements = document.querySelectorAll("section, .container");
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -856,7 +855,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }, {
-    threshold: 0.1
+    threshold: 0.2
   });
 
   elements.forEach((el) => {
@@ -866,5 +865,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-console.log("Reveal script loaded");
+const elements = document.querySelectorAll(
+  ".seo-content, .faq, .features"
+);
 
