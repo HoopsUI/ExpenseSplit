@@ -844,22 +844,26 @@ window.addEventListener("scroll", function() {
 });
 </script>
 document.addEventListener("DOMContentLoaded", function () {
-  function revealOnScroll() {
-    const elements = document.querySelectorAll('.reveal');
 
-    elements.forEach((el) => {
-      const windowHeight = window.innerHeight;
-      const elementTop = el.getBoundingClientRect().top;
-      const revealPoint = 120;
+  const elements = document.querySelectorAll(
+    "h1, h2, .container, section, .calculator, .seo-content, .faq"
+  );
 
-      if (elementTop < windowHeight - revealPoint) {
-        el.classList.add('active');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("reveal-active");
       }
     });
-  }
+  }, {
+    threshold: 0.1
+  });
 
-  window.addEventListener('scroll', revealOnScroll);
-  revealOnScroll(); // trigger on load
+  elements.forEach((el) => {
+    el.classList.add("reveal-base");
+    observer.observe(el);
+  });
+
 });
 
 console.log("Reveal script loaded");
