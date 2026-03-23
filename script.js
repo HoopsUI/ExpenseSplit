@@ -844,29 +844,6 @@ window.addEventListener("scroll", function() {
 });
 </script>
 
-document.addEventListener("DOMContentLoaded", function () {
-
-  const sections = document.querySelectorAll("section");
-
-  if (sections.length < 2) return;
-
-  const seoSection = sections[sections.length - 2]; 
-  // 👈 usually SEO is second last section
-
-  function revealSEO() {
-    const rect = seoSection.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    if (rect.top < windowHeight - 100) {
-      seoSection.classList.add("active");
-    }
-  }
-
-  window.addEventListener("scroll", revealSEO);
-  revealSEO();
-
-});
-
 const elements = document.querySelectorAll(
   ".seo-content, .faq, .features"
 );
