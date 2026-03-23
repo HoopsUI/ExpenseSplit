@@ -1392,22 +1392,7 @@ margin-top:10px;
   }
 }
 
-/* INITIAL STATE */
-.reveal-base {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.7s ease;
-}
 
-.reveal-active {
-  opacity: 1;
-  transform: translateY(0);
-}
 
-.reveal-base {
-  opacity: 0;
-  transform: translateY(40px) scale(0.98);
-  transition: all 0.7s ease;
-}
 
 
