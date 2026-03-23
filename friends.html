@@ -9,7 +9,7 @@
   
   <link rel="stylesheet" href="style.css">
   <script defer src="script.js"></script>
-
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <!-- Structured Data for SEO -->
   <script type="application/ld+json">
   {
@@ -30,11 +30,12 @@
 
 <body>
   <!-- HEADER -->
-<header class="header">
-  <div class="container nav">
-
+<header class="main-header">
+  <div class="container">
+    
+    <!-- Logo -->
     <div class="logo">
-      <a href="/">ExpenseSplit</a>
+      <a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
     </div>
 
     <!-- MOBILE MENU BUTTON -->
@@ -42,26 +43,31 @@
       ☰
     </div>
 
-    <nav class="nav-menu" id="navMenu">
-
+     <!-- Navigation -->
+    <nav class="nav">
       <a href="/">Home</a>
-
-      <!-- CALCULATORS -->
+      
       <div class="dropdown">
-        <button class="dropbtn">Calculators ▾</button>
-
-        <div class="dropdown-content">
+        <a href="#">Calculators</a>
+         <div class="dropdown-content">
           <a href="friends.html">🍽 Friends Expense Calculator</a>
           <a href="trip.html">✈️ Trip Expense Calculator</a>
           <a href="roommates.html">🏠 Roommate Expense Calculator</a>
-          
+          <a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+          <a href="airbnb-cost-split-calculator.html">🛏 Airbnb Cost Split Calculator</a>
           <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+          <a href="gas-fuel-cost-split-calculator.html">⛽ Gas Cost Split Calculator</a>
+          <a href="restaurant-bill-split-calculator.html">🍔 Restaurant Bill Split Calculator</a>
+          <a href="grocery-bill-split-calculator.html">🛒 Grocery Bill Split Calculator</a>
+          <a href="subscription-cost-split-calculator.html">📺 Subscription Cost Split Calculator</a>
+          <a href="wedding-cost-split-calculator.html">💍 Wedding Cost Split Calculator</a>
         </div>
       </div>
 
+
       <!-- GUIDES -->
       <div class="dropdown">
-        <button class="dropbtn">Guides ▾</button>
+        <a href="#">Guides</a>
 
         <div class="dropdown-content">
           <a href="split-bills-with-friends.html">Split Bills With Friends</a>
@@ -69,12 +75,17 @@
           <a href="group-expense-management.html">Group Expense Management</a>
           <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
           <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
+          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
+          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
+          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
+          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
+          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+
         </div>
       </div>
 
       <a href="faq.html">FAQ</a>
-
-      <a href="/#calculator" class="nav-cta">Use Calculator</a>
 
     </nav>
 
@@ -279,7 +290,7 @@ Simply enter how much each friend paid and the calculator will determine
 </section>
 
   <!-- SEO CONTENT -->
- <section class="section seo-content">
+ <section class="section seo-section" data-aos="fade-up">
 
 <h2>Best Way to Split Expenses With Friends</h2>
 
@@ -466,11 +477,11 @@ Because the tool is fast and lightweight, it’s often easier to use than full e
 </section>
 
   <!-- FAQ -->
-  <section class="section faq-section">
+ <section class="section faq-section" data-aos="fade-up">
   <div class="container">
     <h2>Frequently Asked Questions</h2>
 
-    <div class="faq-item">
+    <div class="faq-item" data-aos="fade-up">
       <div class="faq-question">1. Do friends need to create an account?</div>
       <div class="faq-answer">
         No. ExpenseSplit works instantly in your browser and does not require any signup or account creation. 
@@ -479,7 +490,7 @@ Because the tool is fast and lightweight, it’s often easier to use than full e
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item" data-aos="fade-up">
       <div class="faq-question">2. Can I track multiple expenses at once?</div>
       <div class="faq-answer">
         The friends expense calculator is designed to quickly split a total amount between a group. 
@@ -488,7 +499,7 @@ Because the tool is fast and lightweight, it’s often easier to use than full e
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item" data-aos="fade-up">
       <div class="faq-question">3. Is the calculator mobile-friendly?</div>
       <div class="faq-answer">
         Yes. ExpenseSplit works on phones, tablets, and desktop computers. 
@@ -497,7 +508,7 @@ Because the tool is fast and lightweight, it’s often easier to use than full e
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item" data-aos="fade-up">
       <div class="faq-question">4. What is the easiest way to split expenses between friends?</div>
       <div class="faq-answer">
         The easiest way is to use an online expense split calculator. Simply enter the total amount 
@@ -506,7 +517,7 @@ Because the tool is fast and lightweight, it’s often easier to use than full e
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item" data-aos="fade-up">
       <div class="faq-question">5. How do you split bills when friends paid different amounts?</div>
       <div class="faq-answer">
         When different people pay for different items, the best method is to track each payment 
@@ -515,7 +526,7 @@ Because the tool is fast and lightweight, it’s often easier to use than full e
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item" data-aos="fade-up">
       <div class="faq-question">6. Is it better to split expenses equally with friends?</div>
       <div class="faq-answer">
         Equal splitting works best when everyone shares the same items, such as a group dinner 
@@ -524,7 +535,7 @@ Because the tool is fast and lightweight, it’s often easier to use than full e
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item" data-aos="fade-up">
       <div class="faq-question">7. How do groups usually keep track of shared expenses?</div>
       <div class="faq-answer">
         Many groups use spreadsheets, expense tracking apps, or online calculators to manage 
@@ -533,7 +544,7 @@ Because the tool is fast and lightweight, it’s often easier to use than full e
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item" data-aos="fade-up">
       <div class="faq-question">8. Can this calculator split expenses for large groups?</div>
       <div class="faq-answer">
         Yes. The ExpenseSplit friends calculator works for both small and large groups. 
@@ -886,6 +897,16 @@ faqQuestions.forEach(question => {
   });
 });
 </script>
+  <!-- AOS SCRIPT (STEP 2) -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
+<!-- INIT AOS -->
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
+</script>
+<script src="script.js"></script>
 </body>
 </html>
