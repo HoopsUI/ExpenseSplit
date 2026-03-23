@@ -1410,15 +1410,13 @@ margin-top:10px;
   transition: all 0.7s ease;
 }
 
-/* SEO SECTION INITIAL STATE */
-.seo-section {
+section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section {
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.8s ease;
-}
-
-/* WHEN ACTIVE */
-.seo-section.active {
-  opacity: 1;
-  transform: translateY(0);
 }
