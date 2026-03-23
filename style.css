@@ -1279,24 +1279,31 @@ margin-top:10px;
   position: absolute;
   top: 100%;
   
-  /* CENTER ALIGN DROPDOWN */
+  /* HIDDEN BY DEFAULT */
+.dropdown-content {
+  display: none; /* 🔥 THIS FIXES YOUR MAIN ISSUE */
+  position: absolute;
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  
+
   background: #ffffff;
   border-radius: 12px;
   padding: 20px;
 
-  width: 700px; /* 🔥 important */
+  width: 700px;
   max-width: 90vw;
 
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   z-index: 999;
 
-  /* GRID */
-  display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+}
+
+/* SHOW ONLY ON HOVER */
+.dropdown:hover .dropdown-content {
+  display: grid;
 }
 
 .dropdown-content a {
@@ -1306,31 +1313,16 @@ margin-top:10px;
 
   padding: 10px 12px;
   text-decoration: none;
-  color: #222;
+
+  color: inherit; /* 🔥 IMPORTANT FIX */
   border-radius: 8px;
 
   font-size: 14px;
   font-weight: 500;
 }
-
-/* HOVER */
-.dropdown-content a:hover {
-  background-color: #f1f5f9;
+.dropdown-content a {
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
 }
-
-.icon {
-  font-size: 16px;
-}
-
-.dropdown:hover .dropdown-content {
-  display: grid;
-}
-
-.dropdown-content {
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0,0,0,0.05);
-}
-
 
 
 .hero-content {
