@@ -844,7 +844,25 @@ window.addEventListener("scroll", function() {
 });
 </script>
 
-const elements = document.querySelectorAll(
-  ".seo-content, .faq, .features"
-);
+document.addEventListener("DOMContentLoaded", function () {
+
+  const seo = document.querySelector(".seo-section");
+  const faq = document.querySelector(".faq-section");
+
+  function revealSections() {
+    const trigger = window.innerHeight - 100;
+
+    if (seo && seo.getBoundingClientRect().top < trigger) {
+      seo.classList.add("active");
+    }
+
+    if (faq && faq.getBoundingClientRect().top < trigger) {
+      faq.classList.add("active");
+    }
+  }
+
+  window.addEventListener("scroll", revealSections);
+  revealSections();
+
+});
 
