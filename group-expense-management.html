@@ -9,7 +9,7 @@
   <meta name="author" content="ExpenseSplit" />
 
   <link rel="canonical" href="https://expensessplit.com/group-expense-management.html" />
-
+   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <!-- Open Graph -->
   <meta property="og:title" content="Group Expense Management – ExpenseSplit" />
   <meta property="og:description" content="Understand the best way to manage group expenses fairly with ExpenseSplit’s free calculator." />
@@ -32,11 +32,12 @@
 <body>
 
   <!-- HEADER -->
-<header class="header">
-  <div class="container nav">
-
+<header class="main-header">
+  <div class="container">
+    
+    <!-- Logo -->
     <div class="logo">
-      <a href="/">ExpenseSplit</a>
+      <a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
     </div>
 
     <!-- MOBILE MENU BUTTON -->
@@ -44,26 +45,31 @@
       ☰
     </div>
 
-    <nav class="nav-menu" id="navMenu">
-
+     <!-- Navigation -->
+    <nav class="nav">
       <a href="/">Home</a>
-
-      <!-- CALCULATORS -->
+      
       <div class="dropdown">
-        <button class="dropbtn">Calculators ▾</button>
-
-        <div class="dropdown-content">
+        <a href="#">Calculators</a>
+         <div class="dropdown-content">
           <a href="friends.html">🍽 Friends Expense Calculator</a>
           <a href="trip.html">✈️ Trip Expense Calculator</a>
           <a href="roommates.html">🏠 Roommate Expense Calculator</a>
-          
+          <a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+          <a href="airbnb-cost-split-calculator.html">🛏 Airbnb Cost Split Calculator</a>
           <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+          <a href="gas-fuel-cost-split-calculator.html">⛽ Gas Cost Split Calculator</a>
+          <a href="restaurant-bill-split-calculator.html">🍔 Restaurant Bill Split Calculator</a>
+          <a href="grocery-bill-split-calculator.html">🛒 Grocery Bill Split Calculator</a>
+          <a href="subscription-cost-split-calculator.html">📺 Subscription Cost Split Calculator</a>
+          <a href="wedding-cost-split-calculator.html">💍 Wedding Cost Split Calculator</a>
         </div>
       </div>
 
+
       <!-- GUIDES -->
       <div class="dropdown">
-        <button class="dropbtn">Guides ▾</button>
+        <a href="#">Guides</a>
 
         <div class="dropdown-content">
           <a href="split-bills-with-friends.html">Split Bills With Friends</a>
@@ -71,6 +77,13 @@
           <a href="group-expense-management.html">Group Expense Management</a>
           <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
           <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
+          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
+          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
+          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
+          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
+          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+
         </div>
       </div>
 
@@ -82,7 +95,7 @@
 </header>
 
   <!-- HERO -->
-  <section class="section light">
+  <section class="section light"data-aos="fade-up">
     <div class="container hero-content">
       <h1>Group Expense Management Made Simple</h1>
       <p class="subtitle">
@@ -92,7 +105,7 @@
   </section>
 
   <!-- CONTENT -->
-  <section class="section seo-content">
+  <section class="section seo-content"data-aos="fade-up">
 
 <h2>What Is Group Expense Management?</h2>
 
@@ -456,40 +469,40 @@ Using a <strong>group expense calculator</strong> helps eliminate these problems
   
   
 <!-- FAQ SECTION -->
-  <section class="section faq-section">
+  <section class="section faq-section"data-aos="fade-up">
 <div class="container">
 
 <h2>Frequently Asked Questions</h2>
 
-<div class="faq-item">
+<div class="faq-item" data-aos="fade-up">
 <div class="faq-question">1. What is group expense management?</div>
 <div class="faq-answer">
 Group expense management is the process of tracking shared costs among multiple people and determining how much each person should contribute. It helps groups fairly split expenses during trips, shared housing, events, or group activities.
 </div>
 </div>
 
-<div class="faq-item">
+<div class="faq-item" data-aos="fade-up">
 <div class="faq-question">2. What is the easiest way to split expenses in a group?</div>
 <div class="faq-answer">
 The easiest way to split expenses is by using a group expense calculator. These tools automatically divide the total cost, track payments made by different members, and show who owes money to whom.
 </div>
 </div>
 
-<div class="faq-item">
+<div class="faq-item" data-aos="fade-up">
 <div class="faq-question">3. How do you calculate who owes whom in group expenses?</div>
 <div class="faq-answer">
 To calculate balances, first track how much each person paid toward the shared expenses. Then calculate the average share for each participant and determine who paid more or less than their portion. A who-owes-who calculator can automatically perform this calculation.
 </div>
 </div>
 
-<div class="faq-item">
+<div class="faq-item" data-aos="fade-up">
 <div class="faq-question">4. Should group expenses always be split equally?</div>
 <div class="faq-answer">
 Not necessarily. Equal splitting works when everyone shares the same items, but uneven or proportional splitting may be more accurate when individuals consume different services or contribute different amounts.
 </div>
 </div>
 
-<div class="faq-item">
+<div class="faq-item" data-aos="fade-up">
 <div class="faq-question">5. How do you track shared expenses during a trip?</div>
 <div class="faq-answer">
 The best approach is to record each expense as it occurs. Note who paid for the item and how much it cost. At the end of the trip, use a group expense calculator to determine the final balances and settle payments.
@@ -528,7 +541,16 @@ faqQuestions.forEach(question => {
   });
 });
 </script>
+ <!-- AOS SCRIPT (STEP 2) -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
+<!-- INIT AOS -->
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
+</script>
 <script src="script.js"></script>
 
 </body>
