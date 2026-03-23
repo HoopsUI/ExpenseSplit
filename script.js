@@ -846,28 +846,21 @@ window.addEventListener("scroll", function() {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  const elements = document.querySelectorAll(
-    "section, .container, .seo-content, .faq"
-  );
+  const seoSection = document.querySelector(".seo-section");
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+  if (!seoSection) return;
 
-      if (entry.isIntersecting) {
-        entry.target.classList.add("reveal-active");
-        observer.unobserve(entry.target); // 👈 ensures it triggers once cleanly
-      }
+  function revealSEO() {
+    const rect = seoSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
 
-    });
-  }, {
-    threshold: 0.05,              // 👈 LOWER = triggers earlier
-    rootMargin: "0px 0px -50px 0px" // 👈 triggers before fully visible
-  });
+    if (rect.top < windowHeight - 100) {
+      seoSection.classList.add("active");
+    }
+  }
 
-  elements.forEach((el) => {
-    el.classList.add("reveal-base");
-    observer.observe(el);
-  });
+  window.addEventListener("scroll", revealSEO);
+  revealSEO(); // trigger on load
 
 });
 
