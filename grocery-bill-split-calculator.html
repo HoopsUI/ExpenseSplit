@@ -30,70 +30,76 @@
 }
 }
 </script>
-
+ <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
 
-<header class="header">
+ <!-- HEADER -->
+<header class="main-header">
+  <div class="container">
+    
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
+    </div>
 
-<div class="container nav">
+    <!-- MOBILE MENU BUTTON -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+      ☰
+    </div>
 
-<div class="logo">
-<a href="/">ExpenseSplit</a>
-</div>
+     <!-- Navigation -->
+    <nav class="nav">
+      <a href="/">Home</a>
+      
+      <div class="dropdown">
+        <a href="#">Calculators</a>
+         <div class="dropdown-content">
+          <a href="friends.html">🍽 Friends Expense Calculator</a>
+          <a href="trip.html">✈️ Trip Expense Calculator</a>
+          <a href="roommates.html">🏠 Roommate Expense Calculator</a>
+          <a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+          <a href="airbnb-cost-split-calculator.html">🛏 Airbnb Cost Split Calculator</a>
+          <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+          <a href="gas-fuel-cost-split-calculator.html">⛽ Gas Cost Split Calculator</a>
+          <a href="restaurant-bill-split-calculator.html">🍔 Restaurant Bill Split Calculator</a>
+          <a href="grocery-bill-split-calculator.html">🛒 Grocery Bill Split Calculator</a>
+          <a href="subscription-cost-split-calculator.html">📺 Subscription Cost Split Calculator</a>
+          <a href="wedding-cost-split-calculator.html">💍 Wedding Cost Split Calculator</a>
+        </div>
+      </div>
 
-<div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
-<nav class="nav-menu" id="navMenu">
+      <!-- GUIDES -->
+      <div class="dropdown">
+        <a href="#">Guides</a>
 
-<a href="/">Home</a>
+        <div class="dropdown-content">
+          <a href="split-bills-with-friends.html">Split Bills With Friends</a>
+          <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="group-expense-management.html">Group Expense Management</a>
+          <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
+          <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
+          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
+          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
+          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
+          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
+          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
 
-<div class="dropdown">
-<button class="dropbtn">Calculators ▾</button>
+        </div>
+      </div>
 
-<div class="dropdown-content">
+      <a href="faq.html">FAQ</a>
 
-<a href="friends.html">🍽 Friends Expense Calculator</a>
+    </nav>
 
-<a href="trip.html">✈️ Trip Expense Calculator</a>
-
-<a href="roommates.html">🏠 Roommate Expense Calculator</a>
-
-<a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
-
-<a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
-
-</div>
-</div>
-
-<div class="dropdown">
-
-<button class="dropbtn">Guides ▾</button>
-
-<div class="dropdown-content">
-
-<a href="split-bills-with-friends.html">Split Bills With Friends</a>
-
-<a href="how-to-split-expenses.html">How to Split Expenses</a>
-
-<a href="group-expense-management.html">Group Expense Management</a>
-
-<a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
-
-<a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
-
-</div>
-</div>
-
-<a href="faq.html">FAQ</a>
-
-</nav>
-</div>
+  </div>
 </header>
 
 
-<section class="hero">
+<section class="hero"data-aos="fade-up">
 
 <div class="container hero-content">
 
@@ -110,7 +116,7 @@ Easily split grocery bills between roommates or family. Use equal or itemized sp
 </section>
 
 
-<section class="section">
+<section class="section"data-aos="fade-up">
 
 <div class="container">
 
@@ -213,7 +219,7 @@ If you regularly share other household costs, you may also want to try our
 </section>
 
 
-<section class="section seo-content">
+<section class="section seo-content"data-aos="fade-up">
 
 <h2>How to Split Grocery Bills Between Roommates</h2>
 
@@ -528,13 +534,13 @@ For larger groups planning travel or events, our
 </section>
 
 
-<section class="section faq-section">
+<section class="section faq-section"data-aos="fade-up">
 
 <div class="container">
 
 <h2>Frequently Asked Questions</h2>
 
-<div class="faq-item">
+<div class="faq-item" data-aos="fade-up">
 
 <div class="faq-question">How do you split grocery bills between roommates?</div>
 
@@ -546,7 +552,7 @@ You can split grocery bills either equally or by item. An equal split divides th
 
 </div>
 
-<div class="faq-item">
+<div class="faq-item" data-aos="fade-up">
 
 <div class="faq-question">What is the fairest way to split groceries?</div>
 
@@ -558,7 +564,7 @@ The fairest method depends on your household. If everyone shares most items, an 
 
 </div>
 
-<div class="faq-item">
+<div class="faq-item" data-aos="fade-up">
 
 <div class="faq-question">Should couples split groceries equally?</div>
 
@@ -570,7 +576,7 @@ Many couples split groceries equally, but some prefer splitting based on income 
 
 </div>
 
-<div class="faq-item">
+<div class="faq-item" data-aos="fade-up">
 
 <div class="faq-question">Can this calculator track multiple grocery items?</div>
 
@@ -582,7 +588,7 @@ Yes. The itemized split feature allows you to add individual grocery items and d
 
 </div>
 
-<div class="faq-item">
+<div class="faq-item" data-aos="fade-up">
 
 <div class="faq-question">Is the grocery split calculator free?</div>
 
@@ -786,6 +792,14 @@ question.classList.toggle('active');
 });
 
 </script>
+<!-- INIT AOS -->
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
+</script>
 
+  <script src="script.js"></script>
 </body>
 </html>
