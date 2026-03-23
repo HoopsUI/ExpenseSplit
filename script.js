@@ -843,3 +843,11 @@ window.addEventListener("scroll", function() {
   document.querySelector(".main-header").classList.toggle("scrolled", window.scrollY > 10);
 });
 </script>
+document.addEventListener("DOMContentLoaded", function () {
+  const hero = document.querySelector(".hero-content");
+  if (hero) {
+    setTimeout(() => {
+      hero.classList.add("active");
+    }, 200);
+  }
+});
