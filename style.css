@@ -1409,3 +1409,16 @@ margin-top:10px;
   transform: translateY(40px) scale(0.98);
   transition: all 0.7s ease;
 }
+
+/* SEO SECTION INITIAL STATE */
+.seo-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+/* WHEN ACTIVE */
+.seo-section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
