@@ -846,16 +846,22 @@ window.addEventListener("scroll", function() {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  const elements = document.querySelectorAll("section, .container");
+  const elements = document.querySelectorAll(
+    "section, .container, .seo-content, .faq"
+  );
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
+
       if (entry.isIntersecting) {
         entry.target.classList.add("reveal-active");
+        observer.unobserve(entry.target); // 👈 ensures it triggers once cleanly
       }
+
     });
   }, {
-    threshold: 0.2
+    threshold: 0.05,              // 👈 LOWER = triggers earlier
+    rootMargin: "0px 0px -50px 0px" // 👈 triggers before fully visible
   });
 
   elements.forEach((el) => {
