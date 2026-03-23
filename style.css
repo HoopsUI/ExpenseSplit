@@ -1392,20 +1392,7 @@ margin-top:10px;
   }
 }
 
-/* ONLY SEO + FAQ (NOT ALL SECTIONS) */
 
-.seo-section,
-.faq-section {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.7s ease;
-}
-
-.seo-section.active,
-.faq-section.active {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 
 
