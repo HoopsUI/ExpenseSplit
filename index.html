@@ -205,6 +205,7 @@
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3072611410937925"
      crossorigin="anonymous"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -421,7 +422,7 @@ Split bills, rent, travel costs, and group expenses instantly. Use our free spli
 </section>
 
   <!-- SEO CONTENT -->
-  <section class="section seo-section">
+ <section class="section seo-section" data-aos="fade-up">
   <div class="container">
       
   <h2>Free Expense Split Calculator for Bills, Rent, and Group Expenses</h2>
@@ -495,11 +496,11 @@ Split bills, rent, travel costs, and group expenses instantly. Use our free spli
   </section>
 
   <!-- FAQ SECTION -->
-  <section class="section faq-section">
+ <section class="section faq-section" data-aos="fade-up">
     <div class="container">
       <h2>Frequently Asked Questions (FAQ)</h2>
 
-      <div class="faq-item">
+      <div class="faq-item" data-aos="fade-up">
         <div class="faq-question">1. Can I split expenses for any group size?</div>
         <div class="faq-answer">
           Yes! ExpenseSplit allows you to split expenses for any number of people.
@@ -508,7 +509,7 @@ Split bills, rent, travel costs, and group expenses instantly. Use our free spli
         </div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-aos="fade-up">
         <div class="faq-question">2. Do I need to create an account to use ExpenseSplit?</div>
         <div class="faq-answer">
           No account is required. ExpenseSplit works directly in your browser.
@@ -517,7 +518,7 @@ Split bills, rent, travel costs, and group expenses instantly. Use our free spli
         </div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-aos="fade-up">
         <div class="faq-question">3. Can I use ExpenseSplit on mobile devices?</div>
         <div class="faq-answer">
           Absolutely! ExpenseSplit is fully mobile-friendly.
@@ -526,7 +527,7 @@ Split bills, rent, travel costs, and group expenses instantly. Use our free spli
         </div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-aos="fade-up">
         <div class="faq-question">4. Is it really free to use?</div>
         <div class="faq-answer">
           Yes, the basic calculator is completely free.
@@ -650,6 +651,16 @@ Split bills, rent, travel costs, and group expenses instantly. Use our free spli
         <strong>Each person pays:</strong> ${currency}${perPerson}
       `;
     });
+  });
+</script>
+  <!-- AOS SCRIPT (STEP 2) -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<!-- INIT AOS -->
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
   });
 </script>
 
