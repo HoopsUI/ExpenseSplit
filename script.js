@@ -846,9 +846,12 @@ window.addEventListener("scroll", function() {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  const seoSection = document.querySelector(".seo-section");
+  const sections = document.querySelectorAll("section");
 
-  if (!seoSection) return;
+  if (sections.length < 2) return;
+
+  const seoSection = sections[sections.length - 2]; 
+  // 👈 usually SEO is second last section
 
   function revealSEO() {
     const rect = seoSection.getBoundingClientRect();
@@ -860,7 +863,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   window.addEventListener("scroll", revealSEO);
-  revealSEO(); // trigger on load
+  revealSEO();
 
 });
 
