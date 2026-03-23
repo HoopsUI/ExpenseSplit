@@ -12,7 +12,7 @@
 <meta name="keywords" content="monthly expense tracker, personal expense tracker, online expense tracker, monthly spending tracker, track monthly spending, budget expense tracker" />
 
 <link rel="canonical" href="https://expensessplit.com/monthly-expense-tracker.html">
-
+ <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -77,11 +77,12 @@ margin-top:25px;
 <body>
 
 <!-- HEADER -->
-<header class="header">
-  <div class="container nav">
-
+<header class="main-header">
+  <div class="container">
+    
+    <!-- Logo -->
     <div class="logo">
-      <a href="/">ExpenseSplit</a>
+      <a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
     </div>
 
     <!-- MOBILE MENU BUTTON -->
@@ -89,26 +90,31 @@ margin-top:25px;
       ☰
     </div>
 
-    <nav class="nav-menu" id="navMenu">
-
+     <!-- Navigation -->
+    <nav class="nav">
       <a href="/">Home</a>
-
-      <!-- CALCULATORS -->
+      
       <div class="dropdown">
-        <button class="dropbtn">Calculators ▾</button>
-
-        <div class="dropdown-content">
+        <a href="#">Calculators</a>
+         <div class="dropdown-content">
           <a href="friends.html">🍽 Friends Expense Calculator</a>
           <a href="trip.html">✈️ Trip Expense Calculator</a>
           <a href="roommates.html">🏠 Roommate Expense Calculator</a>
-          
+          <a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+          <a href="airbnb-cost-split-calculator.html">🛏 Airbnb Cost Split Calculator</a>
           <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+          <a href="gas-fuel-cost-split-calculator.html">⛽ Gas Cost Split Calculator</a>
+          <a href="restaurant-bill-split-calculator.html">🍔 Restaurant Bill Split Calculator</a>
+          <a href="grocery-bill-split-calculator.html">🛒 Grocery Bill Split Calculator</a>
+          <a href="subscription-cost-split-calculator.html">📺 Subscription Cost Split Calculator</a>
+          <a href="wedding-cost-split-calculator.html">💍 Wedding Cost Split Calculator</a>
         </div>
       </div>
 
+
       <!-- GUIDES -->
       <div class="dropdown">
-        <button class="dropbtn">Guides ▾</button>
+        <a href="#">Guides</a>
 
         <div class="dropdown-content">
           <a href="split-bills-with-friends.html">Split Bills With Friends</a>
@@ -116,19 +122,24 @@ margin-top:25px;
           <a href="group-expense-management.html">Group Expense Management</a>
           <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
           <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
+          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
+          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
+          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
+          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
+          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+
         </div>
       </div>
 
       <a href="faq.html">FAQ</a>
-
-      <a href="/#calculator" class="nav-cta">Use Calculator</a>
 
     </nav>
 
   </div>
 </header>
 
-<section class="hero">
+<section class="hero"data-aos="fade-up">
 <div class="container hero-content">
 
 <h1>Monthly Expense Tracker</h1>
@@ -142,7 +153,7 @@ Track monthly spending, understand your budget, and manage finances with this fr
 </div>
 </section>
 
-  <section class="section">
+  <section class="section"data-aos="fade-up">
 <div class="container">
 <p class="subtitle">
 Managing your finances becomes much easier when you can clearly see where your money goes each month. This <strong>monthly expense tracker</strong> helps you record and organize your spending so you can understand your total expenses and improve your budgeting habits. Whether you're tracking rent, groceries, transportation, subscriptions, or daily purchases, this simple tool allows you to quickly add expenses and calculate your monthly total. 
@@ -152,7 +163,7 @@ By regularly tracking your spending, you can identify unnecessary expenses, stay
   </div>
 </section>
 
-<section id="tool" class="section light">
+<section id="tool" class="section light"data-aos="fade-up">
 
 <div class="container">
 
@@ -217,7 +228,7 @@ By regularly tracking your spending, you can identify unnecessary expenses, stay
 </section>
 
 
-<section id="more-tools" class="section">
+<section id="more-tools" class="section"data-aos="fade-up">
 <div class="container">
 
 <h2 class="section-title">Other Expense Tools</h2>
@@ -238,7 +249,7 @@ By regularly tracking your spending, you can identify unnecessary expenses, stay
 </section>
 
 
-<section class="section">
+<section class="section"data-aos="fade-up">
 
 <div class="container seo-content">
 
@@ -381,11 +392,11 @@ to divide bills fairly.
 </section>
 
 <!-- FAQ SECTION -->
-<section class="section faq-section">
+<section class="section faq-section"data-aos="fade-up">
   <div class="container">
     <h2>Monthly Expense Tracker – Frequently Asked Questions</h2>
 
-    <div class="faq-item">
+    <div class="faq-item"data-aos="fade-up">
       <div class="faq-question">1. What is a monthly expense tracker?</div>
       <div class="faq-answer">
         A monthly expense tracker is a tool used to record and monitor spending throughout the month. 
@@ -395,7 +406,7 @@ to divide bills fairly.
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item"data-aos="fade-up">
       <div class="faq-question">2. Why should I track my monthly expenses?</div>
       <div class="faq-answer">
         Tracking expenses helps you gain control over your finances. Many people underestimate how much 
@@ -404,7 +415,7 @@ to divide bills fairly.
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item"data-aos="fade-up">
       <div class="faq-question">3. Is this online expense tracker free to use?</div>
       <div class="faq-answer">
         Yes. This monthly expense tracker is completely free to use and works directly in your browser. 
@@ -413,7 +424,7 @@ to divide bills fairly.
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item"data-aos="fade-up">
       <div class="faq-question">4. Can I use this expense tracker on my phone?</div>
       <div class="faq-answer">
         Absolutely. The tracker is fully responsive and works on smartphones, tablets, and desktop 
@@ -421,7 +432,7 @@ to divide bills fairly.
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item"data-aos="fade-up">
       <div class="faq-question">5. How is this different from budgeting?</div>
       <div class="faq-answer">
         Expense tracking focuses on recording what you have already spent, while budgeting focuses on 
@@ -430,7 +441,7 @@ to divide bills fairly.
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item"data-aos="fade-up">
       <div class="faq-question">6. Can I use this tracker with other ExpenseSplit tools?</div>
       <div class="faq-answer">
         Yes. If you often share expenses with friends or roommates, you can combine this tracker with 
@@ -666,6 +677,16 @@ faqQuestions.forEach(question => {
     question.classList.toggle('active');
   });
 });
+</script>
+<!-- AOS SCRIPT (STEP 2) -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<!-- INIT AOS -->
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
 </script>
 
 <script src="script.js"></script>
