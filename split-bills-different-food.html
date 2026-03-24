@@ -9,6 +9,7 @@
   <meta name="description" content="Learn how to split a restaurant bill fairly when everyone ordered different food. Compare equal vs itemized splitting, handle tax and tip, and use a calculator to avoid confusion." />
 
   <meta name="author" content="ExpenseSplit" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <link rel="canonical" href="https://expensessplit.com/split-bills-different-food.html" />
 
@@ -33,48 +34,70 @@
 <body>
 
 <!-- HEADER -->
-<header class="header">
-  <div class="container nav">
-
+<header class="main-header">
+  <div class="container">
+    
+    <!-- Logo -->
     <div class="logo">
-      <a href="/">ExpenseSplit</a>
+      <a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
     </div>
 
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <!-- MOBILE MENU BUTTON -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+      ☰
+    </div>
 
-    <nav class="nav-menu" id="navMenu">
-
+     <!-- Navigation -->
+    <nav class="nav">
       <a href="/">Home</a>
-
+      
       <div class="dropdown">
-        <button class="dropbtn">Calculators ▾</button>
-        <div class="dropdown-content">
+        <a href="#">Calculators</a>
+         <div class="dropdown-content">
           <a href="friends.html">🍽 Friends Expense Calculator</a>
           <a href="trip.html">✈️ Trip Expense Calculator</a>
           <a href="roommates.html">🏠 Roommate Expense Calculator</a>
+          <a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+          <a href="airbnb-cost-split-calculator.html">🛏 Airbnb Cost Split Calculator</a>
           <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+          <a href="gas-fuel-cost-split-calculator.html">⛽ Gas Cost Split Calculator</a>
+          <a href="restaurant-bill-split-calculator.html">🍔 Restaurant Bill Split Calculator</a>
+          <a href="grocery-bill-split-calculator.html">🛒 Grocery Bill Split Calculator</a>
+          <a href="subscription-cost-split-calculator.html">📺 Subscription Cost Split Calculator</a>
+          <a href="wedding-cost-split-calculator.html">💍 Wedding Cost Split Calculator</a>
         </div>
       </div>
 
+
+      <!-- GUIDES -->
       <div class="dropdown">
-        <button class="dropbtn">Guides ▾</button>
+        <a href="#">Guides</a>
+
         <div class="dropdown-content">
           <a href="split-bills-with-friends.html">Split Bills With Friends</a>
           <a href="how-to-split-expenses.html">How to Split Expenses</a>
           <a href="group-expense-management.html">Group Expense Management</a>
           <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
           <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
+          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
+          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
+          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
+          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
+          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+
         </div>
       </div>
 
       <a href="faq.html">FAQ</a>
 
     </nav>
+
   </div>
 </header>
 
 <!-- HERO -->
-<section class="section light">
+<section class="section light"data-aos="fade-up">
   <div class="container hero-content">
     <h1>How to Split Bills When Everyone Ordered Different Food</h1>
     <p class="subtitle">
@@ -84,7 +107,7 @@
 </section>
 
 <!-- MAIN CONTENT -->
-<section class="section">
+<section class="section"data-aos="fade-up">
 <div class="container seo-content">
 
 <p>
@@ -504,33 +527,33 @@ If you frequently dine out with friends or colleagues, using a proper uneven bil
 </section>
 
 <!-- FAQ -->
-<section class="section faq-section">
+<section class="section faq-section"data-aos="fade-up">
 <div class="container">
 
 <h2>Frequently Asked Questions</h2>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 <div class="faq-question">Is it rude to ask for an itemized split at a restaurant?</div>
 <div class="faq-answer">
 No. Many restaurants and diners expect this request, especially in large groups. Asking for an itemized split is often the fairest option when people ordered different food.
 </div>
 </div>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 <div class="faq-question">How do you split a bill when some people shared food?</div>
 <div class="faq-answer">
 Shared dishes should be divided equally or based on how much each person consumed. After that, tax and tip should be applied proportionally to each person’s subtotal.
 </div>
 </div>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 <div class="faq-question">Should tax and tip be split equally?</div>
 <div class="faq-answer">
 No. The fairest approach is to split tax and tip based on how much each person spent on food. This keeps the final payment proportional to individual consumption.
 </div>
 </div>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 <div class="faq-question">What is the easiest way to split a restaurant bill unevenly?</div>
 <div class="faq-answer">
 The easiest method is to use an online uneven bill split calculator. It automatically calculates each person’s share including tax and tip.
@@ -563,6 +586,16 @@ faqQuestions.forEach(question => {
     question.classList.toggle('active');
   });
 });
+</script>
+<!-- AOS SCRIPT (STEP 2) -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<!-- INIT AOS -->
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
 </script>
 
 <script src="script.js"></script>
