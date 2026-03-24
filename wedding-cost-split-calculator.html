@@ -10,6 +10,7 @@
 <meta name="description" content="Use our wedding cost split calculator to divide wedding expenses between the bride's family, groom's family, and the couple. Plan a fair wedding budget easily.">
 
 <link rel="canonical" href="https://expensessplit.com/wedding-cost-split-calculator.html">
+ <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 <script defer src="script.js"></script>
@@ -34,57 +35,70 @@
 
 <body>
 
-<header class="header">
+<header class="main-header">
+  <div class="container">
+    
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
+    </div>
 
-<div class="container nav">
+    <!-- MOBILE MENU BUTTON -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+      ☰
+    </div>
 
-<div class="logo">
-<a href="/">ExpenseSplit</a>
-</div>
+     <!-- Navigation -->
+    <nav class="nav">
+      <a href="/">Home</a>
+      
+      <div class="dropdown">
+        <a href="#">Calculators</a>
+         <div class="dropdown-content">
+          <a href="friends.html">🍽 Friends Expense Calculator</a>
+          <a href="trip.html">✈️ Trip Expense Calculator</a>
+          <a href="roommates.html">🏠 Roommate Expense Calculator</a>
+          <a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+          <a href="airbnb-cost-split-calculator.html">🛏 Airbnb Cost Split Calculator</a>
+          <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+          <a href="gas-fuel-cost-split-calculator.html">⛽ Gas Cost Split Calculator</a>
+          <a href="restaurant-bill-split-calculator.html">🍔 Restaurant Bill Split Calculator</a>
+          <a href="grocery-bill-split-calculator.html">🛒 Grocery Bill Split Calculator</a>
+          <a href="subscription-cost-split-calculator.html">📺 Subscription Cost Split Calculator</a>
+          <a href="wedding-cost-split-calculator.html">💍 Wedding Cost Split Calculator</a>
+        </div>
+      </div>
 
-<div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
-<nav class="nav-menu" id="navMenu">
+      <!-- GUIDES -->
+      <div class="dropdown">
+        <a href="#">Guides</a>
 
-<a href="/">Home</a>
+        <div class="dropdown-content">
+          <a href="split-bills-with-friends.html">Split Bills With Friends</a>
+          <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="group-expense-management.html">Group Expense Management</a>
+          <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
+          <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
+          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
+          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
+          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
+          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
+          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
 
-<div class="dropdown">
-<button class="dropbtn">Calculators ▾</button>
+        </div>
+      </div>
 
-<div class="dropdown-content">
+      <a href="faq.html">FAQ</a>
 
-<a href="friends.html">🍽 Friends Expense Calculator</a>
-<a href="trip.html">✈️ Trip Expense Calculator</a>
-<a href="roommates.html">🏠 Roommate Expense Calculator</a>
-<a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
-<a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+    </nav>
 
-</div>
-</div>
-
-<div class="dropdown">
-
-<button class="dropbtn">Guides ▾</button>
-
-<div class="dropdown-content">
-
-<a href="split-bills-with-friends.html">Split Bills With Friends</a>
-<a href="how-to-split-expenses.html">How to Split Expenses</a>
-<a href="group-expense-management.html">Group Expense Management</a>
-<a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
-<a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
-
-</div>
-</div>
-
-<a href="faq.html">FAQ</a>
-
-</nav>
-</div>
+  </div>
 </header>
 
 
-<section class="hero">
+<section class="hero"data-aos="fade-up">
 
 <div class="container hero-content">
 
@@ -101,7 +115,7 @@ Plan a fair wedding budget by splitting expenses between the bride's family, gro
 </section>
 
 
-<section class="section">
+<section class="section"data-aos="fade-up">
 
 <div class="container">
 
@@ -138,7 +152,7 @@ If you're planning other shared events or travel around the wedding, you might a
 </section>
 
 
-<section class="section light" id="calculator">
+<section class="section light" id="calculator"data-aos="fade-up">
 
 <div class="container">
 
@@ -201,7 +215,7 @@ If you're planning other shared events or travel around the wedding, you might a
 </section>
 
 
-<section class="section seo-content">
+<section class="section seo-content"data-aos="fade-up">
 
 <h2>How to Split Wedding Costs Between Families</h2>
 
@@ -496,13 +510,13 @@ For other shared wedding expenses such as group dinners, rehearsal parties, or t
 </section>
 
 
-<section class="section faq-section">
+<section class="section faq-section"data-aos="fade-up">
 
 <div class="container">
 
 <h2>Frequently Asked Questions</h2>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 
 <div class="faq-question">How do you split wedding expenses between families?</div>
 
@@ -514,7 +528,7 @@ Wedding expenses can be divided between the bride's family, groom's family, and 
 
 </div>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 
 <div class="faq-question">Who traditionally pays for wedding costs?</div>
 
@@ -526,7 +540,7 @@ Traditionally, the bride's family paid for the ceremony and reception while the 
 
 </div>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 
 <div class="faq-question">What is the average cost per guest for a wedding?</div>
 
@@ -538,7 +552,7 @@ The average wedding cost per guest varies depending on location and venue. Many 
 
 </div>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 
 <div class="faq-question">Is this wedding calculator free to use?</div>
 
@@ -550,7 +564,7 @@ Yes. The Wedding Expense Split Calculator on ExpenseSplit is completely free and
 
 </div>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 
 <div class="faq-question">Can this tool help plan a destination wedding?</div>
 
@@ -697,6 +711,17 @@ faqQuestions.forEach(question => {
   });
 });
 </script>
+<!-- AOS SCRIPT (STEP 2) -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
+<!-- INIT AOS -->
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
+</script>
+
+  <script src="script.js"></script>
 </body>
 </html>
