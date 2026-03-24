@@ -12,6 +12,7 @@
 <meta name="keywords" content="uneven bill split calculator, split bills unevenly, unequal expense split, fair bill split calculator, split expenses differently">
 
 <link rel="canonical" href="https://expensessplit.com/uneven-bill-split-calculator.html">
+ <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 
@@ -65,11 +66,12 @@ padding:15px;
 <body>
 
 <!-- HEADER -->
-<header class="header">
-  <div class="container nav">
-
+<header class="main-header">
+  <div class="container">
+    
+    <!-- Logo -->
     <div class="logo">
-      <a href="/">ExpenseSplit</a>
+      <a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
     </div>
 
     <!-- MOBILE MENU BUTTON -->
@@ -77,26 +79,31 @@ padding:15px;
       ☰
     </div>
 
-    <nav class="nav-menu" id="navMenu">
-
+     <!-- Navigation -->
+    <nav class="nav">
       <a href="/">Home</a>
-
-      <!-- CALCULATORS -->
+      
       <div class="dropdown">
-        <button class="dropbtn">Calculators ▾</button>
-
-        <div class="dropdown-content">
+        <a href="#">Calculators</a>
+         <div class="dropdown-content">
           <a href="friends.html">🍽 Friends Expense Calculator</a>
           <a href="trip.html">✈️ Trip Expense Calculator</a>
           <a href="roommates.html">🏠 Roommate Expense Calculator</a>
-        
+          <a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+          <a href="airbnb-cost-split-calculator.html">🛏 Airbnb Cost Split Calculator</a>
           <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+          <a href="gas-fuel-cost-split-calculator.html">⛽ Gas Cost Split Calculator</a>
+          <a href="restaurant-bill-split-calculator.html">🍔 Restaurant Bill Split Calculator</a>
+          <a href="grocery-bill-split-calculator.html">🛒 Grocery Bill Split Calculator</a>
+          <a href="subscription-cost-split-calculator.html">📺 Subscription Cost Split Calculator</a>
+          <a href="wedding-cost-split-calculator.html">💍 Wedding Cost Split Calculator</a>
         </div>
       </div>
 
+
       <!-- GUIDES -->
       <div class="dropdown">
-        <button class="dropbtn">Guides ▾</button>
+        <a href="#">Guides</a>
 
         <div class="dropdown-content">
           <a href="split-bills-with-friends.html">Split Bills With Friends</a>
@@ -104,18 +111,24 @@ padding:15px;
           <a href="group-expense-management.html">Group Expense Management</a>
           <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
           <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
+          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
+          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
+          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
+          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
+          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
+          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+
         </div>
       </div>
 
       <a href="faq.html">FAQ</a>
 
-      
     </nav>
 
   </div>
 </header>
 
-<section class="hero">
+<section class="hero"data-aos="fade-up">
 <div class="container hero-content">
 
 <h1>Uneven Bill Split Calculator Guide</h1>
@@ -130,7 +143,7 @@ Learn how to split expenses fairly when everyone contributes different amounts.
 </section>
 
 
-<section class="section">
+<section class="section"data-aos="fade-up">
 
 <div class="container seo-content">
 
@@ -335,32 +348,32 @@ You can start using the free calculator here:
 </section>
 
 
-<section class="faq-section">
+<section class="faq-section"data-aos="fade-up">
 
 <h2>Frequently Asked Questions</h2>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 <div class="faq-question">How do you split bills unevenly?</div>
 <div class="faq-answer">
 Bills can be split unevenly by calculating each person's contribution based on what they paid or used. A calculator can automatically determine the correct balances.
 </div>
 </div>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 <div class="faq-question">Is uneven bill splitting fair?</div>
 <div class="faq-answer">
 Yes. Uneven splitting is often more fair than equal splitting when people contribute different amounts or use services differently.
 </div>
 </div>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 <div class="faq-question">Can couples split expenses unevenly?</div>
 <div class="faq-answer">
 Many couples split expenses based on income or financial ability. This helps create a more balanced financial partnership.
 </div>
 </div>
 
-<div class="faq-item">
+<div class="faq-item"data-aos="fade-up">
 <div class="faq-question">What is the easiest way to split group expenses?</div>
 <div class="faq-answer">
 Using an online expense split calculator is the easiest way to divide group expenses accurately and quickly.
@@ -411,6 +424,16 @@ q.classList.add("active");
 });
 
 </script>
+<!-- AOS SCRIPT (STEP 2) -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
+<!-- INIT AOS -->
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
+</script>
+  <script src="script.js"></script>
 </body>
 </html>
