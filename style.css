@@ -1391,3 +1391,53 @@ margin-top:10px;
 .use-case-card:hover a {
   color: #fff;
 }
+
+/* USE CASE CARDS SECTION */
+
+.use-cases {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.use-case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.use-case-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+}
+
+.use-case-card:hover {
+  transform: translateY(-5px);
+}
+
+.use-case-card h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.use-case-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.use-case-card a {
+  display: block;
+  color: #007BFF;
+  text-decoration: none;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.use-case-card a:hover {
+  text-decoration: underline;
+}
