@@ -1441,3 +1441,6 @@ margin-top:10px;
 .use-case-card a:hover {
   text-decoration: underline;
 }
+.use-case-card {
+  border: 3px solid red;
+}
