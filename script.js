@@ -851,3 +851,6 @@ function closeCTA() {
   document.getElementById("stickyCTA").style.display = "none";
 }
 </script>
+body {
+  padding-bottom: 60px;
+}
