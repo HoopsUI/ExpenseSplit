@@ -1337,3 +1337,48 @@ margin-top:10px;
 }
 
 
+
+
+/* 🔥 STICKY CTA BAR */
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #111;
+  color: #fff;
+  z-index: 9999;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+}
+
+.sticky-cta-content {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.cta-text {
+  font-size: 14px;
+}
+
+.cta-button {
+  background: #007BFF;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cta-button:hover {
+  background: #0056b3;
+}
+
+.cta-close {
+  margin-left: 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
