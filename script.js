@@ -841,3 +841,13 @@ menu.classList.toggle("show");
 window.addEventListener("load", function () {
   document.querySelector(".hero-content").classList.add("show");
 });
+
+
+
+
+
+<script>
+function closeCTA() {
+  document.getElementById("stickyCTA").style.display = "none";
+}
+</script>
