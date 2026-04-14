@@ -1367,3 +1367,8 @@ margin-top:10px;
 .feature-card li {
   display: inline-block;
 }
+
+   
+body {
+  padding-bottom: 50px;
+}
