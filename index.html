@@ -738,6 +738,7 @@ Wedding cost split?, Try our
 </script>
 
   <!-- FOOTER -->
+ <footer id="footer">
   <footer class="footer">
     <div class="container footer-content">
       <p>© 2026 ExpenseSplit. All rights reserved.</p>
@@ -812,5 +813,27 @@ z-index:999;
     📚 Explore All Expense Guides →
   </a>
 </div>
+   #stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
+   
 </body>
 </html>
