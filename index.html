@@ -383,7 +383,12 @@ Looking for a simple way to split expenses with friends or roommates? Our free e
 
   <!-- Split Type -->
   <div class="form-group">
-    <label for="splitType">⚖ Split Type</label>
+    <label for="splitType">
+  ⚖ Split Type 
+  <a href="split-expenses-with-friends-without-conflict.html" style="font-size:12px;">
+    (which one should you choose?)
+  </a>
+</label>
     <select id="splitType">
       <option value="equal">Equal Split</option>
       <option value="unequal">Unequal Split</option>
@@ -409,6 +414,21 @@ Looking for a simple way to split expenses with friends or roommates? Our free e
 <!-- RESULT PANEL -->
 <div id="result" class="result-box hidden"></div>
 
+<!-- RESULT CTA -->
+<div id="resultCTA" style="display:none; text-align:center; margin-top:15px;">
+  <p>📊 Want to track this regularly?</p>
+  <a href="monthly-expense-tracker.html" class="primary-btn">
+    Track Monthly Expenses →
+  </a>
+
+  <p style="margin-top:10px;">
+    Or learn how to avoid confusion →
+    <a href="split-expenses-with-friends-without-conflict.html">
+      Read Guide
+    </a>
+  </p>
+</div>
+        
 <!-- SHARE BUTTON -->
 <div class="share-box hidden" id="shareBox">
   <button id="copyResultsBtn">Copy Results</button>
@@ -758,7 +778,8 @@ Wedding cost split?, Try our
     const peopleInput = document.getElementById("people");
     const currencySelect = document.getElementById("currency");
     const resultBox = document.getElementById("result");
-
+    const resultCTA = document.getElementById("resultCTA");
+    
     if (!form) return;
 
     form.addEventListener("submit", function (e) {
@@ -782,9 +803,14 @@ Wedding cost split?, Try our
         <strong>People:</strong> ${people}<br>
         <strong>Each person pays:</strong> ${currency}${perPerson}
       `;
-    });
-  });
+    
+  // 🔥 SHOW RESULT CTA HERE
+  if (resultCTA) {
+    resultCTA.style.display = "block";
+  }
+});
 </script>
+   
   <!-- AOS SCRIPT (STEP 2) -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
