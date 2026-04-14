@@ -1338,3 +1338,32 @@ margin-top:10px;
 
 
 
+   
+
+.use-btn {
+  display: inline-block;
+  background: #007BFF;
+  color: #fff;
+  padding: 10px 14px;
+  margin: 6px 6px 0 0;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.use-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+.feature-card ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.feature-card li {
+  display: inline-block;
+}
