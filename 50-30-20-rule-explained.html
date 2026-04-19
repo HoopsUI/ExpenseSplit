@@ -100,6 +100,33 @@
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://expensessplit.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guides",
+      "item": "https://expensessplit.com/all-guides.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "50/30/20 Rule Explained",
+      "item": "https://expensessplit.com/50-30-20-rule-explained.html"
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -159,6 +186,13 @@
       <a href="faq.html">FAQ</a>
 
     </nav>
+
+    <nav class="breadcrumbs">
+  <a href="/">Home</a> › 
+  <a href="/all-guides.html">Guides</a> › 
+  <span>50/30/20 Rule</span>  
+  <a href="/monthly-expense-tracker.html" class="crumb-cta">→ Try Calculator</a>
+</nav>
 
   </div>
 </header>
@@ -663,6 +697,9 @@ AOS.init({
 
 <script src="script.js"></script>
 <div style="
+body {
+  padding-bottom: 80px; /* match your sticky CTA height */
+}
 position:fixed;
 bottom:0;
 left:0;
@@ -677,5 +714,20 @@ z-index:999;
     📊 Try Free Budget Tracker →
   </a>
 </div>
+  <script>
+const stickyCTA = document.querySelector('.sticky-cta');
+const footer = document.querySelector('footer');
+
+window.addEventListener('scroll', () => {
+  const footerTop = footer.getBoundingClientRect().top;
+  const windowHeight = window.innerHeight;
+
+  if (footerTop < windowHeight) {
+    stickyCTA.style.display = 'none';
+  } else {
+    stickyCTA.style.display = 'flex';
+  }
+});
+</script>
 </body>
 </html>
