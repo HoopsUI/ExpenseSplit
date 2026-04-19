@@ -1372,3 +1372,18 @@ margin-top:10px;
 body {
   padding-bottom: 50px;
 }
+
+.breadcrumbs {
+  font-size: 14px;
+  margin: 15px 0;
+  color: #666;
+}
+
+.breadcrumbs a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
