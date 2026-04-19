@@ -1389,14 +1389,20 @@ body {
 }
 
 .sticky-cta {
-  position: fixed;
-  bottom: 20px; /* was 0 */
+  position: fixed !important; /* force it */
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
 
-  width: 90%;
-  max-width: 500px;
+  z-index: 9999;
 
-  border-radius: 12px;
+  background: #007BFF;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 10px;
+
+  text-align: center;
+  font-weight: 600;
+
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
