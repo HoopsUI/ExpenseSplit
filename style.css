@@ -1374,29 +1374,29 @@ body {
 }
 
 .sticky-cta {
-  animation: floatPulse 2s infinite;
+  animation: floatUp 0.6s ease;
 }
 
-@keyframes floatPulse {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-  100% { transform: translateY(0); }
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 40px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 .sticky-cta {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  left: auto;
-  width: auto;
-  padding: 12px 18px;
-  background: #007BFF;
-  color: #fff;
-  border-radius: 30px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-  z-index: 999;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  bottom: 20px; /* was 0 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  width: 90%;
+  max-width: 500px;
+
+  border-radius: 12px;
 }
