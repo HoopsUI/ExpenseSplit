@@ -37,7 +37,6 @@
 <body>
 
 <!-- HEADER -->
-
 <header class="main-header">
   <div class="container">
     
@@ -78,17 +77,13 @@
         <a href="#">Guides</a>
 
         <div class="dropdown-content">
-          <a href="split-bills-with-friends.html">Split Bills With Friends</a>
           <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="split-bills-with-friends.html">Split Bills with Friends</a>
           <a href="group-expense-management.html">Group Expense Management</a>
-          <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
-          <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
-          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
-          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
-          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
-          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
-          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
-          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+          <a href="track-shared-expenses.html">Track Shared Expenses</a>
+          <a href="split-rent-roommates.html">Split Rent with Roommates</a>
+          <a href="trip-budget-breakdown.html">Trip Budget Breakdown</a>
+          <a href="all-guides.html"><strong>📚 View All Guides</strong></a>
 
         </div>
       </div>
@@ -114,6 +109,10 @@ Quickly split Airbnb cost per person with our free Airbnb calculator. Easily div
 </p>
 
 <a href="#calculator" class="primary-btn">Use Free Calculator</a>
+
+<p style="margin-top:10px; font-size:14px;">
+  👉 Need full trip planning? <a href="trip.html">Try Trip Calculator</a>
+</p>
 
 </div>
 
@@ -168,7 +167,15 @@ This tool is designed to solve all these problems instantly with accurate result
 
 
 <!-- CALCULATOR -->
-
+<div class="container" style="margin-bottom:20px;">
+  <div class="tool-cta-box">
+    <p><strong>💡 Want to split Airbnb costs fairly (even with different rooms or nights)?</strong></p>
+    <p>
+      Learn the best method →
+      <a href="who-should-pay-more-group-stay.html">Who Should Pay More in a Group Stay</a>
+    </p>
+  </div>
+</div>
 <section class="section light" id="calculator"data-aos="fade-up">
 
 <div class="container">
@@ -187,7 +194,10 @@ This tool is designed to solve all these problems instantly with accurate result
 
 <input type="number" id="nights">
 
-<label>Number of Guests</label>
+<label>
+Number of Guests 
+<a href="split-airbnb-costs.html" style="font-size:12px;">(How to split fairly?)</a>
+</label>
 
 <input type="number" id="guests">
 
@@ -240,6 +250,14 @@ Our calculator automates this entire process.
 If your group is also splitting meals, transportation, and activities during the trip, you can use our 
 <a href="friends.html">Friends Expense Calculator</a> to track multiple shared expenses and calculate who owes whom.
 </p>
+
+<div class="tool-cta-box">
+  <p><strong>📊 Planning a full trip budget?</strong></p>
+  <p>
+    Learn to track all expenses in one place →
+    <a href="airbnb-fees-explained.html">Airbnb fees explained</a>
+  </p>
+</div>
 
 <h2>Why Splitting Vacation Rental Costs Can Be Complicated</h2>
 
@@ -306,6 +324,15 @@ For example, imagine a group books a vacation rental with the following costs:
 <p>
 The total accommodation cost becomes $1,400. Using a <strong>split Airbnb cost per person calculator</strong>, each guest would pay $200 for the stay.
 </p>
+
+<details style="margin:15px 0;">
+  <summary><strong>📖 How is Airbnb cost calculated per person?</strong></summary>
+  <p>
+    Total rent + cleaning + fees ÷ number of guests. 
+    For uneven splits, see 
+    <a href="split-airbnb-costs.html">this guide</a>.
+  </p>
+</details>
 
   <h2>How Groups Usually Split Vacation Rental Costs</h2>
 
@@ -533,6 +560,13 @@ Yes. ExpenseSplit tools are completely free and work instantly in your browser w
 
 </div>
 
+<div class="container" style="text-align:center; margin:40px 0;">
+  <p><strong>Still planning your trip?</strong></p>
+  <a href="trip.html" class="primary-btn">
+    Plan Full Trip Budget →
+  </a>
+</div>
+
 </section>
 
 
@@ -589,7 +623,17 @@ document.getElementById("result").innerHTML =
 
 "Cost Per Night: $"+perNight.toFixed(2)+"<br>"+
 
-"Each Guest Pays: $"+perGuest.toFixed(2);
+"Each Guest Pays: $"+perGuest.toFixed(2)+"<br><br>"+
+
+"<div class='result-cta'>"+
+"📊 Want to track full trip expenses (food, transport, activities)?<br>"+
+"<a href='trip.html' class='primary-btn small-btn'>Use Trip Expense Calculator →</a>"+
+"</div><br>"+
+
+"<div class='result-cta'>"+
+"💡 Splitting unevenly (different rooms or nights)?<br>"+
+"<a href='who-should-pay-more-group-stay.html'>Learn fair split methods</a>"+
+"</div>";
 
 }
 
@@ -642,5 +686,25 @@ faqQuestions.forEach(question => {
   });
 </script>
 
+<div class="sticky-cta">
+  <a href="all-guides.html">📚 Explore All Expense Split Guides</a>
+</div>
+
+<style>
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #007BFF;
+  text-align: center;
+  padding: 10px;
+  z-index: 999;
+}
+.sticky-cta a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+</style>
 </body>
 </html>
