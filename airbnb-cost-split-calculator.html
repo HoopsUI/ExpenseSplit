@@ -18,17 +18,91 @@
 
 <script type="application/ld+json">
 {
-"@context":"https://schema.org",
-"@type":"WebPage",
-"name":"Airbnb Cost Split Calculator",
-"description":"Split Airbnb or vacation rental costs between friends easily.",
-"url":"https://expensessplit.com/airbnb-cost-split-calculator.html",
-"mainEntity":{
-"@type":"WebApplication",
-"name":"Airbnb Cost Split Calculator",
-"applicationCategory":"FinanceApplication",
-"operatingSystem":"Web"
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Airbnb Cost Split Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "description": "Free Airbnb cost split calculator to divide total trip expenses including cleaning fees, service fees, and taxes among friends.",
+  "url": "https://yourdomain.com/airbnb-cost-split-calculator.html",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "ExpenseSplit"
+  },
+  "featureList": [
+    "Split Airbnb cost per person",
+    "Include cleaning fees and service charges",
+    "Adjust for unequal sharing",
+    "Instant calculation results"
+  ]
 }
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate Airbnb cost per person?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add the total Airbnb cost including nightly rate, cleaning fees, service fees, and taxes, then divide by the number of people. You can use an Airbnb cost split calculator to do this instantly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Airbnb split payments automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, Airbnb does not automatically split payments among guests. One person usually pays the full amount and then splits the cost manually."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should Airbnb cleaning fees be split equally?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, cleaning fees are generally shared equally among all guests since everyone uses the property."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I split Airbnb costs unevenly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can split Airbnb costs unevenly based on room size, number of nights stayed, or personal preferences."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is included in Airbnb total cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The total Airbnb cost includes nightly price, cleaning fees, service fees, and applicable taxes."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Airbnb Cost Split Calculator",
+  "description": "Use this free Airbnb cost split calculator to divide total expenses among friends quickly and fairly.",
+  "url": "https://yourdomain.com/airbnb-cost-split-calculator.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ExpenseSplit"
+  }
 }
 </script>
 
@@ -686,25 +760,43 @@ faqQuestions.forEach(question => {
   });
 </script>
 
-<div class="sticky-cta">
-  <a href="split-airbnb-costs.html">📚 Split Airbnb Costs Fairly</a>
+<!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#007BFF;
+color:#fff;
+text-align:center;
+padding:10px;
+z-index:999;
+">
+  <a href="split-airbnb-costs.html" style="color:#fff;font-weight:600;text-decoration:none;">
+    📚 Split Airbnb Costs Fairly →
+  </a>
 </div>
-
-<style>
-.sticky-cta {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #007BFF;
-  text-align: center;
-  padding: 10px;
-  z-index: 999;
-}
-.sticky-cta a {
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
+   #stickyCTA.hide {
+  transform: translateY(100%);
 }
 </style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
+  
 </body>
 </html>
