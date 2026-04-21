@@ -730,27 +730,44 @@ AOS.init({ duration: 800, once: true });
 </script>
 
 <script src="script.js"></script>
-<style>
-.sticky-cta {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #007BFF;
-  text-align: center;
-  padding: 12px;
-  z-index: 999;
-}
-.sticky-cta a {
-  color: white;
-  font-weight: 600;
-  text-decoration: none;
-}
-</style>
 
-<div class="sticky-cta">
-  <a href="airbnb-cost-split-calculator.html">
+  <!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#007BFF;
+color:#fff;
+text-align:center;
+padding:10px;
+z-index:999;
+">
+  <a href="airbnb-cost-split-calculator.html" style="color:#fff;font-weight:600;text-decoration:none;">
     🧮 Split Airbnb Cost Instantly →
   </a>
 </div>
+   #stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
+
 </body>
 </html>
