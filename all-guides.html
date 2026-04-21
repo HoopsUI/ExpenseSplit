@@ -14,6 +14,27 @@
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
+.cta-btn {
+  display: inline-block;
+  background: #007BFF;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 10px;
+}
+.cta-btn:hover {
+  opacity: 0.9;
+}
+
+.cta-box {
+  background: #f1f7ff;
+  padding: 18px;
+  border-radius: 12px;
+  margin: 30px 0;
+  text-align: center;
+}
 .guide-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -55,6 +76,36 @@
    "@type": "ListItem",
    "position": 2,
    "url": "https://expensessplit.com/split-bills-with-friends.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "url": "https://expensessplit.com/split-rent-roommates.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 4,
+   "url": "https://expensessplit.com/trip-cost-per-person.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 5,
+   "url": "https://expensessplit.com/how-to-split-restaurant-bills.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 6,
+   "url": "https://expensessplit.com/track-shared-expenses.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 7,
+   "url": "https://expensessplit.com/split-expenses-couple.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 8,
+   "url": "https://expensessplit.com/free-expense-split-tools.html"
   }
  ]
 }
@@ -66,33 +117,61 @@
 
 <!-- HEADER -->
 <header class="main-header">
-<div class="container">
-<div class="logo">
-<a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
-</div>
+  <div class="container">
+    
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
+    </div>
 
-<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <!-- MOBILE MENU BUTTON -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+      ☰
+    </div>
 
-<nav class="nav">
-<a href="/">Home</a>
+     <!-- Navigation -->
+    <nav class="nav">
+      <a href="/">Home</a>
+      
+      <div class="dropdown">
+        <a href="#">Calculators</a>
+         <div class="dropdown-content">
+          <a href="friends.html">🍽 Friends Expense Calculator</a>
+          <a href="trip.html">✈️ Trip Expense Calculator</a>
+          <a href="roommates.html">🏠 Roommate Expense Calculator</a>
+          <a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+          <a href="airbnb-cost-split-calculator.html">🛏 Airbnb Cost Split Calculator</a>
+          <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+          <a href="gas-fuel-cost-split-calculator.html">⛽ Gas Cost Split Calculator</a>
+          <a href="restaurant-bill-split-calculator.html">🍔 Restaurant Bill Split Calculator</a>
+          <a href="grocery-bill-split-calculator.html">🛒 Grocery Bill Split Calculator</a>
+          <a href="subscription-cost-split-calculator.html">📺 Subscription Cost Split Calculator</a>
+          <a href="wedding-cost-split-calculator.html">💍 Wedding Cost Split Calculator</a>
+        </div>
+      </div>
 
-<div class="dropdown">
-<a href="#">Calculators</a>
-<div class="dropdown-content">
-<a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
-</div>
-</div>
 
-<div class="dropdown">
-<a href="#">Guides</a>
-<div class="dropdown-content">
-<a href="all-guides.html">All Guides</a>
-</div>
-</div>
+      <!-- GUIDES -->
+      <div class="dropdown">
+        <a href="#">Guides</a>
 
-<a href="faq.html">FAQ</a>
-</nav>
-</div>
+        <div class="dropdown-content">
+          <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="split-bills-with-friends.html">Split Bills with Friends</a>
+          <a href="group-expense-management.html">Group Expense Management</a>
+          <a href="track-shared-expenses.html">Track Shared Expenses</a>
+          <a href="split-rent-roommates.html">Split Rent with Roommates</a>
+          <a href="trip-budget-breakdown.html">Trip Budget Breakdown</a>
+          <a href="all-guides.html"><strong>📚 View All Guides</strong></a>
+
+        </div>
+      </div>
+
+      <a href="faq.html">FAQ</a>
+
+    </nav>
+
+  </div>
 </header>
 
 <!-- HERO -->
@@ -102,6 +181,11 @@
 <p class="subtitle">
 Learn how to split expenses, manage shared costs, budget smarter, and avoid conflicts with our complete collection of guides.
 </p>
+</div>
+  <div style="margin-top:20px;">
+  <a href="monthly-expense-tracker.html" class="cta-btn">
+    📊 Start Tracking Expenses →
+  </a>
 </div>
 </section>
 
@@ -141,6 +225,14 @@ You’ll find practical solutions for:
 All guides are simple, beginner-friendly, and designed to work without complicated apps or spreadsheets.
 </p>
 
+<div class="cta-box">
+  <p><strong>💡 Want to split expenses instantly?</strong></p>
+  <p>Use our free tool instead of manual calculations.</p>
+  <a href="iou-calculator.html" class="cta-btn">
+    Use Free Expense Tracker →
+  </a>
+</div>
+
 <h2>💰 Budgeting & Expense Tracking</h2>
 <div class="guide-grid">
 
@@ -162,6 +254,13 @@ All guides are simple, beginner-friendly, and designed to work without complicat
 <div class="guide-card">
 <a href="track-shared-expenses.html">Track Shared Expenses</a>
 <p>Learn how to manage and track shared expenses with friends, roommates, or groups.</p>
+</div>
+
+<div class="cta-box">
+  <p>📊 Ready to apply this?</p>
+  <a href="monthly-expense-tracker.html" class="cta-btn">
+    Start Tracking Your Expenses →
+  </a>
 </div>
 
 </div>
@@ -202,6 +301,13 @@ All guides are simple, beginner-friendly, and designed to work without complicat
 <div class="guide-card">
 <a href="what-is-iou.html">What is IOU?</a>
 <p>Understand IOUs and how they are used in tracking and settling shared expenses.</p>
+</div>
+
+<div class="cta-box">
+  <p>👥 Want to split bills quickly?</p>
+  <a href="friends.html" class="cta-btn">
+    Try Advanced Bill Split Calculator →
+  </a>
 </div>
 
 </div>
@@ -284,6 +390,20 @@ All guides are simple, beginner-friendly, and designed to work without complicat
 <p>Best practices for splitting fuel and travel costs in carpools.</p>
 </div>
 
+<div class="cta-box">
+  <p>✈️ Planning a trip?</p>
+  <a href="trip-cost-per-person.html" class="cta-btn">
+    Calculate Trip Cost →
+  </a>
+</div>
+
+  <div class="cta-box">
+  <p>🏠 Sharing rent?</p>
+  <a href="roommates.html" class="cta-btn">
+    Split Rent Easily →
+  </a>
+</div>
+
 </div>
 
 <h2>🍽️ Food & Dining Expense Splitting</h2>
@@ -307,6 +427,13 @@ All guides are simple, beginner-friendly, and designed to work without complicat
 <div class="guide-card">
 <a href="split-bills-different-food.html">Split Bills for Different Orders</a>
 <p>How to split bills when everyone orders different items.</p>
+</div>
+
+<div class="cta-box">
+  <p>🍽️ At a restaurant right now?</p>
+  <a href="restaurant-bill-split-calculator.html" class="cta-btn">
+    Split Dinner Bill Properly →
+  </a>
 </div>
 
 </div>
@@ -382,6 +509,14 @@ All guides are simple, beginner-friendly, and designed to work without complicat
 <div class="guide-card">
 <a href="is-subscription-sharing-worth-it.html">Is Subscription Sharing Worth It?</a>
 <p>Pros and cons of sharing subscriptions with others.</p>
+</div>
+
+<div class="cta-box">
+  <p><strong>🚀 Skip the confusion</strong></p>
+  <p>Use a calculator instead of reading guides.</p>
+  <a href="uneven-bill-split-calculator.html" class="cta-btn">
+    Try Uneven Bill split Tool →
+  </a>
 </div>
 
 </div>
@@ -463,11 +598,13 @@ These problems can be solved by using proper tracking methods and clear agreemen
 
 <h2>Start Splitting Expenses Easily</h2>
 
-<p>
-Instead of manually calculating everything, you can use our 
-<a href="monthly-expense-tracker.html">free expense tracker</a> 
-to manage shared expenses, track spending, and settle balances easily.
-</p>
+<div class="cta-box">
+  <p><strong>🎯 Ready to simplify everything?</strong></p>
+  <p>Track, split, and manage expenses in one place.</p>
+  <a href="/" class="cta-btn">
+    Start Now (Free Tool) →
+  </a>
+</div>
 
 </div>
 </section>
@@ -492,5 +629,43 @@ AOS.init({ duration: 800, once: true });
 
 <script src="script.js"></script>
 
+<!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#007BFF;
+color:#fff;
+text-align:center;
+padding:10px;
+z-index:999;
+">
+  <a href="monthly-expense-tracker.html" style="color:#fff;font-weight:600;text-decoration:none;">
+    📊 Use Free Expense Tracker →
+  </a>
+</div>
+   #stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
+  
 </body>
 </html>
