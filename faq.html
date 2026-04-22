@@ -72,17 +72,13 @@
         <a href="#">Guides</a>
 
         <div class="dropdown-content">
-          <a href="split-bills-with-friends.html">Split Bills With Friends</a>
           <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="split-bills-with-friends.html">Split Bills with Friends</a>
           <a href="group-expense-management.html">Group Expense Management</a>
-          <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
-          <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
-          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
-          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
-          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
-          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
-          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
-          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+          <a href="track-shared-expenses.html">Track Shared Expenses</a>
+          <a href="split-rent-roommates.html">Split Rent with Roommates</a>
+          <a href="trip-budget-breakdown.html">Trip Budget Breakdown</a>
+          <a href="all-guides.html"><strong>📚 View All Guides</strong></a>
 
         </div>
       </div>
@@ -104,13 +100,53 @@
     </div>
   </section>
 
+  <div class="container" style="margin-top:20px;">
+  <div class="tool-cta-box">
+    <p><strong>🚀 Start Splitting Expenses Instantly</strong></p>
+    <p>
+      Use our free calculator → 
+      <a href="/">Expense Split Tool</a>
+    </p>
+  </div>
+</div>
+
   <!-- FAQ CONTENT -->
  <section class="section faq-section" data-aos="fade-up">
     <div class="container seo-content">
 
+      <h2>🔥 Popular Actions</h2>
+
+<div class="guide-grid">
+
+  <div class="guide-card">
+    <a href="friends.html">Split Bills with Friends</a>
+    <p>Quickly divide expenses between friends without confusion.</p>
+  </div>
+
+  <div class="guide-card">
+    <a href="trip.html">Split Trip Expenses</a>
+    <p>Calculate travel costs and per-person share instantly.</p>
+  </div>
+
+  <div class="guide-card">
+    <a href="roommates.html">Split Rent & Bills</a>
+    <p>Divide rent, utilities, and shared costs fairly.</p>
+  </div>
+
+  <div class="guide-card">
+    <a href="all-guides.html">Explore All Guides</a>
+    <p>Learn how to split expenses properly and avoid conflicts.</p>
+  </div>
+
+</div>
+
       <h2>What is ExpenseSplit?</h2>
       <p>
-        ExpenseSplit is a free, browser-based expense split calculator that helps groups divide shared costs fairly.
+       ExpenseSplit is a free, browser-based expense split calculator that helps groups divide shared costs fairly.
+
+👉 <a href="/">Try the expense split calculator</a> or 
+learn the correct method in 
+<a href="how-to-split-expenses.html">this step-by-step guide</a>.
         It is designed for friends, roommates, trips, and any situation where multiple people share expenses.
       </p>
 
@@ -149,6 +185,13 @@
         <li>Colleagues sharing informal expenses</li>
       </ul>
 
+      <div class="result-cta" style="margin:30px 0;">
+  <p>💡 Want to avoid confusion while splitting expenses?</p>
+  <a href="split-expenses-with-friends-without-conflict.html" class="cta-btn">
+    Learn the Right Way →
+  </a>
+</div>
+
       <h2>How accurate are the calculations?</h2>
       <p>
         ExpenseSplit calculates totals based strictly on the information you enter.
@@ -184,7 +227,11 @@
         You can explore these helpful pages:
       </p>
       <ul>
-        <li><a href="how-to-split-expenses.html">How to Split Expenses</a></li>
+        <li>
+<a href="how-to-split-expenses.html">
+How to Split Expenses (Step-by-Step Guide)
+</a>
+</li>
         <li><a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a></li>
         <li><a href="trip.html">Trip Expense Calculator</a></li>
       </ul>
@@ -197,7 +244,7 @@
 
       <p>
         Ready to calculate? Head back to the 
-        <a href="index.html#tool">ExpenseSplit Calculator</a>
+        <a href="/">ExpenseSplit Calculator</a>
         and start splitting expenses instantly.
       </p>
 
@@ -228,5 +275,42 @@
 </script>
 
   <script src="script.js"></script>
+   <!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#007BFF;
+color:#fff;
+text-align:center;
+padding:10px;
+z-index:999;
+">
+  <a href="/" style="color:#fff;font-weight:600;text-decoration:none;">
+    ⚡ Start Splitting Expenses →
+  </a>
+</div>
+   #stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
 </body>
 </html>
