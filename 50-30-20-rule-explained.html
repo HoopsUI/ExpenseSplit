@@ -172,7 +172,8 @@
       and build savings — without complicated spreadsheets.
     </p>
   </div>
-  <div class="container" style="margin-top:20px;">
+</section>
+   <div class="container" style="margin-top:20px;">
   <div style="background:#f1f7ff;padding:15px;border-radius:10px;text-align:center;">
     <p><strong>💡 Want to apply this instantly?</strong></p>
     <p>
@@ -182,7 +183,6 @@
     </p>
   </div>
 </div>
-</section>
 
 <!-- CONTENT -->
 <section class="section" data-aos="fade-up">
@@ -662,11 +662,10 @@ AOS.init({
 </script>
 
 <script src="script.js"></script>
-<div style="
-body {
-  padding-bottom: 120px; /* match your sticky CTA height */
-}
- position:fixed;
+
+  <!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
 bottom:0;
 left:0;
 width:100%;
@@ -676,24 +675,30 @@ text-align:center;
 padding:10px;
 z-index:999;
 ">
-  <a href="monthly-expense-tracker.html" style="color:#fff;text-decoration:none;font-weight:600;">
+  <a href="monthly-expense-tracker.html" style="color:#fff;font-weight:600;text-decoration:none;">
     📊 Try Free Budget Tracker →
   </a>
 </div>
-  <script>
-const stickyCTA = document.querySelector('.sticky-cta');
-const footer = document.querySelector('footer');
+   #stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
 
-window.addEventListener('scroll', () => {
-  const footerTop = footer.getBoundingClientRect().top;
-  const windowHeight = window.innerHeight;
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
 
-  if (footerTop < windowHeight) {
-    stickyCTA.style.display = 'none';
-  } else {
-    stickyCTA.style.display = 'flex';
-  }
-});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
 </script>
 </body>
 </html>
