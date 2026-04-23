@@ -29,7 +29,7 @@
 </head>
 
 <body>
-  <!-- HEADER -->
+ <!-- HEADER -->
 <header class="main-header">
   <div class="container">
     
@@ -70,17 +70,13 @@
         <a href="#">Guides</a>
 
         <div class="dropdown-content">
-          <a href="split-bills-with-friends.html">Split Bills With Friends</a>
           <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="split-bills-with-friends.html">Split Bills with Friends</a>
           <a href="group-expense-management.html">Group Expense Management</a>
-          <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
-          <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
-          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
-          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
-          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
-          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
-          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
-          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+          <a href="track-shared-expenses.html">Track Shared Expenses</a>
+          <a href="split-rent-roommates.html">Split Rent with Roommates</a>
+          <a href="trip-budget-breakdown.html">Trip Budget Breakdown</a>
+          <a href="all-guides.html"><strong>📚 View All Guides</strong></a>
 
         </div>
       </div>
@@ -129,6 +125,16 @@ This tool works as a <strong>split bills with friends calculator</strong>,
   </section>
 
   <!-- CALCULATOR (LAYOUT FIXED & MATCHED) -->
+  <div class="container" style="margin-bottom:20px;">
+  <div class="tool-cta-box">
+    <p><strong>💡 Not sure how to split expenses correctly?</strong></p>
+    <p>
+      Learn the exact method →
+      <a href="how-to-split-expenses.html">Complete Expense Splitting Guide</a>
+    </p>
+  </div>
+</div>
+  
   <section class="section light" id="calculator"data-aos="fade-up">
 <div class="container">
 
@@ -151,7 +157,12 @@ Choose Calculator Type
 <!-- EQUAL SPLIT -->
 <div id="equal" class="tab-content active">
 
-<h3>Split Bill Equally</h3>
+<h3>
+Split Bill Equally 
+<a href="split-restaurant-bill-equally-or-itemized.html" style="font-size:14px;">
+(Which method is fair?)
+</a>
+</h3>
 
 <label>Total Bill</label>
 <input type="number" id="billTotal">
@@ -353,6 +364,11 @@ Our tool works as a <strong>split bills between friends calculator</strong>, hel
 <p>
 For more advanced situations where multiple people contribute different amounts, you may want to explore our 
 <a href="group-expense-management.html">Group Expense Management Guide</a> to learn the best strategies for handling shared money in groups.
+</p>
+
+<p>
+👉 Want a step-by-step breakdown?
+<a href="how-to-split-expenses.html">Learn how to split expenses properly</a>
 </p>
 
 <h2>Why Use an Online Friends Expense Calculator?</h2>
@@ -624,7 +640,12 @@ let each = finalTotal / people;
 document.getElementById("equalResult").innerHTML =
 "<strong>Payment Summary</strong><br><br>" +
 "<strong>Total with tip:</strong> " + finalTotal.toFixed(2) +
-"<br><strong>Each pays:</strong> " + each.toFixed(2);
+"<br><strong>Each pays:</strong> " + each.toFixed(2) +
+
+"<br><br><div class='result-cta'>" +
+"👉 Want to avoid unfair splits in group expenses?<br>" +
+"<a href='split-expenses-with-friends-without-conflict.html'>Learn the best method</a>" +
+"</div>";
 
 }
 
@@ -690,7 +711,12 @@ if(creditor.amount <= 0) creditors.shift();
 }
 
 document.getElementById("owesResult").innerHTML =
-"<strong>Payment Summary</strong><br><br>" + result;
+"<strong>Payment Summary</strong><br><br>" + result +
+
+"<br><br><div class='result-cta'>" +
+"📊 Want to track group expenses over time?<br>" +
+"<a href='monthly-expense-tracker.html'>Use Monthly Expense Tracker</a>" +
+"</div>";
 
 }
 
@@ -758,7 +784,12 @@ if(creditor.amount <= 0) creditors.shift();
 }
 
 document.getElementById("multiResult").innerHTML =
-"<strong>Payment Summary</strong><br><br>" + result;
+"<strong>Payment Summary</strong><br><br>" + result +
+
+"<br><br><div class='result-cta'>" +
+"👉 Managing multiple expenses?<br>" +
+"<a href='group-expense-management.html'>See better group strategies</a>" +
+"</div>";
 
 }
 
@@ -783,7 +814,12 @@ result+=name+" pays "+share.toFixed(2)+"<br>";
 }
 
 document.getElementById("unevenResult").innerHTML =
-"<strong>Payment Summary</strong><br><br>" + result;
+"<strong>Payment Summary</strong><br><br>" + result +
+
+"<br><br><div class='result-cta'>" +
+"⚖ Not sure how to divide uneven expenses fairly?<br>" +
+"<a href='uneven-bill-split-calculator.html'>Learn proper methods</a>" +
+"</div>";
 }
 
 
@@ -931,5 +967,44 @@ faqQuestions.forEach(question => {
   });
 </script>
 <script src="script.js"></script>
+
+ <!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#007BFF;
+color:#fff;
+text-align:center;
+padding:10px;
+z-index:999;
+">
+  <a href="split-bills-with-friends.html" style="color:#fff;font-weight:600;text-decoration:none;">
+    📊 Split Bills with Friends Fairly  →
+  </a>
+</div>
+   #stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
+  
 </body>
 </html>
