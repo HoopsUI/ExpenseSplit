@@ -9,7 +9,7 @@
 
 <meta name="description" content="Calculate gas cost per person for road trips instantly. Use this fuel cost calculator to split gas money, estimate trip fuel cost, and divide expenses fairly between friends.">
 
-<link rel="canonical" href="https://expensessplit.com/gas-cost-split-calculator.html">
+<link rel="canonical" href="https://expensessplit.com/gas-fuel-cost-split-calculator.html">
 
 <link rel="stylesheet" href="style.css">
 <script defer src="script.js"></script>
@@ -20,7 +20,7 @@
 "@type":"WebPage",
 "name":"Gas Cost Split Calculator",
 "description":"Calculate how to split fuel or gas costs between passengers on a road trip.",
-"url":"https://expensessplit.com/gas-cost-split-calculator.html",
+"url":"https://expensessplit.com/gas-fuel-cost-split-calculator.html",
 "mainEntity":{
 "@type":"WebApplication",
 "name":"Gas Cost Split Calculator",
@@ -30,12 +30,81 @@
 }
 </script>
  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+ <script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "How do you split gas costs on a road trip?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "You calculate the total fuel cost based on distance, fuel efficiency, and fuel price, then divide it by the number of passengers. A gas cost split calculator automates this instantly."
+}
+},
+{
+"@type": "Question",
+"name": "How do I calculate gas cost per person?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Divide the total fuel cost by the number of people sharing the trip. The total cost is calculated using distance, fuel efficiency, and fuel price."
+}
+},
+{
+"@type": "Question",
+"name": "What information do I need to calculate fuel cost?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "You need the total trip distance, vehicle fuel efficiency, fuel price, and number of passengers to calculate fuel cost accurately."
+}
+},
+{
+"@type": "Question",
+"name": "Should the driver pay less for fuel?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Some groups reduce the driver's share since they provide the vehicle, while others split costs equally. It depends on the group agreement."
+}
+},
+{
+"@type": "Question",
+"name": "Is this gas cost calculator free to use?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, the calculator is completely free and works instantly in your browser without requiring any login."
+}
+}
+]
+}
+</script>
+ <script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "Gas Cost Split Calculator (Per Person) – Road Trip Fuel Cost Calculator",
+"description": "Calculate gas cost per person for road trips and split fuel expenses fairly between passengers using this simple calculator.",
+"author": {
+"@type": "Organization",
+"name": "ExpenseSplit"
+},
+"publisher": {
+"@type": "Organization",
+"name": "ExpenseSplit"
+},
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://expensessplit.com/gas-fuel-cost-split-calculator.html"
+},
+"datePublished": "2026-04-01",
+"dateModified": "2026-04-23"
+}
+</script>
 </head>
 
 <body>
 
 <!-- HEADER -->
-
 <header class="main-header">
   <div class="container">
     
@@ -76,17 +145,13 @@
         <a href="#">Guides</a>
 
         <div class="dropdown-content">
-          <a href="split-bills-with-friends.html">Split Bills With Friends</a>
           <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="split-bills-with-friends.html">Split Bills with Friends</a>
           <a href="group-expense-management.html">Group Expense Management</a>
-          <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
-          <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
-          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
-          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
-          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
-          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
-          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
-          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+          <a href="track-shared-expenses.html">Track Shared Expenses</a>
+          <a href="split-rent-roommates.html">Split Rent with Roommates</a>
+          <a href="trip-budget-breakdown.html">Trip Budget Breakdown</a>
+          <a href="all-guides.html"><strong>📚 View All Guides</strong></a>
 
         </div>
       </div>
@@ -114,6 +179,11 @@ Easily split road trip fuel costs between passengers. Enter trip distance, fuel 
 </p>
 
 <a href="#calculator" class="primary-btn">Use Free Calculator</a>
+
+ <p style="margin-top:10px; font-size:14px;">
+Not sure how to split fairly? 
+<a href="carpool-cost-sharing.html">Learn the best method</a>
+</p>
 
 </div>
 </section>
@@ -177,6 +247,14 @@ If you want to calculate total trip expenses including gas, food, and stay, try 
 
 <div class="container">
 
+<div class="tool-cta-box">
+  <p><strong>🚗 Planning a full trip budget?</strong></p>
+  <p>
+    Don’t just split fuel — calculate your complete trip expenses →
+    <a href="trip.html">Use Trip Expense Calculator</a>
+  </p>
+</div>
+
 <h2 class="section-title">Gas Split Calculator</h2>
 
 <label>Total Trip Distance</label>
@@ -212,7 +290,10 @@ If you want to calculate total trip expenses including gas, food, and stay, try 
 <option value="kmpl">Kilometers per Liter (km/L)</option>
 </select>
 
-<label>Number of Passengers</label>
+<label>
+Number of Passengers 
+<a href="split-trip-expenses-with-friends.html" style="font-size:12px;">(how to split fairly?)</a>
+</label>
 <input type="number" id="passengers">
 
 <button class="primary-btn" onclick="calculateFuel()">Calculate Split</button>
@@ -227,10 +308,35 @@ Supports miles, kilometers, gallons, and liters for international travelers.
 </div>
 </section>
 
+<section class="section">
+<div class="container">
+
+<div class="post-tool-cta">
+  <h3>📊 Want to simplify who owes whom?</h3>
+  <p>
+    If multiple people are paying during your trip, use our smart tool to settle everything instantly.
+  </p>
+  <a href="iou-calculator.html" class="primary-btn">
+    Use Who Owes Whom Calculator →
+  </a>
+</div>
+
+</div>
+</section>
+
 
 <!-- SEO CONTENT -->
 
 <section class="section seo-content"data-aos="fade-left">
+
+<details style="margin-bottom:20px;">
+<summary><strong>📖 Learn how gas cost is calculated (click to expand)</strong></summary>
+<p style="margin-top:10px;">
+Fuel cost is calculated using distance, fuel efficiency, and fuel price. 
+If you want a full breakdown with real examples, read this guide →
+<a href="split-gas-costs-road-trip.html">How to Split Gas Costs on a Road Trip</a>
+</p>
+</details>
 
 <h2>How to Split Gas Costs for a Road Trip</h2>
 
@@ -676,8 +782,15 @@ document.getElementById("result").innerHTML =
 
 "Total Fuel Cost: $"+totalCost.toFixed(2)+"<br>"+
 
-"Each Passenger Pays: $"+perPerson.toFixed(2);
+"Each Passenger Pays: $"+perPerson.toFixed(2)+"<br><br>"+
 
+"<div class='result-cta-box'>"+
+"👉 Want to track ALL trip expenses (food, stay, fuel)?<br>"+
+"<a href='trip.html' class='cta-btn'>Use Full Trip Expense Calculator →</a><br><br>"+
+
+"💡 Avoid confusion in group payments → "+
+"<a href='split-expenses-with-friends-without-conflict.html'>Learn how to split expenses properly</a>"+
+"</div>";
 }
 
 function shareResult(id){
@@ -723,5 +836,44 @@ faqQuestions.forEach(question => {
 </script>
 
   <script src="script.js"></script>
+
+<!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#007BFF;
+color:#fff;
+text-align:center;
+padding:10px;
+z-index:999;
+">
+  <a href="fuel-cost-per-person-calculator.html" style="color:#fff;font-weight:600;text-decoration:none;">
+    🚗 Calculate Fuel Cost Per Person →
+  </a>
+</div>
+   #stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
+ 
 </body>
 </html>
