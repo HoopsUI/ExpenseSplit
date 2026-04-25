@@ -15,23 +15,104 @@
 
 <script defer src="script.js"></script>
 
+ <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script type="application/ld+json">
 {
-"@context":"https://schema.org",
-"@type":"WebPage",
-"name":"Grocery Bill Split Calculator",
-"description":"Split grocery bills between roommates or family using equal or itemized methods.",
-"keywords": "grocery bill split calculator, split groceries between roommates, grocery expense calculator, who owes what groceries, shared grocery cost calculator",
-"url":"https://expensessplit.com/grocery-bill-split-calculator.html",
-"mainEntity":{
-"@type":"WebApplication",
-"name":"Grocery Bill Split Calculator",
-"applicationCategory":"FinanceApplication",
-"operatingSystem":"Web"
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "How do you split grocery bills between roommates?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "You can split grocery bills either equally or by item. Equal split divides the total cost evenly, while itemized split assigns each grocery item only to the people who use it."
+}
+},
+{
+"@type": "Question",
+"name": "What is the fairest way to split groceries?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "The fairest way depends on usage. If everyone shares most groceries, equal split works well. If people buy personal items, itemized splitting is more accurate."
+}
+},
+{
+"@type": "Question",
+"name": "Can this grocery split calculator handle itemized expenses?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, this calculator allows you to add individual grocery items and assign them to specific people for accurate cost splitting."
+}
+},
+{
+"@type": "Question",
+"name": "Should couples split grocery expenses equally?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Couples can split groceries equally or based on income and usage. This calculator helps estimate both methods."
+}
+},
+{
+"@type": "Question",
+"name": "Is this grocery bill split calculator free to use?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, this tool is completely free and works instantly in your browser without requiring any signup."
+}
+}
+]
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "SoftwareApplication",
+"name": "Grocery Bill Split Calculator",
+"applicationCategory": "FinanceApplication",
+"operatingSystem": "Web",
+"url": "https://expensessplit.com/grocery-bill-split-calculator.html",
+"description": "A free online grocery bill split calculator that helps roommates, couples, and families divide grocery expenses fairly using equal or itemized methods.",
+"offers": {
+"@type": "Offer",
+"price": "0",
+"priceCurrency": "USD"
+},
+"featureList": [
+"Equal grocery bill splitting",
+"Itemized grocery expense tracking",
+"Calculate who owes what",
+"Supports multiple users",
+"No login required"
+],
+"creator": {
+"@type": "Organization",
+"name": "ExpenseSplit"
 }
 }
 </script>
- <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "Grocery Bill Split Calculator – Split Groceries Between Roommates Easily",
+"description": "Learn how to split grocery bills fairly between roommates, couples, or family using equal or itemized methods with this free calculator.",
+"author": {
+"@type": "Organization",
+"name": "ExpenseSplit"
+},
+"publisher": {
+"@type": "Organization",
+"name": "ExpenseSplit"
+},
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://expensessplit.com/grocery-bill-split-calculator.html"
+},
+"datePublished": "2026-04-01",
+"dateModified": "2026-04-25"
+}
+</script>
 </head>
 
 <body>
@@ -77,17 +158,13 @@
         <a href="#">Guides</a>
 
         <div class="dropdown-content">
-          <a href="split-bills-with-friends.html">Split Bills With Friends</a>
           <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="split-bills-with-friends.html">Split Bills with Friends</a>
           <a href="group-expense-management.html">Group Expense Management</a>
-          <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
-          <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
-          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
-          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
-          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
-          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
-          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
-          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+          <a href="track-shared-expenses.html">Track Shared Expenses</a>
+          <a href="split-rent-roommates.html">Split Rent with Roommates</a>
+          <a href="trip-budget-breakdown.html">Trip Budget Breakdown</a>
+          <a href="all-guides.html"><strong>📚 View All Guides</strong></a>
 
         </div>
       </div>
@@ -159,6 +236,15 @@ If you regularly share other household costs, you may also want to try our
 
 </section>
 
+<div class="container" style="margin-bottom:20px;">
+  <div style="background:#f1f7ff;padding:15px;border-radius:10px;">
+    <p><strong>💡 Want to split groceries fairly without arguments?</strong></p>
+    <p>
+      Learn the exact method →
+      <a href="split-grocery-bills-roommates.html">How to Split Grocery Bills Between Roommates</a>
+    </p>
+  </div>
+</div>
 
 <section class="section light" id="calculator"data-aos="fade-up">
 
@@ -175,7 +261,10 @@ If you regularly share other household costs, you may also want to try our
 <label>Delivery / Extra Fees (Optional)</label>
 <input type="number" id="fees">
 
-<label>Number of People Sharing Groceries</label>
+<label>
+Number of People Sharing Groceries 
+<a href="how-to-split-expenses.html" style="font-size:12px;">(how to decide?)</a>
+</label>
 <input type="number" id="people">
 
 <label>Who Paid for the Groceries?</label>
@@ -268,6 +357,11 @@ Unlike rent or utilities, grocery spending is not always predictable. Different 
 For example, one roommate might buy vegetables and staples that everyone shares, while another person buys snacks or personal items only they use.
 
 </p>
+
+<div style="margin:20px 0;padding:15px;background:#f1f7ff;border-radius:10px;">
+<p><strong>👉 Struggling with shared expenses beyond groceries?</strong></p>
+<a href="shared-grocery-budget-tips.html">Learn how to track all shared grocery bills →</a>
+</div>
 
 <p>
 
@@ -520,7 +614,7 @@ Many households combine grocery expenses with other monthly costs. If you're org
 <p>
 
 If you want to learn more about dividing shared expenses fairly, read our guide on 
-<a href="how-to-split-expenses.html">how to split expenses fairly</a>.
+<a href="apps-for-grocery-expense-sharing.html">Apps for grocery expense sharing fairly</a>.
 
 </p>
 
@@ -669,6 +763,23 @@ resultHTML += "Person "+i+" owes "+payer+" $" + perPerson.toFixed(2) + "<br>";
 
 }
 
+resultHTML += `
+<br><br>
+<div style="margin-top:15px;padding:12px;background:#f9f9f9;border-radius:10px;">
+<p>📊 Want to track grocery spending every month?</p>
+<a href="monthly-expense-tracker.html" style="color:#1a73e8;font-weight:600;">
+Track Shared Expenses →
+</a>
+
+<br><br>
+
+<p>💡 Want to avoid unfair splits?</p>
+<a href="split-expenses-with-friends-without-conflict.html" style="color:#1a73e8;font-weight:600;">
+Learn the best method →
+</a>
+</div>
+`;
+
 document.getElementById("result").innerHTML = resultHTML;
 
 }
@@ -755,7 +866,24 @@ resultHTML+=person+" owes "+payer+" $"+balances[person].toFixed(2)+"<br>";
 
 });
 
-document.getElementById("result").innerHTML=resultHTML;
+resultHTML += `
+<br><br>
+<div style="margin-top:15px;padding:12px;background:#f9f9f9;border-radius:10px;">
+<p>📊 Want to track grocery spending every month?</p>
+<a href="monthly-expense-tracker.html" style="color:#1a73e8;font-weight:600;">
+Track Shared Expenses →
+</a>
+
+<br><br>
+
+<p>💡 Want to avoid unfair splits?</p>
+<a href="split-expenses-with-friends-without-conflict.html" style="color:#1a73e8;font-weight:600;">
+Learn the best method →
+</a>
+</div>
+`;
+
+document.getElementById("result").innerHTML = resultHTML;
 
 }
 
@@ -815,5 +943,43 @@ question.classList.toggle('active');
   });
 </script>
 
+<!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#007BFF;
+color:#fff;
+text-align:center;
+padding:10px;
+z-index:999;
+">
+  <a href="apps-for-grocery-expense-sharing.html" style="color:#fff;font-weight:600;text-decoration:none;">
+    🛍️ Apps For Grocery Expense Sharing →
+  </a>
+</div>
+   #stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
+ 
 </body>
 </html>
