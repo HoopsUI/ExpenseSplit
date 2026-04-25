@@ -274,30 +274,43 @@ Number of People Sharing Groceries
 
 <hr style="margin:30px 0;">
 
-<h3>Itemized Grocery Split</h3>
+<details style="margin-top:25px;">
+  <summary style="cursor:pointer;font-weight:600;font-size:16px;">
+    ⚙️ Split by individual items
+  </summary>
 
-<label>People Sharing Groceries (comma separated)</label>
-<input type="text" id="peopleNames" placeholder="Example: Alex, Sam, Chris">
+  <div style="margin-top:20px;">
 
-<label>Who Paid For The Groceries?</label>
-<input type="text" id="payerName" placeholder="Example: Alex">
+    <h3>Itemized Grocery Split</h3>
 
-<hr style="margin:25px 0;">
+    <label>People Sharing Groceries (comma separated)</label>
+    <input type="text" id="peopleNames" placeholder="Example: Alex, Sam, Chris">
 
-<label>Item Name</label>
-<input type="text" id="itemName" placeholder="Milk, Eggs, Bread">
+    <label>Who Paid For The Groceries?</label>
+    <input type="text" id="payerName" placeholder="Example: Alex">
 
-<label>Item Price</label>
-<input type="number" id="itemPrice">
+    <hr style="margin:25px 0;">
 
-<label>Shared By</label>
-<input type="text" id="itemSharedBy" placeholder="Example: Alex, Sam">
+    <label>Item Name</label>
+    <input type="text" id="itemName" placeholder="Milk, Eggs, Bread">
 
-<button class="primary-btn small-btn" onclick="addItem()">Add Item</button>
+    <label>Item Price</label>
+    <input type="number" id="itemPrice">
 
-<div id="itemsList"></div>
+    <label>
+      Shared By 
+      <a href="split-grocery-bills-roommates.html" style="font-size:12px;">(how this works?)</a>
+    </label>
+    <input type="text" id="itemSharedBy" placeholder="Example: Alex, Sam">
 
-<button class="primary-btn" onclick="calculateItemized()">Calculate Grocery Split</button>
+    <button class="primary-btn small-btn" onclick="addItem()">Add Item</button>
+
+    <div id="itemsList"></div>
+
+    <button class="primary-btn" onclick="calculateItemized()">Calculate Grocery Split</button>
+
+  </div>
+</details>
 
 <div id="result" class="result-box"></div>
 
