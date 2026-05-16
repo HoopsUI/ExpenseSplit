@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Split Trip Expenses Calculator (Who Owes Who) – Free Travel Cost Splitter</title>
-  <meta name="description" content="Easily split trip expenses with friends using our free calculator. Track group travel costs, calculate who owes who, and settle vacation expenses instantly—no spreadsheets needed." />
+  <title>Trip Expense Calculator (Who Owes Who) – Split Travel & Vacation Costs</title>
+  <meta name="description" content="Free trip expense calculator to split travel expenses, vacation costs, hotel bills, gas, food, and group trip spending. Calculate who owes who instantly for vacations, road trips, and group travel." />
   <link rel="canonical" href="https://expensessplit.com/trip.html">
   <link rel="stylesheet" href="style.css" />
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -17,26 +17,146 @@
   <meta property="og:type" content="website" />
 
   <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Trip Expense Split Calculator",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Web",
-    "url": "https://hoopsui.github.io/ExpenseSplit/trip.html",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Trip Expense Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "url": "https://expensessplit.com/trip.html",
+  "description": "Free trip expense calculator to split travel expenses, vacation costs, hotel bills, gas, food, and group travel spending. Calculate who owes who instantly.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "ExpenseSplit",
+    "url": "https://expensessplit.com"
+  },
+  "featureList": [
+    "Split trip expenses",
+    "Calculate who owes who",
+    "Track vacation costs",
+    "Group travel expense sharing",
+    "Road trip budget splitting",
+    "Travel payment settlement",
+    "Vacation expense tracker"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+
+    {
+      "@type": "Question",
+      "name": "How do you split trip expenses with friends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add all shared travel expenses including hotels, transportation, food, and activities, then divide the total among travelers. A trip expense calculator automatically calculates who owes who."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "What is the best trip expense calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A good trip expense calculator should track group travel spending, split vacation costs fairly, and calculate balances instantly between friends or family members."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "How do you calculate who owes who on a trip?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add all group travel expenses together and compare how much each person paid versus their fair share. A who owes who calculator automatically determines settlements."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Should vacation expenses be split equally?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most groups split vacation expenses equally, but some travelers choose uneven splits based on rooms, nights stayed, or personal spending preferences."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Can this calculator split Airbnb and hotel costs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The trip expense calculator works for Airbnb stays, hotels, transportation, meals, gas, activities, and all shared vacation expenses."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "What expenses should be included in a trip budget?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A trip budget usually includes accommodation, flights, transportation, food, activities, tickets, gas, shopping, and shared travel expenses."
+      }
     }
-  }
-  </script>
+
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Split Trip Expenses Fairly with Friends",
+  "description": "Learn how to split travel expenses, vacation costs, hotel bills, food, transportation, and group trip spending fairly using a trip expense calculator.",
+  "author": {
+    "@type": "Organization",
+    "name": "ExpenseSplit"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ExpenseSplit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://expensessplit.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://expensessplit.com/trip.html"
+  },
+  "articleSection": [
+    "Trip Expense Splitting",
+    "Travel Budgeting",
+    "Vacation Cost Sharing",
+    "Group Travel Expenses"
+  ],
+  "keywords": [
+    "trip expense calculator",
+    "split trip expenses",
+    "travel expense calculator",
+    "vacation expense splitter",
+    "group travel expenses",
+    "who owes who calculator",
+    "road trip expense calculator",
+    "travel cost sharing",
+    "group vacation budget",
+    "vacation cost calculator"
+  ]
+}
+</script>
 </head>
 
 <body>
 
-<!-- HEADER -->
+ <!-- HEADER -->
 <header class="main-header">
   <div class="container">
     
@@ -77,17 +197,13 @@
         <a href="#">Guides</a>
 
         <div class="dropdown-content">
-          <a href="split-bills-with-friends.html">Split Bills With Friends</a>
           <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="split-bills-with-friends.html">Split Bills with Friends</a>
           <a href="group-expense-management.html">Group Expense Management</a>
-          <a href="uneven-bill-split-calculator.html">Uneven Bill Split</a>
-          <a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>
-          <a href="splitwise-alternatives.html">Best Free Splitwise Alternatives</a>
-          <a href="split-rent-roommates.html">How to Split Rent Fairly Between Roommates</a>
-          <a href="split-bills-different-food.html">Split Bills When Everyone Ordered Different Food</a>
-          <a href="split-trip-expenses-with-friends.html">How to Split Trip Expenses with Friends</a>
-          <a href="track-shared-expenses.html">How to Track Shared Expenses</a>
-          <a href="split-expenses-couple.html">How to Split Expenses as a Couple (Fairly)</a>
+          <a href="track-shared-expenses.html">Track Shared Expenses</a>
+          <a href="split-rent-roommates.html">Split Rent with Roommates</a>
+          <a href="trip-budget-breakdown.html">Trip Budget Breakdown</a>
+          <a href="all-guides.html"><strong>📚 View All Guides</strong></a>
 
         </div>
       </div>
@@ -122,7 +238,7 @@
       <p>Whether you're planning a group vacation, road trip, or weekend getaway, this travel expense splitter ensures everyone pays their fair share without confusion.</p>
         </div>
 
-    <a href="#tool" class="primary-btn">Use Free Calculator</a>
+    <a href="#calculator" class="primary-btn">Use Free Calculator</a>
    
   </div>
 </section>
@@ -135,6 +251,10 @@
 
 <p class="tool-subtitle">
 Add travelers, record trip expenses, and instantly see who owes who.
+</p>
+
+<p class="mini-keyword-line">
+Perfect for group vacations, road trips, family travel, bachelor trips, and shared travel budgeting.
 </p>
 
 <div class="container calculator">
@@ -199,6 +319,15 @@ Traveling with friends or family is exciting, but splitting trip expenses fairly
 A <strong>trip expense calculator</strong> solves this problem by automatically dividing travel costs between everyone in the group. Instead of manually calculating totals in spreadsheets or notes, you can simply enter the total expense and number of travelers to instantly see how much each person should contribute.
 </p>
 
+<div class="container" style="margin-top:20px;">
+  <div style="background:#eef4ff;padding:15px;border-radius:10px;text-align:center;">
+  <p><strong>✈️ Planning a vacation with friends?</strong></p>
+  <p>
+    Split hotels, food, gas, and activities instantly →
+    <a href="airbnb-cost-split-calculator.html">Use Airbnb Cost Split Calculator</a>
+  </p>
+</div>
+
 <p>
 Our <strong>Trip Expense Split Calculator</strong> makes it easy to split vacation expenses evenly, settle group travel payments, and avoid awkward conversations about money after the trip ends.
 </p>
@@ -216,7 +345,7 @@ If you're splitting other types of shared costs, you can also try our
 During a group vacation, there are usually multiple types of shared expenses. Tracking them manually can be difficult, especially when several people pay for different things throughout the trip.
 </p>
 
-<p>You might also like our <a href="airbnb-cost-split-calculator.html">airbnb cost split calculator</a> to divide you airbnb stays</p>, along with that you can also use our <a href="gas-fuel-cost-split-calculator.html">gas fuel cost split calculator</a> if you like going on a long roadtrip with friends.</p>
+<p>You might also like our guides<a href="hidden-travel-costs.html">Hidden Travel Costs</a> to divide expenses more accurately</p>, along with that you can also check our guide<a href="trip-cost-per-person.html">Trip cost Per Person Guide</a> if you want to split bills with friends.</p>
 <p>
 Some of the most common group travel expenses include:
 </p>
@@ -236,6 +365,15 @@ Some of the most common group travel expenses include:
 A <strong>group travel expense calculator</strong> allows you to add all of these costs together and split them fairly between everyone involved. This makes it easier to manage budgets and ensure every traveler pays the correct amount.
 </p>
 
+<div class="container" style="margin-top:20px;">
+  <div style="background:#eef4ff;padding:15px;border-radius:10px;text-align:center;">
+  <p><strong>⛽ Going on a road trip?</strong></p>
+  <p>
+    Calculate fuel and gas sharing costs easily →
+    <a href="gas-fuel-cost-split-calculator.html">Try Gas Cost Split Calculator</a>
+  </p>
+</div>
+
 <h2>Example Scenario: Splitting Expenses On A Group Trip</h2>
 
 <p>
@@ -252,6 +390,16 @@ Imagine four friends traveling together for a weekend vacation. During the trip,
 <p>
 The total travel expense is $800. If the group splits expenses evenly between four people, each person should pay $200.
 </p>
+
+<div class="container" style="margin-top:20px;">
+  <div style="background:#eef4ff;padding:15px;border-radius:10px;text-align:center;">
+  <p><strong>🧮 Need an exact settlement breakdown?</strong></p>
+  <p>
+    Calculate balances and payments instantly →
+    <a href="iou-calculator.html">Use Who Owes Who Calculator</a>
+  </p>
+</div>
+</div>
 
 <p>
 Since Alex already paid $400, the others would owe Alex their share of the difference. A <strong>who owes who calculator</strong> helps calculate these balances instantly and shows exactly who needs to pay whom.
@@ -279,11 +427,11 @@ Using a dedicated <strong>vacation expense splitter</strong> offers several adva
 <li>Simple interface designed for group travel</li>
 </ul>
 
-<p></p>Using calculators like <a href="grocery-bill-split-calculator.html">splittling grocery bills</a>, <a href="restaurant-bill-split-calculator.html">splittling restaurant bills</a>, and <a href="uneven-bill-split-calculator.html">splittling uneven bills</a> helps settling shares for specific and order specific bills.</p>
+<p>Using calculators like <a href="grocery-bill-split-calculator.html">splittling grocery bills</a>, <a href="restaurant-bill-split-calculator.html">splittling restaurant bills</a>, and <a href="uneven-bill-split-calculator.html">splittling uneven bills</a> helps settling shares for specific and order specific bills.</p>
 
 <p>
 If you frequently split costs with others, you may also want to explore our 
-<a href="group-expense-management.html">Group Expense Management Guide</a> which explains the best strategies for handling shared finances in trips, events, and daily life.
+<a href="trip-budget-breakdown.html">Trip Budget Breakdown Guide</a> which explains the best strategies for handling shared finances in trips, events, and daily life.
 </p>
 
 <h2>When Should You Use A Vacation Expense Split Calculator?</h2>
@@ -317,6 +465,15 @@ Instead of worrying about who paid for what, everyone can enjoy the trip while t
 Even when using a <strong>group expense calculator</strong>, it helps to follow a few simple travel budgeting practices. These tips make it easier to keep expenses organized and prevent confusion later.
 </p>
 
+<div class="container" style="margin-top:20px;">
+  <div style="background:#eef4ff;padding:15px;border-radius:10px;text-align:center;">
+  <p><strong>📊 Want to track all shared spending daily?</strong></p>
+  <p>
+    Organize group expenses during your trip →
+    <a href="monthly-expense-tracker.html">Use Monthly Expense Tracker</a>
+  </p>
+</div>
+
 <ul>
 <li>Track expenses daily during the trip</li>
 <li>Agree on how costs will be split before traveling</li>
@@ -332,6 +489,20 @@ If you're unsure about the best way to divide shared expenses in general, read o
 <a href="split-bills-different-food.html">how to split bills when everyone ordered differnt food</a>, and 
 <a href="track-shared-expenses.html">how to track shared expenses on a trip</a>.
   It explains different methods used by couples, friends, and roommates.
+</p>
+
+<h2>Best Way to Track Group Travel Expenses</h2>
+
+<p>
+One of the easiest ways to avoid confusion during vacations is by using a <strong>group trip expense tracker</strong>. Instead of manually calculating bills, travelers can record hotel costs, transportation, meals, and activities in one place using a <strong>trip cost calculator</strong>.
+</p>
+
+<p>
+A dedicated <strong>vacation expense tracker</strong> helps groups split vacation costs fairly while keeping the entire travel budget organized. This is especially useful for road trips, international vacations, bachelor trips, and family travel where multiple people pay for shared expenses throughout the trip.
+</p>
+
+<p>
+Using a <strong>travel expense sharing calculator</strong> also prevents forgotten payments and helps settle balances instantly once the trip ends.
 </p>
 
 <h2>Why Fair Expense Splitting Matters In Group Travel</h2>
@@ -783,5 +954,44 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 <script src="script.js"></script>
+ <!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#007BFF;
+color:#fff;
+text-align:center;
+padding:10px;
+z-index:999;
+">
+  <a href="trip-cost-per-person.html" style="color:#fff;font-weight:600;text-decoration:none;">
+    ✈️ Split Hotel & Travel Costs Fairly →
+  </a>
+</div>
+
+   #stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
+  
 </body>
 </html>
