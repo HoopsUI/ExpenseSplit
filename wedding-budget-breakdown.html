@@ -127,41 +127,62 @@
 
 <body>
 
-<!-- HEADER (SAME AS YOUR SITE) -->
+<!-- HEADER -->
 <header class="main-header">
   <div class="container">
     
+    <!-- Logo -->
     <div class="logo">
       <a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
     </div>
 
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <!-- MOBILE MENU BUTTON -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+      ☰
+    </div>
 
+     <!-- Navigation -->
     <nav class="nav">
       <a href="/">Home</a>
       
       <div class="dropdown">
         <a href="#">Calculators</a>
-        <div class="dropdown-content">
+         <div class="dropdown-content">
           <a href="friends.html">🍽 Friends Expense Calculator</a>
           <a href="trip.html">✈️ Trip Expense Calculator</a>
           <a href="roommates.html">🏠 Roommate Expense Calculator</a>
           <a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+          <a href="airbnb-cost-split-calculator.html">🛏 Airbnb Cost Split Calculator</a>
+          <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+          <a href="gas-fuel-cost-split-calculator.html">⛽ Gas Cost Split Calculator</a>
+          <a href="restaurant-bill-split-calculator.html">🍔 Restaurant Bill Split Calculator</a>
+          <a href="grocery-bill-split-calculator.html">🛒 Grocery Bill Split Calculator</a>
+          <a href="subscription-cost-split-calculator.html">📺 Subscription Cost Split Calculator</a>
           <a href="wedding-cost-split-calculator.html">💍 Wedding Cost Split Calculator</a>
         </div>
       </div>
 
+
+      <!-- GUIDES -->
       <div class="dropdown">
         <a href="#">Guides</a>
+
         <div class="dropdown-content">
-          <a href="who-pays-for-what-in-a-wedding.html">Who Pays for What in a Wedding</a>
           <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="split-bills-with-friends.html">Split Bills with Friends</a>
           <a href="group-expense-management.html">Group Expense Management</a>
+          <a href="track-shared-expenses.html">Track Shared Expenses</a>
+          <a href="split-rent-roommates.html">Split Rent with Roommates</a>
+          <a href="trip-budget-breakdown.html">Trip Budget Breakdown</a>
+          <a href="all-guides.html"><strong>📚 View All Guides</strong></a>
+
         </div>
       </div>
 
       <a href="faq.html">FAQ</a>
+
     </nav>
+
   </div>
 </header>
 
@@ -186,6 +207,15 @@ From venue costs to catering, outfits, photography, and decorations, wedding exp
 
 <p>
 Many couples search for terms like “wedding budget breakdown”, “wedding budget planner”, “average wedding cost in India”, or “how to plan a wedding budget step by step”. The key to avoiding confusion is having a clear plan and using a simple tool to divide costs fairly.
+</p>
+
+<p>
+People also search for phrases like <strong>"Indian wedding budget calculator"</strong>, 
+<strong>"low budget wedding planning"</strong>, 
+<strong>"wedding expenses list"</strong>, 
+<strong>"how much does an Indian wedding cost"</strong>, and 
+<strong>"simple wedding budget planner"</strong>. 
+Adding all expected expenses early helps couples avoid overspending and last-minute financial stress.
 </p>
 
 <p>
@@ -293,8 +323,8 @@ This ensures you stay within budget and avoid unexpected costs.
 </ol>
 
 <p>
-👉 Instead of manually tracking everything, you can use the 
-<a href="wedding-cost-split-calculator.html">Wedding Cost Split Calculator</a> 
+👉 Instead of manually tracking everything, you can check our guide 
+<a href="split-wedding-costs-between-families.html">Wedding Cost Split Between Families</a> 
 to calculate and split expenses instantly.
 </p>
 
@@ -336,6 +366,15 @@ One of the biggest factors affecting your wedding budget is the number of guests
 <p>
 More guests = higher catering, seating, and logistics costs.
 </p>
+
+<div class="container" style="margin-top:20px;">
+  <div style="background:#eef4ff;padding:18px;border-radius:10px;text-align:center;">
+  <p><strong>💍 Need to calculate who pays what for the wedding?</strong></p>
+  <p>
+    Split venue, catering, decor, and family contributions instantly →
+    <a href="wedding-cost-split-calculator.html">Use Wedding Cost Split Calculator</a>
+  </p>
+</div>
 
 <h2>How to Split Wedding Costs Fairly</h2>
 
@@ -440,7 +479,7 @@ Tracking and splitting these expenses manually can be difficult — especially w
 
 <p>
 You can also learn more in our guide:
-<a href="group-expense-management.html">Group Expense Management</a>
+<a href="wedding-budget-breakdown.html ">Wedding Budget Breakdown</a>
 
 <br><br>
 You may also find this helpful:
@@ -478,8 +517,39 @@ If you're planning a wedding on a budget, there are several ways to reduce costs
 <li>Prioritize high-impact categories like food and venue</li>
 </ul>
 
+<div class="container" style="margin-top:20px;">
+  <div style="background:#eef4ff;padding:18px;border-radius:10px;text-align:center;">
+  <p><strong>📊 Planning a wedding on a tight budget?</strong></p>
+  <p>
+    Track every expense and avoid overspending →
+    <a href="monthly-expense-tracker.html">Use Monthly Expense Tracker</a>
+  </p>
+</div>
+
 <p>
 A smart wedding budget planner can help you stay within limits while still creating a memorable event.
+</p>
+
+<h2>Indian Wedding Budget Checklist</h2>
+
+<p>
+A complete wedding budget checklist helps couples track all expected expenses before the wedding begins.
+</p>
+
+<ul>
+<li>Venue booking</li>
+<li>Catering and food</li>
+<li>Photography and videography</li>
+<li>Wedding outfits and jewelry</li>
+<li>Decor and flowers</li>
+<li>Transportation and accommodation</li>
+<li>Invitation cards</li>
+<li>Entertainment and DJ</li>
+<li>Return gifts and miscellaneous expenses</li>
+</ul>
+
+<p>
+Using a wedding budget checklist together with a wedding expense calculator makes wedding planning much easier and prevents unexpected costs later.
 </p>
 
 <h2>Get Started</h2>
@@ -587,5 +657,43 @@ AOS.init({ duration: 800, once: true });
 
 <script src="script.js"></script>
 
+<!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#007BFF;
+color:#fff;
+text-align:center;
+padding:10px;
+z-index:999;
+">
+  <a href="wedding-cost-split-calculator.html" style="color:#fff;font-weight:600;text-decoration:none;">
+    💍 Split Wedding Expenses Fairly →
+  </a>
+</div>
+
+   #stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide"); // hide when footer visible
+    } else {
+      stickyCTA.classList.remove("hide"); // show otherwise
+    }
+  });
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
 </body>
 </html>
