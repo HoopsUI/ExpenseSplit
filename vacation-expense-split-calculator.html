@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Vacation Expense Split Calculator – Split Trip Costs Fairly</title>
+
+  <meta name="description" content="Split Airbnb, hotel, food, gas, and group travel expenses fairly with our free vacation expense split calculator. No login required." />
+  <link rel="canonical" href="https://expensessplit.com/vacation-expense-split-calculator.html" />
+
+  <meta property="og:title" content="Vacation Expense Split Calculator – Split Trip Costs Fairly" />
+  <meta property="og:description" content="Split vacation and travel expenses fairly with friends or groups. Calculate Airbnb, hotel, gas, food, and trip costs instantly with no login required." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    .seo-content a {
+      color: #1a73e8;
+      text-decoration: underline;
+    }
+  </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you split vacation expenses fairly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The fairest way is to track all shared trip costs like Airbnb, hotels, gas, food, and activities, then divide expenses equally or based on usage. A vacation expense split calculator automates this instantly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best vacation expense split calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A simple no-login calculator is often the fastest option because it avoids sign-ups and lets groups calculate shared travel expenses instantly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I split Airbnb costs with friends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Airbnb costs can be split equally or adjusted based on room size, nights stayed, or number of guests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a vacation cost splitter with no login required?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Some online vacation expense calculators allow you to split trip costs instantly without creating an account."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What expenses should be included in a group trip split?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most groups split accommodation, transportation, gas, groceries, restaurants, activities, tickets, and other shared travel costs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do groups split Airbnb and vacation rental fees?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Groups usually divide Airbnb costs equally, but some prefer weighted splits based on room quality, number of guests, or nights stayed."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vacation Expense Split Calculator – Split Trip Costs Fairly",
+  "description": "Learn how to split vacation costs fairly with friends, couples, and groups using a free no-login vacation expense split calculator.",
+  "author": {
+    "@type": "Organization",
+    "name": "ExpenseSplit"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ExpenseSplit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://expensessplit.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://expensessplit.com/vacation-expense-split-calculator.html"
+  },
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Vacation Expense Split Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free online vacation expense split calculator to divide Airbnb, hotel, travel, gas, food, and group trip expenses fairly.",
+  "url": "https://expensessplit.com/airbnb-cost-split-calculator.html"
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="main-header">
+  <div class="container">
+
+    <div class="logo">
+      <a href="/"><span style="font-weight:700;">Expense</span><span style="color:#007BFF;">Split</span></a>
+    </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">
+      ☰
+    </div>
+
+    <nav class="nav">
+
+      <a href="/">Home</a>
+
+      <div class="dropdown">
+        <a href="#">Calculators</a>
+
+        <div class="dropdown-content">
+          <a href="friends.html">🍽 Friends Expense Calculator</a>
+          <a href="trip.html">✈️ Trip Expense Calculator</a>
+          <a href="roommates.html">🏠 Roommate Expense Calculator</a>
+          <a href="iou-calculator.html">🧮 Who Owes Whom Calculator</a>
+          <a href="airbnb-cost-split-calculator.html">🛏 Airbnb Cost Split Calculator</a>
+          <a href="monthly-expense-tracker.html">📊 Monthly Expense Tracker</a>
+          <a href="gas-fuel-cost-split-calculator.html">⛽ Gas Cost Split Calculator</a>
+          <a href="restaurant-bill-split-calculator.html">🍔 Restaurant Bill Split Calculator</a>
+          <a href="grocery-bill-split-calculator.html">🛒 Grocery Bill Split Calculator</a>
+          <a href="subscription-cost-split-calculator.html">📺 Subscription Cost Split Calculator</a>
+          <a href="wedding-cost-split-calculator.html">💍 Wedding Cost Split Calculator</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#">Guides</a>
+
+        <div class="dropdown-content">
+          <a href="how-to-split-expenses.html">How to Split Expenses</a>
+          <a href="split-bills-with-friends.html">Split Bills with Friends</a>
+          <a href="group-expense-management.html">Group Expense Management</a>
+          <a href="track-shared-expenses.html">Track Shared Expenses</a>
+          <a href="split-rent-roommates.html">Split Rent with Roommates</a>
+          <a href="trip-budget-breakdown.html">Trip Budget Breakdown</a>
+          <a href="all-guides.html"><strong>📚 View All Guides</strong></a>
+        </div>
+      </div>
+
+      <a href="faq.html">FAQ</a>
+
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="section light" data-aos="fade-up">
+
+  <div class="container hero-content">
+
+    <h1>Vacation Expense Split Calculator</h1>
+
+    <p class="subtitle">
+      Split Airbnb, hotel, food, gas, flights, and travel expenses fairly with friends, couples, roommates, or groups.
+    </p>
+
+  </div>
+
+  <div class="container" style="margin-top:20px;">
+
+    <div class="tool-cta-box" style="background:#f1f7ff;padding:15px;border-radius:10px;text-align:center;">
+
+      <p><strong>✈️ Planning a group trip?</strong></p>
+
+      <p>
+        Split vacation costs instantly →
+        <a href="airbnb-cost-split-calculator.html">Use Airbnb Cost Split Calculator</a>
+      </p>
+
+      <p style="margin-top:10px;">
+        ✔ No login required
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTENT -->
+<section class="section" data-aos="fade-up">
+
+  <div class="container seo-content">
+
+    <p>
+      Group vacations are fun — until it’s time to divide the costs.
+    </p>
+
+    <p>
+      People often struggle with splitting Airbnb fees, hotel rooms, gas, groceries,
+      restaurants, flights, or shared travel expenses fairly.
+    </p>
+
+    <p>
+      That’s why many travelers search for terms like
+      <strong>vacation expense split calculator</strong>,
+      <strong>trip cost splitter</strong>,
+      <strong>group travel expense calculator</strong>,
+      <strong>split Airbnb costs</strong>,
+      and <strong>how to divide vacation expenses fairly</strong>.
+    </p>
+
+    <p>
+      The easiest solution is using a
+      <strong>free no-login vacation expense calculator</strong>
+      that instantly calculates who owes what.
+    </p>
+
+    <h2>What is a Vacation Expense Split Calculator?</h2>
+
+    <p>
+      A vacation expense split calculator helps groups divide shared travel expenses fairly.
+    </p>
+
+    <p>
+      Instead of manually calculating bills in spreadsheets or messaging apps,
+      travelers can instantly determine how much each person owes.
+    </p>
+
+    <ul>
+      <li>Airbnb & vacation rentals</li>
+      <li>Hotel stays</li>
+      <li>Flights & transportation</li>
+      <li>Gas & fuel costs</li>
+      <li>Food & groceries</li>
+      <li>Group activities</li>
+      <li>Tickets & entertainment</li>
+    </ul>
+
+    <h2>Best Way to Split Vacation Costs Fairly</h2>
+
+    <p>
+      The fairest way to divide vacation expenses depends on the type of trip and group.
+    </p>
+
+    <ul>
+      <li>Equal split between all travelers</li>
+      <li>Weighted split based on room quality</li>
+      <li>Per-night pricing</li>
+      <li>Couples vs solo traveler adjustments</li>
+      <li>Usage-based expense sharing</li>
+    </ul>
+
+    <p>
+      Most groups prefer a simple calculator because it removes awkward math and avoids disputes.
+    </p>
+
+    <br><br>
+
+    👉 <strong>Split your trip costs instantly:</strong>
+    <a href="airbnb-cost-split-calculator.html">Vacation Cost Split Tool</a>
+
+    <h2>How to Calculate Vacation Costs with Friends</h2>
+
+<p>
+One of the biggest problems during group travel is figuring out
+<strong>who owes what on vacation</strong>.
+</p>
+
+<p>
+People often search for:
+</p>
+
+<ul>
+  <li>Vacation cost calculator</li>
+  <li>Group vacation expense tracker</li>
+  <li>Trip expense sharing app</li>
+  <li>Travel expense splitter</li>
+  <li>How to divide vacation costs fairly</li>
+  <li>Split hotel costs with friends</li>
+</ul>
+
+<p>
+Instead of manually calculating expenses,
+most travelers now use a
+<strong>free vacation expense split calculator</strong>
+to automatically determine balances.
+</p>
+
+<p>
+This is especially useful for:
+</p>
+
+<ul>
+  <li>Beach vacations</li>
+  <li>Road trips</li>
+  <li>Airbnb group stays</li>
+  <li>Bachelor & bachelorette trips</li>
+  <li>Family vacations</li>
+  <li>Weekend getaways</li>
+</ul>
+
+<div class="tool-cta-box" style="margin-top:20px;background:#f7fbff;padding:18px;border-radius:12px;text-align:center;">
+
+  <p><strong>💰 Calculate shared trip expenses instantly</strong></p>
+
+  <p>
+    Split Airbnb, hotels, gas, food, and vacation costs fairly.
+  </p>
+
+  <p>
+    👉 <a href="airbnb-cost-split-calculator.html">
+    Use Free Vacation Cost Calculator
+    </a>
+  </p>
+
+  <p style="margin-top:10px;">
+    ✔ No login required
+  </p>
+
+</div>
+
+    <h2>Why Travelers Prefer No-Login Expense Split Tools</h2>
+
+    <p>
+      Many travel expense apps require:
+    </p>
+
+    <ul>
+      <li>Account creation</li>
+      <li>Inviting friends</li>
+      <li>App downloads</li>
+      <li>Manual syncing</li>
+      <li>Complicated setup</li>
+    </ul>
+
+    <p>
+      A <strong>no-login required vacation expense calculator</strong>
+      is faster, simpler, and more private.
+    </p>
+
+    <div class="tool-cta-box" style="margin-top:25px;background:#eef6ff;padding:18px;border-radius:12px;text-align:center;">
+
+      <p><strong>🛏 Split Airbnb & trip expenses instantly</strong></p>
+
+      <p>
+        No apps. No sign-up. No confusion.
+      </p>
+
+      <p>
+        👉 <a href="airbnb-cost-split-calculator.html">
+        Try Airbnb Cost Split Calculator
+        </a>
+      </p>
+
+    </div>
+
+    <h2>Comparison of Vacation Expense Splitting Methods</h2>
+
+    <table class="expense-table">
+
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Ease of Use</th>
+          <th>Login Required</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>Expense Sharing Apps</td>
+          <td>Medium</td>
+          <td>Yes</td>
+          <td>Long-term tracking</td>
+        </tr>
+
+        <tr>
+          <td>Spreadsheets</td>
+          <td>Low</td>
+          <td>No</td>
+          <td>Manual calculations</td>
+        </tr>
+
+        <tr>
+          <td>Travel Budget Apps</td>
+          <td>Medium</td>
+          <td>Usually</td>
+          <td>Budget planning</td>
+        </tr>
+
+        <tr>
+          <td>ExpenseSplit Calculator</td>
+          <td>Very Easy</td>
+          <td>No</td>
+          <td>Fast vacation expense splitting</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+    <h2>Common Problems When Splitting Vacation Costs</h2>
+
+    <ul>
+      <li>Different room sizes</li>
+      <li>Unequal participation in activities</li>
+      <li>One person paying upfront</li>
+      <li>Forgotten receipts</li>
+      <li>Confusion about Airbnb fees</li>
+      <li>Couples sharing rooms</li>
+    </ul>
+
+    <p>
+      These issues often lead to arguments about who should pay more.
+    </p>
+
+    <p>
+      👉 Learn more here:
+      <a href="who-should-pay-more-group-stay.html">
+      Who Should Pay More in a Group Stay?
+      </a>
+    </p>
+
+    <h2>How to Split Airbnb Costs with Friends</h2>
+
+    <p>
+      Airbnb expense splitting is one of the most searched travel budgeting topics.
+    </p>
+
+    <p>
+      Groups often struggle with:
+    </p>
+
+    <ul>
+      <li>Cleaning fees</li>
+      <li>Service fees</li>
+      <li>Different room types</li>
+      <li>Extra guests</li>
+      <li>Shorter stays</li>
+    </ul>
+
+    <p>
+      If you want a complete breakdown, check this guide:
+    </p>
+
+    <p>
+      👉 <a href="split-airbnb-costs.html">
+      How to Split Airbnb Costs Fairly
+      </a>
+    </p>
+
+    <h2>Understanding Airbnb Fees Before Splitting</h2>
+
+    <p>
+      Many travelers only divide the nightly rate and forget about:
+    </p>
+
+    <ul>
+      <li>Cleaning fees</li>
+      <li>Taxes</li>
+      <li>Service charges</li>
+      <li>Extra guest fees</li>
+    </ul>
+
+    <p>
+      Understanding these hidden charges makes vacation expense sharing much more accurate.
+    </p>
+
+    <p>
+      👉 Read:
+      <a href="airbnb-fees-explained.html">
+      Airbnb Fees Explained
+      </a>
+    </p>
+
+    <h2>Vacation Budget Planning Tips</h2>
+
+    <p>
+      A well-planned trip budget reduces stress and avoids money conflicts.
+    </p>
+
+    <ul>
+      <li>Set a group budget early</li>
+      <li>Track shared costs daily</li>
+      <li>Decide split rules beforehand</li>
+      <li>Keep receipts organized</li>
+      <li>Use one calculator for everyone</li>
+    </ul>
+
+    <p>
+If you're planning a longer trip,
+learning proper
+<strong>group expense management</strong>
+can help avoid overspending and confusion during travel.
+</p>
+
+    <p>
+      Many groups also combine travel budgeting with a
+      <a href="trip.html">Trip Expense Calculator</a>
+      to simplify everything in one place.
+    </p>
+
+    <h2>Best Apps & Tools for Group Travel Expense Sharing</h2>
+
+    <p>
+      Popular tools people use for splitting vacation expenses include:
+    </p>
+
+    <ul>
+      <li>Splitwise</li>
+      <li>Tricount</li>
+      <li>Settle Up</li>
+      <li>TravelSpend</li>
+      <li>ExpenseSplit calculators</li>
+    </ul>
+
+    <p>
+      However, many travelers now prefer browser-based tools because they work instantly and require no setup.
+    </p>
+
+    <h2>Vacation Expense Split Calculator vs Expense Sharing Apps</h2>
+
+<p>
+Many people compare vacation expense calculators with apps like Splitwise or Tricount.
+</p>
+
+<table class="expense-table">
+
+<thead>
+<tr>
+<th>Feature</th>
+<th>Expense Sharing Apps</th>
+<th>ExpenseSplit Calculator</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Login Required</td>
+<td>Usually</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Download Needed</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Quick Vacation Splits</td>
+<td>Moderate</td>
+<td>Excellent</td>
+</tr>
+
+<tr>
+<td>Privacy Friendly</td>
+<td>Limited</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Works Instantly</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+</tbody>
+</table>
+
+<p>
+For quick group travel calculations,
+many travelers now prefer browser-based calculators
+instead of downloading apps.
+</p>
+
+    <h2>When a Vacation Expense Calculator is Better Than an App</h2>
+
+    <ul>
+      <li>Short trips</li>
+      <li>Weekend getaways</li>
+      <li>Airbnb stays</li>
+      <li>Quick group calculations</li>
+      <li>Privacy-focused travelers</li>
+      <li>People who hate sign-ups</li>
+    </ul>
+
+    <h2>How to Split Vacation Expenses Step-by-Step</h2>
+
+    <p>
+      Here’s the easiest way to divide travel expenses fairly:
+    </p>
+
+    <ul>
+      <li>List all shared expenses</li>
+      <li>Add all travelers</li>
+      <li>Track who paid</li>
+      <li>Choose equal or weighted splitting</li>
+      <li>Calculate final balances</li>
+    </ul>
+
+    <p>
+      Instead of doing this manually, most groups now use a
+      <a href="airbnb-cost-split-calculator.html">
+      free vacation split calculator
+      </a>
+      to automate everything instantly.
+    </p>
+
+    <h2>Why “No Login Required” Matters</h2>
+
+    <p>
+      More users now search for:
+    </p>
+
+    <ul>
+      <li>expense split calculator no login</li>
+      <li>trip expense calculator without signup</li>
+      <li>vacation cost splitter free online</li>
+      <li>Airbnb split calculator no app</li>
+    </ul>
+
+    <p>
+      This trend is growing because travelers want faster tools without privacy concerns or account creation.
+    </p>
+
+    <h2>People Also Ask About Vacation Expense Splitting</h2>
+
+<h3>How do couples split vacation costs?</h3>
+
+<p>
+Couples usually split travel expenses equally,
+but some divide costs based on income,
+room preferences,
+or individual spending habits.
+</p>
+
+<h3>Should everyone pay equally on group trips?</h3>
+
+<p>
+Not always.
+Groups often adjust payments based on room size,
+trip duration,
+or participation in activities.
+</p>
+
+<h3>What is the easiest way to split Airbnb costs?</h3>
+
+<p>
+Using a vacation expense split calculator is the fastest way
+to divide Airbnb costs fairly without manual calculations.
+</p>
+
+<h3>Can you split travel expenses without an app?</h3>
+
+<p>
+Yes.
+Many travelers now use free online calculators
+that work instantly without requiring login or downloads.
+</p>
+
+    <h2>Get Started</h2>
+
+    <p>
+      Stop arguing about vacation expenses and calculate everything fairly in seconds.
+    </p>
+
+    <p>
+      👉 <a href="airbnb-cost-split-calculator.html">
+      Use Airbnb Cost Split Calculator
+      </a>
+    </p>
+
+  </div>
+
+  <div class="tool-cta-box" style="margin-top:30px;background:#f1f7ff;padding:18px;border-radius:12px;text-align:center;">
+
+    <p><strong>📚 Want more Airbnb expense splitting guides?</strong></p>
+
+    <p>
+      Learn how to divide group stay costs fairly →
+      <a href="split-airbnb-costs.html">Complete Airbnb Splitting Guide</a>
+    </p>
+
+    <p style="margin-top:10px;">
+      Understand hidden travel rental charges →
+      <a href="airbnb-fees-explained.html">Airbnb Fees Explained</a>
+    </p>
+
+  </div>
+
+</section>
+
+<!-- FAQ -->
+<section class="section faq-section" data-aos="fade-up">
+
+  <div class="container">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item" data-aos="fade-up">
+      <div class="faq-question">How do you split vacation expenses fairly?</div>
+      <div class="faq-answer">
+        Most groups either split costs equally or adjust based on room quality,
+        nights stayed, or participation in activities.
+      </div>
+    </div>
+
+    <div class="faq-item" data-aos="fade-up">
+      <div class="faq-question">What is the best vacation expense split calculator?</div>
+      <div class="faq-answer">
+        A simple no-login calculator is often the fastest and easiest option
+        for splitting shared travel expenses instantly.
+      </div>
+    </div>
+
+    <div class="faq-item" data-aos="fade-up">
+      <div class="faq-question">Can I split Airbnb costs with friends?</div>
+      <div class="faq-answer">
+        Yes. Airbnb costs can be divided equally or adjusted depending on room size,
+        guests, or length of stay.
+      </div>
+    </div>
+
+    <div class="faq-item" data-aos="fade-up">
+      <div class="faq-question">Is there a vacation expense splitter with no login required?</div>
+      <div class="faq-answer">
+        Yes. ExpenseSplit allows groups to split trip costs instantly without creating an account.
+      </div>
+    </div>
+
+    <div class="faq-item" data-aos="fade-up">
+      <div class="faq-question">What travel expenses should be shared?</div>
+      <div class="faq-answer">
+        Most groups split accommodation, transportation, gas, groceries,
+        restaurants, tickets, and shared activities.
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+
+  <div class="container footer-content">
+
+    <p>© 2026 ExpenseSplit. All rights reserved.</p>
+
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms & Conditions</a>
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+
+  question.addEventListener('click', () => {
+
+    const answer = question.nextElementSibling;
+
+    answer.style.display =
+      answer.style.display === 'block' ? 'none' : 'block';
+
+    question.classList.toggle('active');
+
+  });
+
+});
+</script>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init({
+  duration: 800,
+  once: true
+});
+</script>
+
+<script src="script.js"></script>
+
+<!-- STICKY CTA -->
+<div id="stickyCTA" style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#007BFF;
+color:#fff;
+text-align:center;
+padding:10px;
+z-index:999;
+transition:0.3s;
+">
+
+  <a href="airbnb-cost-split-calculator.html"
+     style="color:#fff;font-weight:600;text-decoration:none;">
+
+    ✈️ Split Vacation Costs Instantly →
+
+  </a>
+
+</div>
+
+<style>
+#stickyCTA.hide {
+  transform: translateY(100%);
+}
+</style>
+
+<script>
+const stickyCTA = document.getElementById("stickyCTA");
+const footer = document.getElementById("footer");
+
+const observer = new IntersectionObserver((entries) => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+      stickyCTA.classList.add("hide");
+    } else {
+      stickyCTA.classList.remove("hide");
+    }
+
+  });
+
+}, { threshold: 0.1 });
+
+if (footer) observer.observe(footer);
+</script>
+
+</body>
+</html>
