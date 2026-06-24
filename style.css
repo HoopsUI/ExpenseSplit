@@ -1418,5 +1418,35 @@ body {
   font-size: 14px;
 }
 
+.expense-timeline-section{
+    margin:50px 0;
+}
 
+   
+
+.timeline{
+    position:relative;
+    margin-top:30px;
+    padding-left:30px;
+    border-left:4px solid #3b82f6;
+}
+
+.timeline-step{
+    margin-bottom:30px;
+    background:#f8fbff;
+    padding:18px;
+    border-radius:10px;
+}
+
+.timeline-step h3{
+    margin-top:0;
+}
+
+.timeline-conclusion{
+    background:#fff8e8;
+    border-left:5px solid #f4b400;
+    padding:20px;
+    border-radius:10px;
+    margin-top:30px;
+}
    
