@@ -1420,3 +1420,24 @@ body {
 
 
    
+.comparison-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+margin-top:25px;
+}
+
+.compare-box{
+padding:25px;
+border-radius:12px;
+}
+
+.calculator-box{
+background:#eef8ff;
+border-left:6px solid #2196f3;
+}
+
+.app-box{
+background:#fff4e8;
+border-left:6px solid #ff9800;
+}
