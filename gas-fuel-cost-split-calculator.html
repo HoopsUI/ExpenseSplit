@@ -178,13 +178,78 @@ Split your road trip fuel costs here within seconds. Enter your destination dist
 
 </p>
 
-<a href="#calculator" class="primary-btn">Use Free Calculator</a>
-
  <p style="margin-top:10px; font-size:14px;">
 Not sure how to split fairly? 
-<a href="carpool-cost-sharing.html">Learn the best method</a>
+<a href="carpool-cost-sharing.html"><strong>Learn the best method</strong></a>
 </p>
 
+</div>
+</section>
+
+<!-- CALCULATOR -->
+
+<section class="section light" id="calculator"data-aos="fade-up">
+
+<div class="container">
+
+<div class="tool-cta-box centered-cta">
+  <p><strong>🚗 Planning a full trip budget?</strong></p>
+  <p>
+    Don’t just split fuel — calculate your complete trip expenses →
+    <a href="trip.html">Use Trip Expense Calculator</a>
+  </p>
+</div>
+
+<h2 class="section-title">Gas Split Calculator</h2>
+
+<label>Total Trip Distance</label>
+<input type="number" id="distance" placeholder="Example: 300">
+
+<label>Distance Unit</label>
+<select id="distanceunit">
+<option value="miles">Miles</option>
+<option value="km">Kilometers</option>
+</select>
+
+<label>Trip Type</label>
+<select id="triptype">
+<option value="1">One Way</option>
+<option value="2">Round Trip</option>
+</select>
+
+<label>Fuel Price</label>
+<input type="number" id="fuelprice" placeholder="Example: 3.50">
+
+<label>Fuel Unit</label>
+<select id="fuelunit">
+<option value="gallon">Per Gallon</option>
+<option value="liter">Per Liter</option>
+</select>
+
+<label>Vehicle Fuel Efficiency</label>
+<input type="number" id="efficiency" placeholder="Example: 30">
+
+<label>Efficiency Unit</label>
+<select id="efficiencyunit">
+<option value="mpg">Miles per Gallon (MPG)</option>
+<option value="kmpl">Kilometers per Liter (km/L)</option>
+</select>
+
+<label>
+Number of Passengers 
+<a href="split-trip-expenses-with-friends.html" style="font-size:12px;">(how to split fairly?)</a>
+</label>
+<input type="number" id="passengers">
+
+<button class="primary-btn" onclick="calculateFuel()">Calculate Split</button>
+
+<div id="result" class="result-box"></div>
+
+<button class="primary-btn small-btn" onclick="shareResult('result')">Share</button>
+
+<p class="micro-text">
+Supports miles, kilometers, gallons, and liters for international travelers.
+</p>
 </div>
 </section>
 
@@ -230,7 +295,6 @@ The most common situation every group of friends planning a road trip experience
 Fuel costs is something that should definitely be divided equally if not fairly mong everyone traveling.
 
 </p>
-<p>Many travelers specifically search for “how much gas will my trip cost” or “gas cost per person calculator” before planning a trip.</p>
 <p>
 
 A simple <strong>gas cost split calculator</strong> which is also free to use like this one, makes the process simple and hassle free. Instead of manually estimating and keeping track of every single time you stop at a gas station for fuel, you can simply enter all the details about your fuel price, distance, efficiency and number of passengers in our calculator and instantly have the exact amount each one of you needs to pay. 
@@ -239,7 +303,7 @@ A simple <strong>gas cost split calculator</strong> which is also free to use li
 
 <p>
 
-Usually people either track their expenses on a trip indiviidually, get confused and even sometime overpay their due. Some often search online for apps or tools that help them simplify their travel fuel estimations like <em>split gas cost calculator</em>, <em>fuel cost split calculator</em>, or <em>road trip gas split</em> to solve those problems quickly.
+Usually people either track their expenses on a trip indiviidually, get confused and even sometime overpay their due. Some often get confused by apps or tools that help them simplify their travel fuel estimations like <em>split gas cost calculator</em>, <em>fuel cost split calculator</em>, or <em>road trip gas split</em> but take too many steps to set-up an account.
 
 </p>
 
@@ -338,7 +402,7 @@ Instead of doing this calculation manually, our <strong>gas cost split calculato
 
     <p>
       The method that would work the best for you depends on the type of trip you plan, your group size, the destination you travel to, the distance and time. 
-      Using our <strong>fuel cost split calculator</strong> would give you an idea about a rough estimations on your total trip budget, allowing you to plan everything beforehand and avoid 
+      Using our calculator would give you an idea about a rough estimations on your total trip budget, allowing you to plan everything beforehand and avoid 
       disagreements during the trip.
     </p>
 
@@ -371,7 +435,7 @@ Approximately, you will need 16 gallons of fuel for your car and if the fuel pri
 
 <p>
 
-Now entering all the required details on our <strong>road trip gas split calculator</strong>, each friend would pay about $15.20 toward fuel.
+Now entering all the required details on our calculator, each friend would pay about $15.20 toward fuel.
 
 </p>
 
@@ -410,73 +474,6 @@ If you wish to split your entire trip cost between a group of friends, family or
 </section>
 
 
-<!-- CALCULATOR -->
-
-<section class="section light" id="calculator"data-aos="fade-up">
-
-<div class="container">
-
-<div class="tool-cta-box centered-cta">
-  <p><strong>🚗 Planning a full trip budget?</strong></p>
-  <p>
-    Don’t just split fuel — calculate your complete trip expenses →
-    <a href="trip.html">Use Trip Expense Calculator</a>
-  </p>
-</div>
-
-<h2 class="section-title">Gas Split Calculator</h2>
-
-<label>Total Trip Distance</label>
-<input type="number" id="distance" placeholder="Example: 300">
-
-<label>Distance Unit</label>
-<select id="distanceunit">
-<option value="miles">Miles</option>
-<option value="km">Kilometers</option>
-</select>
-
-<label>Trip Type</label>
-<select id="triptype">
-<option value="1">One Way</option>
-<option value="2">Round Trip</option>
-</select>
-
-<label>Fuel Price</label>
-<input type="number" id="fuelprice" placeholder="Example: 3.50">
-
-<label>Fuel Unit</label>
-<select id="fuelunit">
-<option value="gallon">Per Gallon</option>
-<option value="liter">Per Liter</option>
-</select>
-
-<label>Vehicle Fuel Efficiency</label>
-<input type="number" id="efficiency" placeholder="Example: 30">
-
-<label>Efficiency Unit</label>
-<select id="efficiencyunit">
-<option value="mpg">Miles per Gallon (MPG)</option>
-<option value="kmpl">Kilometers per Liter (km/L)</option>
-</select>
-
-<label>
-Number of Passengers 
-<a href="split-trip-expenses-with-friends.html" style="font-size:12px;">(how to split fairly?)</a>
-</label>
-<input type="number" id="passengers">
-
-<button class="primary-btn" onclick="calculateFuel()">Calculate Split</button>
-
-<div id="result" class="result-box"></div>
-
-<button class="primary-btn small-btn" onclick="shareResult('result')">Share</button>
-
-<p class="micro-text">
-Supports miles, kilometers, gallons, and liters for international travelers.
-</p>
-</div>
-</section>
-
 <section class="section">
 <div class="container">
 
@@ -508,7 +505,7 @@ Fuel is often one of the largest expenses during a road trip. When several peopl
 
 <p>
 
-Using a <strong>fuel cost split calculator</strong> ensures fairness. Everyone pays their share based on the total fuel used for the trip rather than guessing or estimating the amount.
+Using a <strong>gas cost split calculator</strong> ensures fairness. Everyone pays their share based on the total fuel used for the trip rather than guessing or estimating the amount.
 
 </p>
 
@@ -628,7 +625,7 @@ Fair cost sharing helps maintain transparency and prevents awkward conversations
 
 <p>
 
-Using a <strong>fuel cost split calculator</strong> also helps groups budget their trips more accurately. When travelers know their approximate fuel contribution in advance, planning the overall trip budget becomes easier.
+Using a <strong>gas cost split calculator</strong> also helps groups budget their trips more accurately. When travelers know their approximate fuel contribution in advance, planning the overall trip budget becomes easier.
 
 </p>
 
@@ -644,30 +641,6 @@ For example, if your group also shares accommodation, food, and activities, you 
 You can also learn general strategies for fair cost sharing in our guide 
 <a href="how-to-split-expenses.html">How to Split Expenses</a>.
 
-</p>
-
-<h2>People Also Search For</h2>
-
-<p>Travelers often search for tools like:</p>
-
-<ul>
-
-<li>split gas cost calculator</li>
-
-<li>road trip gas split calculator</li>
-
-<li>fuel cost per person calculator</li>
-
-<li>how to split gas money between friends</li>
-
-<li>road trip fuel calculator</li>
-
-<li>trip gas cost calculator</li>
-
-</ul>
-
-<p>
-Our <strong>Gas Cost Split Calculator</strong> was designed specifically to help travelers divide fuel expenses quickly and fairly.
 </p>
 
 </section>
