@@ -334,34 +334,65 @@ Add Expense
 </form>
 
 <div id="result" class="result-box hidden"></div>
-
-<!-- Premium Trip Planner -->
-<div class="planner-box" data-aos="fade-up">
-
-  <div class="planner-content">
-
-    <h3><strong>✈️ Make Your Trip Even Easier</strong></h3>
-
-    <p>
-      You've calculated the Trip Expense. Now keep your budget, packing list, daily expenses and trip planning organized with our
-      <strong>Premium Trip Expense Planner Kit.</strong>
-    </p>
-
-    <a href="https://payhip.com/b/o8ypB"
-       target="_blank"
-       rel="noopener"
-       class="planner-btn">
-       Get the Planner →
-    </a>
-
-  </div>
-
-</div>
   
 </div>
 </div>
 
 </div>
+</section>
+
+<!-- PREMIUM TRIP PLANNER -->
+<section class="planner-promo" data-aos="fade-up">
+  <div class="container">
+
+    <div class="planner-card">
+
+      <div class="planner-image">
+        <a href="https://payhip.com/b/o8ypB" target="_blank" rel="noopener">
+          <img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jt2ukn1p1oje1hk11ab01jkcp752k.png"
+               alt="ExpenseSplit Trip Expense Planner">
+        </a>
+      </div>
+
+      <div class="planner-content">
+
+        <span class="planner-badge">
+          ✈️ Premium Trip Planner
+        </span>
+
+        <h2>Planning a Trip? Stay Organized From Start to Finish.</h2>
+
+        <p>
+          The <strong>ExpenseSplit TRIP EXPENSE PLANNER KIT</strong> helps you
+          organize transportation, accommodation, food, activities,
+          shared expenses, budgets, and final settlements in one beautiful
+          printable planner.
+        </p>
+
+        <ul class="planner-features">
+          <li>✅ Trip Budget Planner</li>
+          <li>✅ Daily Expense Logs</li>
+          <li>✅ Accommodation & Transport Tracker</li>
+          <li>✅ Who Owes Whom Summary</li>
+          <li>✅ Printable Premium Design</li>
+        </ul>
+
+        <a class="planner-btn"
+           href="https://payhip.com/b/o8ypB"
+           target="_blank"
+           rel="noopener">
+          View Trip Planner →
+        </a>
+
+        <p class="planner-note">
+          Designed for vacations, road trips, Airbnb stays, family holidays, and group travel.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
 </section>
 
 <!-- ================= SEO CONTENT ================= -->
@@ -794,41 +825,96 @@ A vacation expense splitter is a tool that calculates how much each traveler sho
 
 <style>
 
-.planner-box{
-    margin-top:30px;
-    background:#f8fbff;
-    border:1px solid #d9e7f7;
+.planner-promo{
+    padding:60px 20px;
+}
+
+.planner-card{
+    max-width:1050px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:380px 1fr;
+    gap:40px;
+    align-items:center;
+    background:#fff;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.planner-image img{
+    width:100%;
     border-radius:12px;
-    padding:22px;
-    text-align:center;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
-.planner-box h3{
+.planner-image img:hover{
+    transform:scale(1.03);
+}
+
+.planner-badge{
+    display:inline-block;
+    background:#fff3cd;
+    color:#8a6d3b;
+    padding:6px 14px;
+    border-radius:50px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.planner-content h2{
+    margin-top:0;
+    margin-bottom:18px;
+}
+
+.planner-content p{
+    line-height:1.7;
+}
+
+.planner-features{
+    margin:20px 0;
+    padding-left:18px;
+}
+
+.planner-features li{
     margin-bottom:10px;
-    color:#1d3557;
-    font-size:24px;
-}
-
-.planner-box p{
-    max-width:650px;
-    margin:0 auto 18px;
-    color:#555;
-    line-height:1.6;
 }
 
 .planner-btn{
     display:inline-block;
-    background:#1d3557;
+    background:#0f172a;
     color:#fff;
-    text-decoration:none;
-    padding:12px 26px;
+    padding:14px 28px;
     border-radius:8px;
+    text-decoration:none;
     font-weight:600;
-    transition:.25s;
+    transition:.3s;
 }
 
 .planner-btn:hover{
-    background:#16304d;
+    background:#1e293b;
+}
+
+.planner-note{
+    margin-top:18px;
+    color:#666;
+    font-size:14px;
+}
+
+@media(max-width:900px){
+
+.planner-card{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.planner-features{
+display:inline-block;
+text-align:left;
+}
+
 }
 </style>
 
