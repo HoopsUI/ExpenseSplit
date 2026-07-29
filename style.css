@@ -1419,3 +1419,34 @@ body {
 }
 
 
+.amazon-btn,
+.amazon-btn:visited{
+
+display:inline-block;
+
+background:#007BFF;
+
+color:#fff !important;
+
+padding:12px 20px;
+
+border-radius:8px;
+
+font-weight:700;
+
+text-decoration:none;
+
+text-align:center;
+
+transition:.25s;
+
+}
+
+.amazon-btn:hover,
+.amazon-btn:focus{
+
+background:#0065d1;
+
+color:#fff !important;
+
+}
