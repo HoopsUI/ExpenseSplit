@@ -1448,5 +1448,11 @@ transition:.25s;
 background:#0065d1;
 
 color:#fff !important;
-
+}
+.amazon-btn,
+.amazon-btn:visited,
+.amazon-btn:hover,
+.amazon-btn:active{
+    color:#fff !important;
+    text-decoration:none;
 }
