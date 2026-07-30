@@ -2555,7 +2555,6 @@ ExpenseSplit solves the calculation problem by showing exactly who owes whom. Bu
 
 </div>
 
-</div>
 <style>
 /* ==========================================================
    EXPENSE ORGANIZATION WORKFLOW
@@ -2793,265 +2792,287 @@ text-align:center;
 </style>
 
 <style>
-/* ==========================================================
+/* ======================================================
    MAGAZINE PRODUCT CARDS
-========================================================== */
+====================================================== */
 
-.mag-product-card{
+.organization-tool{
 
-display:flex;
-align-items:center;
-gap:45px;
-
-padding:34px;
-
-margin:45px 0;
-
+max-width:1050px;
+margin:60px auto;
+padding:35px;
 background:#fff;
-
-border:1px solid #e5ecf4;
-
+border:1px solid #e5edf6;
 border-radius:18px;
-
 box-shadow:0 12px 35px rgba(0,0,0,.05);
 
-transition:.3s ease;
+display:grid;
+grid-template-columns:360px 1fr;
+gap:40px;
+align-items:center;
+
+transition:.28s ease;
 
 }
 
-.mag-product-card:hover{
+.organization-tool:hover{
 
 transform:translateY(-4px);
 
-box-shadow:0 18px 40px rgba(0,0,0,.08);
+box-shadow:0 18px 45px rgba(0,0,0,.08);
 
 }
 
-.mag-product-image{
+/* Reverse Layout */
 
-width:250px;
+.organization-tool.reverse{
 
-flex-shrink:0;
+grid-template-columns:1fr 360px;
+
+}
+
+.organization-tool.reverse .tool-image{
+
+order:2;
+
+}
+
+.organization-tool.reverse .tool-content{
+
+order:1;
+
+}
+
+/* ======================================================
+IMAGE
+====================================================== */
+
+.tool-image{
 
 text-align:center;
 
-position:relative;
-
 }
 
-.mag-product-image img{
+.tool-image img{
 
 width:100%;
-
-max-width:200px;
-
-padding:18px;
-
-background:#fff;
-
-border:1px solid #edf2f7;
+max-width:280px;
 
 border-radius:14px;
 
-box-shadow:0 8px 24px rgba(0,0,0,.08);
+background:#fff;
 
-}
+padding:15px;
 
-.product-badge{
+border:1px solid #edf2f7;
 
-display:inline-block;
-
-margin-top:18px;
-
-padding:7px 14px;
-
-background:#e8f3ff;
-
-color:#1d5fbf;
-
-border-radius:40px;
-
-font-size:13px;
-
-font-weight:700;
-
-}
-
-.mag-product-content{
-
-flex:1;
-
-}
-
-.product-category{
-
-font-size:13px;
-
-font-weight:600;
-
-color:#007BFF;
-
-letter-spacing:.5px;
-
-text-transform:uppercase;
-
-margin-bottom:8px;
-
-}
-
-.mag-product-content h3{
-
-font-size:34px;
-
-margin:0 0 18px;
-
-color:#222;
-
-}
-
-.product-intro{
-
-font-size:16px;
-
-line-height:1.8;
-
-color:#555;
-
-margin-bottom:22px;
-
-}
-
-.product-meta{
-
-display:flex;
-
-gap:12px;
-
-flex-wrap:wrap;
-
-margin-bottom:24px;
-
-}
-
-.product-meta span{
-
-background:#f6f9fc;
-
-padding:8px 14px;
-
-border-radius:30px;
-
-font-size:13px;
-
-font-weight:600;
-
-color:#444;
-
-border:1px solid #e4ebf3;
-
-}
-
-.product-features{
-
-margin:0 0 24px 18px;
-
-columns:2;
-
-}
-
-.product-features li{
-
-margin-bottom:12px;
-
-line-height:1.6;
-
-}
-
-.why-we-like{
-
-background:#f8fbff;
-
-border-left:5px solid #007BFF;
-
-padding:18px 20px;
-
-border-radius:10px;
-
-margin:25px 0;
-
-}
-
-.why-we-like strong{
-
-display:block;
-
-margin-bottom:10px;
-
-font-size:16px;
-
-color:#16385f;
-
-}
-
-.why-we-like p{
-
-margin:0;
-
-line-height:1.7;
-
-color:#555;
-
-}
-
-.best-for{
-
-background:#fff8ea;
-
-border:1px solid #f2ddb2;
-
-padding:14px 18px;
-
-border-radius:10px;
-
-margin-bottom:24px;
-
-font-size:15px;
-
-line-height:1.7;
-
-}
-
-.amazon-btn{
-
-display:inline-block;
-
-padding:14px 30px;
-
-background:#007BFF;
-
-color:#fff;
-
-font-weight:700;
-
-text-decoration:none;
-
-border-radius:8px;
+box-shadow:0 15px 35px rgba(0,0,0,.10);
 
 transition:.25s;
 
 }
 
-.amazon-btn:hover{
+.organization-tool:hover .tool-image img{
 
-background:#005fd1;
-
-transform:translateY(-2px);
+transform:scale(1.03);
 
 }
 
-.affiliate-note{
+/* ======================================================
+BADGE
+====================================================== */
 
-margin-top:14px;
+.tool-badge{
+
+display:inline-block;
+
+padding:7px 14px;
+
+background:#edf5ff;
+
+color:#0f5db8;
+
+font-size:13px;
+
+font-weight:700;
+
+border-radius:50px;
+
+margin-bottom:16px;
+
+}
+
+/* ======================================================
+HEADINGS
+====================================================== */
+
+.tool-content h3{
+
+font-size:34px;
+
+margin:0 0 15px;
+
+color:#19324f;
+
+line-height:1.2;
+
+}
+
+.tool-content p{
+
+font-size:16px;
+
+line-height:1.9;
+
+color:#555;
+
+margin-bottom:20px;
+
+}
+
+/* ======================================================
+FEATURE BOX
+====================================================== */
+
+.tool-features{
+
+display:grid;
+
+grid-template-columns:repeat(2,minmax(180px,1fr));
+
+gap:12px;
+
+margin:25px 0;
+
+}
+
+.tool-features div{
+
+background:#f8fbff;
+
+padding:12px 15px;
+
+border-radius:10px;
+
+border:1px solid #e5edf6;
+
+font-size:15px;
+
+font-weight:500;
+
+color:#333;
+
+}
+
+/* ======================================================
+BEST FOR
+====================================================== */
+
+.best-for{
+
+margin:25px 0;
+
+padding:18px 20px;
+
+background:#f4f9ff;
+
+border-left:5px solid #2d89ef;
+
+border-radius:10px;
+
+font-size:15px;
+
+line-height:1.8;
+
+}
+
+/* ======================================================
+WHY WE RECOMMEND
+====================================================== */
+
+.why-love{
+
+margin-top:25px;
+
+padding:20px;
+
+background:#fafcff;
+
+border:1px solid #e5edf6;
+
+border-radius:12px;
+
+}
+
+.why-love h4{
+
+margin:0 0 10px;
+
+font-size:18px;
+
+color:#19324f;
+
+}
+
+.why-love p{
+
+margin:0;
+
+}
+
+/* ======================================================
+BUTTON
+====================================================== */
+
+.tool-btn{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+
+margin-top:28px;
+
+padding:14px 28px;
+
+background:#007BFF;
+
+color:#fff !important;
+
+text-decoration:none;
+
+font-weight:700;
+
+font-size:16px;
+
+border-radius:10px;
+
+transition:.25s;
+
+box-shadow:0 8px 18px rgba(0,123,255,.25);
+
+}
+
+.tool-btn:hover{
+
+background:#0067d6;
+
+transform:translateY(-2px);
+
+box-shadow:0 14px 25px rgba(0,123,255,.35);
+
+}
+
+/* ======================================================
+AMAZON NOTE
+====================================================== */
+
+.amazon-note{
+
+margin-top:18px;
 
 font-size:13px;
 
@@ -3061,56 +3082,83 @@ line-height:1.6;
 
 }
 
-/* ======================================
-   ALTERNATE LAYOUT
-====================================== */
+/* ======================================================
+SECTION SPACING
+====================================================== */
 
-.mag-product-card.reverse{
+.organization-tools h2{
 
-flex-direction:row-reverse;
+margin-bottom:18px;
 
 }
 
-/* ======================================
-   MOBILE
-====================================== */
+.organization-tools>p{
 
-@media(max-width:900px){
+max-width:850px;
 
-.mag-product-card,
-.mag-product-card.reverse{
-
-flex-direction:column;
+margin:0 auto 45px;
 
 text-align:center;
 
-gap:25px;
+font-size:18px;
+
+line-height:1.8;
+
+color:#555;
 
 }
 
-.mag-product-image{
+/* ======================================================
+MOBILE
+====================================================== */
 
-width:100%;
+@media(max-width:900px){
+
+.organization-tool,
+.organization-tool.reverse{
+
+grid-template-columns:1fr;
+
+padding:25px;
+
+gap:30px;
 
 }
 
-.mag-product-content h3{
+.organization-tool.reverse .tool-image,
+.organization-tool.reverse .tool-content{
+
+order:unset;
+
+}
+
+.tool-image{
+
+order:-1;
+
+}
+
+.tool-image img{
+
+max-width:220px;
+
+}
+
+.tool-content{
+
+text-align:center;
+
+}
+
+.tool-content h3{
 
 font-size:28px;
 
 }
 
-.product-features{
+.tool-features{
 
-columns:1;
-
-text-align:left;
-
-}
-
-.product-meta{
-
-justify-content:center;
+grid-template-columns:1fr;
 
 }
 
@@ -3120,11 +3168,15 @@ text-align:left;
 
 }
 
-.amazon-btn{
+.why-love{
 
-display:block;
+text-align:left;
 
-text-align:center;
+}
+
+.tool-btn{
+
+display:flex;
 
 width:100%;
 
