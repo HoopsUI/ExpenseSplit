@@ -1280,7 +1280,7 @@ As an Amazon Associate, ExpenseSplit may earn from qualifying purchases.
 <img src="https://m.media-amazon.com/images/I/81NafsAQ+pL._AC_SL1500_.jpg"
 alt="Budget Binder">
 
-<span class="product-badge secondary">
+<span class="product-badge">
 
 💵 Cash Budgeting
 
@@ -1359,7 +1359,7 @@ Learn More →
 <img src="https://m.media-amazon.com/images/I/61DHg8mExfL._SL1293_.jpg"
 alt="Expense Log Book">
 
-<span class="product-badge secondary">
+<span class="product-badge">
 
 📒 Simple Pick
 
@@ -1438,7 +1438,7 @@ Log Book on Amazon →
 <img src="https://m.media-amazon.com/images/I/71jyW7sA98L._AC_SL1500_.jpg"
 alt="Monthly Budget Planner">
 
-<span class="product-badge secondary">
+<span class="product-badge">
 
 📅 Monthly Planning
 
@@ -2534,27 +2534,6 @@ ExpenseSplit solves the calculation problem by showing exactly who owes whom. Bu
 
 </div>
 
-
-<div class="workflow-buttons">
-
-<a href="friends.html" class="workflow-btn">
-🍽 Split Bills with Friends
-</a>
-
-<a href="roommates.html" class="workflow-btn">
-🏠 Split Roommate Bills
-</a>
-
-<a href="trip.html" class="workflow-btn">
-✈️ Trip Expense Calculator
-</a>
-
-<a href="iou-calculator.html" class="workflow-btn">
-💰 Who Owes Whom
-</a>
-
-</div>
-
 <style>
 /* ==========================================================
    EXPENSE ORGANIZATION WORKFLOW
@@ -2792,6 +2771,7 @@ text-align:center;
 </style>
 
 <style>
+
 /*==========================================================
 MAGAZINE PRODUCT GUIDE
 Used for ALL 6 Expense Organization Tools
@@ -2803,7 +2783,7 @@ display:flex;
 align-items:center;
 gap:55px;
 
-margin:55px auto;
+margin:80px auto;
 padding:42px;
 
 max-width:1100px;
@@ -2820,14 +2800,66 @@ transition:.30s ease;
 
 overflow:hidden;
 
+position:relative;
+
 }
+
+/*----------------------------------------------------------
+Alternate Section Backgrounds
+----------------------------------------------------------*/
+
+/* 2nd, 4th, 6th cards */
+
+.mag-product-card:nth-of-type(even){
+
+background:#f8fbff;
+
+border-color:#dce9f8;
+
+}
+
+/* Slightly stronger hover on blue cards */
+
+.mag-product-card:nth-of-type(even):hover{
+
+background:#f4f9ff;
+
+}
+
+/*----------------------------------------------------------
+Top Accent Line
+----------------------------------------------------------*/
+
+.mag-product-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:5px;
+
+background:linear-gradient(
+90deg,
+#007BFF,
+#5daeff
+);
+
+}
+
+/*----------------------------------------------------------
+Hover
+----------------------------------------------------------*/
 
 .mag-product-card:hover{
 
-transform:translateY(-5px);
+transform:translateY(-6px);
 
 box-shadow:
-0 20px 45px rgba(0,0,0,.08);
+0 22px 48px rgba(0,0,0,.08);
 
 }
 
@@ -2843,58 +2875,74 @@ flex-direction:row-reverse;
 
 .mag-product-image{
 
-width:280px;
+width:290px;
+
 flex-shrink:0;
 
-text-align:center;
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
 
 }
 
 .mag-product-image img{
 
 width:100%;
-max-width:220px;
 
-padding:18px;
+max-width:210px;
+
+padding:22px;
 
 background:#fff;
 
 border-radius:18px;
 
-border:1px solid #edf2f8;
+border:1px solid #edf2f7;
 
 box-shadow:
 0 12px 28px rgba(0,0,0,.08);
 
-transition:.30s;
+transition:.35s;
 
 }
 
 .mag-product-card:hover img{
 
-transform:scale(1.04);
+transform:scale(1.06);
 
 }
-
 /*==========================================================*/
 
 .product-badge{
 
-display:inline-block;
+display:inline-flex;
 
-margin-top:20px;
+align-items:center;
+
+gap:8px;
+
+margin-top:18px;
 
 padding:8px 18px;
+
+background:#007BFF;
+
+color:#fff;
 
 font-size:13px;
 
 font-weight:700;
 
-color:#1565c0;
+border-radius:40px;
 
-background:#eef6ff;
+letter-spacing:.3px;
 
-border-radius:30px;
+box-shadow:
+0 6px 18px rgba(0,123,255,.25);
 
 }
 
