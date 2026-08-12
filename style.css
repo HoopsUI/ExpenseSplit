@@ -428,7 +428,8 @@ button {
 ========================= */
 .seo-content {
   max-width: 850px !important; /* Keeps the text readable and centered */
-  margin-right: auto;
+  margin-left: auto !important;
+    margin-right: auto !important;
    margin-top: 60px !important; /* Pushes it away from the calculator */
    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   background: #ffffff !important; /* Solid white base */
@@ -1575,6 +1576,8 @@ button, .btn {
     border-radius: 20px !important;
     padding: 50px !important;
     margin-top: 80px !important; /* Large gap to separate from calculator */
+   margin-left: auto !important;
+    margin-right: auto !important;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05) !important;
     max-width: 850px !important; /* Makes it look like a professional document */
     text-align: left !important; /* Standard reading alignment */
