@@ -1508,7 +1508,3 @@ button, .btn {
     text-transform: none; /* Avoids all-caps which can look dated */
 }
 
-/* TEST - REMOVE THIS AFTER TESTING */
-body {
-    border: 10px solid red !important;
-}
