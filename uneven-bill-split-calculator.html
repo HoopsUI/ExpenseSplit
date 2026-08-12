@@ -265,7 +265,7 @@ Need to split expenses but the contributions are not equal at all. Learn to spli
 <p>
 This guide helps people who often face confusion when dividing expenses where everyone has a different share in the total bill. When you need to figure out who pays what when you split restaurant bills, sharing hotel room, airbnb or even when you plan trips and staycations, our guide to split bills unevenly help you manage bills more efficiently and provide fair and transparent results.
 </p>
-<a href="/" class="primary-btn">Use Expense Split Calculator</a>
+<a href="#tool" class="primary-btn">Use Expense Split Calculator</a>
 
 </div>
 </section>
@@ -1067,6 +1067,54 @@ You can start using the free calculator here:
 </div>
 </section>
 
+<!-- ================= CALCULATOR ================= -->
+<section id="tool" class="section"data-aos="fade-up">
+<div class="container">
+ <h2>Advanced Uneven Splitter</h2>
+    <p style="color: #94a3b8; margin-bottom: 20px;">Precision splitting with Tax/Tip and Balance Tracking.</p>
+
+    <div class="form-group">
+        <label>Base Bill Amount ($)</label>
+        <input type="number" id="totalBill" placeholder="0.00" oninput="updateBalance()">
+    </div>
+
+    <div style="display: flex; gap: 10px;">
+        <div class="form-group" style="flex: 1;">
+            <label>Tax/Tip ($)</label>
+            <input type="number" id="extraFees" placeholder="0.00" value="0" oninput="updateBalance()">
+        </div>
+        <div class="form-group" style="flex: 1;">
+            <label>Split Method</label>
+            <select id="splitMethod" onchange="toggleSplitInputs(); updateBalance();">
+                <option value="exact">Exact Amounts</option>
+                <option value="percentage">Percentages (%)</option>
+                <option value="shares">Shares (Ratios)</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- BALANCE TRACKER (Unique Feature) -->
+    <div id="balanceTracker" style="padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; background: #1e293b; color: #94a3b8; text-align: center;">
+        Remaining to assign: <span id="remainingAmount">$0.00</span>
+    </div>
+
+    <div id="peopleContainer">
+        <!-- Rows added by JS -->
+    </div>
+
+    <button type="button" class="secondary-btn" onclick="addPersonRow()">+ Add Person</button>
+    <button type="button" id="calculateBtn" onclick="calculateUnevenSplit()">Calculate & Generate Summary</button>
+
+    <!-- SUMMARY SECTION -->
+    <div id="unevenResult" class="result-box hidden">
+        <div id="resultsList"></div>
+        <hr style="border: 0; border-top: 1px solid #334155; margin: 20px 0;">
+        <div id="summaryStats" style="font-size: 14px; color: #94a3b8; margin-bottom: 20px;"></div>
+        <button onclick="downloadSummary()" style="background: #10b981 !important; color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; width: 100%;">Download Summary (.txt)</button>
+    </div>
+</div>
+</section>
+
 <!-- PREMIUM UNEVEN BILL SPLIT PLANNER -->
 <section class="planner-promo" data-aos="fade-up">
   <div class="container">
@@ -1273,6 +1321,115 @@ text-align:left;
 }
 </style>
 
+<script>
+let currentSplitData = []; // Stores data for download
+
+function addPersonRow() {
+    const container = document.getElementById('peopleContainer');
+    const method = document.getElementById('splitMethod').value;
+    const row = document.createElement('div');
+    row.className = 'person-row';
+    
+    let inputPlaceholder = (method === "percentage") ? "%" : (method === "shares" ? "Shares" : "Amount");
+    
+    row.innerHTML = `
+        <input type="text" placeholder="Name" class="p-name" oninput="updateBalance()">
+        <input type="number" placeholder="${inputPlaceholder}" class="p-value" oninput="updateBalance()">
+        <button class="remove-btn" onclick="this.parentElement.remove(); updateBalance();">×</button>
+    `;
+    container.appendChild(row);
+    updateBalance();
+}
+
+function updateBalance() {
+    const total = parseFloat(document.getElementById('totalBill').value) || 0;
+    const method = document.getElementById('splitMethod').value;
+    const values = document.querySelectorAll('.p-value');
+    const tracker = document.getElementById('balanceTracker');
+    const remainingDisp = document.getElementById('remainingAmount');
+    
+    let assigned = 0;
+    values.forEach(v => assigned += (parseFloat(v.value) || 0));
+
+    if (method === "percentage") {
+        let remaining = 100 - assigned;
+        remainingDisp.innerText = remaining + "%";
+        tracker.className = (remaining === 0) ? "perfect" : "warning";
+    } else if (method === "exact") {
+        let remaining = total - assigned;
+        remainingDisp.innerText = "$" + remaining.toFixed(2);
+        tracker.className = (Math.abs(remaining) < 0.01) ? "perfect" : "warning";
+    } else {
+        remainingDisp.innerText = "N/A (Shares Mode)";
+        tracker.className = "";
+    }
+}
+
+function calculateUnevenSplit() {
+    const base = parseFloat(document.getElementById('totalBill').value) || 0;
+    const extra = parseFloat(document.getElementById('extraFees').value) || 0;
+    const grandTotal = base + extra;
+    const method = document.getElementById('splitMethod').value;
+    const names = document.querySelectorAll('.p-name');
+    const values = document.querySelectorAll('.p-value');
+    const resultBox = document.getElementById('unevenResult');
+    
+    let html = `<span class="summary-header">Calculation Complete</span><ul>`;
+    currentSplitData = []; // Clear old data
+    let totalAssigned = 0;
+
+    // Logic for Shares (needs total shares first)
+    let totalShares = 0;
+    if (method === "shares") values.forEach(v => totalShares += (parseFloat(v.value) || 0));
+
+    names.forEach((n, i) => {
+        let name = n.value || `Person ${i+1}`;
+        let rawVal = parseFloat(values[i].value) || 0;
+        let finalOwed = 0;
+
+        if (method === "exact") finalOwed = rawVal + (rawVal / base * extra);
+        if (method === "percentage") finalOwed = (rawVal / 100) * grandTotal;
+        if (method === "shares") finalOwed = (rawVal / totalShares) * grandTotal;
+
+        currentSplitData.push({ name, amount: finalOwed.toFixed(2) });
+        html += `<li class="result-item">${name}: <strong>$${finalOwed.toFixed(2)}</strong></li>`;
+    });
+
+    html += `</ul>`;
+    document.getElementById('resultsList').innerHTML = html;
+    document.getElementById('summaryStats').innerHTML = `
+        Base Bill: $${base.toFixed(2)} | Fees: $${extra.toFixed(2)}<br>
+        <strong>Grand Total: $${grandTotal.toFixed(2)}</strong>
+    `;
+    resultBox.classList.remove('hidden');
+}
+
+function downloadSummary() {
+    let text = `EXPENSES SPLIT - UNEVEN BILL SUMMARY\n`;
+    text += `Generated on: ${new Date().toLocaleDateString()}\n`;
+    text += `------------------------------------------\n`;
+    currentSplitData.forEach(item => {
+        text += `${item.name.padEnd(20)} : $${item.amount}\n`;
+    });
+    text += `------------------------------------------\n`;
+    text += `TOTAL BILL: $${(parseFloat(document.getElementById('totalBill').value) + parseFloat(document.getElementById('extraFees').value)).toFixed(2)}\n`;
+    text += `\nThank you for using ExpensesSplit.com`;
+
+    const blob = new Blob([text], { type: 'text/plain' });
+    const anchor = document.createElement('a');
+    anchor.download = 'bill-split-summary.txt';
+    anchor.href = window.URL.createObjectURL(blob);
+    anchor.click();
+}
+
+// Initial setup
+window.onload = function() {
+    if(document.getElementById('peopleContainer')) {
+        addPersonRow(); addPersonRow();
+    }
+};
+</script>
+
 
 <script>
 
@@ -1327,8 +1484,7 @@ z-index:999;
   </a>
 </div>
 
-   #stickyCTA.hide {
-  transform: translateY(100%);
+  
 }
 </style>
 
