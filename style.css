@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 /* =========================
    RESET
 ========================= */
@@ -1455,4 +1457,53 @@ color:#fff !important;
 .amazon-btn:active{
     color:#fff !important;
     text-decoration:none;
+}
+
+/* --- PREMIUM TYPOGRAPHY UPDATE --- */
+
+/* 1. Apply Inter to the whole site */
+body, input, button, select, textarea {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #334155; /* Modern soft dark gray instead of harsh black */
+    line-height: 1.6; /* Better readability */
+}
+
+/* 2. Make Headings stand out */
+h1, h2, h3, h4, h5, h6 {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important; /* Tighter letter spacing for a high-end look */
+    line-height: 1.2;
+}
+
+/* 3. Specifically target the main title (Hero) */
+h1 {
+    font-size: 2.5rem; /* Slightly larger */
+    margin-bottom: 1rem;
+}
+
+/* 4. Improve readability for the tools/calculators */
+label {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #475569;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+/* 5. Modernize Form Inputs Typography */
+input[type="text"], 
+input[type="number"], 
+input[type="email"] {
+    font-size: 16px !important; /* Prevents auto-zoom on iPhones */
+    color: #1e293b;
+}
+
+/* 6. Make buttons feel more "Action-Oriented" */
+button, .btn {
+    font-weight: 600 !important;
+    letter-spacing: 0.01em;
+    text-transform: none; /* Avoids all-caps which can look dated */
 }
