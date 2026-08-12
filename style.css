@@ -1633,3 +1633,17 @@ button, .btn {
     color: #94a3b8 !important;
     opacity: 1; 
 }
+
+/* --- FIXING TOTAL EXPENSE DISPLAY --- */
+#totalExpense {
+    background: #1e293b !important; /* Dark blue background to match inputs */
+    color: #10b981 !important;      /* A nice "Money Green" for the total amount */
+    border: 1px solid #334155 !important;
+    font-size: 24px !important;     /* Make the total bigger and easier to see */
+    font-weight: 700 !important;
+    padding: 15px !important;
+    border-radius: 12px !important;
+    text-align: center !important;
+    margin-top: 5px !important;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06) !important; /* Makes it look slightly recessed */
+}
