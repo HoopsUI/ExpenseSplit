@@ -294,17 +294,19 @@ nav a:hover {
   width: 100%; /* ensures full width up to max */
 }
 
-.calc-card {
-  background: #ffffff !important; /* This ensures the calculator stays white */
-  border-radius: 16px;
-  max-width: 520px; /* keeps calculator original width */
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-padding: 40px;
+.calc-card, .advanced-calculator .card {
+  background: #0f172a !important; /* Deep Navy/Slate */
+  color: #ffffff !important; /* Makes all text inside white */
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Heavy shadow to make it "pop" */
+  border: 1px solid #1e293b;
+}
+
+/* Make sure the labels inside the dark box are readable */
+.calc-card label, .advanced-calculator .card label {
+  color: #94a3b8 !important; /* Soft silver color for labels */
+  font-weight: 500;
 }
 
 .form-group {
@@ -320,16 +322,17 @@ label {
 input,
 select {
   width: 100%;
-  padding: 12px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-  background: #ffffff;
+  padding: 14px;
+  border-radius: 10px;
+  background: #1e293b !important; /* Slightly lighter than the box */
+  border: 1px solid #334155 !important;
+  color: #ffffff !important;
 }
 
 input:focus,
 select:focus {
   outline: none;
-  border-color: var(--primary);
+  border-color: #3b82f6 !important; /* Blue glow when typing */
 }
 
 button {
@@ -424,13 +427,14 @@ button {
    SEO CONTENT
 ========================= */
 .seo-content {
-  max-width: 720px;
-  width: 100%; /* ensures full width up to max */
-  margin-left: auto;
+  max-width: 850px !important; /* Keeps the text readable and centered */
   margin-right: auto;
-  background-color: transparent;
-  padding: 30px 25px;
-  border-radius: 12px;
+   margin-top: 60px !important; /* Pushes it away from the calculator */
+   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  background: #ffffff !important; /* Solid white base */
+   border: 1px solid #e2e8f0;
+  padding: 40px !important;
+  border-radius: 16px;
   line-height: 1.7;
 }
 
@@ -1519,3 +1523,68 @@ button, .btn {
     text-transform: none; /* Avoids all-caps which can look dated */
 }
 
+
+
+/* --- CALCULATOR SECTION WRAPPER --- */
+#tool, .hero {
+    padding: 80px 20px !important;
+    background: rgba(255, 255, 255, 0.2); /* Very faint white tint to separate from the glow */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- DARK PREMIUM CALCULATOR BOX --- */
+.calc-card, .advanced-calculator .card {
+    background: #0f172a !important; /* Deep Navy Slate */
+    color: #ffffff !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 24px !important;
+    padding: 40px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Fix text colors inside the dark box */
+.calc-card label, .calc-card h2, .calc-card h3, .calc-card p {
+    color: #f8fafc !important;
+}
+
+/* Style the input fields to look "Techy" inside the dark box */
+.calc-card input, .calc-card select {
+    background: #1e293b !important;
+    border: 1px solid #334155 !important;
+    color: #ffffff !important;
+    padding: 12px !important;
+    border-radius: 10px !important;
+}
+
+/* Make the Calculate Button stand out even more */
+#calculateBtn, .primary-btn {
+    background: #2563eb !important; /* Brighter Blue */
+    color: white !important;
+    border: none !important;
+    font-size: 16px !important;
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39) !important;
+}
+
+/* --- SEO SECTION ORGANIZATION --- */
+.seo-content {
+    background: #ffffff !important; 
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 20px !important;
+    padding: 50px !important;
+    margin-top: 80px !important; /* Large gap to separate from calculator */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05) !important;
+    max-width: 850px !important; /* Makes it look like a professional document */
+    text-align: left !important; /* Standard reading alignment */
+}
+
+/* Add a "Section Title" feel to the SEO area */
+.seo-content h2 {
+    color: #0f172a !important;
+    border-bottom: 2px solid #3b82f6;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 25px !important;
+}
