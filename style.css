@@ -30,11 +30,12 @@
    BASE
 ========================= */
 body {
- background-color: #fbfcfe; /* Very slightly blue-white */
+ background-color: #f0f4f8; 
   background-image: 
-    radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.05) 0px, transparent 50%), 
-    radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.03) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.1) 0px, transparent 50%), 
+    radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.08) 0px, transparent 50%);
   background-attachment: fixed;
+  /* keep your other body settings like font-family here */
   line-height: 1.6;
 }
 
@@ -88,7 +89,7 @@ nav a:hover {
 ========================= */
 .hero {
   padding: 80px 0;
-  background: linear-gradient(to bottom, #f8fafc, #ffffff);
+  background: transparent;
 }
 
 .hero-content {
@@ -170,11 +171,12 @@ nav a:hover {
    SECTIONS
 ========================= */
 .section {
+  background: transparent;
   padding: 60px 16px;
 }
 
 .section.light {
-  background: var(--bg-light);
+  background: transparent;
 }
 
 .section-title {
@@ -292,12 +294,14 @@ nav a:hover {
 }
 
 .calc-card {
+  background: #ffffff !important; /* This ensures the calculator stays white */
+  border-radius: 16px;
   max-width: 520px; /* keeps calculator original width */
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-border: 1px solid #f1f5f9;
-box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+border: 1px solid rgba(255, 255, 255, 0.8);
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 padding: 40px;
 }
 
@@ -420,7 +424,7 @@ button {
   width: 100%; /* ensures full width up to max */
   margin-left: auto;
   margin-right: auto;
-  background-color: #f7f9fc;
+  background-color: transparent;
   padding: 30px 25px;
   border-radius: 12px;
   line-height: 1.7;
@@ -448,7 +452,7 @@ button {
   max-width:720px;
   margin:50px auto;
   padding:25px 20px;
-  background:#f9fafb;
+  background:transparent;
   border-radius:14px;
   box-shadow:0 6px 18px rgba(0,0,0,0.05);
 }
