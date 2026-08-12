@@ -1588,3 +1588,45 @@ button, .btn {
     padding-bottom: 5px;
     margin-bottom: 25px !important;
 }
+
+/* --- FIXING THE READABILITY OF NAMES & LISTS --- */
+
+/* 1. Fix the "Added People" and "Added Expenses" list items */
+#peopleList li, 
+#expenseList li, 
+.expense-entry, 
+.expense-item,
+#peopleNames .name-input {
+    background: #1e293b !important; /* Dark blue background */
+    color: #ffffff !important;      /* Pure white text */
+    border: 1px solid #334155 !important;
+    padding: 10px 14px !important;
+    margin-bottom: 8px !important;
+    border-radius: 8px !important;
+}
+
+/* 2. Fix the text color inside the input boxes while typing */
+.calc-card input, 
+.calc-card select,
+#peopleContainer input,
+.expense-row input {
+    background: #1e293b !important;
+    color: #ffffff !important; /* This ensures you see what you type */
+    border: 1px solid #334155 !important;
+}
+
+/* 3. Fix the Result Box (where the final split is shown) */
+.result-box, 
+.result-item, 
+#results li {
+    background: #1e293b !important;
+    color: #ffffff !important;
+    border-radius: 12px !important;
+    border: 1px solid #3b82f6 !important; /* A blue border to highlight the result */
+}
+
+/* 4. Make sure placeholders (the faint text like "Enter name") are readable */
+::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1; 
+}
