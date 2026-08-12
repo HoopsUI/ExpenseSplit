@@ -306,168 +306,101 @@ This roommate bill calculator also works as a utility split calculator for roomm
 </div>
 </section>
 
-
+  
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const roommatesDiv = document.getElementById("roommates");
+    const addBtn = document.getElementById("addRoommate");
+    const calculateBtn = document.getElementById("calculate");
+    const resultsDiv = document.getElementById("results");
+    const resultActions = document.getElementById("resultActions");
 
-const roommatesDiv = document.getElementById("roommates")
-const addBtn = document.getElementById("addRoommate")
-const calculateBtn = document.getElementById("calculate")
-const resultsDiv = document.getElementById("results")
+    let roommateCount = 0;
 
-let roommateCount = 0
+    function addRoommate() {
+        roommateCount++;
+        const div = document.createElement("div");
+        div.className = "roommate-row";
+        div.style.marginBottom = "15px";
+        div.style.padding = "15px";
+        div.style.background = "#1e293b";
+        div.style.borderRadius = "12px";
 
-function addRoommate(){
+        div.innerHTML = `
+            <h4 style="color: #60a5fa; margin-bottom: 10px;">👥 Roommate ${roommateCount}</h4>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="name" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label>Amount Paid Already</label>
+                <input type="number" class="paid" placeholder="0">
+            </div>
+        `;
+        roommatesDiv.appendChild(div);
+    }
 
-roommateCount++
+    // Attach Click Event to Add Button
+    addBtn.onclick = function(e) {
+        e.preventDefault();
+        addRoommate();
+    };
 
-const div = document.createElement("div")
-div.className = "roommate-row"
+    // Attach Click Event to Calculate Button
+    calculateBtn.onclick = function(e) {
+        e.preventDefault();
+        const currency = document.getElementById("currency").value;
+        const rent = parseFloat(document.getElementById("rent").value) || 0;
+        const electricity = parseFloat(document.getElementById("electricity").value) || 0;
+        const water = parseFloat(document.getElementById("water").value) || 0;
+        const internet = parseFloat(document.getElementById("internet").value) || 0;
+        const groceries = parseFloat(document.getElementById("groceries").value) || 0;
+        const other = parseFloat(document.getElementById("other").value) || 0;
 
-div.innerHTML = `
-<h4>Roommate ${roommateCount}</h4>
+        const total = rent + electricity + water + internet + groceries + other;
+        const names = document.querySelectorAll(".name");
+        const paidInputs = document.querySelectorAll(".paid");
+        const people = names.length;
 
-<div class="form-group">
-<label>Name</label>
-<input type="text" class="name" placeholder="Name">
-</div>
+        if (people < 1) {
+            alert("Please add at least one roommate.");
+            return;
+        }
 
-<div class="form-group">
-<label>Amount Paid</label>
-<input type="number" class="paid" placeholder="0">
-</div>
-`
+        const share = total / people;
+        let resultHTML = `<h3>Summary</h3>`;
+        resultHTML += `<p>Total: <strong>${currency}${total.toFixed(2)}</strong></p>`;
+        resultHTML += `<p>Each pays: <strong>${currency}${share.toFixed(2)}</strong></p><hr style="border-color:#334155; margin:15px 0;">`;
 
-roommatesDiv.appendChild(div)
+        names.forEach((nameInput, i) => {
+            const name = nameInput.value || `Roommate ${i + 1}`;
+            const paid = parseFloat(paidInputs[i].value) || 0;
+            const diff = paid - share;
 
-}
+            resultHTML += `<div style="margin-bottom:10px;"><strong>${name}:</strong><br>`;
+            if (diff < 0) {
+                resultHTML += `<span style="color:#f87171;">Owes ${currency}${Math.abs(diff).toFixed(2)}</span>`;
+            } else {
+                resultHTML += `<span style="color:#34d399;">Receives ${currency}${diff.toFixed(2)}</span>`;
+            }
+            resultHTML += `</div>`;
+        });
 
-addBtn.addEventListener("click", addRoommate)
+        resultsDiv.innerHTML = resultHTML;
+        resultsDiv.classList.remove("hidden");
+        resultActions.classList.remove("hidden");
+    };
 
-addRoommate()
-addRoommate()
+    // Initial 2 Roommates
+    addRoommate();
+    addRoommate();
 
-calculateBtn.addEventListener("click", function(){
-
-const currency = document.getElementById("currency").value
-
-const rent = parseFloat(document.getElementById("rent").value) || 0
-const electricity = parseFloat(document.getElementById("electricity").value) || 0
-const water = parseFloat(document.getElementById("water").value) || 0
-const internet = parseFloat(document.getElementById("internet").value) || 0
-const groceries = parseFloat(document.getElementById("groceries").value) || 0
-const other = parseFloat(document.getElementById("other").value) || 0
-
-const utilities = electricity + water + internet + groceries + other
-
-const total = rent + utilities
-
-const names = document.querySelectorAll(".name")
-const paidInputs = document.querySelectorAll(".paid")
-
-const people = names.length
-
-if(people < 1){
-alert("Add roommates")
-return
-}
-
-const share = total / people
-
-let resultHTML = `
-<h3>Expense Summary</h3>
-Total Household Expenses: ${currency}${total.toFixed(2)}<br>
-Each Person Should Pay: ${currency}${share.toFixed(2)}<br><br>
-`
-
-let balances = []
-
-for(let i=0;i<people;i++){
-
-const name = names[i].value || `Roommate ${i+1}`
-const paid = parseFloat(paidInputs[i].value) || 0
-const balance = paid - share
-
-balances.push({name,balance})
-
-resultHTML += `
-<strong>${name}</strong><br>
-Paid: ${currency}${paid.toFixed(2)}<br>
-Balance: ${currency}${balance.toFixed(2)}<br><br>
-`
-
-}
-
-resultHTML += "<h3>Settlement</h3>"
-
-balances.forEach(person=>{
-
-if(person.balance < 0){
-
-resultHTML += `${person.name} owes ${currency}${Math.abs(person.balance).toFixed(2)}<br>`
-
-}
-
-if(person.balance > 0){
-
-resultHTML += `${person.name} should receive ${currency}${person.balance.toFixed(2)}<br>`
-
-}
-
-})
-
-resultsDiv.classList.remove("hidden")
-resultsDiv.innerHTML = resultHTML
-showActions()
-})
-
-  const copyBtn = document.getElementById("copyBtn")
-const shareBtn = document.getElementById("shareBtn")
-const downloadBtn = document.getElementById("downloadBtn")
-const resultActions = document.getElementById("resultActions")
-
-function showActions(){
-resultActions.classList.remove("hidden")
-}
-
-copyBtn.addEventListener("click",function(){
-
-const text = resultsDiv.innerText
-
-navigator.clipboard.writeText(text)
-
-alert("Summary copied!")
-
-})
-
-shareBtn.addEventListener("click",function(){
-
-if(navigator.share){
-
-navigator.share({
-title:"Roommate Expense Split",
-text:resultsDiv.innerText,
-url:window.location.href
-})
-
-}else{
-
-alert("Sharing not supported on this device")
-
-}
-
-})
-
-downloadBtn.addEventListener("click",function(){
-
-const text = resultsDiv.innerText
-const blob = new Blob([text], {type:"text/plain"})
-const link = document.createElement("a")
-
-link.href = URL.createObjectURL(blob)
-link.download = "roommate-expense-summary.txt"
-link.click()
-
-})
+    // Copy/Download Logic
+    document.getElementById("copyBtn").onclick = () => {
+        navigator.clipboard.writeText(resultsDiv.innerText);
+        alert("Copied to clipboard!");
+    };
+});
 
 </script>
 
