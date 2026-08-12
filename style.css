@@ -1668,77 +1668,58 @@ button, .btn {
 }
 
 
-/* --- THE MOBILE-APP "FLOATING CARD" LOOK --- */
-.calc-card, .advanced-calculator .card {
-    max-width: 480px !important; /* Constrains it to look like a phone screen */
-    background: #111827 !important; /* Slightly darker Navy/Black like the photo */
-    border-radius: 32px !important; /* Very soft, high-end rounded corners */
-    padding: 30px !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important; /* Subtle "etched" border */
-    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.45) !important; /* Deeper shadow */
-    margin: 40px auto !important;
+
+/* --- THE MOBILE-APP CALCULATOR LOOK --- */
+
+.calculator {
+    max-width: 450px !important; /* Forces the mobile-screen width */
+    margin: 0 auto !important;   /* Centers it */
 }
 
-/* --- APP SECTION HEADINGS --- */
-.calc-card h2, .calc-card label {
-    font-size: 16px !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.01em !important;
+.calc-card {
+    background: #0f172a !important; /* Deep dark blue */
+    border: 8px solid #1e293b !important; /* This creates the "Bezel/Frame" look */
+    border-radius: 40px !important; /* Extra round like a modern smartphone */
+    padding: 30px !important;
+    box-shadow: 0 30px 60px -12px rgba(0,0,0,0.5) !important;
+}
+
+/* Section titles inside the card (like 🏠 Rent) */
+.calc-card h3 {
+    font-size: 1.1rem !important;
     color: #ffffff !important;
-    margin-bottom: 12px !important;
+    margin: 25px 0 15px 0 !important;
     display: flex;
     align-items: center;
-    gap: 8px; /* Space for the emoji/icon */
+    gap: 10px;
 }
 
-/* Sub-labels (Shared Utilities etc) */
-.form-group label {
-    font-size: 14px !important;
-    color: #94a3b8 !important; /* Muted gray for secondary labels */
-    margin-top: 15px !important;
-}
-
-/* --- PREMIUM APP INPUTS --- */
-.calc-card input, .calc-card select {
-    background: #1f2937 !important; /* Deep Slate */
-    border: 1px solid #374151 !important;
-    color: #ffffff !important;
-    border-radius: 12px !important;
-    padding: 14px 18px !important;
-    font-size: 15px !important;
-    transition: all 0.2s ease !important;
-}
-
-.calc-card input:focus {
-    border-color: #3b82f6 !important;
-    background: #111827 !important; /* Darkens on focus */
-}
-
-/* Style for placeholders to look like the photo */
-::placeholder {
-    color: #4b5563 !important;
-}
-
-/* --- THE BIG BLUE APP BUTTON --- */
-#calculateBtn, .primary-btn, #addExpenseBtn, #addPersonRow {
-    background: #2563eb !important; /* Brighter "Action Blue" */
-    border: none !important;
-    border-radius: 12px !important;
-    padding: 16px !important;
-    font-weight: 700 !important;
-    font-size: 16px !important;
-    color: white !important;
+/* The buttons should be big and modern like the image */
+.primary-btn {
+    background: #2563eb !important;
+    height: 55px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 17px !important;
+    border-radius: 14px !important;
+    margin-top: 20px !important;
     width: 100% !important;
-    cursor: pointer !important;
-    transition: transform 0.1s ease, background 0.2s ease !important;
-    margin-top: 10px !important;
+    border: none !important;
 }
 
-#calculateBtn:hover {
-    background: #3b82f6 !important;
-    transform: translateY(-1px);
+/* Specific styling for the result actions (Copy/Share buttons) */
+.result-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    justify-content: center;
 }
 
-#calculateBtn:active {
-    transform: scale(0.98); /* Sinks slightly when clicked like a real app button */
+.result-actions .secondary-btn {
+    flex: 1;
+    font-size: 13px !important;
+    padding: 10px !important;
+    background: #334155 !important;
+    color: white !important;
 }
