@@ -1923,3 +1923,80 @@ h2::before, h1::before, h3::before {
         border-radius: 6px;
     }
 }
+
+
+/* --- PREMIUM PINTEREST REPORT STYLING --- */
+.pin-report-body {
+    background-color: #f8fafc;
+    font-family: 'Inter', sans-serif;
+    padding: 20px;
+    color: #1e293b;
+}
+
+.pin-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.pin-header {
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    color: white;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.pin-header h1 { color: white !important; font-size: 32px; margin: 0; }
+
+.pin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 30px;
+}
+
+.pin-card {
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.pin-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 1px;
+}
+
+.pin-value {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1e293b;
+    margin-top: 5px;
+}
+
+.settle-row {
+    background: #f0fdf4;
+    border: 1px solid #dcfce7;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    color: #166534;
+}
+
+.bar-bg { background: #f1f5f9; height: 10px; border-radius: 10px; margin: 15px 0; overflow: hidden; }
+.bar-fill { background: #6366f1; height: 100%; border-radius: 10px; }
+
+/* Force colors when printing */
+@media print {
+    body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
