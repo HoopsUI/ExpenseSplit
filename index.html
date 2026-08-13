@@ -573,10 +573,40 @@ Looking for a simple way to split expenses with friends or roommates? Our free e
     </a>
   </p>
 </div>
+
+<!-- PREMIUM SUMMARY SECTION -->
+<div id="premium-summary-section" class="calc-card" style="margin-top: 30px; border: 2px solid #eef4ff;">
+    
+    <!-- LOCK SCREEN -->
+    <div id="summary-lock-screen" style="text-align: center; padding: 20px;">
+        <span style="font-size: 40px;">📊</span>
+        <h3>Unlock Your Custom Expense Summary</h3>
+        <p>Get a detailed PDF report, cost analysis, and smart saving tips for this trip/split.</p>
         
-<!-- SHARE BUTTON -->
-<div class="share-box hidden" id="shareBox">
-  <button id="copyResultsBtn">Copy Results</button>
+        <div style="margin: 20px 0;">
+            <input type="text" id="unlock-code" placeholder="Enter EXP Code" style="padding: 12px; border: 1px solid #ddd; border-radius: 5px; width: 200px;">
+            <button onclick="validatePremiumCode()" class="primary-btn" style="padding: 11px 20px;">Unlock</button>
+        </div>
+        
+        <p id="lock-error" style="color: #ff4d4d; display: none; font-size: 14px;">Invalid code. Please check your email.</p>
+        <p style="font-size: 14px; color: #666;">
+            Don't have a code? <a href="YOUR_PAYHIP_PRODUCT_URL" target="_blank" style="color: #007bff; font-weight: bold;">Get one here for $1.99</a>
+        </p>
+    </div>
+
+    <!-- UNLOCKED CONTENT -->
+    <div id="summary-unlocked-content" style="display: none; padding: 20px;">
+        <h3 style="color: #2c3e50;">Detailed Expense Analysis</h3>
+        <div id="analysis-output"></div>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <h4>💡 Money Saving Tips</h4>
+        <ul id="savings-tips" style="text-align: left; line-height: 1.6;"></ul>
+        
+        <button onclick="window.print()" class="primary-btn" style="background: #2c3e50; margin-top: 15px;">
+            Download Summary as PDF
+        </button>
+        <p style="font-size: 11px; color: #999; margin-top: 10px;">Access expires in 48 hours.</p>
+    </div>
 </div>
 
 <details style="max-width:720px;margin:20px auto;">
@@ -1729,45 +1759,256 @@ Find the right calculator based on your needs — from trips and dining to rent 
   </footer>
 
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("calculatorForm");
-    const amountInput = document.getElementById("amount");
-    const peopleInput = document.getElementById("people");
-    const currencySelect = document.getElementById("currency");
-    const resultBox = document.getElementById("result");
-    const resultCTA = document.getElementById("resultCTA");
-    
-    if (!form) return;
+  // --- 1. GLOBAL VARIABLES ---
+let members = [];
+let expenses = [];
+const EXPIRATION_TIME_MS = 48 * 60 * 60 * 1000; // 48 Hours
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+    // Check if they already unlocked it
+    checkLicenseExpiry();
 
-      const amount = parseFloat(amountInput.value);
-      const people = parseInt(peopleInput.value);
-      const currency = currencySelect.value;
+    // Elements
+    const addPersonBtn = document.getElementById("addPersonBtn");
+    const addExpenseBtn = document.getElementById("addExpenseBtn");
+    const calculateBtn = document.getElementById("calculateBtn");
+    const peopleList = document.getElementById("peopleList");
+    const expenseListDiv = document.getElementById("expenseList");
+    const paidBySelect = document.getElementById("paidBy");
 
-      if (isNaN(amount) || isNaN(people) || people <= 0) {
+    // --- 2. ADD PERSON LOGIC ---
+    addPersonBtn.addEventListener("click", function() {
+        const nameInput = document.getElementById("personName");
+        const name = nameInput.value.trim();
+        if (name && !members.includes(name)) {
+            members.push(name);
+            // Update UI
+            const li = document.createElement("li");
+            li.textContent = name;
+            peopleList.appendChild(li);
+            // Update "Who Paid" dropdown
+            const opt = document.createElement("option");
+            opt.value = name;
+            opt.textContent = name;
+            paidBySelect.appendChild(opt);
+            nameInput.value = "";
+        }
+    });
+
+    // --- 3. ADD EXPENSE LOGIC ---
+    addExpenseBtn.addEventListener("click", function() {
+        const name = document.getElementById("expenseName").value.trim();
+        const amount = parseFloat(document.getElementById("expenseAmount").value);
+        const payer = paidBySelect.value;
+
+        if (name && !isNaN(amount) && payer) {
+            expenses.push({ name, amount, payer });
+            // Update UI list
+            const p = document.createElement("p");
+            p.innerHTML = `✅ ${name}: <strong>${amount}</strong> (Paid by ${payer})`;
+            expenseListDiv.appendChild(p);
+            // Clear inputs
+            document.getElementById("expenseName").value = "";
+            document.getElementById("expenseAmount").value = "";
+            updateTotal();
+        } else {
+            alert("Please enter expense name, amount, and select who paid.");
+        }
+    });
+
+    // --- 4. CALCULATE LOGIC ---
+    calculateBtn.addEventListener("click", function() {
+        if (members.length === 0 || expenses.length === 0) {
+            alert("Add people and expenses first!");
+            return;
+        }
+        const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+        const perPerson = (total / members.length).toFixed(2);
+        const currency = document.getElementById("currency").value;
+
+        const resultBox = document.getElementById("result");
         resultBox.classList.remove("hidden");
-        resultBox.innerHTML = "Please enter valid values.";
-        return;
-      }
-
-      const perPerson = (amount / people).toFixed(2);
-
-      resultBox.classList.remove("hidden");
-      resultBox.innerHTML = `
-        <strong>Total:</strong> ${currency}${amount}<br>
-        <strong>People:</strong> ${people}<br>
-        <strong>Each person pays:</strong> ${currency}${perPerson}
-      `;
-    
-  // 🔥 SHOW RESULT CTA HERE
-  if (resultCTA) {
-    resultCTA.style.display = "block";
-    resultCTA.classList.remove("hidden");
-  }
+        resultBox.innerHTML = `
+            <strong>Total Group Expense:</strong> ${currency}${total.toFixed(2)}<br>
+            <strong>Each Person Owes:</strong> ${currency}${perPerson}
+        `;
+        
+        document.getElementById("resultCTA").style.display = "block";
+    });
 });
+
+// --- 5. PREMIUM FEATURE LOGIC ---
+
+function validatePremiumCode() {
+    const code = document.getElementById("unlock-code").value.trim().toUpperCase();
+    const errorMsg = document.getElementById("lock-error");
+
+    // ALGORITHMIC RULE: Starts with EXP, last 2 digits sum to 10
+    if (code.startsWith("EXP") && code.length >= 5) {
+        const lastTwo = code.slice(-2);
+        const d1 = parseInt(lastTwo[0]);
+        const d2 = parseInt(lastTwo[1]);
+
+        if (!isNaN(d1) && !isNaN(d2) && (d1 + d2 === 10)) {
+            localStorage.setItem("summary_access_expiry", new Date().getTime() + EXPIRATION_TIME_MS);
+            showUnlockedSummary();
+        } else {
+            errorMsg.style.display = "block";
+        }
+    } else {
+        errorMsg.style.display = "block";
+    }
+}
+
+function checkLicenseExpiry() {
+    const expiry = localStorage.getItem("summary_access_expiry");
+    if (expiry && new Date().getTime() < expiry) {
+        showUnlockedSummary();
+    }
+}
+
+function showUnlockedSummary() {
+    document.getElementById("summary-lock-screen").style.display = "none";
+    document.getElementById("summary-unlocked-content").style.display = "block";
+    generateAnalysis();
+}
+
+function generateAnalysis() {
+    if (expenses.length === 0) {
+        document.getElementById("analysis-output").innerHTML = "Add expenses above to generate analysis.";
+        return;
+    }
+    const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+    const highest = expenses.reduce((prev, curr) => (curr.amount > prev.amount) ? curr : prev);
+    const currency = document.getElementById("currency").value;
+
+    document.getElementById("analysis-output").innerHTML = `
+        <p><strong>Total Spending:</strong> ${currency}${total.toFixed(2)}</p>
+        <p><strong>Highest Expense:</strong> "${highest.name}" (${currency}${highest.amount.toFixed(2)})</p>
+        <p><strong>Total Items:</strong> ${expenses.length}</p>
+    `;
+
+    // Dynamic Tips
+    const tipsList = document.getElementById("savings-tips");
+    tipsList.innerHTML = `
+        <li>The item "${highest.name}" is your "Budget Killer." Next time, see if this can be booked in advance for a discount.</li>
+        <li>You have ${members.length} people splitting ${expenses.length} items. To save time, have one person pay for everything and settle at the end.</li>
+        <li><strong>Money Tip:</strong> For ${currency}${total.toFixed(2)}, using a 2% cashback card would have saved you ${currency}${(total * 0.02).toFixed(2)}.</li>
+    `;
+}
+
+function updateTotal() {
+    const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+    document.getElementById("totalExpense").textContent = total.toFixed(2);
+}
 </script>
+
+<style>
+/* Container for the Premium Section */
+#premium-summary-section {
+    background: #ffffff;
+    border: 2px solid #eef4ff;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* Lock Screen Styling */
+#summary-lock-screen {
+    padding: 20px;
+}
+
+#summary-lock-screen h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+#summary-lock-screen p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Input Field for the Code */
+#unlock-code {
+    padding: 12px 15px;
+    border: 2px solid #e0e6ed;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 10px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+#unlock-code:focus {
+    border-color: #007bff;
+}
+
+/* Error Message */
+#lock-error {
+    background: #fff5f5;
+    color: #cc0000;
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+/* Unlocked Content Styling */
+#summary-unlocked-content h3 {
+    border-bottom: 2px solid #f0f2f5;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#analysis-output {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#analysis-output p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* Savings Tips List */
+#savings-tips {
+    list-style: none;
+    padding: 0;
+}
+
+#savings-tips li {
+    background: #eefdf3;
+    border-left: 4px solid #28a745;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem;
+    color: #155724;
+}
+
+/* Print/Download Button Styling */
+#summary-unlocked-content .primary-btn {
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #unlock-code {
+        width: 100%;
+    }
+}
+</style>
 
 <style>
 .planner-promo{
