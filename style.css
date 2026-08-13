@@ -1749,56 +1749,63 @@ button, .btn {
 }
 
 
-/* --- PREMIUM CALCULATOR HEADER STYLE --- */
+/* --- CORRECTED PREMIUM TOOL HEADERS --- */
 
-/* 1. The Small "Badge" above the title */
-.section-title::before {
-    content: "FINANCE TOOL"; /* Or "PREMIUM CALCULATOR" */
-    display: block;
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: #2563eb; /* Your primary blue */
-    font-weight: 800;
-    margin-bottom: 8px;
-}
-
-/* 2. The Main Heading Update */
-.section-title {
+/* 1. Target ONLY titles inside the #tool section or the Hero */
+#tool .section-title, 
+.hero .section-title,
+.calculator-type-title {
+    background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 2.2rem !important;
     font-weight: 800 !important;
     text-align: center;
     margin-bottom: 40px !important;
-    
-    /* Modern Gradient Text Effect */
-    background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
-    /* Animation to make it feel alive */
-    animation: fadeInDown 0.8s ease-out;
-}
-
-/* 3. Highlighting the Heading on Tool Pages */
-#tool h2.section-title {
     position: relative;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* 4. A subtle underline to ground the title */
-#tool h2.section-title::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 25%;
-    width: 50%;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, #2563eb, transparent);
-    border-radius: 2px;
+/* 2. Apply the "Badge" ONLY to these tool titles */
+#tool .section-title::before,
+.hero .section-title::before {
+    content: "FINANCE TOOL" !important;
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #2563eb !important;
+    font-weight: 800;
+    margin-bottom: 8px;
+    -webkit-text-fill-color: #2563eb !important; /* Forces color over the gradient clip */
+    text-align: center;
 }
 
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px) translateX(-50%); }
-    to { opacity: 1; transform: translateY(0) translateX(-50%); }
+/* 3. ENSURE SEO & FAQ TITLES STAY NORMAL */
+.seo-content h2, 
+.faq-section h2, 
+.seo-section h2,
+.footer h2 {
+    background: none !important;
+    -webkit-text-fill-color: #0f172a !important; /* Back to solid navy/black */
+    font-size: 1.6rem !important;
+    text-align: left !important;
+    transform: none !important;
+    left: 0 !important;
+    display: block !important;
+    margin-bottom: 20px !important;
+}
+
+/* 4. Remove any accidental badges from SEO/FAQ */
+.seo-content h2::before, 
+.faq-section h2::before,
+.seo-content .section-title::before {
+    content: none !important;
+}
+
+/* 5. Remove accidental underline from SEO/FAQ */
+.seo-content h2::after, 
+.faq-section h2::after {
+    content: none !important;
 }
