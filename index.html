@@ -603,7 +603,7 @@ Looking for a simple way to split expenses with friends or roommates? Our free e
         <p style="color: #94a3b8; margin-bottom: 25px;">Your aesthetic summary has been generated based on your data.</p>
         
         <button onclick="prepareAndPrint()" class="primary-btn" style="background: #6366f1 !important; border: none; font-weight: 700; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);">
-            ✨ GENERATE AESTHETIC PDF
+            📋 CUSTOM SUMMARY
         </button>
         <p style="font-size: 11px; color: #64748b; margin-top: 15px;">Valid for 48 hours.</p>
     </div>
@@ -1945,8 +1945,8 @@ function prepareAndPrint() {
     <body>
         <div class="container">
             <div class="header">
-                <p>Premium Financial Analysis</p>
-                <h1>Trip Summary ✨</h1>
+                <p>Financial Analysis</p>
+                <h1>📑 Expense Summary</h1>
                 <div style="margin-top:20px; font-size:14px; opacity:0.8; font-weight:600;">DATE: ${new Date().toLocaleDateString()} | REF: #EXP-${Math.floor(Math.random()*9000)+1000}</div>
             </div>
             
@@ -1972,11 +1972,35 @@ function prepareAndPrint() {
                     <div class="card">
                         <div class="label">Savings Insight</div>
                         <p style="font-size:15px; color:#334155; margin-top:10px; line-height:1.6; font-weight:500;">
-                            Your biggest spend was on <b>${highest.name}</b>. In similar trips, users saved an average of <b>12%</b> by booking this category through group-discount portals.
+                            Your biggest spend was on <b>${highest.name}</b>. In similar trips, users saved an average of <b>12%</b> by getting a ExpenseSplit Budget Planner to track expenses.
                         </p>
                         <div style="margin-top:15px; font-size:14px; color:#4f46e5; font-weight:700;">Potential Savings: ${currency}${(total*0.12).toFixed(2)}</div>
                     </div>
                 </div>
+
+                <!-- INSERTED TIPS SECTION -->
+                <div class="card" style="margin-bottom:40px;">
+                    <div class="label">Pro Group & Trip Strategies</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 15px;">
+                        <div>
+                            <p style="font-size: 14px; font-weight: 700; color: #4f46e5; margin-bottom: 8px;">🚀 Trip Savings</p>
+                            <ul style="font-size: 13px; color: #475569; padding-left: 18px; line-height: 1.6; margin: 0;">
+                                <li><b>The "Incognito" Rule:</b> Always search for flights and hotels in private/incognito mode to avoid price hikes based on your cookies.</li>
+                                <li><b>Mid-Week Magic:</b> Booking activities on Tuesdays or Wednesdays can reduce costs by up to 30% compared to weekends.</li>
+                                <li><b>Local Over Tourist:</b> Walk two blocks away from major landmarks before picking a restaurant to save 40% on meal costs.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p style="font-size: 14px; font-weight: 700; color: #9333ea; margin-bottom: 8px;">👥 Group Harmony</p>
+                            <ul style="font-size: 13px; color: #475569; padding-left: 18px; line-height: 1.6; margin: 0;">
+                                <li><b>The 24h Settlement:</b> Aim to settle all debts within 24 hours of the trip ending. Delaying leads to forgotten items and social friction.</li>
+                                <li><b>Round-Up Rule:</b> If a debt is something like ${currency}14.92, just round to ${currency}15. It makes the bank transfer easier and builds group goodwill.</li>
+                                <li><b>Shared Pot:</b> For small items (taxis, snacks), have everyone contribute ${currency}20 into a physical "pot" or envelope to avoid constant micro-tracking.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- END OF INSERTED TIPS -->
 
                 <div class="card">
                     <div class="label">Detailed Transaction Log</div>
