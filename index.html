@@ -1879,7 +1879,7 @@ function prepareAndPrint() {
     const avg = (total / members.length).toFixed(2);
     const highest = expenses.reduce((prev, curr) => (curr.amount > prev.amount) ? curr : prev);
 
-    // --- 1. SETTLEMENT LOGIC (Who Pays Whom) ---
+    // --- SETTLEMENT LOGIC ---
     let balances = {};
     members.forEach(m => balances[m] = 0);
     expenses.forEach(e => {
@@ -1897,79 +1897,103 @@ function prepareAndPrint() {
         creditors.forEach(c => {
             let p = Math.min(d.a, c.a);
             if (p > 0) {
-                settlementsHtml += `<div class="pill"><span>${d.n} ➔ ${c.n}</span> <span>${currency}${p.toFixed(2)}</span></div>`;
+                settlementsHtml += `<div class="pill"><span>${d.n} ➜ ${c.n}</span> <span>${currency}${p.toFixed(2)}</span></div>`;
                 d.a -= p; c.a -= p;
             }
         });
     });
 
-    // --- 2. THE AESTHETIC DESIGN ---
+    // --- THE FULL-PAGE AESTHETIC DESIGN ---
     const reportHTML = `
     <html>
     <head>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
         <style>
-            body { background: #fdfdfd; margin: 0; padding: 40px; font-family: 'Inter', sans-serif; color: #1e293b; }
-            .container { max-width: 750px; margin: auto; background: white; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #f1f5f9; }
-            .header { background: linear-gradient(135deg, #6366f1, #a855f7); color: white; padding: 60px 40px; text-align: center; }
-            .header h1 { margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -1px; }
-            .header p { opacity: 0.8; margin-top: 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; }
-            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
-            .card { background: #ffffff; border: 1px solid #f1f5f9; padding: 25px; border-radius: 24px; }
-            .label { font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-            .value { font-size: 28px; font-weight: 800; color: #0f172a; }
-            .pill { background: #f0fdf4; color: #166534; padding: 15px 20px; border-radius: 100px; margin-bottom: 12px; display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; border: 1px solid #dcfce7; }
-            .bar-container { background: #f1f5f9; height: 10px; border-radius: 10px; margin: 15px 0; overflow: hidden; }
-            .bar-fill { background: #6366f1; height: 100%; border-radius: 10px; }
-            .footer { text-align: center; padding: 30px; color: #cbd5e1; font-size: 12px; letter-spacing: 2px; }
+            body { background: #f8fafc; margin: 0; padding: 0; font-family: 'Inter', sans-serif; color: #1e293b; }
+            .container { width: 100%; max-width: 900px; margin: auto; background: white; min-height: 100vh; display: flex; flex-direction: column; }
+            
+            .header { background: linear-gradient(135deg, #4f46e5, #9333ea); color: white; padding: 80px 50px; text-align: center; }
+            .header h1 { margin: 0; font-size: 48px; font-weight: 900; letter-spacing: -2px; }
+            .header p { opacity: 0.9; margin-top: 10px; font-size: 16px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; }
+            
+            .content { padding: 50px; flex-grow: 1; }
+            
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
+            .card { background: #ffffff; border: 2px solid #f1f5f9; padding: 35px; border-radius: 32px; box-shadow: 0 10px 20px rgba(0,0,0,0.02); }
+            
+            .label { font-size: 13px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+            .value { font-size: 42px; font-weight: 900; color: #0f172a; }
+            
+            .pill { background: #f0fdf4; color: #166534; padding: 20px 25px; border-radius: 20px; margin-bottom: 15px; display: flex; justify-content: space-between; font-weight: 800; font-size: 18px; border: 1px solid #dcfce7; }
+            
+            .transaction-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            .transaction-table th { text-align: left; font-size: 12px; color: #94a3b8; padding: 10px; text-transform: uppercase; border-bottom: 1px solid #eee; }
+            .transaction-table td { padding: 15px 10px; border-bottom: 1px solid #f8fafc; font-size: 15px; font-weight: 500; }
+
+            .bar-container { background: #f1f5f9; height: 14px; border-radius: 10px; margin: 20px 0; overflow: hidden; }
+            .bar-fill { background: #4f46e5; height: 100%; border-radius: 10px; }
+            
+            .footer { text-align: center; padding: 50px; color: #cbd5e1; font-size: 13px; letter-spacing: 3px; font-weight: 700; }
+
             @media print {
-                body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+                body { background: white; }
+                .container { max-width: 100%; box-shadow: none; border: none; }
+                .header { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
-                <p>Premium Split Report</p>
-                <h1>Our Trip Summary ✨</h1>
-                <div style="margin-top:15px; font-size:12px; opacity:0.6;">${new Date().toLocaleDateString()}</div>
+                <p>Premium Financial Analysis</p>
+                <h1>Trip Summary ✨</h1>
+                <div style="margin-top:20px; font-size:14px; opacity:0.8; font-weight:600;">DATE: ${new Date().toLocaleDateString()} | REF: #EXP-${Math.floor(Math.random()*9000)+1000}</div>
             </div>
             
-            <div class="grid">
-                <div class="card"><div class="label">Total Spent</div><div class="value">${currency}${total.toFixed(2)}</div></div>
-                <div class="card"><div class="label">Fair Share</div><div class="value">${currency}${avg}</div></div>
-            </div>
-
-            <div style="padding: 0 30px;">
-                <div class="card">
-                    <div class="label" style="margin-bottom:20px;">Who Owes Who</div>
-                    ${settlementsHtml || "<div style='color:#94a3b8;'>Everyone is perfectly settled!</div>"}
+            <div class="content">
+                <div class="grid">
+                    <div class="card"><div class="label">Total Group Spend</div><div class="value">${currency}${total.toFixed(2)}</div></div>
+                    <div class="card"><div class="label">Fair Share Per Person</div><div class="value">${currency}${avg}</div></div>
                 </div>
-            </div>
 
-            <div class="grid">
-                <div class="card">
-                    <div class="label">Highest Expense</div>
-                    <div style="font-weight:700; margin-top:10px; font-size:18px;">${highest.name}</div>
-                    <div style="color:#6366f1; font-weight:800; font-size:20px;">${currency}${highest.amount.toFixed(2)}</div>
-                    <div class="bar-container">
-                        <div class="bar-fill" style="width: ${(highest.amount/total*100)}%;"></div>
+                <div class="card" style="margin-bottom:40px;">
+                    <div class="label" style="margin-bottom:25px;">Settlement Instructions</div>
+                    ${settlementsHtml || "<div style='color:#94a3b8; font-weight:600;'>Everyone is perfectly settled! No transactions needed.</div>"}
+                </div>
+
+                <div class="grid">
+                    <div class="card">
+                        <div class="label">Major Expense Highlight</div>
+                        <div style="font-weight:800; margin-top:10px; font-size:22px; color:#0f172a;">${highest.name}</div>
+                        <div style="color:#4f46e5; font-weight:900; font-size:26px; margin-top:5px;">${currency}${highest.amount.toFixed(2)}</div>
+                        <div class="bar-container"><div class="bar-fill" style="width: ${(highest.amount/total*100)}%;"></div></div>
+                        <p style="font-size:13px; color:#64748b; font-weight:500;">This item represents <b>${((highest.amount/total)*100).toFixed(0)}%</b> of your total trip budget.</p>
+                    </div>
+                    <div class="card">
+                        <div class="label">Savings Insight</div>
+                        <p style="font-size:15px; color:#334155; margin-top:10px; line-height:1.6; font-weight:500;">
+                            Your biggest spend was on <b>${highest.name}</b>. In similar trips, users saved an average of <b>12%</b> by booking this category through group-discount portals.
+                        </p>
+                        <div style="margin-top:15px; font-size:14px; color:#4f46e5; font-weight:700;">Potential Savings: ${currency}${(total*0.12).toFixed(2)}</div>
                     </div>
                 </div>
+
                 <div class="card">
-                    <div class="label">Expert Tip</div>
-                    <p style="font-size:13px; color:#475569; margin-top:10px; line-height:1.5;">
-                        To save next time, try booking <b>${highest.name}</b> at least 2 weeks in advance to save up to 15% on group rates.
-                    </p>
+                    <div class="label">Detailed Transaction Log</div>
+                    <table class="transaction-table">
+                        <thead><tr><th>Description</th><th>Paid By</th><th style="text-align:right;">Amount</th></tr></thead>
+                        <tbody>
+                            ${expenses.map(e => `<tr><td>${e.name}</td><td>${e.payer}</td><td style="text-align:right; font-weight:700;">${currency}${e.amount.toFixed(2)}</td></tr>`).join('')}
+                        </tbody>
+                    </table>
                 </div>
             </div>
             
-            <div class="footer">EXPENSESSPLIT.COM</div>
+            <div class="footer">WWW.EXPENSESSPLIT.COM</div>
         </div>
     </body>
     </html>`;
 
-    // --- 3. THE "HIDDEN IFRAME" INJECTION ---
     const frame = document.getElementById('printFrame');
     const frameDoc = frame.contentWindow.document;
 
@@ -1977,19 +2001,12 @@ function prepareAndPrint() {
     frameDoc.write(reportHTML);
     frameDoc.close();
 
-    // Wait for the iframe to fully load styles/fonts before printing
     frame.onload = function() {
         setTimeout(() => {
             frame.contentWindow.focus();
             frame.contentWindow.print();
-        }, 500); // 500ms delay ensures the "blank page" issue is gone
+        }, 500);
     };
-    
-    // Fallback if onload doesn't fire (sometimes happens in some browsers)
-    setTimeout(() => {
-        frame.contentWindow.focus();
-        frame.contentWindow.print();
-    }, 1000);
 }
 </script>
 
