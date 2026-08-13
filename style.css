@@ -1753,8 +1753,7 @@ button, .btn {
 
 /* 1. Target the main title of every tool page */
 #tool h1, 
-#tool h2, 
-.hero h1, 
+#tool h2,  
 .hero h2, 
 .calculator-type-title {
     display: block !important;
@@ -1778,8 +1777,7 @@ button, .btn {
 
 /* 2. The "FINANCE TOOL" Badge */
 #tool h1::before, 
-#tool h2::before, 
-.hero h1::before, 
+#tool h2::before,  
 .hero h2::before {
     content: "FINANCE TOOL" !important;
     display: block !important;
