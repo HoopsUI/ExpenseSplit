@@ -1869,7 +1869,6 @@ function validatePremiumCode() {
 
 // 3. THE DESIGNER: Builds the Pinterest Report
 function prepareAndPrint() {
-    // 1. Data Validation
     if (!expenses || expenses.length === 0) {
         alert("Please add expenses to the calculator first!");
         return;
@@ -1880,7 +1879,7 @@ function prepareAndPrint() {
     const avg = (total / members.length).toFixed(2);
     const highest = expenses.reduce((prev, curr) => (curr.amount > prev.amount) ? curr : prev);
 
-    // 2. Settlement Math
+    // --- 1. SETTLEMENT LOGIC (Who Pays Whom) ---
     let balances = {};
     members.forEach(m => balances[m] = 0);
     expenses.forEach(e => {
@@ -1898,76 +1897,99 @@ function prepareAndPrint() {
         creditors.forEach(c => {
             let p = Math.min(d.a, c.a);
             if (p > 0) {
-                settlementsHtml += `<div class="settle-row"><span>${d.n} ➔ ${c.n}</span> <span>${currency}${p.toFixed(2)}</span></div>`;
+                settlementsHtml += `<div class="pill"><span>${d.n} ➔ ${c.n}</span> <span>${currency}${p.toFixed(2)}</span></div>`;
                 d.a -= p; c.a -= p;
             }
         });
     });
 
-    // 3. Generate the Report HTML
+    // --- 2. THE AESTHETIC DESIGN ---
     const reportHTML = `
-        <html>
-        <head>
-            <title>Expense Summary</title>
-            <link rel="stylesheet" href="style.css"> <!-- This links your styles -->
-            <style>
-                body { background: #f8fafc; padding: 40px; font-family: sans-serif; }
-                .report-box { max-width: 800px; margin: auto; background: white; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
-                .header { background: linear-gradient(135deg, #6366f1, #a855f7); color: white; padding: 50px; text-align: center; }
-                .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
-                .card { border: 1px solid #f1f5f9; padding: 20px; border-radius: 20px; }
-                .pill { background: #f0fdf4; color: #166534; padding: 12px; border-radius: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; font-weight: bold; }
-            </style>
-        </head>
-        <body>
-            <div class="report-box">
-                <div class="header">
-                    <h1 style="color:white; margin:0;">Trip Split Summary ✨</h1>
-                    <p style="opacity:0.8; margin-top:10px;">Created on ${new Date().toLocaleDateString()}</p>
-                </div>
-                <div class="grid">
-                    <div class="card"><small style="color:#64748b; font-weight:800;">TOTAL SPENT</small><div style="font-size:24px; font-weight:800;">${currency}${total.toFixed(2)}</div></div>
-                    <div class="card"><small style="color:#64748b; font-weight:800;">PER PERSON</small><div style="font-size:24px; font-weight:800;">${currency}${avg}</div></div>
-                </div>
-                <div style="padding: 0 30px;">
-                    <div class="card">
-                        <small style="color:#64748b; font-weight:800; display:block; margin-bottom:15px;">SETTLEMENTS</small>
-                        ${settlementsHtml || "Everyone is even!"}
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="card">
-                        <small style="color:#64748b; font-weight:800;">MAJOR EXPENSE</small>
-                        <div style="font-weight:700; margin-top:10px;">${highest.name}</div>
-                        <div style="color:#6366f1; font-weight:800;">${currency}${highest.amount.toFixed(2)}</div>
-                    </div>
-                    <div class="card">
-                        <small style="color:#64748b; font-weight:800;">QUICK TIPS</small>
-                        <ul style="font-size:12px; color:#475569; padding-left:15px; margin-top:10px;">
-                            <li>Settle debts within 24 hours.</li>
-                            <li>Save receipts for anything over ${currency}50.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div style="text-align:center; padding:30px; color:#cbd5e1; font-size:10px;">EXPENSESSPLIT.COM</div>
+    <html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+        <style>
+            body { background: #fdfdfd; margin: 0; padding: 40px; font-family: 'Inter', sans-serif; color: #1e293b; }
+            .container { max-width: 750px; margin: auto; background: white; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #f1f5f9; }
+            .header { background: linear-gradient(135deg, #6366f1, #a855f7); color: white; padding: 60px 40px; text-align: center; }
+            .header h1 { margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -1px; }
+            .header p { opacity: 0.8; margin-top: 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; }
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
+            .card { background: #ffffff; border: 1px solid #f1f5f9; padding: 25px; border-radius: 24px; }
+            .label { font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+            .value { font-size: 28px; font-weight: 800; color: #0f172a; }
+            .pill { background: #f0fdf4; color: #166534; padding: 15px 20px; border-radius: 100px; margin-bottom: 12px; display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; border: 1px solid #dcfce7; }
+            .bar-container { background: #f1f5f9; height: 10px; border-radius: 10px; margin: 15px 0; overflow: hidden; }
+            .bar-fill { background: #6366f1; height: 100%; border-radius: 10px; }
+            .footer { text-align: center; padding: 30px; color: #cbd5e1; font-size: 12px; letter-spacing: 2px; }
+            @media print {
+                body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <p>Premium Split Report</p>
+                <h1>Our Trip Summary ✨</h1>
+                <div style="margin-top:15px; font-size:12px; opacity:0.6;">${new Date().toLocaleDateString()}</div>
             </div>
-        </body>
-        </html>
-    `;
+            
+            <div class="grid">
+                <div class="card"><div class="label">Total Spent</div><div class="value">${currency}${total.toFixed(2)}</div></div>
+                <div class="card"><div class="label">Fair Share</div><div class="value">${currency}${avg}</div></div>
+            </div>
 
-    // 4. THE FINAL FIX: Print in a new window to prevent "Blank Page"
-    const printWindow = window.open('', '_blank');
-    printWindow.document.open();
-    printWindow.document.write(reportHTML);
-    printWindow.document.close();
+            <div style="padding: 0 30px;">
+                <div class="card">
+                    <div class="label" style="margin-bottom:20px;">Who Owes Who</div>
+                    ${settlementsHtml || "<div style='color:#94a3b8;'>Everyone is perfectly settled!</div>"}
+                </div>
+            </div>
 
-    // Give it a moment to render colors, then print
-    printWindow.onload = function() {
-        printWindow.print();
-        printWindow.onafterprint = function() {
-            printWindow.close();
-        };
+            <div class="grid">
+                <div class="card">
+                    <div class="label">Highest Expense</div>
+                    <div style="font-weight:700; margin-top:10px; font-size:18px;">${highest.name}</div>
+                    <div style="color:#6366f1; font-weight:800; font-size:20px;">${currency}${highest.amount.toFixed(2)}</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: ${(highest.amount/total*100)}%;"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="label">Expert Tip</div>
+                    <p style="font-size:13px; color:#475569; margin-top:10px; line-height:1.5;">
+                        To save next time, try booking <b>${highest.name}</b> at least 2 weeks in advance to save up to 15% on group rates.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer">EXPENSESSPLIT.COM</div>
+        </div>
+    </body>
+    </html>`;
+
+    // --- 3. THE "HIDDEN IFRAME" INJECTION ---
+    const frame = document.getElementById('printFrame');
+    const frameDoc = frame.contentWindow.document;
+
+    frameDoc.open();
+    frameDoc.write(reportHTML);
+    frameDoc.close();
+
+    // Wait for the iframe to fully load styles/fonts before printing
+    frame.onload = function() {
+        setTimeout(() => {
+            frame.contentWindow.focus();
+            frame.contentWindow.print();
+        }, 500); // 500ms delay ensures the "blank page" issue is gone
     };
+    
+    // Fallback if onload doesn't fire (sometimes happens in some browsers)
+    setTimeout(() => {
+        frame.contentWindow.focus();
+        frame.contentWindow.print();
+    }, 1000);
 }
 </script>
 
@@ -2477,6 +2499,7 @@ if (footer) observer.observe(footer);
    
   <!-- Place this at the very bottom of your HTML file -->
 <div id="printable-summary"></div>
-   
+<!-- Hidden frame for high-quality printing -->
+<iframe id="printFrame" style="display:none;"></iframe>
 </body>
 </html>
