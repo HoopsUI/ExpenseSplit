@@ -575,42 +575,39 @@ Looking for a simple way to split expenses with friends or roommates? Our free e
 </div>
 
 <!-- PREMIUM SUMMARY SECTION -->
-<div id="premium-summary-section" class="calc-card" style="margin-top: 30px; border: 2px solid #eef4ff;">
+<div id="premium-summary-section" class="calc-card" style="margin-top: 30px; border: 2px solid #3b82f6;">
     
-    <!-- 1. THE LOCK SCREEN (Visible by default) -->
+    <!-- LOCK SCREEN: What users see first -->
     <div id="summary-lock-screen" style="text-align: center; padding: 20px;">
         <span style="font-size: 40px;">📊</span>
-        <h3>Unlock Your Custom Expense Summary</h3>
-        <p style="color: #94a3b8;">Get a professional PDF report, settlement records, and smart saving tips.</p>
+        <h3 style="color:white;">Unlock Pinterest-Style Summary</h3>
+        <p style="color: #94a3b8;">Get a beautiful, shareable PDF with settlement records and saving tips.</p>
         
         <div style="margin: 20px 0;">
             <input type="text" id="unlock-code" placeholder="Enter EXP Code" style="padding: 12px; border: 1px solid #334155; border-radius: 8px; width: 200px; background: #1e293b; color: white;">
-            <button onclick="validatePremiumCode()" class="primary-btn" style="padding: 11px 20px; width: auto; display: inline-block;">Unlock</button>
+            <button onclick="validatePremiumCode()" class="primary-btn" style="padding: 11px 20px; width: auto; display: inline-block;">Unlock Now</button>
         </div>
         
         <p id="lock-error" style="color: #ff4d4d; display: none; font-size: 14px; margin-bottom: 10px;">Invalid code. Please check your email.</p>
         <p style="font-size: 14px; color: #94a3b8;">
-            Don't have a code? <a href="YOUR_PAYHIP_PRODUCT_URL" target="_blank" style="color: #3b82f6; font-weight: bold;">Get one here for $1.99</a>
+            Don't have a code? <a href="YOUR_PAYHIP_LINK" target="_blank" style="color: #3b82f6; font-weight: bold;">Get one here for $2</a>
         </p>
     </div>
 
-    <!-- 2. THE SUCCESS CARD (Hidden until the user enters a valid code) -->
+    <!-- SUCCESS CARD: What users see after entering the code -->
     <div id="summary-unlocked-content" style="display: none; text-align: center; padding: 20px;">
         <div style="background: #10b981; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
             <span style="font-size: 30px; color: white;">✓</span>
         </div>
-        <h3 style="color: #fff;">Feature Unlocked!</h3>
-        <p style="color: #94a3b8; margin-bottom: 25px;">Your custom expense analysis and settlement report is ready.</p>
+        <h3 style="color: #fff;">Report Ready!</h3>
+        <p style="color: #94a3b8; margin-bottom: 25px;">Your aesthetic summary has been generated based on your data.</p>
         
-        <button onclick="prepareAndPrint()" class="primary-btn" style="background: #10b981 !important; border: none; font-weight: 700;">
-            📥 GENERATE & DOWNLOAD PDF SUMMARY
+        <button onclick="prepareAndPrint()" class="primary-btn" style="background: #6366f1 !important; border: none; font-weight: 700; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);">
+            ✨ GENERATE AESTHETIC PDF
         </button>
-        <p style="font-size: 11px; color: #64748b; margin-top: 15px;">Access expires in 48 hours.</p>
+        <p style="font-size: 11px; color: #64748b; margin-top: 15px;">Valid for 48 hours.</p>
     </div>
 </div>
-
-<!-- 3. THE HIDDEN PRINTABLE AREA (Place this at the very bottom of your body tag) -->
-<div id="printable-summary" style="display: none;"></div>
 
 <details style="max-width:720px;margin:20px auto;">
   <summary style="cursor:pointer;font-weight:600;">
@@ -1840,29 +1837,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// --- 5. PREMIUM FEATURE LOGIC ---
-
-function validatePremiumCode() {
-    const code = document.getElementById("unlock-code").value.trim().toUpperCase();
-    const errorMsg = document.getElementById("lock-error");
-
-    // ALGORITHMIC RULE: Starts with EXP, last 2 digits sum to 10
-    if (code.startsWith("EXP") && code.length >= 5) {
-        const lastTwo = code.slice(-2);
-        const d1 = parseInt(lastTwo[0]);
-        const d2 = parseInt(lastTwo[1]);
-
-        if (!isNaN(d1) && !isNaN(d2) && (d1 + d2 === 10)) {
-            localStorage.setItem("summary_access_expiry", new Date().getTime() + EXPIRATION_TIME_MS);
-            showUnlockedSummary();
-        } else {
-            errorMsg.style.display = "block";
-        }
-    } else {
-        errorMsg.style.display = "block";
-    }
-}
-
 function checkLicenseExpiry() {
     const expiry = localStorage.getItem("summary_access_expiry");
     if (expiry && new Date().getTime() < expiry) {
@@ -1870,57 +1844,40 @@ function checkLicenseExpiry() {
     }
 }
 
+// 1. THE SWITCH: Shows the Success Card
 function showUnlockedSummary() {
-    // 1. Hide the Lock Screen
     document.getElementById("summary-lock-screen").style.display = "none";
-    
-    // 2. Show the Success/Download Card
     document.getElementById("premium-summary-section").style.display = "block";
     document.getElementById("summary-unlocked-content").style.display = "block";
 }
 
-function generateAnalysis() {
-    if (expenses.length === 0) {
-        document.getElementById("analysis-output").innerHTML = "Add expenses above to generate analysis.";
-        return;
+// 2. THE VALIDATOR: Checks the Payhip Code
+function validatePremiumCode() {
+    const code = document.getElementById("unlock-code").value.trim().toUpperCase();
+    if (code.startsWith("EXP") && code.length >= 5) {
+        const lastTwo = code.slice(-2);
+        const d1 = parseInt(lastTwo[0]);
+        const d2 = parseInt(lastTwo[1]);
+        if (!isNaN(d1) && !isNaN(d2) && (d1 + d2 === 10)) {
+            localStorage.setItem("summary_access_expiry", new Date().getTime() + (48 * 60 * 60 * 1000));
+            showUnlockedSummary();
+            return;
+        }
     }
-    const total = expenses.reduce((sum, e) => sum + e.amount, 0);
-    const highest = expenses.reduce((prev, curr) => (curr.amount > prev.amount) ? curr : prev);
-    const currency = document.getElementById("currency").value;
-
-    document.getElementById("analysis-output").innerHTML = `
-        <p><strong>Total Spending:</strong> ${currency}${total.toFixed(2)}</p>
-        <p><strong>Highest Expense:</strong> "${highest.name}" (${currency}${highest.amount.toFixed(2)})</p>
-        <p><strong>Total Items:</strong> ${expenses.length}</p>
-    `;
-
-    // Dynamic Tips
-    const tipsList = document.getElementById("savings-tips");
-    tipsList.innerHTML = `
-        <li>The item "${highest.name}" is your "Budget Killer." Next time, see if this can be booked in advance for a discount.</li>
-        <li>You have ${members.length} people splitting ${expenses.length} items. To save time, have one person pay for everything and settle at the end.</li>
-        <li><strong>Money Tip:</strong> For ${currency}${total.toFixed(2)}, using a 2% cashback card would have saved you ${currency}${(total * 0.02).toFixed(2)}.</li>
-    `;
+    document.getElementById("lock-error").style.display = "block";
 }
 
-function updateTotal() {
-    const total = expenses.reduce((sum, e) => sum + e.amount, 0);
-    document.getElementById("totalExpense").textContent = total.toFixed(2);
-}
-
-// ADD this new function to the bottom of your script.js:
+// 3. THE DESIGNER: Builds the Pinterest Report
 function prepareAndPrint() {
-    if (expenses.length === 0) {
-        alert("Please add expenses first!");
-        return;
-    }
+    // Check if we have data (members and expenses are variables from your main script)
+    if (expenses.length === 0) { alert("Add some expenses first!"); return; }
 
     const currency = document.getElementById("currency").value;
     const total = expenses.reduce((sum, e) => sum + e.amount, 0);
-    const avg = (total / members.length).toFixed(2);
+    const avg = total / members.length;
     const highest = expenses.reduce((prev, curr) => (curr.amount > prev.amount) ? curr : prev);
-    
-    // --- 1. CALCULATE SETTLEMENTS (Who owes what) ---
+
+    // Calculate Settlements
     let balances = {};
     members.forEach(m => balances[m] = 0);
     expenses.forEach(e => {
@@ -1928,72 +1885,63 @@ function prepareAndPrint() {
         members.forEach(m => balances[m] -= (e.amount / members.length));
     });
 
-    let debtors = [];
-    let creditors = [];
-    for (let person in balances) {
-        if (balances[person] < -0.01) debtors.push({name: person, amt: Math.abs(balances[person])});
-        else if (balances[person] > 0.01) creditors.push({name: person, amt: balances[person]});
-    }
-
     let settlementsHtml = "";
+    let debtors = [], creditors = [];
+    for (let p in balances) {
+        if (balances[p] < -0.01) debtors.push({n: p, a: Math.abs(balances[p])});
+        else if (balances[p] > 0.01) creditors.push({n: p, a: balances[p]});
+    }
     debtors.forEach(d => {
         creditors.forEach(c => {
-            if (d.amt > 0 && c.amt > 0) {
-                let payment = Math.min(d.amt, c.amt);
-                settlementsHtml += `<div class="settlement-item">💰 ${d.name} pays ${c.name}: ${currency}${payment.toFixed(2)}</div>`;
-                d.amt -= payment;
-                c.amt -= payment;
+            let p = Math.min(d.a, c.a);
+            if (p > 0) {
+                settlementsHtml += `<div class="p-pill"><span>${d.n} ➔ ${c.n}</span> <span>${currency}${p.toFixed(2)}</span></div>`;
+                d.a -= p; c.a -= p;
             }
         });
     });
 
-    // --- 2. BUILD THE PDF HTML ---
-    const printContent = `
-        <div class="print-header">
-            <div>
-                <div class="print-title">ExpenseSplit Summary</div>
-                <div style="color:#64748b; font-size:12px;">Generated on: ${new Date().toLocaleDateString()}</div>
+    // Build the Pinterest Design
+    const reportHtml = `
+        <div style="font-family:'Inter',sans-serif; padding-bottom:50px;">
+            <div class="p-header">
+                <span style="letter-spacing:4px; font-size:10px; opacity:0.8; font-weight:800;">OFFICIAL SUMMARY</span>
+                <h1 style="font-size:32px; margin:10px 0;">Trip Split Details ✨</h1>
+                <div style="font-size:12px; opacity:0.7;">Created on ${new Date().toLocaleDateString()}</div>
             </div>
-            <div style="text-align:right; font-size:14px; font-weight:600;">Ref: #EXP-${Math.floor(Math.random()*10000)}</div>
-        </div>
 
-        <div class="report-grid">
-            <div class="report-card"><h4>Total Group Spend</h4><p>${currency}${total.toFixed(2)}</p></div>
-            <div class="report-card"><h4>Fair Share Per Person</h4><p>${currency}${avg}</p></div>
-        </div>
+            <div style="display:flex; gap:20px; padding:20px;">
+                <div class="p-card" style="flex:1; margin:0;">
+                    <div class="p-label">Total Spend</div>
+                    <div class="p-value">${currency}${total.toFixed(2)}</div>
+                </div>
+                <div class="p-card" style="flex:1; margin:0;">
+                    <div class="p-label">Average Share</div>
+                    <div class="p-value">${currency}${avg.toFixed(2)}</div>
+                </div>
+            </div>
 
-        <h3>📊 Settlement Records</h3>
-        <p style="font-size:12px; color:#64748b; margin-bottom:10px;">Follow these steps to settle all debts in the fewest transactions possible:</p>
-        ${settlementsHtml || "<p>All expenses are perfectly balanced!</p>"}
+            <div class="p-card">
+                <div class="p-label">Who Pays Who</div>
+                <div style="margin-top:15px;">${settlementsHtml || "Perfectly Balanced!"}</div>
+            </div>
 
-        <h3>📝 Expense Breakdown</h3>
-        <table>
-            <thead>
-                <tr><th>Item</th><th>Paid By</th><th>Amount</th></tr>
-            </thead>
-            <tbody>
-                ${expenses.map(e => `<tr><td>${e.name}</td><td>${e.payer}</td><td>${currency}${e.amount.toFixed(2)}</td></tr>`).join('')}
-            </tbody>
-        </table>
+            <div class="p-card">
+                <div class="p-label">Spending Analysis</div>
+                <p style="font-size:14px; margin-top:10px;">The biggest expense was <b>${highest.name}</b> at <b>${currency}${highest.amount}</b>.</p>
+                <div style="background:#f1f5f9; height:10px; border-radius:10px; margin:15px 0; overflow:hidden;">
+                    <div style="background:#6366f1; width:${(highest.amount/total*100)}%; height:100%;"></div>
+                </div>
+                <p style="font-size:12px; color:#64748b;">This item represents ${((highest.amount/total)*100).toFixed(0)}% of your total budget.</p>
+            </div>
 
-        <div class="tips-box">
-            <h3>💡 Smart Analysis & Tips</h3>
-            <p><strong>Cost Anomaly:</strong> Your expense "${highest.name}" accounts for ${((highest.amount/total)*100).toFixed(1)}% of your total budget. This is significantly higher than your average spend.</p>
-            <ul style="margin-top:10px; line-height:1.8;">
-                <li><strong>Advance Planning:</strong> For the ${highest.name} category, users typically save 15% by booking through our "Trip Planner" 21 days in advance.</li>
-                <li><strong>Cashback Opportunity:</strong> If paid with a premium travel card, this trip could have earned you roughly ${currency}${(total*0.03).toFixed(2)} in rewards.</li>
-                <li><strong>Accuracy Check:</strong> We detected ${expenses.length} transactions. Always keep digital receipts for items over ${currency}50 to prevent disputes.</li>
-            </ul>
-        </div>
-
-        <div style="margin-top:40px; text-align:center; font-size:10px; color:#94a3b8; border-top:1px solid #eee; padding-top:20px;">
-            Thank you for using ExpenseSplit.com. This is a premium financial record created for your convenience.
+            <div style="text-align:center; margin-top:30px; color:#cbd5e1; font-size:11px; letter-spacing:1px;">
+                REPORT GENERATED BY EXPENSESSPLIT.COM
+            </div>
         </div>
     `;
 
-    document.getElementById("printable-summary").innerHTML = printContent;
-    
-    // Trigger Print
+    document.getElementById("printable-summary").innerHTML = reportHtml;
     window.print();
 }
 </script>
@@ -2501,6 +2449,6 @@ const observer = new IntersectionObserver((entries) => {
 
 if (footer) observer.observe(footer);
 </script>
-   
+   <div id="printable-summary"></div>
 </body>
 </html>
