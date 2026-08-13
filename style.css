@@ -1749,36 +1749,32 @@ button, .btn {
 }
 
 
-/* --- BULLETPROOF TOOL HEADERS --- */
+/* --- SURGICAL TOOL HEADERS (FINAL FIX) --- */
 
-/* 1. Target the main title of every tool page */
-#tool h1, 
-#tool h2,  
-.hero h2, 
-.calculator-type-title {
+/* 1. Target ONLY the main title at the top of the Tool or Hero */
+#tool > .container > .section-title,
+.hero .section-title,
+h2.section-title:first-of-type {
     display: block !important;
     width: 100% !important;
     text-align: center !important;
     margin: 0 auto 40px auto !important;
     
     /* Premium Gradient Look */
-    background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
     
     font-size: 2.2rem !important;
     font-weight: 800 !important;
     position: relative !important;
-    
-    /* Reset any previous shifting logic */
     left: 0 !important;
     transform: none !important;
 }
 
-/* 2. The "FINANCE TOOL" Badge */
-#tool h1::before, 
-#tool h2::before,  
-.hero h2::before {
+/* 2. Apply the "Badge" ONLY to that specific top title */
+#tool > .container > .section-title::before,
+.hero .section-title::before {
     content: "FINANCE TOOL" !important;
     display: block !important;
     font-size: 11px !important;
@@ -1790,23 +1786,29 @@ button, .btn {
     text-align: center !important;
 }
 
-/* 3. ENSURE SEO & FAQ SECTIONS STAY NORMAL */
+/* 3. THE "BLOCKER" - This forces all other headings to stay normal */
+h1, h2, h3, 
 .seo-content h2, 
+.seo-section h2, 
 .faq-section h2, 
-.seo-section h2,
-.footer h2 {
+.seo-content h3 {
     background: none !important;
     -webkit-background-clip: initial !important;
-    -webkit-text-fill-color: #0f172a !important;
-    font-size: 1.6rem !important;
-    text-align: left !important;
-    margin: 30px 0 20px 0 !important;
-    display: block !important;
+    -webkit-text-fill-color: #0f172a !important; /* Normal Dark Color */
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    left: 0 !important;
+    transform: none !important;
 }
 
-/* 4. Remove the badge from non-tool headings */
-.seo-content h2::before, 
-.faq-section h2::before, 
-.seo-section h2::before {
+/* 4. Remove the badge from all other headings */
+h2::before, h1::before, h3::before {
     content: none !important;
+}
+
+/* 5. Re-apply the badge ONLY to the specific ones we want */
+#tool > .container > .section-title::before,
+.hero .section-title::before {
+    content: "FINANCE TOOL" !important;
 }
