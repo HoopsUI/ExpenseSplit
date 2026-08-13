@@ -1869,17 +1869,18 @@ function validatePremiumCode() {
 
 // 3. THE DESIGNER: Builds the Pinterest Report
 function prepareAndPrint() {
-    if (expenses.length === 0) {
-        alert("Please add some expenses first to generate a summary!");
+    // 1. Data Validation
+    if (!expenses || expenses.length === 0) {
+        alert("Please add expenses to the calculator first!");
         return;
     }
 
     const currency = document.getElementById("currency") ? document.getElementById("currency").value : "$";
     const total = expenses.reduce((sum, e) => sum + e.amount, 0);
-    const avg = total / members.length;
+    const avg = (total / members.length).toFixed(2);
     const highest = expenses.reduce((prev, curr) => (curr.amount > prev.amount) ? curr : prev);
 
-    // --- Settlement Calculations ---
+    // 2. Settlement Math
     let balances = {};
     members.forEach(m => balances[m] = 0);
     expenses.forEach(e => {
@@ -1897,71 +1898,76 @@ function prepareAndPrint() {
         creditors.forEach(c => {
             let p = Math.min(d.a, c.a);
             if (p > 0) {
-                settlementsHtml += `<div class="settle-pill"><span>${d.n} ➜ ${c.n}</span> <span>${currency}${p.toFixed(2)}</span></div>`;
+                settlementsHtml += `<div class="settle-row"><span>${d.n} ➔ ${c.n}</span> <span>${currency}${p.toFixed(2)}</span></div>`;
                 d.a -= p; c.a -= p;
             }
         });
     });
 
-    // --- Pinterest-Inspired Layout ---
-    const reportHtml = `
-        <div id="aesthetic-report">
-            <div class="pin-header">
-                <p style="text-transform:uppercase; font-size:11px; letter-spacing:3px; margin-bottom:5px;">Premium Financial Analysis</p>
-                <h1 style="font-size:36px; margin:0;">Our Trip Finances ✨</h1>
-                <p style="opacity:0.8; margin-top:10px;">${new Date().toLocaleDateString()}</p>
-            </div>
-
-            <div class="pin-grid">
-                <div class="pin-card">
-                    <div class="pin-label">Total Spend</div>
-                    <div class="pin-value">${currency}${total.toFixed(2)}</div>
+    // 3. Generate the Report HTML
+    const reportHTML = `
+        <html>
+        <head>
+            <title>Expense Summary</title>
+            <link rel="stylesheet" href="style.css"> <!-- This links your styles -->
+            <style>
+                body { background: #f8fafc; padding: 40px; font-family: sans-serif; }
+                .report-box { max-width: 800px; margin: auto; background: white; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+                .header { background: linear-gradient(135deg, #6366f1, #a855f7); color: white; padding: 50px; text-align: center; }
+                .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
+                .card { border: 1px solid #f1f5f9; padding: 20px; border-radius: 20px; }
+                .pill { background: #f0fdf4; color: #166534; padding: 12px; border-radius: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; font-weight: bold; }
+            </style>
+        </head>
+        <body>
+            <div class="report-box">
+                <div class="header">
+                    <h1 style="color:white; margin:0;">Trip Split Summary ✨</h1>
+                    <p style="opacity:0.8; margin-top:10px;">Created on ${new Date().toLocaleDateString()}</p>
                 </div>
-                <div class="pin-card">
-                    <div class="pin-label">Cost Per Person</div>
-                    <div class="pin-value">${currency}${avg.toFixed(2)}</div>
+                <div class="grid">
+                    <div class="card"><small style="color:#64748b; font-weight:800;">TOTAL SPENT</small><div style="font-size:24px; font-weight:800;">${currency}${total.toFixed(2)}</div></div>
+                    <div class="card"><small style="color:#64748b; font-weight:800;">PER PERSON</small><div style="font-size:24px; font-weight:800;">${currency}${avg}</div></div>
                 </div>
-            </div>
-
-            <div class="pin-card" style="margin-bottom:20px;">
-                <div class="pin-label">Settlement Guide</div>
-                <div style="margin-top:15px;">${settlementsHtml || "Everyone is even! Cheers to a fair split!"}</div>
-            </div>
-
-            <div class="pin-grid">
-                <div class="pin-card">
-                    <div class="pin-label">Major Expense</div>
-                    <div style="font-size:20px; font-weight:700; margin-top:5px;">${highest.name}</div>
-                    <div style="color:#4f46e5; font-weight:800; margin-top:2px;">${currency}${highest.amount.toFixed(2)}</div>
-                    <div class="progress-bg">
-                        <div class="progress-fill" style="width: ${(highest.amount/total*100)}%;"></div>
+                <div style="padding: 0 30px;">
+                    <div class="card">
+                        <small style="color:#64748b; font-weight:800; display:block; margin-bottom:15px;">SETTLEMENTS</small>
+                        ${settlementsHtml || "Everyone is even!"}
                     </div>
-                    <p style="font-size:12px; color:#64748b;">This account for ${((highest.amount/total)*100).toFixed(0)}% of the total budget.</p>
                 </div>
-
-                <div class="pin-card">
-                    <div class="pin-label">Split Insights</div>
-                    <ul style="margin-top:10px; padding-left:18px; font-size:13px; line-height:1.6; color:#475569;">
-                        <li><b>Money Hack:</b> For ${highest.name}, booking in groups next time could save up to 15%.</li>
-                        <li><b>Rewards:</b> This trip could have earned you ${currency}${(total*0.02).toFixed(2)} in cashback.</li>
-                        <li><b>Transparency:</b> All ${expenses.length} expenses were split among ${members.length} people fairly.</li>
-                    </ul>
+                <div class="grid">
+                    <div class="card">
+                        <small style="color:#64748b; font-weight:800;">MAJOR EXPENSE</small>
+                        <div style="font-weight:700; margin-top:10px;">${highest.name}</div>
+                        <div style="color:#6366f1; font-weight:800;">${currency}${highest.amount.toFixed(2)}</div>
+                    </div>
+                    <div class="card">
+                        <small style="color:#64748b; font-weight:800;">QUICK TIPS</small>
+                        <ul style="font-size:12px; color:#475569; padding-left:15px; margin-top:10px;">
+                            <li>Settle debts within 24 hours.</li>
+                            <li>Save receipts for anything over ${currency}50.</li>
+                        </ul>
+                    </div>
                 </div>
+                <div style="text-align:center; padding:30px; color:#cbd5e1; font-size:10px;">EXPENSESSPLIT.COM</div>
             </div>
-
-            <div style="text-align:center; margin-top:50px; color:#cbd5e1; font-size:11px; letter-spacing:2px;">
-                GENERATED BY EXPENSESSPLIT.COM
-            </div>
-        </div>
+        </body>
+        </html>
     `;
 
-    const container = document.getElementById("printable-summary");
-    container.innerHTML = reportHtml;
+    // 4. THE FINAL FIX: Print in a new window to prevent "Blank Page"
+    const printWindow = window.open('', '_blank');
+    printWindow.document.open();
+    printWindow.document.write(reportHTML);
+    printWindow.document.close();
 
-    // Small delay ensures the browser renders the new HTML before showing the print dialog
-    setTimeout(() => {
-        window.print();
-    }, 150);
+    // Give it a moment to render colors, then print
+    printWindow.onload = function() {
+        printWindow.print();
+        printWindow.onafterprint = function() {
+            printWindow.close();
+        };
+    };
 }
 </script>
 
@@ -2468,7 +2474,9 @@ const observer = new IntersectionObserver((entries) => {
 
 if (footer) observer.observe(footer);
 </script>
+   
   <!-- Place this at the very bottom of your HTML file -->
 <div id="printable-summary"></div>
+   
 </body>
 </html>
