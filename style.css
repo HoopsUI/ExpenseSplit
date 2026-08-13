@@ -1834,3 +1834,28 @@ h2::before, h1::before, h3::before {
     opacity: 1 !important;
     visibility: visible !important;
 }
+
+
+/* --- AESTHETIC PDF PRINT RULES --- */
+@media print {
+    /* Hide the entire website */
+    body * { display: none !important; }
+    
+    /* Show ONLY the specific report container */
+    #printable-summary, #printable-summary * { display: block !important; }
+    
+    #printable-summary {
+        position: absolute;
+        left: 0; top: 0; width: 100%;
+        background-color: #f8fafc !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Pinterest Card Styling */
+    .p-header { background: linear-gradient(135deg, #6366f1, #a855f7) !important; color: white !important; padding: 50px 30px; border-radius: 0 0 50px 50px; text-align: center; }
+    .p-card { background: white !important; border-radius: 25px; padding: 25px; margin: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; }
+    .p-pill { background: #f0fdf4 !important; color: #166534 !important; padding: 12px 20px; border-radius: 100px; margin-bottom: 10px; display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; border: 1px solid #dcfce7; }
+    .p-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #64748b; font-weight: 800; margin-bottom: 8px; }
+    .p-value { font-size: 32px; font-weight: 900; color: #1e293b; }
+}
