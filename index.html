@@ -1869,15 +1869,17 @@ function validatePremiumCode() {
 
 // 3. THE DESIGNER: Builds the Pinterest Report
 function prepareAndPrint() {
-    // Check if we have data (members and expenses are variables from your main script)
-    if (expenses.length === 0) { alert("Add some expenses first!"); return; }
+    if (expenses.length === 0) {
+        alert("Please add some expenses first to generate a summary!");
+        return;
+    }
 
-    const currency = document.getElementById("currency").value;
+    const currency = document.getElementById("currency") ? document.getElementById("currency").value : "$";
     const total = expenses.reduce((sum, e) => sum + e.amount, 0);
     const avg = total / members.length;
     const highest = expenses.reduce((prev, curr) => (curr.amount > prev.amount) ? curr : prev);
 
-    // Calculate Settlements
+    // --- Settlement Calculations ---
     let balances = {};
     members.forEach(m => balances[m] = 0);
     expenses.forEach(e => {
@@ -1895,54 +1897,71 @@ function prepareAndPrint() {
         creditors.forEach(c => {
             let p = Math.min(d.a, c.a);
             if (p > 0) {
-                settlementsHtml += `<div class="p-pill"><span>${d.n} ➔ ${c.n}</span> <span>${currency}${p.toFixed(2)}</span></div>`;
+                settlementsHtml += `<div class="settle-pill"><span>${d.n} ➜ ${c.n}</span> <span>${currency}${p.toFixed(2)}</span></div>`;
                 d.a -= p; c.a -= p;
             }
         });
     });
 
-    // Build the Pinterest Design
+    // --- Pinterest-Inspired Layout ---
     const reportHtml = `
-        <div style="font-family:'Inter',sans-serif; padding-bottom:50px;">
-            <div class="p-header">
-                <span style="letter-spacing:4px; font-size:10px; opacity:0.8; font-weight:800;">OFFICIAL SUMMARY</span>
-                <h1 style="font-size:32px; margin:10px 0;">Trip Split Details ✨</h1>
-                <div style="font-size:12px; opacity:0.7;">Created on ${new Date().toLocaleDateString()}</div>
+        <div id="aesthetic-report">
+            <div class="pin-header">
+                <p style="text-transform:uppercase; font-size:11px; letter-spacing:3px; margin-bottom:5px;">Premium Financial Analysis</p>
+                <h1 style="font-size:36px; margin:0;">Our Trip Finances ✨</h1>
+                <p style="opacity:0.8; margin-top:10px;">${new Date().toLocaleDateString()}</p>
             </div>
 
-            <div style="display:flex; gap:20px; padding:20px;">
-                <div class="p-card" style="flex:1; margin:0;">
-                    <div class="p-label">Total Spend</div>
-                    <div class="p-value">${currency}${total.toFixed(2)}</div>
+            <div class="pin-grid">
+                <div class="pin-card">
+                    <div class="pin-label">Total Spend</div>
+                    <div class="pin-value">${currency}${total.toFixed(2)}</div>
                 </div>
-                <div class="p-card" style="flex:1; margin:0;">
-                    <div class="p-label">Average Share</div>
-                    <div class="p-value">${currency}${avg.toFixed(2)}</div>
+                <div class="pin-card">
+                    <div class="pin-label">Cost Per Person</div>
+                    <div class="pin-value">${currency}${avg.toFixed(2)}</div>
                 </div>
             </div>
 
-            <div class="p-card">
-                <div class="p-label">Who Pays Who</div>
-                <div style="margin-top:15px;">${settlementsHtml || "Perfectly Balanced!"}</div>
+            <div class="pin-card" style="margin-bottom:20px;">
+                <div class="pin-label">Settlement Guide</div>
+                <div style="margin-top:15px;">${settlementsHtml || "Everyone is even! Cheers to a fair split!"}</div>
             </div>
 
-            <div class="p-card">
-                <div class="p-label">Spending Analysis</div>
-                <p style="font-size:14px; margin-top:10px;">The biggest expense was <b>${highest.name}</b> at <b>${currency}${highest.amount}</b>.</p>
-                <div style="background:#f1f5f9; height:10px; border-radius:10px; margin:15px 0; overflow:hidden;">
-                    <div style="background:#6366f1; width:${(highest.amount/total*100)}%; height:100%;"></div>
+            <div class="pin-grid">
+                <div class="pin-card">
+                    <div class="pin-label">Major Expense</div>
+                    <div style="font-size:20px; font-weight:700; margin-top:5px;">${highest.name}</div>
+                    <div style="color:#4f46e5; font-weight:800; margin-top:2px;">${currency}${highest.amount.toFixed(2)}</div>
+                    <div class="progress-bg">
+                        <div class="progress-fill" style="width: ${(highest.amount/total*100)}%;"></div>
+                    </div>
+                    <p style="font-size:12px; color:#64748b;">This account for ${((highest.amount/total)*100).toFixed(0)}% of the total budget.</p>
                 </div>
-                <p style="font-size:12px; color:#64748b;">This item represents ${((highest.amount/total)*100).toFixed(0)}% of your total budget.</p>
+
+                <div class="pin-card">
+                    <div class="pin-label">Split Insights</div>
+                    <ul style="margin-top:10px; padding-left:18px; font-size:13px; line-height:1.6; color:#475569;">
+                        <li><b>Money Hack:</b> For ${highest.name}, booking in groups next time could save up to 15%.</li>
+                        <li><b>Rewards:</b> This trip could have earned you ${currency}${(total*0.02).toFixed(2)} in cashback.</li>
+                        <li><b>Transparency:</b> All ${expenses.length} expenses were split among ${members.length} people fairly.</li>
+                    </ul>
+                </div>
             </div>
 
-            <div style="text-align:center; margin-top:30px; color:#cbd5e1; font-size:11px; letter-spacing:1px;">
-                REPORT GENERATED BY EXPENSESSPLIT.COM
+            <div style="text-align:center; margin-top:50px; color:#cbd5e1; font-size:11px; letter-spacing:2px;">
+                GENERATED BY EXPENSESSPLIT.COM
             </div>
         </div>
     `;
 
-    document.getElementById("printable-summary").innerHTML = reportHtml;
-    window.print();
+    const container = document.getElementById("printable-summary");
+    container.innerHTML = reportHtml;
+
+    // Small delay ensures the browser renders the new HTML before showing the print dialog
+    setTimeout(() => {
+        window.print();
+    }, 150);
 }
 </script>
 
@@ -2449,6 +2468,7 @@ const observer = new IntersectionObserver((entries) => {
 
 if (footer) observer.observe(footer);
 </script>
-   <div id="printable-summary"></div>
+  <!-- Place this at the very bottom of your HTML file -->
+<div id="printable-summary"></div>
 </body>
 </html>
