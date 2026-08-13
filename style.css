@@ -1813,3 +1813,23 @@ h2::before, h1::before, h3::before {
     content: "FINANCE TOOL" !important;
 }
 
+
+
+/* --- SURGICAL FIX: FORCE HERO VISIBILITY --- */
+.hero, 
+.hero-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    display: flex !important; /* Maintains the centered layout you have */
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+/* Ensure the text inside doesn't stay hidden */
+.hero h1, 
+.hero .subtitle, 
+.hero .primary-btn {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
