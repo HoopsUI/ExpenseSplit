@@ -1836,26 +1836,90 @@ h2::before, h1::before, h3::before {
 }
 
 
-/* --- AESTHETIC PDF PRINT RULES --- */
+/* --- AESTHETIC PIN-STYLE PRINTING --- */
 @media print {
-    /* Hide the entire website */
-    body * { display: none !important; }
-    
-    /* Show ONLY the specific report container */
-    #printable-summary, #printable-summary * { display: block !important; }
-    
-    #printable-summary {
-        position: absolute;
-        left: 0; top: 0; width: 100%;
-        background-color: #f8fafc !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
+    /* 1. HIDE EVERYTHING ON THE WEB PAGE */
+    body > *:not(#printable-summary) {
+        display: none !important;
     }
 
-    /* Pinterest Card Styling */
-    .p-header { background: linear-gradient(135deg, #6366f1, #a855f7) !important; color: white !important; padding: 50px 30px; border-radius: 0 0 50px 50px; text-align: center; }
-    .p-card { background: white !important; border-radius: 25px; padding: 25px; margin: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; }
-    .p-pill { background: #f0fdf4 !important; color: #166534 !important; padding: 12px 20px; border-radius: 100px; margin-bottom: 10px; display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; border: 1px solid #dcfce7; }
-    .p-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #64748b; font-weight: 800; margin-bottom: 8px; }
-    .p-value { font-size: 32px; font-weight: 900; color: #1e293b; }
+    /* 2. FORCE COLORS AND BACKGROUNDS */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    /* 3. PIN-INSPIRED LAYOUT */
+    #printable-summary {
+        display: block !important;
+        background: #f8fafc !important;
+        min-height: 100vh;
+        font-family: 'Inter', sans-serif;
+        padding: 40px;
+    }
+
+    .pin-header {
+        background: linear-gradient(135deg, #4f46e5, #9333ea) !important;
+        color: white !important;
+        padding: 50px 30px;
+        border-radius: 30px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .pin-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .pin-card {
+        background: white !important;
+        border-radius: 24px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        border: 1px solid #e2e8f0;
+    }
+
+    .pin-label {
+        color: #64748b;
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+    }
+
+    .pin-value {
+        font-size: 28px;
+        font-weight: 800;
+        color: #1e293b;
+    }
+
+    .settle-pill {
+        background: #ecfdf5 !important;
+        color: #065f46 !important;
+        padding: 15px;
+        border-radius: 16px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid #a7f3d0;
+    }
+
+    .progress-bg {
+        background: #f1f5f9 !important;
+        height: 12px;
+        border-radius: 6px;
+        margin: 15px 0;
+    }
+
+    .progress-fill {
+        background: #4f46e5 !important;
+        height: 100%;
+        border-radius: 6px;
+    }
 }
