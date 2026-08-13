@@ -1748,3 +1748,57 @@ button, .btn {
     background: #94a3b8; 
 }
 
+
+/* --- PREMIUM CALCULATOR HEADER STYLE --- */
+
+/* 1. The Small "Badge" above the title */
+.section-title::before {
+    content: "FINANCE TOOL"; /* Or "PREMIUM CALCULATOR" */
+    display: block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #2563eb; /* Your primary blue */
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+/* 2. The Main Heading Update */
+.section-title {
+    font-size: 2.2rem !important;
+    font-weight: 800 !important;
+    text-align: center;
+    margin-bottom: 40px !important;
+    
+    /* Modern Gradient Text Effect */
+    background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Animation to make it feel alive */
+    animation: fadeInDown 0.8s ease-out;
+}
+
+/* 3. Highlighting the Heading on Tool Pages */
+#tool h2.section-title {
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 4. A subtle underline to ground the title */
+#tool h2.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 25%;
+    width: 50%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #2563eb, transparent);
+    border-radius: 2px;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px) translateX(-50%); }
+    to { opacity: 1; transform: translateY(0) translateX(-50%); }
+}
