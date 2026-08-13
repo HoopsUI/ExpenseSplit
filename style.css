@@ -7,6 +7,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
 }
 
 /* =========================
@@ -55,11 +56,13 @@ a {
    HEADER
 ========================= */
 .header {
-  border-bottom: 1px solid var(--border);
-  background: #ffffff;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background: rgba(255, 255, 255, 0.8) !important; /* Semi-transparent */
+    backdrop-filter: blur(12px) !important;       /* The "Glass" effect */
+    -webkit-backdrop-filter: blur(12px);          /* Safari support */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .nav {
@@ -331,8 +334,10 @@ select {
 
 input:focus,
 select:focus {
-  outline: none;
-  border-color: #3b82f6 !important; /* Blue glow when typing */
+  outline: none !important;
+    border-color: #3b82f6 !important; /* Premium Blue */
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15) !important; /* Soft outer glow */
+    transform: translateY(-1px); /* Very subtle lift */
 }
 
 button {
@@ -1723,3 +1728,23 @@ button, .btn {
     background: #334155 !important;
     color: white !important;
 }
+
+
+/* Custom Thin Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; 
+}
+
