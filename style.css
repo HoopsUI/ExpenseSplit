@@ -1814,3 +1814,18 @@ h2::before, h1::before, h3::before {
 }
 
 
+/* Force Hero Section Visibility */
+#hero, .hero, .hero-section, header {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    min-height: 400px; /* Adjust based on your design */
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Ensure the container inside the hero isn't collapsed */
+#hero .container, .hero .container {
+    display: block !important;
+}
