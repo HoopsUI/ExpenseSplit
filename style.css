@@ -1809,3 +1809,37 @@ button, .btn {
 .faq-section h2::after {
     content: none !important;
 }
+
+/* --- HERO SECTION EMERGENCY FIX --- */
+
+/* 1. Force the Hero to be visible (Overrides any 'opacity: 0' from animations) */
+.hero, .hero-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    transform: none !important; /* Resets any accidental offsets */
+}
+
+/* 2. Ensure the Hero Section has enough height and space */
+.hero {
+    padding: 100px 20px !important;
+    min-height: 300px;
+    background: transparent !important; /* Allows the background glow to show */
+    position: relative !important;
+    z-index: 1;
+}
+
+/* 3. Center the content specifically for the Monthly Tracker */
+.hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto !important;
+}
+
+/* 4. Fix the Title specifically if it's missing */
+.hero h1, .hero .section-title {
+    -webkit-text-fill-color: #0f172a !important; /* Fallback to solid color if gradient fails */
+    margin-bottom: 20px !important;
+}
