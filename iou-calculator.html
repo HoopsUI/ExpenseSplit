@@ -235,6 +235,55 @@ If you're looking for a <strong>Splitwise alternative</strong>, this free who ow
 </div>
 </section>
 
+<!-- CALCULATOR -->
+
+<section class="section light" id="calculator"data-aos="fade-up">
+<div class="container">
+
+<h2 class="section-title">Free Who Owes Whom Calculator</h2>
+
+<p class="helper-text">
+Enter each person's name and how much they paid.  
+The calculator will determine who should reimburse whom.
+<br><br>
+Not sure how to split fairly? 
+<a href="split-expenses-with-friends-without-conflict.html">Avoid common mistakes →</a>
+</p>
+
+<table id="iouTable">
+
+<tr>
+<th>Person</th>
+<th>Amount Paid</th>
+</tr>
+
+<tr>
+<td><input placeholder="Name"></td>
+<td><input type="number"></td>
+</tr>
+
+<tr>
+<td><input placeholder="Name"></td>
+<td><input type="number"></td>
+</tr>
+
+</table>
+
+<button class="secondary-btn" onclick="addPerson()">Add Person</button>
+
+<button class="primary-btn" onclick="calculateIOU()">Calculate</button>
+
+<div id="iouResult" class="result-box"></div>
+
+<button class="primary-btn small-btn" onclick="shareResult('iouResult')">Share</button>
+
+<p style="font-size:12px;margin-top:5px;">
+Share results with your group to settle faster
+</p>
+
+</div>
+</section>
+
 <!-- PREMIUM WHO OWES WHOM PLANNER -->
 <section class="planner-promo" data-aos="fade-up">
   <div class="container">
@@ -254,7 +303,7 @@ If you're looking for a <strong>Splitwise alternative</strong>, this free who ow
           ⭐ Premium Planner
         </span>
 
-        <h2>Never Lose Track of Who Owes Whom Again</h2>
+        <h2>You've calculated who owes whom. Now keep everyone on track.</h2>
 
         <p>
           Finished calculating your balances? Keep everything organized with the
@@ -264,11 +313,11 @@ If you're looking for a <strong>Splitwise alternative</strong>, this free who ow
         </p>
 
         <ul class="planner-features">
-          <li>✅ Payment & Settlement Tracker</li>
-          <li>✅ Who Owes Whom Logs</li>
-          <li>✅ Outstanding Balance Tracker</li>
-          <li>✅ Reimbursement Records</li>
-          <li>✅ Premium Printable Design</li>
+          <li>✅ Record who paid</li>
+          <li>✅ Track IOUs and repayments</li>
+          <li>✅ Keep receipts organized</li>
+          <li>✅ Review weekly/monthly balances</li>
+          <li>✅ Follow a final settlement checklist</li>
         </ul>
 
         <a class="planner-btn"
@@ -622,55 +671,7 @@ Many people use apps like Splitwise to track shared expenses. However, if you do
   </div>
 </div>
 </section>
-  
-<!-- CALCULATOR -->
 
-<section class="section light" id="calculator"data-aos="fade-up">
-<div class="container">
-
-<h2 class="section-title">Free Who Owes Whom Calculator</h2>
-
-<p class="helper-text">
-Enter each person's name and how much they paid.  
-The calculator will determine who should reimburse whom.
-<br><br>
-Not sure how to split fairly? 
-<a href="split-expenses-with-friends-without-conflict.html">Avoid common mistakes →</a>
-</p>
-
-<table id="iouTable">
-
-<tr>
-<th>Person</th>
-<th>Amount Paid</th>
-</tr>
-
-<tr>
-<td><input placeholder="Name"></td>
-<td><input type="number"></td>
-</tr>
-
-<tr>
-<td><input placeholder="Name"></td>
-<td><input type="number"></td>
-</tr>
-
-</table>
-
-<button class="secondary-btn" onclick="addPerson()">Add Person</button>
-
-<button class="primary-btn" onclick="calculateIOU()">Calculate</button>
-
-<div id="iouResult" class="result-box"></div>
-
-<button class="primary-btn small-btn" onclick="shareResult('iouResult')">Share</button>
-
-<p style="font-size:12px;margin-top:5px;">
-Share results with your group to settle faster
-</p>
-
-</div>
-</section>
 
 <style>
 .expense-tool-box{
