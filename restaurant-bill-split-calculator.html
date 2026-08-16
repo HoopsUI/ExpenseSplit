@@ -1436,18 +1436,16 @@ result.style.display="block";
 
 /**
  * EXPENSESPLIT PREMIUM SETTLEMENT MODULE
- * Feature: Dinner Split & Settle ($1.49)
+ * Safeguarded Version (Fixed Null & Declaration Errors)
  */
 
 // 1. SECURE VALIDATOR
-// Validates pattern: ES-XXXX-XXXX-CC (Length 15)
 function validatePremiumKey(key) {
     key = key.trim().toUpperCase();
-    // Pattern: ES-XXXX-XXXX-CC (3 + 4 + 1 + 4 + 1 + 2 = 15 characters)
     if (!key.startsWith("ES-") || key.length !== 15) return false;
 
-    const body = key.substring(0, 12);     // "ES-XXXX-XXXX"
-    const providedCheck = key.substring(13); // "CC"
+    const body = key.substring(0, 12);
+    const providedCheck = key.substring(13);
     
     let sum = 0;
     for (let i = 0; i < body.length; i++) {
@@ -1459,132 +1457,106 @@ function validatePremiumKey(key) {
 }
 
 // 2. MONKEY-PATCH EXISTING CALCULATOR
-// This ensures we don't disrupt your original calculateRestaurant() function.
 if (typeof calculateRestaurant === 'function') {
     const originalCalculateRestaurant = calculateRestaurant;
 
     calculateRestaurant = function() {
-        // Run your original free logic first
+        // Run original free logic
         originalCalculateRestaurant();
         
-        // --- START PREMIUM LOGIC ---
+        // --- START PREMIUM LOGIC WITH NULL CHECKS ---
         const premiumModule = document.getElementById('premium-module-wrapper');
-        if (!premiumModule) return;
+        if (!premiumModule) return; // Exit if the premium HTML isn't on this page
 
-        // Show the wrapper
         premiumModule.classList.remove('hidden');
         
-        // Gather data from your existing inputs
-        const bill = parseFloat(document.getElementById('bill').value) || 0;
-        const tax = parseFloat(document.getElementById('tax').value) || 0;
-        const tip = parseFloat(document.getElementById('tip').value) || 0;
-        const fees = parseFloat(document.getElementById('fees').value) || 0;
-        const extra = parseFloat(document.getElementById('extraItem').value) || 0;
-        const peopleCount = parseInt(document.getElementById('people').value) || 1;
+        // Safety check for inputs
+        const billEl = document.getElementById('bill');
+        const peopleEl = document.getElementById('people');
+        if (!billEl || !peopleEl) return;
 
-        // Precise math for the premium card
-        const taxAmt = bill * (tax / 100);
-        const tipAmt = bill * (tip / 100);
-        const total = (bill + taxAmt + tipAmt + fees + extra).toFixed(2);
+        const bill = parseFloat(billEl.value) || 0;
+        const tax = parseFloat(document.getElementById('tax')?.value) || 0;
+        const tip = parseFloat(document.getElementById('tip')?.value) || 0;
+        const fees = parseFloat(document.getElementById('fees')?.value) || 0;
+        const extra = parseFloat(document.getElementById('extraItem')?.value) || 0;
+        const peopleCount = parseInt(peopleEl.value) || 1;
+
+        const total = (bill + (bill * (tax / 100)) + (bill * (tip / 100)) + fees + extra).toFixed(2);
         const share = (total / peopleCount).toFixed(2);
 
-        // Update Premium Card Preview
-        document.getElementById('p-total-amount').innerText = "$" + total;
-        document.getElementById('p-date').innerText = new Date().toLocaleDateString('en-US', { 
-            month: 'long', day: 'numeric', year: 'numeric' 
-        });
+        // Update Card (Safe check)
+        const pTotal = document.getElementById('p-total-amount');
+        if (pTotal) pTotal.innerText = "$" + total;
+
+        const pDate = document.getElementById('p-date');
+        if (pDate) pDate.innerText = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
         
-        // Set Restaurant Name (Checks if you added the name input, else defaults)
+        const pName = document.getElementById('p-restaurant-name');
         const nameInput = document.getElementById('restaurantName');
-        document.getElementById('p-restaurant-name').innerText = (nameInput && nameInput.value) ? nameInput.value : "Dinner Settlement";
+        if (pName) pName.innerText = (nameInput && nameInput.value) ? nameInput.value : "Dinner Settlement";
         
-        // Generate Dynamic Rows & Personalized Copy Buttons
         const pList = document.getElementById('p-people-list');
         const btnBox = document.getElementById('message-buttons-container');
-        pList.innerHTML = ""; 
-        btnBox.innerHTML = "";
 
-        for(let i = 1; i <= peopleCount; i++) {
-            // Card Row
-            const row = document.createElement('div');
-            row.className = 'settle-row';
-            row.innerHTML = `<span>Friend ${i}</span> <span>$${share}</span>`;
-            pList.appendChild(row);
+        if (pList && btnBox) {
+            pList.innerHTML = ""; 
+            btnBox.innerHTML = "";
 
-            // Personalized Message Button
-            const btn = document.createElement('button');
-            btn.className = 'copy-msg-btn';
-            btn.innerHTML = `📲 Copy for Friend ${i}`;
-            btn.onclick = () => {
-                const restName = document.getElementById('p-restaurant-name').innerText;
-                const msg = `Hey! 😊 Dinner was great. Your share for the bill at ${restName} comes to $${share}. You can pay me back when you're free. Thanks!`;
-                
-                navigator.clipboard.writeText(msg).then(() => {
-                    const originalText = btn.innerHTML;
-                    btn.innerHTML = "✅ Copied!";
-                    btn.style.backgroundColor = "#10b981"; // Success Green
-                    btn.style.borderColor = "#10b981";
-                    setTimeout(() => { 
-                        btn.innerHTML = originalText;
-                        btn.style.backgroundColor = "#1e293b"; // Reset to Navy
-                        btn.style.borderColor = "#334155";
-                    }, 2000);
-                });
-            };
-            btnBox.appendChild(btn);
+            for(let i = 1; i <= peopleCount; i++) {
+                const row = document.createElement('div');
+                row.className = 'settle-row';
+                row.innerHTML = `<span>Friend ${i}</span> <span>$${share}</span>`;
+                pList.appendChild(row);
+
+                const btn = document.createElement('button');
+                btn.className = 'copy-msg-btn';
+                btn.innerHTML = `📲 Copy for Friend ${i}`;
+                btn.onclick = () => {
+                    const currentRest = pName ? pName.innerText : "Dinner";
+                    const msg = `Hey! 😊 Dinner was great. Your share for the bill at ${currentRest} comes to $${share}. You can pay me back when you're free. Thanks!`;
+                    navigator.clipboard.writeText(msg).then(() => {
+                        const oldText = btn.innerHTML;
+                        btn.innerHTML = "✅ Copied!";
+                        btn.style.backgroundColor = "#10b981";
+                        setTimeout(() => { 
+                            btn.innerHTML = oldText;
+                            btn.style.backgroundColor = "#1e293b";
+                        }, 2000);
+                    });
+                };
+                btnBox.appendChild(btn);
+            }
         }
         
-        // Auto-reveal if they already paid previously
         if(localStorage.getItem('expenseSplit_premium_unlocked') === 'true') {
             revealPremiumUI();
         }
     };
 }
 
+// 3. UNLOCK CONTROLLER (Safe Version)
 function unlockPremium() {
     const input = document.getElementById('license-key');
-    if (!input) {
-        console.error("Could not find input with ID 'license-key'");
-        return;
-    }
+    if (!input) return;
 
     const key = input.value.trim();
-    console.log("Attempting to unlock with key:", key);
-
     if (validatePremiumKey(key)) {
-        console.log("Key validated successfully!");
         localStorage.setItem('expenseSplit_premium_unlocked', 'true');
         revealPremiumUI();
     } else {
-        console.warn("Key validation failed. Format expected: ES-XXXX-XXXX-CC");
-        alert("Invalid License Key. Please check the format in your receipt (ES-XXXX-XXXX-CC).");
+        alert("Invalid License Key. Please check the format (ES-XXXX-XXXX-CC).");
         input.style.border = "2px solid #ef4444";
     }
 }
 
 function revealPremiumUI() {
-    console.log("Attempting to reveal UI...");
     const overlay = document.getElementById('paywall-overlay');
     const actions = document.getElementById('premium-actions');
-    const wrapper = document.getElementById('premium-module-wrapper');
-
-    if (overlay) {
-        overlay.style.setProperty('display', 'none', 'important');
-        console.log("Overlay hidden.");
-    } else {
-        console.error("Could not find ID 'paywall-overlay'");
-    }
-
+    if (overlay) overlay.style.display = 'none';
     if (actions) {
         actions.classList.remove('hidden');
-        actions.style.display = 'block'; // Force display
-        console.log("Actions revealed.");
-    } else {
-        console.error("Could not find ID 'premium-actions'");
-    }
-    
-    if (wrapper) {
-        wrapper.classList.remove('hidden');
+        actions.style.display = 'block'; // Force display if hidden class is stuck
     }
 }
     </script>
