@@ -2001,3 +2001,118 @@ h2::before, h1::before, h3::before {
 @media print {
     body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 }
+
+
+
+
+/* --- PREMIUM MODULE STYLES --- */
+.badge-premium {
+    background: linear-gradient(135deg, #ffd700, #ffa500);
+    color: #000;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+.premium-experience-container {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+}
+
+/* Paywall Blur Effect */
+.paywall-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(15, 23, 42, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.paywall-content h4 { color: #fff !important; font-size: 22px; margin-bottom: 10px; }
+.paywall-content p { color: #94a3b8; margin-bottom: 20px; }
+
+.pulse {
+    animation: pulse-blue 2s infinite;
+}
+
+@keyframes pulse-blue {
+    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+.license-entry {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+/* The Receipt Card */
+.settlement-receipt-card {
+    padding: 40px;
+    color: #fff;
+}
+
+.receipt-inner {
+    border: 1px dashed #334155;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.receipt-header h2 { color: #fff !important; text-align: center; margin-bottom: 5px; }
+.receipt-header p { text-align: center; color: #94a3b8; font-size: 14px; }
+
+.receipt-divider {
+    height: 1px;
+    border-bottom: 1px dashed #334155;
+    margin: 25px 0;
+}
+
+.receipt-total-section { text-align: center; margin-bottom: 30px; }
+.receipt-total-section .label { font-size: 12px; color: #3b82f6; font-weight: 800; letter-spacing: 2px; }
+.receipt-total-section h1 { font-size: 48px !important; color: #fff !important; margin-top: 10px; }
+
+.settle-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #1e293b;
+}
+
+.settle-row span:last-child {
+    font-weight: 700;
+    color: #10b981; /* Money Green */
+}
+
+/* Message Buttons */
+.message-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.copy-msg-btn {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.2s;
+}
+
+.copy-msg-btn:hover { background: #3b82f6; }
