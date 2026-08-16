@@ -1541,26 +1541,51 @@ if (typeof calculateRestaurant === 'function') {
     };
 }
 
-// 3. UNLOCK CONTROLLER
 function unlockPremium() {
     const input = document.getElementById('license-key');
+    if (!input) {
+        console.error("Could not find input with ID 'license-key'");
+        return;
+    }
+
     const key = input.value.trim();
-    
+    console.log("Attempting to unlock with key:", key);
+
     if (validatePremiumKey(key)) {
+        console.log("Key validated successfully!");
         localStorage.setItem('expenseSplit_premium_unlocked', 'true');
         revealPremiumUI();
-        input.style.border = "2px solid #10b981";
     } else {
-        alert("Invalid License Key. Please check the format (ES-XXXX-XXXX-CC) in your receipt.");
+        console.warn("Key validation failed. Format expected: ES-XXXX-XXXX-CC");
+        alert("Invalid License Key. Please check the format in your receipt (ES-XXXX-XXXX-CC).");
         input.style.border = "2px solid #ef4444";
     }
 }
 
 function revealPremiumUI() {
+    console.log("Attempting to reveal UI...");
     const overlay = document.getElementById('paywall-overlay');
     const actions = document.getElementById('premium-actions');
-    if (overlay) overlay.style.display = 'none';
-    if (actions) actions.classList.remove('hidden');
+    const wrapper = document.getElementById('premium-module-wrapper');
+
+    if (overlay) {
+        overlay.style.setProperty('display', 'none', 'important');
+        console.log("Overlay hidden.");
+    } else {
+        console.error("Could not find ID 'paywall-overlay'");
+    }
+
+    if (actions) {
+        actions.classList.remove('hidden');
+        actions.style.display = 'block'; // Force display
+        console.log("Actions revealed.");
+    } else {
+        console.error("Could not find ID 'premium-actions'");
+    }
+    
+    if (wrapper) {
+        wrapper.classList.remove('hidden');
+    }
 }
     </script>
 
