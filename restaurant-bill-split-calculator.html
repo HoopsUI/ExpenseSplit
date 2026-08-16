@@ -278,6 +278,9 @@ This <strong>restaurant bill split calculator per person</strong> is perfect for
 
 <h2 class="section-title">Free Restaurant Bill Split Calculator</h2>
 
+<label>Restaurant Name</label>
+<input type="text" id="restaurantName" placeholder="e.g. The Italian Kitchen">
+
 <label>Total Bill Amount</label>
 <input type="number" id="bill" placeholder="$100">
 
@@ -332,7 +335,7 @@ Share this result with friends so everyone knows their exact dinner cost.
                 <a href="YOUR_PAYHIP_PRODUCT_URL" target="_blank" class="primary-btn pulse">Unlock for $1.49</a>
                 <div class="license-entry">
                     <input type="text" id="license-key" placeholder="Enter License Key from Email">
-                    <button onclick="unlockPremium()" class="secondary-btn">Activate</button>
+                  <button type="button" onclick="unlockPremium()" class="secondary-btn">Activate</button>
                 </div>
             </div>
         </div>
@@ -1431,130 +1434,135 @@ result.style.display="block";
 
 <script>
 
-// --- PREMIUM SETTLEMENT LOGIC (V2 - SECURE PATTERN) ---
-
-// 1. Extend your existing calculateRestaurant function
-const originalCalculate = calculateRestaurant;
-calculateRestaurant = function() {
-    // Call the original free calculation logic
-    originalCalculate();
-    
-    // 1. Reveal the Premium Wrapper
-    const premiumModule = document.getElementById('premium-module-wrapper');
-    premiumModule.classList.remove('hidden');
-    
-    // 2. Extract Data from Free Results
-    const resultText = document.getElementById('result').innerText;
-    const totalMatch = resultText.match(/Total Bill: \$([\d,]+\.\d+)/);
-    const totalAmount = totalMatch ? totalMatch[1].replace(',', '') : "0.00";
-    
-    const peopleCount = parseInt(document.getElementById('people').value) || 1;
-    const extraItem = parseFloat(document.getElementById('extraItem').value) || 0;
-    
-    // 3. Populate the Premium Card
-    document.getElementById('p-total-amount').innerText = "$" + parseFloat(totalAmount).toFixed(2);
-    document.getElementById('p-date').innerText = new Date().toLocaleDateString('en-US', { 
-        month: 'long', day: 'numeric', year: 'numeric' 
-    });
-    
-    const peopleList = document.getElementById('p-people-list');
-    const msgContainer = document.getElementById('message-buttons-container');
-    peopleList.innerHTML = ""; 
-    msgContainer.innerHTML = "";
-
-    // Calculation Logic for Messages
-    const baseTotal = parseFloat(totalAmount) - extraItem;
-    const perPersonBase = baseTotal / peopleCount;
-
-    for(let i = 1; i <= peopleCount; i++) {
-        // Calculate individual share
-        let individualShare = perPersonBase;
-        let isExtraPerson = (i === 1 && extraItem > 0); // Assuming Friend 1 has the extra item
-        if(isExtraPerson) individualShare += extraItem;
-
-        const shareFormatted = individualShare.toFixed(2);
-
-        // Add Row to Premium Card
-        const row = document.createElement('div');
-        row.className = 'settle-row';
-        row.innerHTML = `<span>Friend ${i} ${isExtraPerson ? '(Incl. Extra)' : ''}</span> <span>$${shareFormatted}</span>`;
-        peopleList.appendChild(row);
-
-        // Prepare "Copy Message" Button
-        const btn = document.createElement('button');
-        btn.className = 'copy-msg-btn';
-        btn.innerHTML = `<span>Friend ${i}</span><br><strong>Copy $${shareFormatted} Msg</strong>`;
-        btn.onclick = () => {
-            const text = `Hey! 😊 Dinner was great. Your share for the bill comes to $${shareFormatted}. You can pay me back whenever you have a second. Thanks!`;
-            navigator.clipboard.writeText(text);
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = "✅ Copied to Clipboard!";
-            btn.style.background = "#10b981";
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.style.background = "#1e293b";
-            }, 2000);
-        };
-        msgContainer.appendChild(btn);
-    }
-    
-    // Check local storage for persistent unlock
-    if(localStorage.getItem('expenseSplit_premium_access') === 'true') {
-        revealPremiumUI();
-    }
-};
-
 /**
- * SECURE LICENSE VALIDATION
- * Pattern: ES-XXXX-XXXX-YYYY
- * Logic: YYYY is the ASCII sum of the XXXX-XXXX parts.
+ * EXPENSESPLIT PREMIUM SETTLEMENT MODULE
+ * Feature: Dinner Split & Settle ($1.49)
  */
-function validateLicensePattern(key) {
-    const parts = key.toUpperCase().split('-');
-    if (parts.length !== 4 || parts[0] !== 'ES') return false;
-    
-    const combined = parts[1] + parts[2];
-    if (combined.length !== 8) return false;
 
-    let sum = 0;
-    for (let i = 0; i < combined.length; i++) {
-        sum += combined.charCodeAt(i);
-    }
+// 1. SECURE VALIDATOR
+// Validates pattern: ES-XXXX-XXXX-CC (Length 15)
+function validatePremiumKey(key) {
+    key = key.trim().toUpperCase();
+    // Pattern: ES-XXXX-XXXX-CC (3 + 4 + 1 + 4 + 1 + 2 = 15 characters)
+    if (!key.startsWith("ES-") || key.length !== 15) return false;
+
+    const body = key.substring(0, 12);     // "ES-XXXX-XXXX"
+    const providedCheck = key.substring(13); // "CC"
     
-    const checksum = (sum % 10000).toString().padStart(4, '0');
-    return checksum === parts[3];
+    let sum = 0;
+    for (let i = 0; i < body.length; i++) {
+        sum += body.charCodeAt(i);
+    }
+    const expectedCheck = (sum % 100).toString().padStart(2, '0');
+
+    return providedCheck === expectedCheck;
 }
 
+// 2. MONKEY-PATCH EXISTING CALCULATOR
+// This ensures we don't disrupt your original calculateRestaurant() function.
+if (typeof calculateRestaurant === 'function') {
+    const originalCalculateRestaurant = calculateRestaurant;
+
+    calculateRestaurant = function() {
+        // Run your original free logic first
+        originalCalculateRestaurant();
+        
+        // --- START PREMIUM LOGIC ---
+        const premiumModule = document.getElementById('premium-module-wrapper');
+        if (!premiumModule) return;
+
+        // Show the wrapper
+        premiumModule.classList.remove('hidden');
+        
+        // Gather data from your existing inputs
+        const bill = parseFloat(document.getElementById('bill').value) || 0;
+        const tax = parseFloat(document.getElementById('tax').value) || 0;
+        const tip = parseFloat(document.getElementById('tip').value) || 0;
+        const fees = parseFloat(document.getElementById('fees').value) || 0;
+        const extra = parseFloat(document.getElementById('extraItem').value) || 0;
+        const peopleCount = parseInt(document.getElementById('people').value) || 1;
+
+        // Precise math for the premium card
+        const taxAmt = bill * (tax / 100);
+        const tipAmt = bill * (tip / 100);
+        const total = (bill + taxAmt + tipAmt + fees + extra).toFixed(2);
+        const share = (total / peopleCount).toFixed(2);
+
+        // Update Premium Card Preview
+        document.getElementById('p-total-amount').innerText = "$" + total;
+        document.getElementById('p-date').innerText = new Date().toLocaleDateString('en-US', { 
+            month: 'long', day: 'numeric', year: 'numeric' 
+        });
+        
+        // Set Restaurant Name (Checks if you added the name input, else defaults)
+        const nameInput = document.getElementById('restaurantName');
+        document.getElementById('p-restaurant-name').innerText = (nameInput && nameInput.value) ? nameInput.value : "Dinner Settlement";
+        
+        // Generate Dynamic Rows & Personalized Copy Buttons
+        const pList = document.getElementById('p-people-list');
+        const btnBox = document.getElementById('message-buttons-container');
+        pList.innerHTML = ""; 
+        btnBox.innerHTML = "";
+
+        for(let i = 1; i <= peopleCount; i++) {
+            // Card Row
+            const row = document.createElement('div');
+            row.className = 'settle-row';
+            row.innerHTML = `<span>Friend ${i}</span> <span>$${share}</span>`;
+            pList.appendChild(row);
+
+            // Personalized Message Button
+            const btn = document.createElement('button');
+            btn.className = 'copy-msg-btn';
+            btn.innerHTML = `📲 Copy for Friend ${i}`;
+            btn.onclick = () => {
+                const restName = document.getElementById('p-restaurant-name').innerText;
+                const msg = `Hey! 😊 Dinner was great. Your share for the bill at ${restName} comes to $${share}. You can pay me back when you're free. Thanks!`;
+                
+                navigator.clipboard.writeText(msg).then(() => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = "✅ Copied!";
+                    btn.style.backgroundColor = "#10b981"; // Success Green
+                    btn.style.borderColor = "#10b981";
+                    setTimeout(() => { 
+                        btn.innerHTML = originalText;
+                        btn.style.backgroundColor = "#1e293b"; // Reset to Navy
+                        btn.style.borderColor = "#334155";
+                    }, 2000);
+                });
+            };
+            btnBox.appendChild(btn);
+        }
+        
+        // Auto-reveal if they already paid previously
+        if(localStorage.getItem('expenseSplit_premium_unlocked') === 'true') {
+            revealPremiumUI();
+        }
+    };
+}
+
+// 3. UNLOCK CONTROLLER
 function unlockPremium() {
-    const keyInput = document.getElementById('license-key').value.trim();
+    const input = document.getElementById('license-key');
+    const key = input.value.trim();
     
-    if(validateLicensePattern(keyInput)) {
-        localStorage.setItem('expenseSplit_premium_access', 'true');
+    if (validatePremiumKey(key)) {
+        localStorage.setItem('expenseSplit_premium_unlocked', 'true');
         revealPremiumUI();
-        // Trigger a nice success animation
-        confettiEffect(); 
+        input.style.border = "2px solid #10b981";
     } else {
-        alert("Invalid License Key. Please ensure you copied the full key from your Payhip receipt (Format: ES-XXXX-XXXX-XXXX).");
+        alert("Invalid License Key. Please check the format (ES-XXXX-XXXX-CC) in your receipt.");
+        input.style.border = "2px solid #ef4444";
     }
 }
 
 function revealPremiumUI() {
     const overlay = document.getElementById('paywall-overlay');
     const actions = document.getElementById('premium-actions');
-    
-    overlay.style.opacity = '0';
-    setTimeout(() => {
-        overlay.style.display = 'none';
-        actions.classList.remove('hidden');
-        actions.style.animation = "floatUp 0.6s ease forwards";
-    }, 500);
+    if (overlay) overlay.style.display = 'none';
+    if (actions) actions.classList.remove('hidden');
 }
-
-function confettiEffect() {
-    // Simple alert for now, but hints at the "Premium" feel
-    console.log("Premium Unlocked! Enjoy your settlement features.");
-}
-</script>
+    </script>
 
 <style>
 .receipt-tool-box{
