@@ -595,17 +595,16 @@ Looking for a simple way to split expenses with friends or roommates? Our free e
     </div>
 
     <!-- SUCCESS CARD: What users see after entering the code -->
-    <div id="summary-unlocked-content" style="display: none; text-align: center; padding: 20px;">
-        <div style="background: #10b981; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-            <span style="font-size: 30px; color: white;">✓</span>
+   <div id="summary-unlocked-content" style="display: none; text-align: left; padding: 10px;">
+    <div style="display: flex; align-items: center; gap: 15px; background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 12px; border: 1px solid #10b981;">
+        <span style="font-size: 20px; color: #10b981;">✅</span>
+        <div>
+            <h4 style="color: #fff; margin: 0; font-size: 14px;">Premium Analysis Unlocked</h4>
+            <p style="color: #94a3b8; margin: 0; font-size: 12px;">Valid for 48 hours.</p>
         </div>
-        <h3 style="color: #fff;">Report Ready!</h3>
-        <p style="color: #94a3b8; margin-bottom: 25px;">Your aesthetic summary has been generated based on your data.</p>
-        
-        <button onclick="prepareAndPrint()" class="primary-btn" style="background: #6366f1 !important; border: none; font-weight: 700; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);">
-            📋 CUSTOM SUMMARY
+        <button onclick="prepareAndPrint()" class="primary-btn" style="margin: 0 0 0 auto; width: auto; padding: 8px 15px; font-size: 13px; height: auto !important;">
+            📋CUSTOM REPORT
         </button>
-        <p style="font-size: 11px; color: #64748b; margin-top: 15px;">Valid for 48 hours.</p>
     </div>
 </div>
 
@@ -1871,7 +1870,6 @@ function validatePremiumCode() {
 }
 
 // 3. THE DESIGNER: Builds the Pinterest Report
-// --- UPGRADED PREMIUM SUMMARY ENGINE ---
 function prepareAndPrint() {
     if (!expenses || expenses.length === 0) {
         alert("Please add expenses to the calculator first!");
@@ -1882,26 +1880,37 @@ function prepareAndPrint() {
     const total = expenses.reduce((sum, e) => sum + e.amount, 0);
     const avg = (total / members.length).toFixed(2);
     
-    // 1. DYNAMIC CATEGORIZATION LOGIC
-    let categories = { Food: 0, Travel: 0, Stay: 0, Misc: 0 };
-    expenses.forEach(e => {
-        const name = e.name.toLowerCase();
-        if (name.includes('food') || name.includes('dinner') || name.includes('eat') || name.includes('restaurant') || name.includes('cafe')) categories.Food += e.amount;
-        else if (name.includes('gas') || name.includes('fuel') || name.includes('uber') || name.includes('taxi') || name.includes('flight') || name.includes('train')) categories.Travel += e.amount;
-        else if (name.includes('hotel') || name.includes('airbnb') || name.includes('stay') || name.includes('rent')) categories.Stay += e.amount;
-        else categories.Misc += e.amount;
+    // 1. CHART LOGIC: Individual Spending Shares
+    let memberSpending = {};
+    members.forEach(m => memberSpending[m] = 0);
+    expenses.forEach(e => memberSpending[e.payer] += e.amount);
+
+    let chartHtml = "";
+    members.forEach(m => {
+        const pct = ((memberSpending[m] / total) * 100).toFixed(0);
+        chartHtml += `
+            <div style="margin-bottom: 15px;">
+                <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:700; margin-bottom:5px;">
+                    <span>${m}</span> <span>${currency}${memberSpending[m].toFixed(2)} (${pct}%)</span>
+                </div>
+                <div style="background:#f1f5f9; height:8px; border-radius:10px; overflow:hidden;">
+                    <div style="background:#3b82f6; width:${pct}%; height:100%;"></div>
+                </div>
+            </div>`;
     });
 
-    const topCategory = Object.keys(categories).reduce((a, b) => categories[a] > categories[b] ? a : b);
+    // 2. CATEGORY & ADVICE LOGIC
+    let cats = { Food: 0, Travel: 0, Stay: 0, Misc: 0 };
+    expenses.forEach(e => {
+        const n = e.name.toLowerCase();
+        if (n.includes('food') || n.includes('dinner') || n.includes('eat')) cats.Food += e.amount;
+        else if (n.includes('gas') || n.includes('fuel') || n.includes('taxi') || n.includes('uber')) cats.Travel += e.amount;
+        else if (n.includes('hotel') || n.includes('airbnb') || n.includes('stay')) cats.Stay += e.amount;
+        else cats.Misc += e.amount;
+    });
+    const topCat = Object.keys(cats).reduce((a, b) => cats[a] > cats[b] ? a : b);
 
-    // 2. SMART ADVICE ENGINE
-    let dynamicTip = "";
-    if (topCategory === 'Food') dynamicTip = `Your group spent <b>${currency}${categories.Food.toFixed(0)}</b> on dining. <b>Pro Tip:</b> Next time, alternating between one "big meal" out and one "grocery run" can slash costs by 35% without losing the experience.`;
-    else if (topCategory === 'Stay') dynamicTip = `Accommodation was your #1 expense. <b>Insight:</b> Booking stays with a 'Kitchen' filter on Airbnb usually saves groups ${currency}15/day per person on breakfast alone.`;
-    else if (topCategory === 'Travel') dynamicTip = `Transportation costs are high. <b>Advice:</b> For groups of ${members.length}, a single 24-hour car rental is often 40% cheaper than multiple individual ride-shares.`;
-    else dynamicTip = `Your spending is diversified. To save more, consider a "shared pot" of ${currency}50 per person for small Misc expenses to avoid constant transaction fees.`;
-
-    // 3. SETTLEMENT & SHAREABLE MESSAGES LOGIC
+    // 3. SETTLEMENT MESSAGES
     let balances = {};
     members.forEach(m => balances[m] = 0);
     expenses.forEach(e => {
@@ -1910,27 +1919,16 @@ function prepareAndPrint() {
     });
 
     let settlementsHtml = "";
-    let copyMessagesHtml = "";
     let debtors = [], creditors = [];
     for (let p in balances) {
         if (balances[p] < -0.01) debtors.push({n: p, a: Math.abs(balances[p])});
         else if (balances[p] > 0.01) creditors.push({n: p, a: balances[p]});
     }
-
     debtors.forEach(d => {
         creditors.forEach(c => {
             let p = Math.min(d.a, c.a);
             if (p > 0) {
-                const amountFixed = p.toFixed(2);
-                settlementsHtml += `<div class="pill"><span>${d.n} ➜ ${c.n}</span> <span>${currency}${amountFixed}</span></div>`;
-                
-                const msg = `Hey ${d.n}, I finished the ${topCategory} expense split! Your share comes to ${currency}${amountFixed}. Send it over when you can! Thanks!`;
-                copyMessagesHtml += `
-                    <div class="msg-box">
-                        <strong>To ${d.n}:</strong>
-                        <p id="msg-${d.n}">${msg}</p>
-                    </div>`;
-                
+                settlementsHtml += `<div class="pill"><span>${d.n} ➜ ${c.n}</span> <span>${currency}${p.toFixed(2)}</span></div>`;
                 d.a -= p; c.a -= p;
             }
         });
@@ -1939,66 +1937,78 @@ function prepareAndPrint() {
     const reportHTML = `
     <html>
     <head>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
         <style>
-            body { background: #f1f5f9; margin: 0; padding: 40px; font-family: 'Inter', sans-serif; color: #1e293b; }
-            .report-card { background: white; max-width: 800px; margin: auto; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
-            .header { background: #0f172a; color: white; padding: 60px 40px; position: relative; }
-            .header h1 { margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -1px; }
-            .header .tag { background: #3b82f6; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
-            .section { padding: 40px; border-bottom: 1px solid #f1f5f9; }
-            .section-title { font-size: 14px; font-weight: 800; text-transform: uppercase; color: #64748b; letter-spacing: 1px; margin-bottom: 20px; display: block; }
-            .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-            .stat-box { background: #f8fafc; padding: 25px; border-radius: 16px; border: 1px solid #f1f5f9; }
-            .stat-val { font-size: 28px; font-weight: 800; color: #0f172a; display: block; }
-            .stat-lbl { font-size: 13px; color: #64748b; font-weight: 600; }
-            .pill { background: #f0fdf4; color: #166534; padding: 18px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; font-weight: 700; border: 1px solid #dcfce7; }
-            .advice-box { background: #eff6ff; padding: 25px; border-radius: 16px; border-left: 6px solid #3b82f6; }
-            .advice-box p { margin: 0; line-height: 1.6; color: #1e4ed8; font-size: 15px; }
-            .msg-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
-            .msg-box strong { font-size: 12px; color: #3b82f6; display: block; margin-bottom: 5px; }
-            .msg-box p { margin: 0; font-size: 14px; color: #475569; font-style: italic; }
-            .footer { text-align: center; padding: 30px; font-size: 12px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
-            @media print {
-                body { padding: 0; background: white; }
-                .report-card { box-shadow: none; border: none; max-width: 100%; }
-                .header { -webkit-print-color-adjust: exact !important; }
-            }
+            body { background: #f8fafc; padding: 40px; font-family: 'Inter', sans-serif; color: #1e293b; line-height: 1.5; }
+            .report-card { background: white; max-width: 850px; margin: auto; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #e2e8f0; }
+            .header { background: #0f172a; color: white; padding: 50px 40px; }
+            .tag { background: #3b82f6; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
+            .section { padding: 35px 40px; border-bottom: 1px solid #f1f5f9; }
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+            .stat-box { background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #f1f5f9; }
+            .stat-val { font-size: 24px; font-weight: 800; color: #0f172a; display: block; }
+            .pill { background: #f0fdf4; color: #166534; padding: 15px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; font-weight: 700; border: 1px solid #dcfce7; }
+            .tip-card { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px; border-radius: 8px; margin-top: 15px; }
+            .section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 1px; margin-bottom: 20px; display: block; }
+            @media print { body { padding: 0; background: white; } .report-card { box-shadow: none; border: none; } }
         </style>
     </head>
     <body>
         <div class="report-card">
             <div class="header">
-                <span class="tag">Verified Premium Analysis</span>
-                <h1>Expense Settlement Report</h1>
-                <div style="margin-top:10px; opacity: 0.7; font-size: 14px;">Generated on ${new Date().toLocaleDateString()}</div>
+                <span class="tag">Premium Intelligence Report</span>
+                <h1 style="margin:0; font-size:28px;">Financial Settlement Summary</h1>
+                <p style="opacity:0.6; margin:5px 0 0;">Analysis of ${members.length} participants and ${expenses.length} records</p>
             </div>
-            <div class="section stats-grid">
+
+            <div class="section grid">
                 <div class="stat-box">
-                    <span class="stat-lbl">Group Total Spent</span>
+                    <span style="font-size:12px; font-weight:700; color:#64748b;">TOTAL SPENT</span>
                     <span class="stat-val">${currency}${total.toFixed(2)}</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-lbl">Individual Fair Share</span>
+                    <span style="font-size:12px; font-weight:700; color:#64748b;">COST PER HEAD</span>
                     <span class="stat-val">${currency}${avg}</span>
                 </div>
             </div>
-            <div class="section">
-                <span class="section-title">Settlement Instructions</span>
-                ${settlementsHtml || "No settlements needed. Everyone is perfectly square!"}
-            </div>
-            <div class="section">
-                <span class="section-title">Financial Savings Insight</span>
-                <div class="advice-box">
-                    <p>${dynamicTip}</p>
+
+            <div class="section grid">
+                <div>
+                    <span class="section-title">Settlement Guide</span>
+                    ${settlementsHtml || "Perfectly Balanced."}
+                </div>
+                <div>
+                    <span class="section-title">Spending Distribution</span>
+                    ${chartHtml}
                 </div>
             </div>
+
             <div class="section">
-                <span class="section-title">Quick-Share Notifications</span>
-                <p style="font-size:12px; color:#94a3b8; margin-bottom:15px;">Copy these messages to send to your friends:</p>
-                ${copyMessagesHtml}
+                <span class="section-title">AI Savings Analysis</span>
+                <div class="tip-card">
+                    <strong style="color:#92400e;">Strategic Insight:</strong>
+                    <p style="margin: 5px 0; font-size: 14px;">Your group spent <b>${currency}${cats[topCat].toFixed(2)}</b> on ${topCat}. Based on this data, booking via group-rate portals next time could have saved you approximately <b>${currency}${(cats[topCat]*0.15).toFixed(2)}</b>.</p>
+                </div>
             </div>
-            <div class="footer">WWW.EXPENSESSPLIT.COM Premium Report</div>
+
+            <div class="section grid">
+                <div>
+                    <span class="section-title">Future-Proofing Tips</span>
+                    <ul style="font-size:13px; padding-left:15px; color:#475569;">
+                        <li><b>Round-Up Rule:</b> Agree to round settlements to the nearest ${currency}1 to speed up bank transfers.</li>
+                        <li><b>Shared Digital Pot:</b> For trips, use a "Kitty" fund where everyone puts in ${currency}50 at the start for small misc costs.</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="section-title">Debt Prevention</span>
+                    <ul style="font-size:13px; padding-left:15px; color:#475569;">
+                        <li><b>Settle in 24h:</b> Debts unpaid for >48h are 60% less likely to be paid without an awkward reminder.</li>
+                        <li><b>Receipt Photos:</b> Always attach a photo of receipts in group chats to avoid "Audit Friction."</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align:center; padding:20px; font-size:10px; color:#cbd5e1; font-weight:700;">WWW.EXPENSESSPLIT.COM • PRE-SETTLED DOCUMENT</div>
         </div>
     </body>
     </html>`;
