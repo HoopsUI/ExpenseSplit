@@ -2005,3 +2005,35 @@ h2::before, h1::before, h3::before {
 
 
 
+
+#premium-summary-section {
+    border: 2px solid #2563eb !important;
+    background: linear-gradient(to bottom right, #0f172a, #1e293b) !important;
+    color: white !important;
+}
+
+#premium-summary-section h3 {
+    color: #60a5fa !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+}
+
+#unlock-code {
+    border: 2px solid #3b82f6 !important;
+    background: #0f172a !important;
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+
+#summary-unlocked-content .primary-btn {
+    background: #2563eb !important;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
