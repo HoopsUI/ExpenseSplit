@@ -555,7 +555,36 @@ function renderExpenses(){
   totalExpenseDisplay.textContent = getCurrency() + total.toFixed(2);
 }
 
+// Add this inside your script where expenses are added
+function updateTotal() {
+    const currency = document.getElementById("currency").value;
+    const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+    const totalDisplay = document.getElementById("totalExpense");
+    if (totalDisplay) {
+        totalDisplay.textContent = currency + total.toFixed(2);
+    }
+}
 
+// Ensure your addExpenseBtn listener calls updateTotal()
+addExpenseBtn.addEventListener("click", function() {
+    const name = document.getElementById("expenseName").value.trim();
+    const amount = parseFloat(document.getElementById("expenseAmount").value);
+    const payer = document.getElementById("paidBy").value;
+
+    if (name && !isNaN(amount) && payer) {
+        expenses.push({ name, amount, payer });
+        const p = document.createElement("div");
+        p.className = "expense-entry"; // Using your existing class for styling
+        p.innerHTML = `<span>${name}</span> <span>${amount} (${payer})</span>`;
+        document.getElementById("expenseList").appendChild(p);
+        
+        updateTotal(); // <--- FIX: This updates the display immediately
+        
+        document.getElementById("expenseName").value = "";
+        document.getElementById("expenseAmount").value = "";
+    }
+});
+  
 // =====================
 // CALCULATE
 // =====================
