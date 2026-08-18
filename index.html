@@ -1885,21 +1885,20 @@ function prepareAndPrint() {
     });
     const topCat = Object.keys(cats).reduce((a, b) => cats[a] > cats[b] ? a : b);
 
-    // 2. DATA PROCESSING: Individual Spending (For Bar Chart)
+    // 2. DATA PROCESSING: Individual Spending
     let memberSpending = {};
     members.forEach(m => memberSpending[m] = 0);
     expenses.forEach(e => memberSpending[e.payer] += e.amount);
 
-    // 3. GENERATE VISUAL CHARTS (CSS-based for PDF compatibility)
     let indvChartsHtml = "";
     members.forEach(m => {
         const pct = ((memberSpending[m] / total) * 100).toFixed(0);
         indvChartsHtml += `
-            <div style="margin-bottom:12px;">
-                <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:700; margin-bottom:4px; color:#1e293b;">
+            <div style="margin-bottom:8px;">
+                <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; margin-bottom:2px; color:#1e293b;">
                     <span>${m}</span> <span>${currency}${memberSpending[m].toFixed(2)} (${pct}%)</span>
                 </div>
-                <div style="background:#f1f5f9; height:10px; border-radius:5px; overflow:hidden;">
+                <div style="background:#f1f5f9; height:8px; border-radius:4px; overflow:hidden;">
                     <div style="background:#3b82f6; width:${pct}%; height:100%;"></div>
                 </div>
             </div>`;
@@ -1910,18 +1909,18 @@ function prepareAndPrint() {
         if(cats[c] > 0) {
             const pct = ((cats[c] / total) * 100).toFixed(0);
             catChartsHtml += `
-                <div style="margin-bottom:12px;">
-                    <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:700; margin-bottom:4px; color:#1e293b;">
+                <div style="margin-bottom:8px;">
+                    <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; margin-bottom:2px; color:#1e293b;">
                         <span>${c}</span> <span>${currency}${cats[c].toFixed(2)} (${pct}%)</span>
                     </div>
-                    <div style="background:#f1f5f9; height:10px; border-radius:5px; overflow:hidden;">
+                    <div style="background:#f1f5f9; height:8px; border-radius:4px; overflow:hidden;">
                         <div style="background:#8b5cf6; width:${pct}%; height:100%;"></div>
                     </div>
                 </div>`;
         }
     });
 
-    // 4. SETTLEMENT CHECKLIST LOGIC
+    // 3. SETTLEMENT CHECKLIST LOGIC
     let balances = {};
     members.forEach(m => balances[m] = 0);
     expenses.forEach(e => {
@@ -1941,9 +1940,9 @@ function prepareAndPrint() {
             let p = Math.min(d.a, c.a);
             if (p > 0) {
                 checklistHtml += `
-                    <div style="display:flex; align-items:center; gap:10px; padding:10px; border-bottom:1px dashed #e2e8f0;">
-                        <div style="width:18px; height:18px; border:2px solid #cbd5e1; border-radius:4px;"></div>
-                        <span style="font-size:14px; color:#334155;"><b>${d.n}</b> pays <b>${c.n}</b> &nbsp;→&nbsp; <b>${currency}${p.toFixed(2)}</b></span>
+                    <div style="display:flex; align-items:center; gap:8px; padding:6px 10px; border-bottom:1px dashed #e2e8f0;">
+                        <div style="width:14px; height:14px; border:2px solid #cbd5e1; border-radius:3px;"></div>
+                        <span style="font-size:13px; color:#334155;"><b>${d.n}</b> pays <b>${c.n}</b> &nbsp;→&nbsp; <b>${currency}${p.toFixed(2)}</b></span>
                     </div>`;
                 d.a -= p; c.a -= p;
             }
@@ -1956,40 +1955,39 @@ function prepareAndPrint() {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
         <style>
             @page { size: A4; margin: 0; }
-            body { background: #f1f5f9; margin: 0; padding: 40px; font-family: 'Inter', sans-serif; color: #1e293b; -webkit-print-color-adjust: exact; }
-            .report-card { background: white; width: 100%; max-width: 1000px; margin: auto; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.08); overflow: hidden; }
-            .header { background: #0f172a; color: white; padding: 60px 50px; text-align: left; }
-            .section { padding: 40px 50px; border-bottom: 1px solid #f1f5f9; }
-            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-            .stat-box { background: #f8fafc; padding: 25px; border-radius: 15px; border: 1px solid #e2e8f0; }
-            .section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 1.5px; margin-bottom: 25px; display: block; }
-            .pill-box { background: #f0fdf4; border: 1px solid #dcfce7; padding: 15px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; font-weight: 700; font-size: 15px; color: #166534; }
-            .tip-card { background: #eff6ff; border-left: 5px solid #3b82f6; padding: 25px; border-radius: 8px; }
+            body { background: #f1f5f9; margin: 0; padding: 20px; font-family: 'Inter', sans-serif; color: #1e293b; -webkit-print-color-adjust: exact; }
+            .report-card { background: white; width: 100%; max-width: 900px; margin: auto; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); overflow: hidden; }
+            .header { background: #0f172a; color: white; padding: 35px 40px; }
+            .section { padding: 25px 40px; border-bottom: 1px solid #f1f5f9; }
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+            .stat-box { background: #f8fafc; padding: 15px 20px; border-radius: 12px; border: 1px solid #e2e8f0; }
+            .section-title { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 1.2px; margin-bottom: 15px; display: block; }
+            .tip-card { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px 20px; border-radius: 6px; }
             @media print { body { padding: 0; } .report-card { border-radius: 0; box-shadow: none; width: 100%; } }
         </style>
     </head>
     <body>
         <div class="report-card">
             <div class="header">
-                <div style="background:#3b82f6; display:inline-block; padding:4px 12px; border-radius:6px; font-size:11px; font-weight:800; margin-bottom:15px; text-transform:uppercase;">Custom Settlement Insight</div>
-                <h1 style="margin:0; font-size:36px; font-weight:800; letter-spacing:-1.5px;">Group Financial Summary</h1>
-                <p style="opacity:0.6; font-size:16px; margin-top:8px;">${members.length} participants • ${expenses.length} expenses • ${new Date().toLocaleDateString()}</p>
+                <div style="background:#3b82f6; display:inline-block; padding:3px 10px; border-radius:4px; font-size:10px; font-weight:800; margin-bottom:10px; text-transform:uppercase;">Custom Settlement Insight</div>
+                <h1 style="margin:0; font-size:28px; font-weight:800; letter-spacing:-1px;">Group Financial Summary</h1>
+                <p style="opacity:0.6; font-size:14px; margin-top:5px;">${members.length} participants • ${expenses.length} expenses • ${new Date().toLocaleDateString()}</p>
             </div>
 
             <div class="section grid">
                 <div class="stat-box">
-                    <span style="font-size:13px; color:#64748b; font-weight:700;">TOTAL GROUP OUTLAY</span>
-                    <span style="display:block; font-size:32px; font-weight:800; color:#0f172a; margin-top:5px;">${currency}${total.toFixed(2)}</span>
+                    <span style="font-size:11px; color:#64748b; font-weight:700;">TOTAL GROUP OUTLAY</span>
+                    <span style="display:block; font-size:24px; font-weight:800; color:#0f172a; margin-top:2px;">${currency}${total.toFixed(2)}</span>
                 </div>
                 <div class="stat-box">
-                    <span style="font-size:13px; color:#64748b; font-weight:700;">AVERAGE COST PER PERSON</span>
-                    <span style="display:block; font-size:32px; font-weight:800; color:#0f172a; margin-top:5px;">${currency}${avg}</span>
+                    <span style="font-size:11px; color:#64748b; font-weight:700;">COST PER PERSON</span>
+                    <span style="display:block; font-size:24px; font-weight:800; color:#0f172a; margin-top:2px;">${currency}${avg}</span>
                 </div>
             </div>
 
-            <div class="section grid">
+            <div class="section grid" style="padding-bottom:15px;">
                 <div>
-                    <span class="section-title">📊 Spending Breakdown (Categories)</span>
+                    <span class="section-title">📊 Spending Breakdown</span>
                     ${catChartsHtml}
                 </div>
                 <div>
@@ -1998,31 +1996,31 @@ function prepareAndPrint() {
                 </div>
             </div>
 
-            <div class="section">
-                <span class="section-title">📋 "Settle Up" Action Checklist</span>
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:15px; padding:10px;">
-                    ${checklistHtml || "<p style='padding:20px; color:#64748b;'>No transactions required.</p>"}
+            <div class="section" style="padding-top:15px; padding-bottom:15px;">
+                <span class="section-title">📋 "Settle Up" Checklist</span>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:5px;">
+                    ${checklistHtml || "<p style='padding:10px; color:#64748b; font-size:12px;'>No transactions required.</p>"}
                 </div>
             </div>
 
-            <div class="section">
-                <span class="section-title">💡 Strategic Analysis & Savings</span>
+            <div class="section" style="padding-top:15px; padding-bottom:15px;">
+                <span class="section-title">💡 Strategic Analysis</span>
                 <div class="tip-card">
-                    <p style="margin:0; font-size:15px; color:#1e4ed8; line-height:1.6;">
-                        Your group spent the most on <b>${topCat}</b>. 
-                        By shifting <b>${topCat}</b> booking behavior to "Group Advance" status, you could have reduced the total outlay by approx. <b>${currency}${(cats[topCat]*0.12).toFixed(2)}</b>.
+                    <p style="margin:0; font-size:13px; color:#1e4ed8; line-height:1.5;">
+                        Highest expense: <b>${topCat}</b>. 
+                        By shifting booking behavior to "Group Advance" status, you could have reduced the total outlay by approx. <b>${currency}${(cats[topCat]*0.12).toFixed(2)}</b>.
                     </p>
                 </div>
             </div>
 
-            <div class="section grid">
-                <div style="font-size:13px; color:#475569;">
-                    <span class="section-title">Future-Proofing</span>
-                    <p><b>• Instant Settlement:</b> Data shows debts settled within 12h of trip end lead to better group harmony.</p>
-                    <p><b>• The "Rounding" Strategy:</b> Agree to round up to the nearest 1.00 to simplify mobile banking.</p>
+            <div class="section grid" style="border-bottom:none; padding-top:15px; padding-bottom:20px;">
+                <div style="font-size:12px; color:#475569;">
+                    <span class="section-title" style="margin-bottom:10px;">Pro Tips</span>
+                    <p style="margin:0;"><b>• Instant Settlement:</b> Debt settled within 12h leads to better group harmony.</p>
+                    <p style="margin:0;"><b>• Rounding:</b> Agree to round to the nearest 1.00 to simplify banking.</p>
                 </div>
-                <div style="text-align:right;">
-                    <p style="font-size:11px; font-weight:800; color:#cbd5e1; text-transform:uppercase; margin-top:40px;">Certified Premium Report by ExpenseSplit.com</p>
+                <div style="text-align:right; display:flex; flex-direction:column; justify-content:flex-end;">
+                    <p style="font-size:10px; font-weight:800; color:#cbd5e1; text-transform:uppercase; margin:0;">Certified Premium Report • ExpenseSplit.com</p>
                 </div>
             </div>
         </div>
