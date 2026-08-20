@@ -325,10 +325,21 @@ This <strong>restaurant bill split calculator per person</strong> is perfect for
     <!-- PREMIUM BOX (Surgical Placement) -->
     <div id="premium-summary-section" style="margin-top: 25px; display:none; border: 2px solid #3b82f6; border-radius:15px; padding:20px; background:#0f172a;">
         <div id="summary-lock-screen" style="text-align: center;">
-            <h4 style="color: #ffffff !important; margin-bottom: 10px;">🧾 Generate Professional Receipt</h4>
-            <input type="text" id="unlock-code" placeholder="Enter Code" style="width:150px; padding:10px; margin-bottom:10px;">
-            <button onclick="validateRestaurantPremium()" class="primary-btn" style="width:auto; padding:10px 20px;">Unlock Premium Receipt</button>
-        </div>
+    <h4 style="color: #ffffff !important; margin-bottom: 10px;">🧾 Generate Professional Receipt</h4>
+    <p style="color: #94a3b8; font-size: 13px; margin-bottom: 15px;">Get a professional settlement receipt + Pro-rated Tax & Tip breakdown.</p>
+    
+    <!-- Prominent Payhip Link -->
+    <div style="margin-bottom: 20px; padding: 10px; background: rgba(59, 130, 246, 0.1); border-radius: 8px; border: 1px dashed #3b82f6;">
+        <p style="color: #fff; font-weight: 700; margin-bottom: 8px; font-size: 15px;">Unlock this feature for only $1.99</p>
+        <a href="https://payhip.com/b/KU6TI" target="_blank" class="primary-btn" style="background: #10b981 !important; width: auto; padding: 10px 20px; text-decoration: none; display: inline-block; font-size: 14px;">
+            GET YOUR CODE HERE →
+        </a>
+    </div>
+
+    <input type="text" id="unlock-code" placeholder="Enter Code" style="width: 180px; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: white; text-align: center;">
+    <br>
+    <button onclick="validateRestaurantPremium()" class="primary-btn" style="width: auto; padding: 10px 25px; background: #3b82f6 !important;">Unlock Premium Receipt</button>
+</div>
         <div id="summary-unlocked-content" style="display:none; text-align:center;">
             <button onclick="generatePremiumRestaurantReceipt()" class="primary-btn" style="background:#6366f1 !important;">DOWNLOAD SETTLEMENT CHECK</button>
         </div>
