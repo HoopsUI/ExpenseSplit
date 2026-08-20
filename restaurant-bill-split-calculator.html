@@ -312,7 +312,7 @@ This <strong>restaurant bill split calculator per person</strong> is perfect for
         <!-- PREMIUM UNLOCK BOX -->
         <div id="premium-summary-section" style="margin-top: 25px; display:none; border: 2px solid #3b82f6; border-radius:15px; padding:20px; background:#0f172a;">
             <div id="summary-lock-screen" style="text-align: center;">
-                <h4 style="color:#fff; margin-bottom:10px;">🧾 Generate Digital Guest Check</h4>
+                <h4 style="color:#FFFF00; margin-bottom:10px;">🧾 Generate Digital Guest Check</h4>
                 <p style="color:#94a3b8; font-size:13px; margin-bottom:15px;">Get a professional settlement receipt + WhatsApp payment snippets.</p>
                 <input type="text" id="unlock-code" placeholder="Enter Code" style="width:150px; padding:10px; margin-bottom:10px;">
                 <button onclick="validateRestaurantPremium()" class="primary-btn" style="width:auto; padding:10px 20px;">Unlock Report</button>
@@ -1556,17 +1556,27 @@ function calculateRestaurant() {
 }
 
 function validateRestaurantPremium() {
-    const code = document.getElementById("unlock-code").value.trim().toUpperCase();
-    // Reusing your sum-to-10 logic
-    if (code.startsWith("EXP") && code.length >= 5) {
-        const lastTwo = code.slice(-2);
-        if (parseInt(lastTwo[0]) + parseInt(lastTwo[1]) === 10) {
-            document.getElementById("summary-lock-screen").style.display = "none";
-            document.getElementById("summary-unlocked-content").style.display = "block";
-            return;
+    const codeInput = document.getElementById("unlock-code").value.trim().toUpperCase();
+    
+    // Check if it starts with EXP
+    if (codeInput.startsWith("EXP")) {
+        // Extract all numbers from the string
+        const digits = codeInput.match(/\d/g); 
+        
+        if (digits && digits.length >= 2) {
+            // Get the last two digits found in the string
+            const last = parseInt(digits[digits.length - 1]);
+            const secondLast = parseInt(digits[digits.length - 2]);
+            
+            // Check if they sum to 10
+            if (last + secondLast === 10) {
+                document.getElementById("summary-lock-screen").style.display = "none";
+                document.getElementById("summary-unlocked-content").style.display = "block";
+                return; // Success!
+            }
         }
     }
-    alert("Invalid Premium Code");
+    alert("Invalid Premium Code. Please check your email and try again.");
 }
 
 function generatePremiumRestaurantReceipt() {
@@ -1717,5 +1727,7 @@ const observer = new IntersectionObserver((entries) => {
 
 if (footer) observer.observe(footer);
 </script>
+  <!-- Hidden frame for high-quality printing -->
+<iframe id="printFrame" style="display:none;"></iframe>
 </body>
 </html>
