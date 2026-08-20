@@ -2037,3 +2037,19 @@ h2::before, h1::before, h3::before {
     50% { transform: scale(1.02); }
     100% { transform: scale(1); }
 }
+
+
+/* Fix for Restaurant Page Centering */
+#calculator .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This centers the card horizontally */
+    text-align: center;
+}
+
+/* Ensure the card itself doesn't lean left */
+.calc-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left; /* Keeps the text inside the card aligned left for readability */
+}
