@@ -277,52 +277,60 @@ This <strong>restaurant bill split calculator per person</strong> is perfect for
     <h2 class="section-title">Restaurant Bill Splitter</h2>
     
     <div class="calc-card calculator">
-        <!-- Step 1: The Bill Basics -->
-        <div class="form-group">
-            <label>💰 Total Bill (Before Tax/Tip)</label>
-            <input type="number" id="bill" placeholder="0.00">
+    <!-- Step 1: Split Mode -->
+    <div class="form-group">
+        <label>⚖️ Split Method</label>
+        <select id="splitMode" onchange="toggleSplitUI()">
+            <option value="dutch">Go Dutch (Split Total Equally)</option>
+            <option value="itemized">Pay What You Ate (Itemized)</option>
+        </select>
+    </div>
+
+    <!-- Step 2: Add People & What they Paid Out-of-Pocket -->
+    <div class="form-group">
+        <label>👥 Who is at the table?</label>
+        <div style="display:flex; gap:10px; margin-bottom:10px;">
+            <input type="text" id="rest-name" placeholder="Name">
+            <input type="number" id="rest-paid" placeholder="Paid $0">
+            <button onclick="addRestMember()" class="primary-btn" style="width:auto; padding:10px 15px; margin:0;">Add</button>
         </div>
+        <div id="rest-people-list" style="margin-bottom:15px;"></div>
+    </div>
 
-        <div class="grid" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-            <div class="form-group">
-                <label>Tax (%)</label>
-                <input type="number" id="tax" value="8">
-            </div>
-            <div class="form-group">
-                <label>Tip (%)</label>
-                <input type="number" id="tip" value="18">
-            </div>
+    <!-- Step 3: Add Items (Dishes/Drinks) -->
+    <div class="form-group">
+        <label>🍽️ Add Dishes / Drinks</label>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:5px; margin-bottom:5px;">
+            <input type="text" id="item-name" placeholder="Dish Name">
+            <input type="number" id="item-price" placeholder="Price">
         </div>
+        <select id="item-assignee" style="margin-bottom:10px;">
+            <option value="shared">Split Among Everyone</option>
+        </select>
+        <button onclick="addRestItem()" class="primary-btn" style="background:#4b5563 !important; margin:0;">Add Item to Bill</button>
+        <div id="rest-items-list" style="margin-top:10px;"></div>
+    </div>
 
-        <!-- Step 2: The People -->
-        <div class="form-group">
-            <label>👥 Who is at the table?</label>
-            <div style="display:flex; gap:10px; margin-bottom:10px;">
-                <input type="text" id="rest-name" placeholder="Name">
-                <input type="number" id="rest-paid" placeholder="Paid $0">
-                <button onclick="addRestMember()" class="primary-btn" style="width:auto; padding:10px 15px; margin:0;">Add</button>
-            </div>
-            <div id="rest-people-list" style="margin-bottom:15px;"></div>
+    <!-- Step 4: Tax/Tip/Fees -->
+    <div class="grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:15px;">
+        <div class="form-group"><label>Tax%</label><input type="number" id="tax" value="8"></div>
+        <div class="form-group"><label>Tip%</label><input type="number" id="tip" value="18"></div>
+        <div class="form-group"><label>Fees$</label><input type="number" id="fees" value="0"></div>
+    </div>
+
+    <button class="primary-btn" onclick="calculateRestaurant()">Calculate Settlement</button>
+
+    <div id="result" class="result-box hidden"></div>
+
+    <!-- PREMIUM BOX (Surgical Placement) -->
+    <div id="premium-summary-section" style="margin-top: 25px; display:none; border: 2px solid #3b82f6; border-radius:15px; padding:20px; background:#0f172a;">
+        <div id="summary-lock-screen" style="text-align: center;">
+            <h4 style="color:#94a3b8; margin-bottom:10px;">🧾 Generate Professional Receipt</h4>
+            <input type="text" id="unlock-code" placeholder="Enter Code" style="width:150px; padding:10px; margin-bottom:10px;">
+            <button onclick="validateRestaurantPremium()" class="primary-btn" style="width:auto; padding:10px 20px;">Unlock Premium Receipt</button>
         </div>
-
-        <button class="primary-btn" onclick="calculateRestaurant()">Calculate Total Split</button>
-
-        <div id="result" class="result-box hidden"></div>
-
-        <!-- PREMIUM UNLOCK BOX -->
-        <div id="premium-summary-section" style="margin-top: 25px; display:none; border: 2px solid #3b82f6; border-radius:15px; padding:20px; background:#0f172a;">
-            <div id="summary-lock-screen" style="text-align: center;">
-                <h4 style="color:#FFFF00; margin-bottom:10px;">🧾 Generate Digital Guest Check</h4>
-                <p style="color:#94a3b8; font-size:13px; margin-bottom:15px;">Get a professional settlement receipt + WhatsApp payment snippets.</p>
-                <input type="text" id="unlock-code" placeholder="Enter Code" style="width:150px; padding:10px; margin-bottom:10px;">
-                <button onclick="validateRestaurantPremium()" class="primary-btn" style="width:auto; padding:10px 20px;">Unlock Report</button>
-                <p style="font-size: 11px; margin-top:10px;"><a href="https://payhip.com/b/KU6TI" target="_blank" style="color: #3b82f6;">Get code for $1.99</a></p>
-            </div>
-
-            <div id="summary-unlocked-content" style="display:none; text-align:center;">
-                <p style="color:#10b981; font-weight:700; margin-bottom:10px;">✅ Premium Check Ready</p>
-                <button onclick="generatePremiumRestaurantReceipt()" class="primary-btn" style="background:#6366f1 !important;">DOWNLOAD SETTLEMENT CHECK</button>
-            </div>
+        <div id="summary-unlocked-content" style="display:none; text-align:center;">
+            <button onclick="generatePremiumRestaurantReceipt()" class="primary-btn" style="background:#6366f1 !important;">DOWNLOAD SETTLEMENT CHECK</button>
         </div>
     </div>
 </div>
@@ -1501,110 +1509,122 @@ display:none;
 <script>
 
 let restMembers = [];
+let restItems = [];
 
 function addRestMember() {
     const name = document.getElementById("rest-name").value.trim();
     const paid = parseFloat(document.getElementById("rest-paid").value) || 0;
-    
     if (name) {
-        restMembers.push({ name, paid });
-        updateRestList();
+        restMembers.push({ name, paid, itemsTotal: 0 });
+        updateRestUI();
         document.getElementById("rest-name").value = "";
         document.getElementById("rest-paid").value = "";
     }
 }
 
-function updateRestList() {
-    const container = document.getElementById("rest-people-list");
-    container.innerHTML = restMembers.map((m, index) => `
-        <div class="expense-entry" style="display:flex; justify-content:space-between; padding:8px; background:#1e293b; border-radius:8px; margin-bottom:5px; color:white;">
-            <span>${m.name}</span>
-            <span>Paid: $${m.paid.toFixed(2)} <button onclick="restMembers.splice(${index},1); updateRestList();" style="background:none; border:none; color:#ff4d4d; cursor:pointer; margin-left:10px;">✕</button></span>
+function addRestItem() {
+    const name = document.getElementById("item-name").value.trim() || "Item";
+    const price = parseFloat(document.getElementById("item-price").value) || 0;
+    const assignee = document.getElementById("item-assignee").value;
+
+    if (price > 0) {
+        restItems.push({ name, price, assignee });
+        updateRestUI();
+        document.getElementById("item-name").value = "";
+        document.getElementById("item-price").value = "";
+    }
+}
+
+function updateRestUI() {
+    // Update People List
+    const pList = document.getElementById("rest-people-list");
+    pList.innerHTML = restMembers.map((m, i) => `
+        <div class="expense-entry" style="color:white; font-size:12px; margin-bottom:4px;">
+            ${m.name} (Paid $${m.paid}) <span onclick="restMembers.splice(${i},1); updateRestUI();" style="color:red; cursor:pointer;">✕</span>
         </div>
     `).join('');
+
+    // Update Item List
+    const iList = document.getElementById("rest-items-list");
+    iList.innerHTML = restItems.map((item, i) => `
+        <div style="font-size:11px; color:#94a3b8; display:flex; justify-content:space-between;">
+            <span>${item.name} (${item.assignee})</span>
+            <span>$${item.price.toFixed(2)} <span onclick="restItems.splice(${i},1); updateRestUI();" style="color:red; cursor:pointer;">✕</span></span>
+        </div>
+    `).join('');
+
+    // Update Dropdown
+    const dropdown = document.getElementById("item-assignee");
+    dropdown.innerHTML = '<option value="shared">Split Among Everyone</option>' + 
+        restMembers.map(m => `<option value="${m.name}">${m.name}</option>`).join('');
 }
 
 function calculateRestaurant() {
-    const bill = parseFloat(document.getElementById("bill").value) || 0;
-    const taxPct = parseFloat(document.getElementById("tax").value) || 0;
-    const tipPct = parseFloat(document.getElementById("tip").value) || 0;
-    
-    if (bill === 0 || restMembers.length === 0) {
-        alert("Enter bill amount and add at least one person.");
-        return;
+    const splitMode = document.getElementById("splitMode").value;
+    const taxPct = parseFloat(document.getElementById("tax").value) / 100;
+    const tipPct = parseFloat(document.getElementById("tip").value) / 100;
+    const fees = parseFloat(document.getElementById("fees").value) || 0;
+
+    let subtotal = restItems.reduce((sum, item) => sum + item.price, 0);
+    const taxVal = subtotal * taxPct;
+    const tipVal = subtotal * tipPct;
+    const totalBill = subtotal + taxVal + tipVal + fees;
+    const multiplier = totalBill / subtotal; // Scales tax/tip/fees per person proportionally
+
+    // Reset member individual totals
+    restMembers.forEach(m => m.itemsTotal = 0);
+
+    if (splitMode === 'dutch') {
+        const share = totalBill / restMembers.length;
+        restMembers.forEach(m => m.share = share);
+    } else {
+        // Itemized Math
+        restItems.forEach(item => {
+            if (item.assignee === 'shared') {
+                const perPerson = item.price / restMembers.length;
+                restMembers.forEach(m => m.itemsTotal += perPerson);
+            } else {
+                const member = restMembers.find(m => m.name === item.assignee);
+                if (member) member.itemsTotal += item.price;
+            }
+        });
+        // Apply pro-rated tax/tip/fees
+        restMembers.forEach(m => m.share = m.itemsTotal * multiplier);
     }
 
-    const taxTotal = bill * (taxPct / 100);
-    const tipTotal = bill * (tipPct / 100);
-    const finalTotal = bill + taxTotal + tipTotal;
-    const sharePerPerson = finalTotal / restMembers.length;
-
-    const resultBox = document.getElementById("result");
-    resultBox.classList.remove("hidden");
-    resultBox.innerHTML = `
-        <div style="color:#1e293b">
-            <strong>Check Summary:</strong><br>
-            Subtotal: $${bill.toFixed(2)}<br>
-            Tax + Tip: $${(taxTotal + tipTotal).toFixed(2)}<br>
-            <span style="font-size:1.2rem; color:#2563eb;">Total: $${finalTotal.toFixed(2)}</span><br>
-            <hr style="margin:10px 0; border:0; border-top:1px solid #eee;">
-            <strong>Each person owes: $${sharePerPerson.toFixed(2)}</strong>
-        </div>
-    `;
-    
+    document.getElementById("result").classList.remove("hidden");
+    document.getElementById("result").innerHTML = `Total Bill: $${totalBill.toFixed(2)}<br>Calculated! Unlock Premium Receipt for settlement details.`;
     document.getElementById("premium-summary-section").style.display = "block";
 }
 
-function validateRestaurantPremium() {
-    const codeInput = document.getElementById("unlock-code").value.trim().toUpperCase();
-    
-    // Check if it starts with EXP
-    if (codeInput.startsWith("EXP")) {
-        // Extract all numbers from the string
-        const digits = codeInput.match(/\d/g); 
-        
-        if (digits && digits.length >= 2) {
-            // Get the last two digits found in the string
-            const last = parseInt(digits[digits.length - 1]);
-            const secondLast = parseInt(digits[digits.length - 2]);
-            
-            // Check if they sum to 10
-            if (last + secondLast === 10) {
-                document.getElementById("summary-lock-screen").style.display = "none";
-                document.getElementById("summary-unlocked-content").style.display = "block";
-                return; // Success!
-            }
-        }
-    }
-    alert("Invalid Premium Code. Please check your email and try again.");
-}
 
 function generatePremiumRestaurantReceipt() {
-    const bill = parseFloat(document.getElementById("bill").value);
-    const tax = bill * (parseFloat(document.getElementById("tax").value)/100);
-    const tip = bill * (parseFloat(document.getElementById("tip").value)/100);
-    const total = bill + tax + tip;
-    const share = total / restMembers.length;
     const currency = "$";
+    const subtotal = restItems.reduce((sum, item) => sum + item.price, 0);
+    const tax = subtotal * (parseFloat(document.getElementById("tax").value)/100);
+    const tip = subtotal * (parseFloat(document.getElementById("tip").value)/100);
+    const fees = parseFloat(document.getElementById("fees").value) || 0;
+    const totalBill = subtotal + tax + tip + fees;
 
-    // Settlement Logic
-    let checklistHtml = "";
-    let shareMessages = "";
-    
-    restMembers.forEach(m => {
-        const balance = m.paid - share;
-        if (balance < -0.01) {
-            checklistHtml += `
-                <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px dashed #ccc;">
-                    <span>⬜ <b>${m.name}</b> owes</span>
-                    <span>${currency}${Math.abs(balance).toFixed(2)}</span>
-                </div>`;
-            shareMessages += `
-                <div style="background:#f8fafc; padding:10px; border-radius:8px; margin-bottom:10px; font-size:12px;">
-                    <strong>Text for ${m.name}:</strong><br>
-                    "Hey ${m.name}, thanks for dinner! Your share of the bill (incl. tax/tip) is ${currency}${share.toFixed(2)}. Since you paid ${currency}${m.paid.toFixed(2)} at the table, you owe the difference of ${currency}${Math.abs(balance).toFixed(2)}. Thanks!"
-                </div>`;
-        }
+    // --- WHO PAYS WHOM ALGORITHM ---
+    let balances = restMembers.map(m => ({
+        name: m.name,
+        balance: m.paid - m.share // Positive = gets back money, Negative = owes
+    }));
+
+    let debtors = balances.filter(b => b.balance < -0.01).sort((a,b) => a.balance - b.balance);
+    let creditors = balances.filter(b => b.balance > 0.01).sort((a,b) => b.balance - a.balance);
+
+    let settlementSteps = [];
+    debtors.forEach(d => {
+        creditors.forEach(c => {
+            let amount = Math.min(Math.abs(d.balance), c.balance);
+            if (amount > 0) {
+                settlementSteps.push({ from: d.name, to: c.name, amount: amount });
+                d.balance += amount;
+                c.balance -= amount;
+            }
+        });
     });
 
     const receiptHTML = `
@@ -1612,45 +1632,50 @@ function generatePremiumRestaurantReceipt() {
     <head>
         <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
         <style>
-            body { background: #f1f5f9; padding: 20px; font-family: 'Courier Prime', monospace; color: #000; }
-            .receipt { background: #fff; width: 350px; margin: auto; padding: 40px 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1); border-top: 8px solid #3b82f6; }
-            .center { text-align: center; }
+            body { background: #f1f5f9; padding: 20px; font-family: 'Courier Prime', monospace; }
+            .receipt { background: #fff; width: 380px; margin: auto; padding: 30px; box-shadow: 0 0 20px rgba(0,0,0,0.1); border-top: 8px solid #3b82f6; }
             .divider { border-top: 1px dashed #000; margin: 15px 0; }
-            .flex { display: flex; justify-content: space-between; }
+            .flex { display: flex; justify-content: space-between; font-size: 14px; }
             .bold { font-weight: bold; }
-            .tag { background: #000; color: #fff; padding: 2px 6px; font-size: 10px; }
+            .item-row { font-size: 12px; color: #444; margin-bottom: 3px; }
+            .settle-row { background: #f9f9f9; padding: 8px; margin-bottom: 5px; font-size: 13px; border-radius: 4px; border: 1px solid #eee; }
         </style>
     </head>
     <body>
         <div class="receipt">
-            <div class="center">
-                <span class="tag">PREMIUM SETTLEMENT CARD</span>
-                <h2 style="margin:10px 0 5px;">GUEST CHECK</h2>
-                <p style="font-size:12px;">Date: ${new Date().toLocaleDateString()}<br>Ref: #REST-${Math.floor(Math.random()*9000)}</p>
-            </div>
+            <center>
+                <h2 style="margin:0;">GUEST CHECK</h2>
+                <small>Date: ${new Date().toLocaleDateString()}</small>
+            </center>
             
             <div class="divider"></div>
-            <div class="flex"><span>Subtotal:</span> <span>${currency}${bill.toFixed(2)}</span></div>
-            <div class="flex"><span>Tax:</span> <span>${currency}${tax.toFixed(2)}</span></div>
-            <div class="flex"><span>Tip:</span> <span>${currency}${tip.toFixed(2)}</span></div>
-            <div class="flex bold" style="font-size:1.2rem;"><span>TOTAL:</span> <span>${currency}${total.toFixed(2)}</span></div>
+            <div class="bold" style="font-size:12px; margin-bottom:10px;">ITEMIZED BREAKDOWN:</div>
+            ${restItems.map(item => `
+                <div class="item-row flex">
+                    <span>${item.name} (${item.assignee})</span>
+                    <span>${currency}${item.price.toFixed(2)}</span>
+                </div>
+            `).join('')}
             
             <div class="divider"></div>
-            <div class="center bold">SETTLEMENT PER PERSON</div>
-            <div class="center" style="font-size:14px; margin-bottom:10px;">Cost Each: ${currency}${share.toFixed(2)}</div>
-            ${checklistHtml || "<div class='center'>ALL SETTLED!</div>"}
+            <div class="flex"><span>Subtotal:</span> <span>${currency}${subtotal.toFixed(2)}</span></div>
+            <div class="flex"><span>Tax/Tip/Fees:</span> <span>${currency}${(tax + tip + fees).toFixed(2)}</span></div>
+            <div class="flex bold" style="font-size:18px;"><span>TOTAL:</span> <span>${currency}${totalBill.toFixed(2)}</span></div>
             
             <div class="divider"></div>
-            <div style="font-size:11px;">
-                <p class="bold">SHAREABLE SNIPPETS:</p>
-                ${shareMessages}
-            </div>
+            <center><div class="bold" style="font-size:14px; margin-bottom:10px;">WHO PAYS WHOM</div></center>
+            ${settlementSteps.length > 0 ? settlementSteps.map(s => `
+                <div class="settle-row">
+                    <b>${s.from}</b> pays <b>${s.to}</b> <br>
+                    <span style="font-size:16px; color:#2563eb;">→ ${currency}${s.amount.toFixed(2)}</span>
+                </div>
+            `).join('') : '<center>All balances are settled!</center>'}
             
             <div class="divider"></div>
-            <div class="center" style="font-size:10px;">
+            <center style="font-size:10px; color:#888;">
                 GENERATED BY EXPENSESSPLIT.COM<br>
-                *** THANK YOU ***
-            </div>
+                NO MORE BILL HEADACHES.
+            </center>
         </div>
     </body>
     </html>`;
@@ -1662,7 +1687,6 @@ function generatePremiumRestaurantReceipt() {
     frameDoc.close();
     setTimeout(() => { frame.contentWindow.focus(); frame.contentWindow.print(); }, 500);
 }
-
 </script>
 
 <script>
