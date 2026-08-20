@@ -325,7 +325,7 @@ This <strong>restaurant bill split calculator per person</strong> is perfect for
     <!-- PREMIUM BOX (Surgical Placement) -->
     <div id="premium-summary-section" style="margin-top: 25px; display:none; border: 2px solid #3b82f6; border-radius:15px; padding:20px; background:#0f172a;">
         <div id="summary-lock-screen" style="text-align: center;">
-            <h4 style="color:#94a3b8; margin-bottom:10px;">🧾 Generate Professional Receipt</h4>
+            <h4 style="color: #ffffff !important; margin-bottom: 10px;">🧾 Generate Professional Receipt</h4>
             <input type="text" id="unlock-code" placeholder="Enter Code" style="width:150px; padding:10px; margin-bottom:10px;">
             <button onclick="validateRestaurantPremium()" class="primary-btn" style="width:auto; padding:10px 20px;">Unlock Premium Receipt</button>
         </div>
@@ -1597,19 +1597,53 @@ function calculateRestaurant() {
     document.getElementById("premium-summary-section").style.display = "block";
 }
 
+function validateRestaurantPremium() {
+    const codeInput = document.getElementById("unlock-code").value.trim().toUpperCase();
+    
+    if (codeInput.startsWith("EXP")) {
+        const digits = codeInput.match(/\d/g); 
+        if (digits && digits.length >= 2) {
+            const last = parseInt(digits[digits.length - 1]);
+            const secondLast = parseInt(digits[digits.length - 2]);
+            
+            if (last + secondLast === 10) {
+                // Hide lock, show unlock
+                document.getElementById("summary-lock-screen").style.display = "none";
+                document.getElementById("summary-unlocked-content").style.display = "block";
+                console.log("Premium Unlocked Successfully");
+                return;
+            }
+        }
+    }
+    alert("Invalid Premium Code. Please check your email.");
+}
+
 
 function generatePremiumRestaurantReceipt() {
-    const currency = "$";
-    const subtotal = restItems.reduce((sum, item) => sum + item.price, 0);
-    const tax = subtotal * (parseFloat(document.getElementById("tax").value)/100);
-    const tip = subtotal * (parseFloat(document.getElementById("tip").value)/100);
-    const fees = parseFloat(document.getElementById("fees").value) || 0;
-    const totalBill = subtotal + tax + tip + fees;
+    // 1. Check if printer exists
+    const frame = document.getElementById('printFrame');
+    if (!frame) {
+        alert("Error: Print engine missing from page. Please refresh.");
+        return;
+    }
 
-    // --- WHO PAYS WHOM ALGORITHM ---
+    // 2. Gather Data
+    const currency = document.getElementById("currency") ? document.getElementById("currency").value : "$";
+    const subtotal = restItems.reduce((sum, item) => sum + item.price, 0);
+    const taxVal = subtotal * (parseFloat(document.getElementById("tax").value) / 100);
+    const tipVal = subtotal * (parseFloat(document.getElementById("tip").value) / 100);
+    const feesVal = parseFloat(document.getElementById("fees").value) || 0;
+    const totalBill = subtotal + taxVal + tipVal + feesVal;
+
+    if (totalBill === 0) {
+        alert("Please calculate the bill first!");
+        return;
+    }
+
+    // 3. SETTLEMENT MATRIX (Who Pays Whom)
     let balances = restMembers.map(m => ({
         name: m.name,
-        balance: m.paid - m.share // Positive = gets back money, Negative = owes
+        balance: m.paid - m.share 
     }));
 
     let debtors = balances.filter(b => b.balance < -0.01).sort((a,b) => a.balance - b.balance);
@@ -1619,7 +1653,7 @@ function generatePremiumRestaurantReceipt() {
     debtors.forEach(d => {
         creditors.forEach(c => {
             let amount = Math.min(Math.abs(d.balance), c.balance);
-            if (amount > 0) {
+            if (amount > 0.01) {
                 settlementSteps.push({ from: d.name, to: c.name, amount: amount });
                 d.balance += amount;
                 c.balance -= amount;
@@ -1627,65 +1661,62 @@ function generatePremiumRestaurantReceipt() {
         });
     });
 
+    // 4. GENERATE RECEIPT HTML
     const receiptHTML = `
     <html>
     <head>
         <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
         <style>
-            body { background: #f1f5f9; padding: 20px; font-family: 'Courier Prime', monospace; }
-            .receipt { background: #fff; width: 380px; margin: auto; padding: 30px; box-shadow: 0 0 20px rgba(0,0,0,0.1); border-top: 8px solid #3b82f6; }
+            body { background: #f1f5f9; padding: 20px; font-family: 'Courier Prime', monospace; font-size: 14px; }
+            .receipt { background: #fff; width: 380px; margin: auto; padding: 30px; border-top: 8px solid #3b82f6; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
             .divider { border-top: 1px dashed #000; margin: 15px 0; }
-            .flex { display: flex; justify-content: space-between; font-size: 14px; }
+            .flex { display: flex; justify-content: space-between; }
             .bold { font-weight: bold; }
-            .item-row { font-size: 12px; color: #444; margin-bottom: 3px; }
-            .settle-row { background: #f9f9f9; padding: 8px; margin-bottom: 5px; font-size: 13px; border-radius: 4px; border: 1px solid #eee; }
+            .settle-row { background: #f9f9f9; padding: 10px; margin-bottom: 8px; border-radius: 6px; border: 1px solid #eee; }
         </style>
     </head>
     <body>
         <div class="receipt">
             <center>
                 <h2 style="margin:0;">GUEST CHECK</h2>
-                <small>Date: ${new Date().toLocaleDateString()}</small>
+                <p>Date: ${new Date().toLocaleDateString()}</p>
             </center>
             
             <div class="divider"></div>
-            <div class="bold" style="font-size:12px; margin-bottom:10px;">ITEMIZED BREAKDOWN:</div>
+            <div class="bold" style="margin-bottom:10px;">ITEMIZED ORDERS:</div>
             ${restItems.map(item => `
-                <div class="item-row flex">
-                    <span>${item.name} (${item.assignee})</span>
-                    <span>${currency}${item.price.toFixed(2)}</span>
-                </div>
+                <div class="flex" style="font-size:12px;"><span>${item.name} (${item.assignee})</span> <span>${currency}${item.price.toFixed(2)}</span></div>
             `).join('')}
             
             <div class="divider"></div>
             <div class="flex"><span>Subtotal:</span> <span>${currency}${subtotal.toFixed(2)}</span></div>
-            <div class="flex"><span>Tax/Tip/Fees:</span> <span>${currency}${(tax + tip + fees).toFixed(2)}</span></div>
-            <div class="flex bold" style="font-size:18px;"><span>TOTAL:</span> <span>${currency}${totalBill.toFixed(2)}</span></div>
+            <div class="flex"><span>Tax/Tip/Fees:</span> <span>${currency}${(taxVal + tipVal + feesVal).toFixed(2)}</span></div>
+            <div class="flex bold" style="font-size:1.2rem;"><span>TOTAL:</span> <span>${currency}${totalBill.toFixed(2)}</span></div>
             
             <div class="divider"></div>
-            <center><div class="bold" style="font-size:14px; margin-bottom:10px;">WHO PAYS WHOM</div></center>
+            <center><div class="bold" style="margin-bottom:10px;">SETTLEMENT MATRIX</div></center>
             ${settlementSteps.length > 0 ? settlementSteps.map(s => `
                 <div class="settle-row">
-                    <b>${s.from}</b> pays <b>${s.to}</b> <br>
-                    <span style="font-size:16px; color:#2563eb;">→ ${currency}${s.amount.toFixed(2)}</span>
+                    <b>${s.from}</b> pays <b>${s.to}</b><br>
+                    <span style="font-size:18px; color:#2563eb;">→ ${currency}${s.amount.toFixed(2)}</span>
                 </div>
-            `).join('') : '<center>All balances are settled!</center>'}
+            `).join('') : '<center>Balances are already even!</center>'}
             
             <div class="divider"></div>
-            <center style="font-size:10px; color:#888;">
-                GENERATED BY EXPENSESSPLIT.COM<br>
-                NO MORE BILL HEADACHES.
-            </center>
+            <center style="font-size:10px; color:#888;">GENERATED BY EXPENSESSPLIT.COM<br>*** THANK YOU ***</center>
         </div>
     </body>
     </html>`;
 
-    const frame = document.getElementById('printFrame');
     const frameDoc = frame.contentWindow.document;
     frameDoc.open();
     frameDoc.write(receiptHTML);
     frameDoc.close();
-    setTimeout(() => { frame.contentWindow.focus(); frame.contentWindow.print(); }, 500);
+    
+    setTimeout(() => { 
+        frame.contentWindow.focus(); 
+        frame.contentWindow.print(); 
+    }, 500);
 }
 </script>
 
