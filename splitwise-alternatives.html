@@ -373,9 +373,40 @@ Here are the best free alternatives to Splitwise — including fast online calcu
     /* --- TOOL UI POLISH --- */
 .calculator { max-width: 550px !important; margin: 0 auto; }
 
-.form-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 20px; }
-.form-row .form-group { flex: 1; margin-bottom: 0; }
-.form-row button { width: auto; margin-top: 0; height: 48px; white-space: nowrap; }
+/* Surgical Fix: Force Add Friends Row to be 70/30 split */
+.form-row { 
+    display: flex !important; 
+    gap: 12px !important; 
+    align-items: center !important; 
+    width: 100%;
+}
+.form-row .form-group { 
+    flex: 3 !important; /* Takes 75% space */
+}
+.form-row .primary-btn { 
+    flex: 1 !important; /* Takes 25% space */
+    margin-top: 28px !important; /* Aligns with input label */
+    height: 48px;
+}
+
+/* Surgical Fix: Turn giant friend boxes into small chips */
+.friend-list { 
+    display: flex !important; 
+    flex-wrap: wrap !important; 
+    gap: 10px; 
+    padding: 0; 
+    list-style: none;
+    margin-top: 15px;
+}
+.friend-list li { 
+    background: #1e293b !important; 
+    border: 1px solid #334155 !important;
+    padding: 6px 14px !important; 
+    border-radius: 50px !important; /* Oval chip shape */
+    color: white !important;
+    font-size: 14px !important;
+    width: auto !important; /* Prevents full-width giant boxes */
+}
 
 /* Settlement & Result Styling */
 .settlement-card {
@@ -405,30 +436,33 @@ Here are the best free alternatives to Splitwise — including fast online calcu
 }
 
 /* --- PRINT / SUMMARY ENGINE (FIXES BLANK PAGE) --- */
-#premiumReport { display: none; } /* Hidden on web */
+/* Fix: Make Summary visible on screen after unlocking */
+#premiumReport { 
+    display: none; 
+    background: #1e293b; 
+    border: 1px solid #3b82f6; 
+    border-radius: 20px; 
+    margin-top: 30px; 
+    padding: 20px;
+}
 
+/* Fix: Robust Print Engine */
 @media print {
-    body * { visibility: hidden; }
-    #premiumReport, #premiumReport * { visibility: visible; }
-    #premiumReport {
-        position: absolute; left: 0; top: 0; width: 100%; display: block !important;
-        background: #ffffff !important; color: #000000 !important; padding: 0;
+    /* Hide EVERYTHING on the website */
+    body > * { display: none !important; }
+    
+    /* Show ONLY the report */
+    #premiumReport { 
+        display: block !important; 
+        position: absolute; 
+        top: 0; left: 0; width: 100%;
+        background: white !important;
+        color: black !important;
+        padding: 0 !important;
     }
-    .print-container { padding: 40px; font-family: 'Inter', sans-serif; }
-    .print-header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
-    .print-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 40px; }
-    .print-card { border: 1px solid #eee; padding: 20px; border-radius: 12px; text-align: center; }
-    .print-label { font-size: 11px; color: #666; text-transform: uppercase; font-weight: 800; }
-    .print-value { font-size: 22px; font-weight: 800; margin-top: 5px; }
-    
-    /* Visual Chart */
-    .print-chart-wrap { margin-bottom: 40px; }
-    .bar-container { height: 30px; background: #f0f0f0; border-radius: 15px; overflow: hidden; margin: 10px 0; display: flex; }
-    .bar-fill { height: 100%; background: #3b82f6; }
-    
-    .print-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    .print-table th { text-align: left; background: #f9f9f9; padding: 12px; font-size: 12px; border-bottom: 2px solid #eee; }
-    .print-table td { padding: 12px; border-bottom: 1px solid #eee; font-size: 14px; }
+    #premiumReport * { color: black !important; border-color: #eee !important; }
+    .print-card { background: #f9f9f9 !important; border: 1px solid #ddd !important; }
+    .bar-fill { background: #3b82f6 !important; -webkit-print-color-adjust: exact; }
 }
 </style>
 
@@ -503,19 +537,37 @@ function calculateSplit() {
 
 function unlockReport() {
     const key = document.getElementById('licenseKey').value.trim();
-    // Verification logic: Key must be 10 chars AND either in the valid list OR match your alphanumeric pattern
-    if (key.length === 10 && (validKeys.includes(key) || /^[A-Z0-9]{10}$/.test(key))) {
-        document.getElementById('upsellSection').classList.add('hidden');
+    
+    // Strict Validation: Checks if it's 10 chars, uppercase, and numbers (matching your generated file)
+    const isValidPattern = /^[A-Z0-9]{10}$/.test(key);
+    
+    if (isValidPattern) {
+        // 1. Hide the Upsell box
+        document.getElementById('upsellSection').style.display = 'none';
+        
+        // 2. SHOW the summary on the screen immediately
+        const report = document.getElementById('premiumReport');
+        report.style.display = 'block';
+        
+        // 3. Show the Print/Action buttons
         document.getElementById('premiumActions').classList.remove('hidden');
+        
+        // 4. Fill the data
         populateReport();
+        
+        // Scroll to the summary so user sees it
+        report.scrollIntoView({ behavior: 'smooth' });
     } else {
-        alert("Invalid license key.");
+        alert("Invalid License Key. Please enter a valid 10-character code.");
     }
 }
 
 function populateReport() {
     const d = window.lastCalc;
-    document.getElementById('reportDate').innerText = new Date().toLocaleDateString();
+    if (!d) return;
+
+    // Set Header Data
+    document.getElementById('reportDate').innerText = "Generated on: " + new Date().toLocaleDateString();
     document.getElementById('pTotal').innerText = `$${d.total.toFixed(2)}`;
     document.getElementById('pShare').innerText = `$${d.share.toFixed(2)}`;
     
@@ -525,17 +577,33 @@ function populateReport() {
     let topP = Object.keys(pMap).reduce((a, b) => pMap[a] > pMap[b] ? a : b);
     document.getElementById('pTopPayer').innerText = topP;
 
-    // Build Chart (Visual Elements)
+    // Build Visual Spending Bars (Sorted by highest cost)
     let chartHTML = "";
-    d.expenses.sort((a,b) => b.amt - a.amt).slice(0, 5).forEach(e => {
+    [...d.expenses].sort((a,b) => b.amt - a.amt).slice(0, 5).forEach(e => {
         let pct = (e.amt / d.total) * 100;
-        chartHTML += `<div style="margin-bottom:15px;"><div class="print-label">${e.desc} (${pct.toFixed(1)}%)</div>
-                      <div class="bar-container"><div class="bar-fill" style="width:${pct}%"></div></div></div>`;
+        chartHTML += `
+            <div style="margin-bottom:20px;">
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px; color:#94a3b8;">
+                    <span>${e.desc}</span>
+                    <span>${pct.toFixed(1)}%</span>
+                </div>
+                <div style="height:12px; background:#334155; border-radius:10px; overflow:hidden;">
+                    <div style="width:${pct}%; height:100%; background:#3b82f6;"></div>
+                </div>
+            </div>`;
     });
     document.getElementById('pChart').innerHTML = chartHTML;
 
-    // Table & Settlement
-    document.getElementById('pTableBody').innerHTML = d.expenses.map(e => `<tr><td>${e.desc}</td><td>${e.payer}</td><td>$${e.amt.toFixed(2)}</td></tr>`).join('');
+    // Fill the detailed table
+    document.getElementById('pTableBody').innerHTML = d.expenses.map(e => `
+        <tr>
+            <td style="padding:12px; border-bottom:1px solid #334155;">${e.desc}</td>
+            <td style="padding:12px; border-bottom:1px solid #334155;">${e.payer}</td>
+            <td style="padding:12px; border-bottom:1px solid #334155;">$${e.amt.toFixed(2)}</td>
+        </tr>
+    `).join('');
+
+    // Fill final transfers
     document.getElementById('pSettlement').innerHTML = d.trans.join('');
 }
 </script>
