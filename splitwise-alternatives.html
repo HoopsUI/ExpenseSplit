@@ -250,6 +250,257 @@ Here are the best free alternatives to Splitwise — including fast online calcu
 </div>
 </section>
 
+<!-- Insert this right after the </header> and before the Hero Section or within the Tool Section -->
+
+<!-- THE CALCULATOR TOOL SECTION -->
+<section id="tool" class="section">
+    <div class="container">
+        <h2 class="section-title">Free Group Expense Splitter</h2>
+        <p class="tool-subtitle">No apps, no accounts. Just add friends, expenses, and split.</p>
+
+        <div class="calculator">
+            <div class="calc-card">
+                
+                <!-- STEP 1: ADD PEOPLE -->
+                <h3>👤 1. Add People</h3>
+                <div class="people-input">
+                    <input type="text" id="personName" placeholder="e.g. Alex" onkeypress="if(event.key==='Enter') addPerson()">
+                    <button type="button" class="primary-btn" onclick="addPerson()" style="width:auto; padding: 10px 20px;">Add</button>
+                </div>
+                <ul id="peopleList" class="friend-list"></ul>
+
+                <!-- STEP 2: ADD EXPENSES -->
+                <h3>💸 2. Add Expenses</h3>
+                <div class="form-group">
+                    <label>What was it for?</label>
+                    <input type="text" id="expenseDesc" placeholder="e.g. Dinner, Airbnb, Gas">
+                </div>
+                <div class="form-group">
+                    <label>How much?</label>
+                    <input type="number" id="expenseAmount" placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label>Who paid?</label>
+                    <select id="whoPaid"></select>
+                </div>
+                <button type="button" class="primary-btn" onclick="addExpense()">Add Expense</button>
+                
+                <div id="expenseListContainer" style="margin-top:20px;">
+                    <ul id="expenseListDisplay"></ul>
+                    <div id="totalExpense" style="display:none;">Total: $0.00</div>
+                </div>
+
+                <!-- STEP 3: CALCULATE -->
+                <button type="button" id="calculateBtn" class="btn-advanced" style="margin-top:30px; display:none;" onclick="calculateSplit()">Calculate Who Owes Whom</button>
+
+                <!-- RESULTS SECTION -->
+                <div id="resultsBox" class="result-box hidden">
+                    <span class="summary-header">Settlement Plan:</span>
+                    <div id="settlementList"></div>
+                    
+                    <!-- PREMIUM FEATURE SECTION -->
+                    <div class="premium-upsell" id="premiumSection">
+                        <div class="upsell-box">
+                            <span class="badge">PREMIUM</span>
+                            <h4>Unlock Professional Expense Report</h4>
+                            <p>Get a detailed PDF-ready summary including: 
+                                <strong>Payer of the Trip</strong>, <strong>Individual breakdowns</strong>, and <strong>formatted shareable text.</strong></p>
+                            
+                            <div class="lock-overlay">
+                                <a href="YOUR_PAYHIP_LINK_HERE" target="_blank" class="primary-btn" style="background:#10b981 !important;">Unlock for $1.99</a>
+                            </div>
+
+                            <div class="license-input-wrap">
+                                <input type="text" id="licenseKey" placeholder="Enter License Key">
+                                <button onclick="unlockReport()">Unlock</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HIDDEN PREMIUM CONTENT -->
+                    <div id="premiumReport" class="hidden">
+                        <hr style="border: 1px dashed #334155; margin: 20px 0;">
+                        <h3 style="color:#10b981 !important;">💎 Premium Expense Summary</h3>
+                        <div id="premiumContentBody" class="pin-card" style="background:#1e293b; color:white; padding:20px;">
+                            <!-- Populated via JS -->
+                        </div>
+                        <button onclick="window.print()" class="secondary-btn" style="margin-top:10px;">🖨️ Download as PDF/Print</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ADDITIONAL CSS FOR THE TOOL (Append to style.css or keep in internal style) -->
+<style>
+    .friend-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .friend-list li { background: #334155; padding: 5px 12px; border-radius: 20px; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+    .remove-btn { cursor: pointer; color: #ef4444; font-weight: bold; }
+    
+    .upsell-box {
+        margin-top: 30px;
+        padding: 20px;
+        border: 2px solid #3b82f6;
+        border-radius: 15px;
+        background: rgba(59, 130, 246, 0.05);
+        position: relative;
+    }
+    .badge { background: #3b82f6; color: white; padding: 3px 8px; border-radius: 5px; font-size: 10px; font-weight: bold; }
+    
+    .license-input-wrap { display: flex; gap: 10px; margin-top: 15px; }
+    .license-input-wrap input { flex: 1; }
+    
+    .lock-overlay { margin: 15px 0; text-align: center; }
+</style>
+
+<!-- THE LOGIC (Append to script.js) -->
+<script>
+let people = [];
+let expenses = [];
+
+function addPerson() {
+    const nameInput = document.getElementById('personName');
+    const name = nameInput.value.trim();
+    if (name && !people.includes(name)) {
+        people.push(name);
+        updateUI();
+        nameInput.value = '';
+    }
+}
+
+function removePerson(name) {
+    people = people.filter(p => p !== name);
+    expenses = expenses.filter(e => e.payer !== name);
+    updateUI();
+}
+
+function updateUI() {
+    // Update Friends List
+    const list = document.getElementById('peopleList');
+    list.innerHTML = people.map(p => `<li>${p} <span class="remove-btn" onclick="removePerson('${p}')">×</span></li>`).join('');
+    
+    // Update Dropdown
+    const select = document.getElementById('whoPaid');
+    select.innerHTML = people.map(p => `<option value="${p}">${p}</option>`).join('');
+    
+    // Show/Hide Calculate Button
+    document.getElementById('calculateBtn').style.display = (expenses.length > 0) ? 'block' : 'none';
+}
+
+function addExpense() {
+    const desc = document.getElementById('expenseDesc').value;
+    const amount = parseFloat(document.getElementById('expenseAmount').value);
+    const payer = document.getElementById('whoPaid').value;
+
+    if (!desc || isNaN(amount) || !payer) return alert("Please fill all fields");
+
+    expenses.push({ desc, amount, payer });
+    
+    // Update display
+    const list = document.getElementById('expenseListDisplay');
+    const li = document.createElement('li');
+    li.className = "expense-entry";
+    li.innerHTML = `<span>${desc}</span> <strong>$${amount.toFixed(2)}</strong> (Paid by ${payer})`;
+    list.appendChild(li);
+
+    const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+    document.getElementById('totalExpense').style.display = 'block';
+    document.getElementById('totalExpense').innerText = `Total Expense: $${total.toFixed(2)}`;
+    
+    updateUI();
+    document.getElementById('expenseDesc').value = '';
+    document.getElementById('expenseAmount').value = '';
+}
+
+function calculateSplit() {
+    if (people.length < 2) return alert("Add at least 2 people");
+    
+    const totalSpent = expenses.reduce((sum, e) => sum + e.amount, 0);
+    const sharePerPerson = totalSpent / people.length;
+    
+    let balances = {};
+    people.forEach(p => balances[p] = -sharePerPerson);
+    expenses.forEach(e => balances[e.payer] += e.amount);
+
+    let debtors = [];
+    let creditors = [];
+
+    for (let p in balances) {
+        if (balances[p] < -0.01) debtors.push({ name: p, amt: Math.abs(balances[p]) });
+        else if (balances[p] > 0.01) creditors.push({ name: p, amt: balances[p] });
+    }
+
+    let transactions = [];
+    debtors.sort((a, b) => b.amt - a.amt);
+    creditors.sort((a, b) => b.amt - a.amt);
+
+    let i = 0, j = 0;
+    while (i < debtors.length && j < creditors.length) {
+        let payAmt = Math.min(debtors[i].amt, creditors[j].amt);
+        transactions.push(`${debtors[i].name} pays ${creditors[j].name} <strong>$${payAmt.toFixed(2)}</strong>`);
+        
+        debtors[i].amt -= payAmt;
+        creditors[j].amt -= payAmt;
+
+        if (debtors[i].amt < 0.01) i++;
+        if (creditors[j].amt < 0.01) j++;
+    }
+
+    const resBox = document.getElementById('resultsBox');
+    resBox.classList.remove('hidden');
+    document.getElementById('settlementList').innerHTML = transactions.map(t => `<div class="result-item">${t}</div>`).join('');
+    
+    // Store data for Premium Report
+    window.currentReport = { totalSpent, sharePerPerson, transactions, expenses, people };
+}
+
+function unlockReport() {
+    const key = document.getElementById('licenseKey').value;
+    // Replace '123' with your logic or a dynamic key check
+    if (key.length > 4) { 
+        document.getElementById('premiumSection').classList.add('hidden');
+        document.getElementById('premiumReport').classList.remove('hidden');
+        generatePremiumContent();
+    } else {
+        alert("Invalid License Key. Please purchase one to unlock.");
+    }
+}
+
+function generatePremiumContent() {
+    const data = window.currentReport;
+    const body = document.getElementById('premiumContentBody');
+    
+    // Find the person who spent the most
+    let spendingMap = {};
+    data.people.forEach(p => spendingMap[p] = 0);
+    data.expenses.forEach(e => spendingMap[e.payer] += e.amount);
+    let topSpender = Object.keys(spendingMap).reduce((a, b) => spendingMap[a] > spendingMap[b] ? a : b);
+
+    body.innerHTML = `
+        <div style="text-align:center; margin-bottom:15px;">
+            <div class="pin-label">🏆 Top Payer</div>
+            <div class="pin-value">${topSpender} ($${spendingMap[topSpender].toFixed(2)})</div>
+        </div>
+        <div class="pin-grid">
+            <div class="pin-card">
+                <div class="pin-label">Total Group Cost</div>
+                <div class="pin-value">$${data.totalSpent.toFixed(2)}</div>
+            </div>
+            <div class="pin-card">
+                <div class="pin-label">Individual Share</div>
+                <div class="pin-value">$${data.sharePerPerson.toFixed(2)}</div>
+            </div>
+        </div>
+        <div class="pin-label">Settlement Summary</div>
+        <ul style="margin-top:10px;">
+            ${data.transactions.map(t => `<li style="margin-bottom:5px;">${t}</li>`).join('')}
+        </ul>
+    `;
+}
+</script>
+
 <!-- MAIN CONTENT -->
 <section class="section"data-aos="fade-up">
 <div class="container seo-content">
