@@ -443,12 +443,12 @@ Here are the best free alternatives to Splitwise — including fast online calcu
 
 /* Surgical Fix: Force Print Engine to target the Premium Summary */
 @media print {
-    /* Hide everything on the page */
-    body > * { 
+    /* 1. Hide everything under body EXCEPT the report */
+    body > *:not(#premiumReport) { 
         display: none !important; 
     }
     
-    /* Reveal ONLY the Premium Report */
+    /* 2. Force the Report to be visible and take up the whole page */
     #premiumReport { 
         display: block !important; 
         position: absolute !important;
@@ -456,16 +456,21 @@ Here are the best free alternatives to Splitwise — including fast online calcu
         left: 0 !important;
         width: 100% !important;
         margin: 0 !important;
-        padding: 0 !important;
+        padding: 40px !important;
         background: white !important;
         color: black !important;
     }
 
-    /* Force the browser to print colors and backgrounds (Fixed Blank Issue) */
+    /* 3. Force background colors and charts to show in the PDF */
     * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
         color-adjust: exact !important;
+    }
+
+    /* 4. Ensure report text and labels are visible and black */
+    #premiumReport, #premiumReport .stat-value, #premiumReport .section-heading, #premiumReport .stat-label {
+        color: #000000 !important;
     }
 }
 </style>
@@ -579,13 +584,22 @@ function populateReport() {
     }).join('');
 
     // 2. Itemized Table
-    document.getElementById('pTableBody').innerHTML = d.expenses.map(e => `
+    document.getElementById('pTableBody').innerHTML = `
+        <thead>
+            <tr style="text-align:left; background:#f4f4f4;">
+                <th style="padding:12px; border-bottom:2px solid #ddd;">Item</th>
+                <th style="padding:12px; border-bottom:2px solid #ddd;">Paid By</th>
+                <th style="padding:12px; border-bottom:2px solid #ddd; text-align:right;">Amount</th>
+            </tr>
+        </thead>
+        <tbody>` + 
+        d.expenses.map(e => `
         <tr>
             <td style="padding:12px; border-bottom:1px solid #eee;">${e.desc}</td>
             <td style="padding:12px; border-bottom:1px solid #eee;">${e.payer}</td>
             <td style="padding:12px; border-bottom:1px solid #eee; text-align:right;">$${e.amt.toFixed(2)}</td>
-        </tr>`).join('');
-
+        </tr>`).join('') + `</tbody>`;
+ 
     // 3. Settlement (The actual math)
     document.getElementById('pSettlement').innerHTML = d.trans.map(t => `<div style="padding:10px; border-bottom:1px dashed #ddd; font-weight:600;">${t}</div>`).join('');
 
@@ -1606,24 +1620,35 @@ text-align:left;
 }
 </style>
  
-<style>
- /* Ensure text in the calculator card is always high-contrast white */
-.calc-card label, .calc-card p, .calc-card h2 {
+
+ <style>
+/* Ensure labels and titles in the calculator are high-contrast white */
+.calc-card label, .calc-card p, .calc-card h2, .tool-subtitle {
     color: #ffffff !important;
 }
 
-/* Fix for the Expense List items being hard to read */
+/* Fix for the Expense List items */
 .expense-entry {
     color: #ffffff !important;
-    background: rgba(255,255,255,0.05);
-    padding: 8px;
-    border-radius: 6px;
-    margin-bottom: 5px;
+    background: rgba(255,255,255,0.08) !important;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Ensure the Premium Report text is always deep black for printing */
-#premiumReport, #premiumReport .stat-value, #premiumReport .section-heading {
-    color: #000000 !important;
+/* Ensure the Total Expense display is bright and visible */
+#totalExpenseDisplay {
+    display: block;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    color: #10b981 !important; /* Bright Green */
+    padding: 15px;
+    background: rgba(16,185,129,0.15) !important;
+    border: 1px solid #10b981;
+    border-radius: 12px;
+    margin: 15px 0;
 }
 </style>
 
