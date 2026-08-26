@@ -315,7 +315,7 @@ Here are the best free alternatives to Splitwise — including fast online calcu
 
                     <!-- PREMIUM ACTION -->
                     <div id="premiumActions" class="hidden" style="text-align:center;">
-                        <button onclick="prepareAndPrint()" class="primary-btn" style="background:#3b82f6 !important;">🖨️ Download Professional PDF</button>
+                        <button onclick="window.print()" class="primary-btn" style="background:#3b82f6 !important; width:100%; display:block; margin-top:20px;">🖨️ Download Professional PDF</button>
                     </div>
                 </div>
             </div>
@@ -443,50 +443,42 @@ Here are the best free alternatives to Splitwise — including fast online calcu
 
 /* Surgical Fix: Force Print Engine to target the Premium Summary */
 @media print {
-    /* 1. Kill the AOS library's invisibility settings */
-    [data-aos] {
-        opacity: 1 !important;
-        transform: translate(0) scale(1) !important;
-        transition: none !important;
-        visibility: visible !important;
-    }
-
-    /* 2. Hide every single thing on the website */
-    body > * {
+    /* 1. Hide everything except the report */
+    body > *:not(#premiumReport) {
         display: none !important;
-    }
-
-    /* 3. Force the Report to exist and be visible */
-    #premiumReport {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: absolute !important;
-        left: 0 !important;
-        top: 0 !important;
-        width: 100% !important;
-        background: white !important;
-    }
-
-    /* 4. Ensure the PDF engine renders colors */
-    * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-    }
-}
-
- /* This kills the AOS 'invisible' state specifically during print */
-@media print {
-    .aos-init, [data-aos], [data-aos^=fade][data-aos^=fade] {
+     .aos-init, [data-aos], [data-aos^=fade][data-aos^=fade] {
         opacity: 1 !important;
         visibility: visible !important;
         transform: none !important;
         transition: none !important;
     }
-    
-    #premiumReport {
+
+    /* 2. FORCE the report and every single thing inside it to be visible */
+    #premiumReport *, 
+    [data-aos], 
+    .aos-init {
         display: block !important;
         opacity: 1 !important;
+        visibility: visible !important;
+        color: #000000 !important; /* Force text to black */
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* 3. Setup the page layout */
+    #premiumReport {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        padding: 20px !important;
+    }
+
+    /* 4. Force colors (for the blue progress bars and green totals) */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 }
 </style>
@@ -563,14 +555,22 @@ function calculateSplit() {
 function unlockReport() {
     const key = document.getElementById('licenseKey').value.trim();
     if (/^[A-Z0-9]{10}$/.test(key)) {
+        // 1. Hide the paid prompt
         document.getElementById('upsellSection').style.display = 'none';
         
-        // SURGICAL FIX: Hide the free settlement list to keep focus on the Premium Report
-        document.querySelector('.settlement-card').style.display = 'none'; 
-        
+        // 2. Hide the basic results list
+        if(document.querySelector('.settlement-card')) {
+            document.querySelector('.settlement-card').style.display = 'none';
+        }
+
+        // 3. Show the PDF button
         document.getElementById('premiumActions').classList.remove('hidden');
+
+        // 4. Fill the report with data and FORCE it to display in the background
         populateReport(); 
-        alert("Premium Report Generated! Click 'Download Professional PDF' to save.");
+        document.getElementById('premiumReport').style.display = 'block';
+        
+        alert("Premium Report Generated! Click the button to download.");
     } else {
         alert("Invalid License Key.");
     }
