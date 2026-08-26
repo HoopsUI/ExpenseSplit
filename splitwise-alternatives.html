@@ -315,7 +315,7 @@ Here are the best free alternatives to Splitwise — including fast online calcu
 
                     <!-- PREMIUM ACTION -->
                     <div id="premiumActions" class="hidden" style="text-align:center;">
-                        <button onclick="window.print()" class="primary-btn" style="background:#3b82f6 !important;">🖨️ Download Professional PDF</button>
+                        <button onclick="prepareAndPrint()" class="primary-btn" style="background:#3b82f6 !important;">🖨️ Download Professional PDF</button>
                     </div>
                 </div>
             </div>
@@ -474,6 +474,21 @@ Here are the best free alternatives to Splitwise — including fast online calcu
         print-color-adjust: exact !important;
     }
 }
+
+ /* This kills the AOS 'invisible' state specifically during print */
+@media print {
+    .aos-init, [data-aos], [data-aos^=fade][data-aos^=fade] {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    #premiumReport {
+        display: block !important;
+        opacity: 1 !important;
+    }
+}
 </style>
 
 <!-- THE LOGIC (Append to script.js) -->
@@ -620,6 +635,29 @@ function populateReport() {
             <strong>PRO TIP:</strong> Debt settled within 24h leads to better group harmony. Use the settlement plan above to clear balances.
         </div>
     `;
+ function prepareAndPrint() {
+    const report = document.getElementById('premiumReport');
+    
+    // 1. Physically remove all AOS animation attributes that lock opacity to 0
+    const aosElements = report.querySelectorAll('[data-aos]');
+    aosElements.forEach(el => {
+        el.removeAttribute('data-aos');
+        el.style.opacity = "1";
+        el.style.visibility = "visible";
+        el.style.transform = "none";
+    });
+
+    // 2. Force the report container to be visible in the main DOM
+    report.style.display = 'block';
+    report.style.opacity = '1';
+    report.style.visibility = 'visible';
+
+    // 3. Tiny delay (150ms) to allow the browser to render the text 
+    // before the print freeze happens.
+    setTimeout(() => {
+        window.print();
+    }, 150);
+}
  // SURGICAL FIX: Force the browser to render the report before printing
     document.getElementById('premiumReport').style.display = 'block';
     document.getElementById('premiumReport').style.opacity = '1';
