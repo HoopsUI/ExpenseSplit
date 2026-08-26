@@ -444,7 +444,25 @@ Here are the best free alternatives to Splitwise — including fast online calcu
     display: inline-block; margin-bottom: 15px; 
 }
 
-/* --- PRINT / SUMMARY ENGINE (FIXES BLANK PAGE) --- */
+/* Surgical Fix: Premium Unlock Box Visibility */
+.premium-upsell h3, 
+.premium-upsell p {
+    color: #ffffff !important; /* Force white text */
+    opacity: 1 !important;
+}
+
+.premium-upsell input {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid #3b82f6 !important;
+    color: #ffffff !important;
+}
+
+.premium-upsell .secondary-btn {
+    background: #ffffff !important; /* High contrast button */
+    color: #1e293b !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+}
 /* --- PREMIUM SUMMARY UI --- */
 #premiumReport {
     display: none;
@@ -476,20 +494,30 @@ Here are the best free alternatives to Splitwise — including fast online calcu
 .snippet-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 12px; font-size: 13px; line-height: 1.5; color: #334155; position: relative; }
 .snippet-name { font-weight: 800; color: #2563eb; margin-bottom: 5px; display: block; font-size: 11px; text-transform: uppercase; }
 
-/* PRINT OVERRIDE - FORCES FULL A4 PAGE */
+/* Surgical Fix: Force Print Engine to target the Premium Summary */
 @media print {
-    body * { display: none !important; }
+    /* Hide the entire website */
+    body > * { 
+        display: none !important; 
+    }
+    
+    /* Reveal ONLY the Premium Report */
     #premiumReport { 
         display: block !important; 
-        width: 210mm; /* A4 Width */
-        min-height: 297mm; /* A4 Height */
-        margin: 0 !important;
-        padding: 0 !important;
-        position: static;
-        visibility: visible !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        padding: 40px !important;
+        background: white !important;
+        color: black !important;
     }
-    #premiumReport * { visibility: visible !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    .report-inner { padding: 20mm; }
+
+    /* Ensure colors appear in PDF */
+    #premiumReport * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
 }
 </style>
 
@@ -564,28 +592,15 @@ function calculateSplit() {
 
 function unlockReport() {
     const key = document.getElementById('licenseKey').value.trim();
-    
-    // Strict Validation: Checks if it's 10 chars, uppercase, and numbers (matching your generated file)
-    const isValidPattern = /^[A-Z0-9]{10}$/.test(key);
-    
-    if (isValidPattern) {
-        // 1. Hide the Upsell box
+    // Validate key pattern (10 chars, alphanumeric)
+    if (/^[A-Z0-9]{10}$/.test(key)) {
         document.getElementById('upsellSection').style.display = 'none';
-        
-        // 2. SHOW the summary on the screen immediately
-        const report = document.getElementById('premiumReport');
-        report.style.display = 'block';
-        
-        // 3. Show the Print/Action buttons
+        // Show only the Download Button, not the whole report
         document.getElementById('premiumActions').classList.remove('hidden');
-        
-        // 4. Fill the data
-        populateReport();
-        
-        // Scroll to the summary so user sees it
-        report.scrollIntoView({ behavior: 'smooth' });
+        populateReport(); 
+        alert("Premium Report Generated! Click 'Download Professional PDF' to save.");
     } else {
-        alert("Invalid License Key. Please enter a valid 10-character code.");
+        alert("Invalid License Key.");
     }
 }
 
@@ -593,55 +608,52 @@ function populateReport() {
     const d = window.lastCalc;
     if (!d) return;
 
-    // 1. Meta Info
-    document.getElementById('reportDate').innerText = `DATE: ${new Date().toLocaleDateString()} | REF: #GRP-${Math.floor(Math.random()*9000)+1000}`;
+    // Set Data
+    document.getElementById('reportDate').innerText = `DATE: ${new Date().toLocaleDateString()} | REF: #GRP-${Math.floor(1000 + Math.random() * 9000)}`;
     document.getElementById('pTotal').innerText = `$${d.total.toFixed(2)}`;
     document.getElementById('pShare').innerText = `$${d.share.toFixed(2)}`;
 
-    // 2. Individual Contributions (Filling vertical space)
-    let contribMap = {};
-    d.people.forEach(p => contribMap[p] = 0);
-    d.expenses.forEach(e => contribMap[e.payer] += e.amt);
+    // 1. Contributions Chart
+    let pMap = {}; d.people.forEach(p => pMap[p] = 0);
+    d.expenses.forEach(e => pMap[e.payer] += e.amt);
     
-    let contribHTML = "";
-    d.people.forEach(p => {
-        let pct = (contribMap[p] / d.total) * 100 || 0;
-        contribHTML += `
-            <div class="contribution-row">
-                <div class="row-label"><span>${p}</span> <span>$${contribMap[p].toFixed(2)} (${pct.toFixed(0)}%)</span></div>
-                <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>
-            </div>`;
-    });
-    document.getElementById('pChart').innerHTML = contribHTML;
+    document.getElementById('pChart').innerHTML = d.people.map(p => {
+        let pct = (pMap[p] / d.total) * 100 || 0;
+        return `<div style="margin-bottom:15px;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:700; margin-bottom:5px;">
+                <span>${p}</span> <span>$${pMap[p].toFixed(2)} (${pct.toFixed(0)}%)</span>
+            </div>
+            <div style="height:10px; background:#f0f0f0; border-radius:5px;"><div style="width:${pct}%; height:100%; background:#2563eb; border-radius:5px;"></div></div>
+        </div>`;
+    }).join('');
 
-    // 3. Settlement Table (The Receipt Part)
+    // 2. Itemized Table
     document.getElementById('pTableBody').innerHTML = d.expenses.map(e => `
         <tr>
             <td style="padding:12px; border-bottom:1px solid #eee;">${e.desc}</td>
             <td style="padding:12px; border-bottom:1px solid #eee;">${e.payer}</td>
             <td style="padding:12px; border-bottom:1px solid #eee; text-align:right;">$${e.amt.toFixed(2)}</td>
-        </tr>
-    `).join('');
+        </tr>`).join('');
 
-    // 4. Shareable Snippets (High-Value Feature)
-    // We need to figure out who owes who for the snippets
-    let debtors = [];
-    d.people.forEach(p => {
-        let bal = contribMap[p] - d.share;
-        if (bal < -0.01) debtors.push({ name: p, owes: Math.abs(bal) });
-    });
+    // 3. Settlement (The actual math)
+    document.getElementById('pSettlement').innerHTML = d.trans.map(t => `<div style="padding:10px; border-bottom:1px dashed #ddd; font-weight:600;">${t}</div>`).join('');
 
-    let snippetsHTML = "";
-    debtors.forEach(deb => {
-        snippetsHTML += `
-            <div class="snippet-box">
-                <span class="snippet-name">Text for ${deb.name}</span>
-                "Hey ${deb.name}, here's the breakdown for our group expenses. Total was $${d.total.toFixed(2)} and share per person is $${d.share.toFixed(2)}. Since you paid $${contribMap[deb.name].toFixed(2)}, you owe a total of <strong>$${deb.owes.toFixed(2)}</strong>. Thanks!"
-            </div>`;
-    });
-    // Add these to a new div in your HTML named 'pSnippets'
-    document.getElementById('pSettlement').innerHTML = d.trans.join('<br>');
-    document.getElementById('pSnippets').innerHTML = snippetsHTML;
+    // 4. VALUE ADD: Strategic Analysis (Calculates the highest category)
+    let highest = d.expenses.reduce((prev, current) => (prev.amt > current.amt) ? prev : current);
+    let savingTip = (highest.amt * 0.15).toFixed(2);
+    
+    document.getElementById('pSnippets').innerHTML = `
+        <div style="background:#eff6ff; border-left:4px solid #2563eb; padding:20px; border-radius:8px;">
+            <h4 style="margin:0 0 10px 0; color:#1e40af; text-transform:uppercase; font-size:12px;">Strategic Insight</h4>
+            <p style="margin:0; font-size:14px; color:#1e3a8a; line-height:1.5;">
+                Highest group expense: <strong>${highest.desc}</strong> ($${highest.amt.toFixed(2)}). 
+                By optimizing this category for future trips, the group could have reduced the total outlay by approx. <strong>$${savingTip}</strong>.
+            </p>
+        </div>
+        <div style="margin-top:20px; font-size:12px; color:#666;">
+            <strong>PRO TIP:</strong> Debt settled within 24h leads to better group harmony. Use the settlement plan above to clear balances.
+        </div>
+    `;
 }
 </script>
 
