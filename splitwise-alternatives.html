@@ -443,33 +443,36 @@ Here are the best free alternatives to Splitwise — including fast online calcu
 
 /* Surgical Fix: Force Print Engine to target the Premium Summary */
 @media print {
-    /* 1. Hide everything under body EXCEPT the report */
-    body > *:not(#premiumReport) { 
+    /* 1. Hide everything on the page */
+    body > * { 
         display: none !important; 
     }
     
-    /* 2. Force the Report to be visible and take up the whole page */
-    #premiumReport { 
+    /* 2. FORCE the report to be the only thing that exists */
+    #premiumReport, #premiumReport * { 
         display: block !important; 
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 40px !important;
-        background: white !important;
-        color: black !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
-    /* 3. Force background colors and charts to show in the PDF */
+    #premiumReport {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        background: white !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* 3. Force PDF engine to render colors/charts */
     * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        color-adjust: exact !important;
     }
 
-    /* 4. Ensure report text and labels are visible and black */
-    #premiumReport, #premiumReport .stat-value, #premiumReport .section-heading, #premiumReport .stat-label {
+    /* 4. Contrast: Ensure all text in the PDF is pure black */
+    #premiumReport h1, #premiumReport div, #premiumReport span, #premiumReport td, #premiumReport th {
         color: #000000 !important;
     }
 }
@@ -1623,32 +1626,21 @@ text-align:left;
 
  <style>
 /* Ensure labels and titles in the calculator are high-contrast white */
-.calc-card label, .calc-card p, .calc-card h2, .tool-subtitle {
+.calc-card label, 
+.calc-card .tool-subtitle, 
+.calc-card h2, 
+.expense-entry span {
     color: #ffffff !important;
 }
 
-/* Fix for the Expense List items */
-.expense-entry {
-    color: #ffffff !important;
-    background: rgba(255,255,255,0.08) !important;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 6px;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Ensure the Total Expense display is bright and visible */
 #totalExpenseDisplay {
-    display: block;
-    text-align: center;
-    font-size: 22px;
-    font-weight: 800;
-    color: #10b981 !important; /* Bright Green */
-    padding: 15px;
-    background: rgba(16,185,129,0.15) !important;
-    border: 1px solid #10b981;
-    border-radius: 12px;
-    margin: 15px 0;
+    color: #10b981 !important; /* Force green total to be bright */
+    background: rgba(16,185,129,0.1) !important;
+}
+
+.friend-list li {
+    color: #ffffff !important;
+    border-color: #475569 !important;
 }
 </style>
 
@@ -1682,91 +1674,55 @@ question.classList.toggle('active');
 
 <script src="script.js"></script>
 
-  <!-- STICKY CTA -->
-<div id="stickyCTA" style="
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:#007BFF;
-color:#fff;
-text-align:center;
-padding:10px;
-z-index:999;
-">
-  <a href="/" style="color:#fff;font-weight:600;text-decoration:none;">
-    💸 Split Expenses Instantly →
-  </a>
+ <!-- STICKY CTA -->
+<div id="stickyCTA" style="position:fixed; bottom:0; left:0; width:100%; background:#007BFF; color:#fff; text-align:center; padding:10px; z-index:999;">
+  <a href="/" style="color:#fff;font-weight:600;text-decoration:none;">💸 Split Expenses Instantly →</a>
 </div>
 
 <script>
 const stickyCTA = document.getElementById("stickyCTA");
-const footer = document.getElementById("footer");
-
+const footer = document.querySelector("footer");
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      stickyCTA.classList.add("hide"); // hide when footer visible
-    } else {
-      stickyCTA.classList.remove("hide"); // show otherwise
-    }
+    if (entry.isIntersecting) stickyCTA.style.display = "none";
+    else stickyCTA.style.display = "block";
   });
 }, { threshold: 0.1 });
-
 if (footer) observer.observe(footer);
 </script>
 
-<!-- THE HIDDEN PRINT REPORT (Populated via JS) -->
-<div id="premiumReport">
+<!-- THE HIDDEN PRINT REPORT -->
+<div id="premiumReport" style="display:none;">
     <div class="report-inner">
-        <!-- HEADER -->
         <div class="report-header">
             <span style="font-size:10px; font-weight:800; color:#888; letter-spacing:3px;">PREMIUM SETTLEMENT CARD</span>
-            <h1>GROUP CHECK</h1>
-            <div class="report-meta" id="reportDate"></div>
+            <h1 style="color:#000 !important;">GROUP CHECK</h1>
+            <div class="report-meta" id="reportDate" style="color:#666 !important;"></div>
         </div>
-
-        <!-- STATS -->
         <div class="stat-grid">
-            <div class="stat-card">
-                <div class="stat-label">Total Outlay</div>
-                <div class="stat-value" id="pTotal"></div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Cost Per Person</div>
-                <div class="stat-value" id="pShare"></div>
-            </div>
+            <div class="stat-card"><div class="stat-label">Total Outlay</div><div class="stat-value" id="pTotal" style="color:#000 !important;"></div></div>
+            <div class="stat-card"><div class="stat-label">Cost Per Person</div><div class="stat-value" id="pShare" style="color:#000 !important;"></div></div>
         </div>
-
-        <!-- CHART -->
         <div class="report-section">
-            <div class="section-heading">📊 Individual Contributions</div>
+            <div class="section-heading" style="color:#000 !important;">📊 Individual Contributions</div>
             <div id="pChart"></div>
         </div>
-
-        <!-- TABLE -->
         <div class="report-section">
-            <div class="section-heading">🧾 Itemized Expenses</div>
-            <table style="width:100%; border-collapse:collapse;" id="pTableBody"></table>
+            <div class="section-heading" style="color:#000 !important;">🧾 Itemized Expenses</div>
+            <table style="width:100%; border-collapse:collapse; color:#000 !important;" id="pTableBody"></table>
         </div>
-
-        <!-- SETTLEMENT -->
         <div class="report-section">
-            <div class="section-heading">💸 Settlement Plan</div>
-            <div id="pSettlement" style="font-family:'Courier New', monospace; background:#f9f9f9; padding:20px; border-radius:8px;"></div>
+            <div class="section-heading" style="color:#000 !important;">💸 Settlement Plan</div>
+            <div id="pSettlement" style="font-family:'Courier New', monospace; background:#f9f9f9; padding:20px; border-radius:8px; color:#000 !important;"></div>
         </div>
-
-        <!-- SNIPPETS (New High Value Section) -->
         <div class="report-section">
-            <div class="section-heading">📱 Shareable Snippets</div>
-            <div id="pSnippets"></div>
+            <div class="section-heading" style="color:#000 !important;">📱 Shareable Snippets</div>
+            <div id="pSnippets" style="color:#000 !important;"></div>
         </div>
-
-        <div style="text-align:center; padding:40px; color:#ccc; font-size:10px; letter-spacing:2px; border-top:1px solid #eee;">
+        <div style="text-align:center; padding:40px; color:#888 !important; font-size:10px; letter-spacing:2px; border-top:1px solid #eee;">
             GENERATED BY EXPENSESSPLIT.COM<br>*** THANK YOU ***
         </div>
     </div>
 </div>
-
 </body>
 </html>
