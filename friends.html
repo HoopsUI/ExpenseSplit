@@ -26,52 +26,52 @@
     }
   }
   </script>
-  <script type="application/ld+json">
+ <script type="application/ld+json">
 {
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [
-  {
-   "@type": "Question",
-   "name": "Do friends need to create an account?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "No. ExpenseSplit works instantly in your browser and does not require any signup or account creation."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Can I track multiple expenses at once?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "Yes, you can track multiple shared expenses by entering them into the calculator or using the trip expense calculator for advanced tracking."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Is the calculator mobile-friendly?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "Yes. The calculator works on mobile, tablet, and desktop devices."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What is the easiest way to split expenses between friends?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "The easiest way is to use an online expense split calculator that automatically divides the bill among friends."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "How do you split bills when friends paid different amounts?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "You can track individual payments and calculate balances to determine who owes whom."
-   }
-  }
- ]
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you split a bill between friends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "First decide whether everyone should pay equally or whether each person should contribute a different amount. For an equal split, divide the shared bill by the number of people. If friends paid different amounts, compare what each person paid with their fair share and settle the remaining balances."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you split expenses when friends paid different amounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add the amount each friend paid, calculate everyone's fair share, and compare the two amounts. Anyone who paid less than their share needs to reimburse someone who paid more. Use the Who Owes Who calculator to calculate the resulting payments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you calculate who owes whom?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add each person's payment to the shared expenses. The calculator determines each person's share and compares it with what they already paid. Friends who paid less than their share can then reimburse those who paid more."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should friends split bills equally?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Equal splitting works well when everyone shares the same expense. If people consumed different amounts, paid different expenses, or agreed to contribute different shares, an uneven or individual expense split may be more appropriate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you split multiple expenses between friends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Record each shared expense and who paid it, then calculate everyone's overall balance. This is useful for trips and group outings where different friends pay for meals, hotels, transportation, fuel, activities, or other expenses."
+      }
+    }
+  ]
 }
 </script>
   <script type="application/ld+json">
@@ -178,16 +178,71 @@
     <div class="container hero-content">
       <h1>Split Bills With Friends Calculator</h1>
       <p class="subtitle">
-        Split bills with friends instantly, calculate who owes whom, and manage group expenses without confusion.
-      </p>
+  Split group expenses, calculate who owes whom, and see exactly how much each friend should pay — even when everyone paid different amounts.
+</p>
+
+<div class="hero-intent-points">
+  <span>✓ Equal & uneven splits</span>
+  <span>✓ Multiple expenses</span>
+  <span>✓ Who owes whom</span>
+  <span>✓ No signup required</span>
+</div>
+      
   </div>
 </section>
 
+<style>
+.hero-intent-points {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.hero-intent-points span {
+    background: #ffffff;
+    border: 1px solid #dfe7ef;
+    border-radius: 999px;
+    padding: 7px 13px;
+    font-size: 13px;
+    color: #44505c;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+@media (max-width: 600px) {
+    .hero-intent-points {
+        gap: 7px;
+    }
+
+    .hero-intent-points span {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
+</style>
+
   
-  <section class="section light" id="calculator"data-aos="fade-up">
+<section class="section light" id="calculator"data-aos="fade-up">
 <div class="container">
 
-<h2 class="section-title">Free Advanced Friends Expense Calculator</h2>
+<h2 class="section-title">Free Friends Expense Calculator</h2>
+
+<p class="calculator-intro">
+    Choose the option that matches your group expenses. You can split a bill
+    equally, calculate who owes whom, combine multiple expenses, or divide
+    the cost unevenly.
+</p>
+
+<style>
+.calculator-intro {
+    max-width: 700px;
+    margin: -5px auto 25px;
+    text-align: center;
+    color: #5b6570;
+    line-height: 1.65;
+}
+</style>
 
 <h3 class="calculator-type-title">
 Choose Calculator Type
@@ -348,6 +403,628 @@ Simply enter how much each friend paid and the calculator will determine
 
 </div>
 </section>
+
+
+<!-- CHOOSE THE RIGHT SPLITTING METHOD -->
+
+<section class="section split-method-section">
+    <div class="container">
+
+        <h2 class="section-title">
+            Which Way Should You Split the Bill?
+        </h2>
+
+        <p class="section-intro">
+            The right method depends on how your group spent and paid for the expenses.
+            Use the option below that best matches your situation.
+        </p>
+
+        <div class="split-method-grid">
+
+            <div class="split-method-card">
+                <div class="split-method-icon">🍽️</div>
+
+                <h3>Everyone Pays the Same</h3>
+
+                <p>
+                    Use <strong>Equal Split</strong> when everyone shares the same
+                    bill or expense and should contribute the same amount.
+                </p>
+
+                <div class="split-method-example">
+                    <strong>Example:</strong>
+                    5 friends share a $250 dinner → $50 each.
+                </div>
+
+                <button
+                    type="button"
+                    class="method-link"
+                    onclick="openTabByName('equal')">
+                    Use Equal Split →
+                </button>
+            </div>
+
+
+            <div class="split-method-card">
+                <div class="split-method-icon">💰</div>
+
+                <h3>Everyone Paid Different Amounts</h3>
+
+                <p>
+                    Use <strong>Who Owes Who</strong> when different friends
+                    paid different amounts and you need to settle the final balance.
+                </p>
+
+                <div class="split-method-example">
+                    <strong>Example:</strong>
+                    Alex paid $100, Sarah $50, and Mike $0.
+                </div>
+
+                <button
+                    type="button"
+                    class="method-link"
+                    onclick="openTabByName('owes')">
+                    Calculate Who Owes Who →
+                </button>
+            </div>
+
+
+            <div class="split-method-card">
+                <div class="split-method-icon">📊</div>
+
+                <h3>You Have Several Shared Expenses</h3>
+
+                <p>
+                    Use <strong>Multi Expense</strong> when your group has
+                    several bills such as food, fuel, hotels, tickets or parking.
+                </p>
+
+                <div class="split-method-example">
+                    <strong>Example:</strong>
+                    One friend pays for fuel while another pays for dinner.
+                </div>
+
+                <button
+                    type="button"
+                    class="method-link"
+                    onclick="openTabByName('multi')">
+                    Track Multiple Expenses →
+                </button>
+            </div>
+
+
+            <div class="split-method-card">
+                <div class="split-method-icon">⚖️</div>
+
+                <h3>Everyone Should Pay a Different Share</h3>
+
+                <p>
+                    Use <strong>Uneven Split</strong> when people need to
+                    contribute different percentages of the total expense.
+                </p>
+
+                <div class="split-method-example">
+                    <strong>Example:</strong>
+                    One person pays 50%, while two others pay 25% each.
+                </div>
+
+                <button
+                    type="button"
+                    class="method-link"
+                    onclick="openTabByName('uneven')">
+                    Calculate an Uneven Split →
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+  
+
+<script>
+function openTabByName(tabName) {
+
+    const buttons = document.querySelectorAll(".tab-btn");
+
+    let matchingButton = null;
+
+    buttons.forEach(button => {
+        const onclickValue = button.getAttribute("onclick") || "";
+
+        if (onclickValue.includes("'" + tabName + "'")) {
+            matchingButton = button;
+        }
+    });
+
+    if (matchingButton) {
+        matchingButton.click();
+    }
+
+    const calculator = document.getElementById("calculator");
+
+    if (calculator) {
+        calculator.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
+</script>
+
+
+
+<style>
+.split-method-section {
+    padding: 55px 0;
+    background: #f8fbff;
+}
+
+.section-intro {
+    max-width: 720px;
+    margin: 0 auto 30px;
+    text-align: center;
+    color: #596572;
+    line-height: 1.7;
+}
+
+.split-method-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.split-method-card {
+    background: #ffffff;
+    border: 1px solid #e1e8ef;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.split-method-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.split-method-card h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+
+.split-method-card p {
+    color: #555f69;
+    line-height: 1.65;
+    margin-bottom: 15px;
+}
+
+.split-method-example {
+    background: #f7f9fb;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.method-link {
+    border: 0;
+    background: none;
+    padding: 0;
+    color: #007bff;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.method-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+
+    .split-method-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .split-method-card {
+        padding: 20px;
+    }
+}
+</style>
+  
+
+
+<section class="section"data-aos="fade-up">
+<div class="container">
+
+<p class="subtitle">
+Splitting bills with friends should be simple, but it often becomes confusing when different people pay for different things.</p>
+
+<p>
+This tool works as a <strong>split bills with friends calculator</strong>, 
+<strong>who owes who calculator</strong>, and <strong>group expense calculator</strong> 
+— making it one of the easiest ways to manage shared expenses online without apps.
+</p>
+      
+<ul class="calculator-features">
+<li>Split bills equally among friends</li>
+<li>Calculate who owes whom in group expenses</li>
+<li>Track multiple shared expenses</li>
+<li>Split costs unevenly based on percentage</li>
+<li>Automatically include tip calculations</li>
+</ul>
+
+     
+</div>
+</section>
+
+   <!-- CALCULATOR (LAYOUT FIXED & MATCHED) -->
+  <div class="container" style="margin-bottom:20px;">
+  <div class="tool-cta-box">
+    <p><strong>💡 Not sure how to split expenses correctly?</strong></p>
+    <p>
+      Learn the exact method →
+      <a href="how-to-split-expenses.html">Complete Expense Splitting Guide</a>
+    </p>
+  </div>
+</div>
+  
+
+  <!-- SEO CONTENT -->
+ <section class="section seo-content"data-aos="fade-up">
+
+<div class="seo-container"> 
+  
+<h2>How to Split Bills With Friends</h2>
+
+        <p>
+            Splitting expenses with friends becomes difficult when people
+            pay for different things. One person might pay the restaurant bill,
+            another covers transportation, and someone else pays for tickets or
+            accommodation.
+        </p>
+
+        <p>
+            The easiest way to settle the group is to first decide how the
+            expense should be divided, then compare what each person actually
+            paid. The final calculation shows who has paid too much, who has
+            paid too little, and who needs to reimburse whom.
+        </p>
+
+        <h3>1. Decide whether the expense should be split equally</h3>
+
+        <p>
+            If everyone shared the same expense, an equal split is usually the
+            simplest approach. Add the total bill and the number of people,
+            and divide the cost evenly.
+        </p>
+
+        <div class="intent-example">
+            <strong>Example:</strong><br>
+            A group of 4 friends has a $160 shared dinner bill.
+            Each person owes $40.
+        </div>
+
+
+        <h3>2. Check how much each friend actually paid</h3>
+
+        <p>
+            If different friends paid for different expenses, simply dividing
+            the final total is not enough. You need to compare each person's
+            payments with their fair share of the total.
+        </p>
+
+        <p>
+            This is where the <strong>Who Owes Who</strong> calculator is useful.
+            Enter what each friend paid and the calculator can determine the
+            payments needed to settle the group balance.
+        </p>
+
+
+        <h3>3. Combine multiple expenses when necessary</h3>
+
+        <p>
+            Group spending rarely consists of one bill. A weekend away might
+            include a hotel, fuel, groceries, meals, parking and activities.
+        </p>
+
+        <p>
+            Instead of calculating every expense separately, enter the shared
+            expenses into the <strong>Multi Expense</strong> calculator and
+            use the resulting balances to settle the group.
+        </p>
+
+
+        <h3>4. Use an uneven split when everyone should pay a different share</h3>
+
+        <p>
+            Sometimes an equal split does not make sense. For example, one
+            person may have used more of a shared service or the group may
+            have already agreed that everyone will contribute a different
+            percentage.
+        </p>
+
+        <p>
+            In those situations, use the <strong>Uneven Split</strong> option
+            and enter the percentage that each person should contribute.
+        </p>
+
+<style>
+.intent-example {
+    background: #f7fbff;
+    border-left: 4px solid #007bff;
+    padding: 15px 18px;
+    margin: 20px 0 28px;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+</style>
+
+<h2>How to Split Expenses When Friends Paid Different Amounts</h2>
+
+        <p>
+            This is one of the most common problems with group expenses.
+            The total cost may be shared equally, but the payments are not.
+            One friend pays the hotel, another pays for food, and another
+            pays for transportation.
+        </p>
+
+        <p>
+            You do not need to make everyone send money to everyone else.
+            First calculate each person's fair share, then compare it with
+            what they already paid.
+        </p>
+
+        <div class="balance-explanation">
+
+            <div>
+                <span class="balance-number">1</span>
+                <h3>Add the shared expenses</h3>
+                <p>
+                    Add the costs that everyone agreed to share.
+                </p>
+            </div>
+
+            <div>
+                <span class="balance-number">2</span>
+                <h3>Calculate each person's share</h3>
+                <p>
+                    Divide the shared total according to your chosen method.
+                </p>
+            </div>
+
+            <div>
+                <span class="balance-number">3</span>
+                <h3>Compare payments</h3>
+                <p>
+                    Check what each person already paid against their share.
+                </p>
+            </div>
+
+            <div>
+                <span class="balance-number">4</span>
+                <h3>Settle the difference</h3>
+                <p>
+                    Friends who paid less reimburse those who paid more.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="intent-example">
+
+            <strong>Example:</strong>
+
+            <p>
+                Three friends share $300 in expenses.
+                Alex paid $200, Sarah paid $100 and Mike paid $0.
+                If the expense is split equally, each person's share is $100.
+            </p>
+
+            <p>
+                Alex has paid $100 more than their share, Sarah has already
+                paid her share, and Mike needs to contribute $100.
+            </p>
+
+            <p>
+                The final settlement can therefore be reduced to one payment:
+                <strong>Mike pays Alex $100.</strong>
+            </p>
+
+        </div>
+
+        <p>
+            Enter the payments into the <strong>Who Owes Who</strong> tab above
+            to calculate the settlement for your own group.
+        </p>
+
+<style>
+.balance-explanation {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.balance-explanation > div {
+    background: #ffffff;
+    border: 1px solid #e2e8ef;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.balance-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #007bff;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.balance-explanation h3 {
+    font-size: 17px;
+    margin: 5px 0 8px;
+}
+
+.balance-explanation p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5b6570;
+}
+
+@media (max-width: 800px) {
+    .balance-explanation {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .balance-explanation {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+  
+
+<h2>Why Use This Calculator to Split Bills With Friend</h2>
+   
+<p>
+Splitting expenses with friends sounds simple, but in real life it often becomes complicated. 
+During a dinner, weekend trip, movie night, or shared event, different people pay for different things. 
+One friend pays for food, another books tickets, and someone else covers transportation. 
+At the end of the day, figuring out <strong>who owes whom</strong> can quickly turn into a confusing math problem.
+</p>
+
+<p>
+The <strong>ExpenseSplit Friends Expense Calculator</strong> makes this process effortless. 
+Instead of manually calculating bills or sending multiple payment requests, our tool automatically calculates the fair share for everyone in the group. 
+Whether you're splitting a dinner bill, managing group travel expenses, or organizing a shared event, this calculator helps you track expenses and split costs accurately.
+</p>
+
+<p>
+If you're splitting expenses during a trip, you may also want to use our 
+<a href="trip.html">Trip Expense Calculator</a> which is designed specifically for travel budgeting and vacation cost tracking.
+</p>
+
+<h2>Common Situations Where Friends Split Expenses</h2>
+
+<p>
+People often feel awkward to manually split expenses and also look for ways to make it faster, easier and fairer to split expense on the go. 
+Here are some of the most common scenarios where a <strong>friends expense calculator</strong> becomes extremely useful:
+</p>
+
+<ul>
+<li>Splitting restaurant bills with friends</li>
+<li>Sharing costs during group trips or vacations</li>
+<li>Dividing Airbnb or hotel expenses</li>
+<li>Group gift purchases</li>
+<li>Concert or event ticket costs</li>
+<li>Party planning expenses</li>
+<li>Weekend road trip budgets</li>
+</ul>
+
+<p>
+Instead of arguing over who paid for what, our calculator helps to calculate the fair share instantly.
+</p>
+
+<h2>How to Split Bills Between Friends Fairly</h2>
+
+<p>
+Many groups struggle with one simple question: <strong>Should expenses be split equally or based on who paid?</strong>
+The answer depends on the situation.
+</p>
+
+<p>
+If everyone consumed the same things (for example a shared dinner or taxi ride), an <strong>equal bill split</strong> is usually the simplest approach. 
+However, if some friends paid for larger items such as hotel bookings or event tickets, it's often better to track individual payments and calculate balances.
+</p>
+
+<p>
+ExpenseSplit helps simplify both scenarios. 
+Our tool works as a <strong>split bills between friends calculator</strong>, helping you quickly determine how much each person owes.
+</p>
+
+<p>
+For more advanced situations where multiple people contribute different amounts, you may want to explore a 
+<a href="group-expense-management.html">Group Expense Management Guide</a> to learn the best strategies for handling shared money in groups.
+</p>
+
+<p>
+👉 Want a step-by-step breakdown? Feel free to explore the guide, 
+<a href="how-to-split-expenses.html">Learn how to split expenses properly</a>
+</p>
+
+<h2>Split Expenses for Different Types of Friend Groups</h2>
+
+<h3>Splitting Restaurant Bills</h3>
+
+<p>
+One of the most common situations where friends split money is at restaurants. 
+Instead of dividing the bill manually or calculating tax and tips separately, you can simply use a <strong>dinner bill split calculator</strong> to determine each person's share.
+</p>
+
+<p>
+Many people also search for <em>"group dinner split calculator"</em> because restaurants rarely provide individual receipts for large groups.
+Our calculator solves that problem instantly.
+</p>
+
+<h3>Splitting Trip Expenses</h3>
+
+<p>
+Group trips involve multiple shared costs such as hotels, transportation, food, and activities. 
+Keeping track of who paid what during a trip can become complicated very quickly.
+</p>
+
+<p>
+For travel situations, we recommend combining this tool with our 
+<a href="trip.html">Vacation Expense Split Calculator</a> which is specifically designed to track travel costs among friends.
+</p>
+<p>
+You can also try our <a href="iou-calculator.html">Who Owes Who Calculator</a> 
+for quickly settling group balances, or use the 
+<a href="restaurant-bill-split-calculator.html">Restaurant Bill Split Calculator</a> 
+for dining scenarios.
+</p>
+
+<h3>Splitting Event Costs</h3>
+
+<p>
+Planning a birthday party, celebration, or event often requires friends to contribute money for decorations, food, or venue booking. 
+Instead of collecting money manually, you can use a <strong>group expense settlement tool</strong> to determine everyone's share quickly.
+</p>
+
+<h2>Tips for Managing Money With Friends</h2>
+
+<p>
+Money can sometimes create tension in friendships if not handled transparently. 
+Here are a few simple tips to keep things smooth when sharing expenses with friends:
+</p>
+
+<ul>
+<li>Always track shared expenses immediately</li>
+<li>Split costs as soon as possible</li>
+<li>Use a calculator instead of estimating</li>
+<li>Keep group spending transparent</li>
+<li>Agree on how expenses will be divided beforehand</li>
+</ul>
+
+<p>
+If you're looking for more strategies on managing shared costs, check out our guide:
+<a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>.
+</p>
+
+</div>
+</div>
+</section>
+
 
 <!-- Forces Car Hire CTA - Friends Calculator -->
 <div class="es-car-rental-cta">
@@ -555,6 +1232,8 @@ Simply enter how much each friend paid and the calculator will determine
 }
 </style>
 
+
+
 <!-- FRIENDS PLANNER KIT -->
 <section class="section planner-section" data-aos="fade-up">
 <div class="container">
@@ -726,641 +1405,85 @@ Designed for people who want to keep every shared expense organized before, duri
 }
 </style>
 
-  <section class="section"data-aos="fade-up">
-<div class="container">
-
-      <p class="subtitle">
-Splitting bills with friends should be simple, but it often becomes confusing when different people pay for different things.</p>
-
-<p>
-This tool works as a <strong>split bills with friends calculator</strong>, 
-<strong>who owes who calculator</strong>, and <strong>group expense calculator</strong> 
-— making it one of the easiest ways to manage shared expenses online without apps.
-</p>
-      
-      <ul class="calculator-features">
-<li>Split bills equally among friends</li>
-<li>Calculate who owes whom in group expenses</li>
-<li>Track multiple shared expenses</li>
-<li>Split costs unevenly based on percentage</li>
-<li>Automatically include tip calculations</li>
-</ul>
-
-     
-    </div>
-  </section>
-
-   <!-- CALCULATOR (LAYOUT FIXED & MATCHED) -->
-  <div class="container" style="margin-bottom:20px;">
-  <div class="tool-cta-box">
-    <p><strong>💡 Not sure how to split expenses correctly?</strong></p>
-    <p>
-      Learn the exact method →
-      <a href="how-to-split-expenses.html">Complete Expense Splitting Guide</a>
-    </p>
-  </div>
-</div>
-
-<!-- Bond Touch premium editorial affiliate CTA -->
-<div style="
-    max-width: 760px;
-    margin: 40px auto;
-    padding: 0;
-    background: #ffffff;
-    border: 1px solid #e9e4df;
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 10px 35px rgba(35, 29, 25, 0.08);
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
-">
-
-    <div style="
-        display: flex;
-        flex-wrap: wrap;
-        align-items: stretch;
-    ">
-
-        <!-- Official Awin Bond Touch creative -->
-        <div style="
-            flex: 0 0 270px;
-            background: #f7f1eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-sizing: border-box;
-        ">
-
-            <a
-                href="https://www.awin1.com/cread.php?s=4045088&v=68092&q=530361&r=3029587"
-                target="_blank"
-                rel="sponsored noopener noreferrer"
-                style="
-                    display: block;
-                    text-decoration: none;
-                "
-            >
-
-                <img
-                    src="https://www.awin1.com/cshow.php?s=4045088&v=68092&q=530361&r=3029587"
-                    alt="Bond Touch 4"
-                    style="
-                        display: block;
-                        width: 250px;
-                        max-width: 100%;
-                        height: auto;
-                        border: 0;
-                        border-radius: 14px;
-                    "
-                >
-
-            </a>
-
-        </div>
-
-
-        <!-- Editorial content -->
-        <div style="
-            flex: 1 1 420px;
-            padding: 34px 38px 30px;
-            box-sizing: border-box;
-        ">
-
-            <!-- Small editorial label -->
-            <div style="
-                display: inline-block;
-                margin-bottom: 14px;
-                padding: 6px 11px;
-                border-radius: 999px;
-                background: #f3eef8;
-                color: #755b87;
-                font-size: 10px;
-                font-weight: 700;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-            ">
-                A thoughtful find
-            </div>
-
-
-            <!-- Headline -->
-            <h3 style="
-                margin: 0 0 11px;
-                color: #26211e;
-                font-size: 27px;
-                line-height: 1.18;
-                font-weight: 700;
-                letter-spacing: -0.02em;
-            ">
-                When the trip ends,<br>
-                stay connected.
-            </h3>
-
-
-            <!-- Intro -->
-            <p style="
-                margin: 0 0 18px;
-                color: #625a55;
-                font-size: 15px;
-                line-height: 1.65;
-            ">
-                For the person you wish could stay a little closer.
-                Bond Touch lets loved ones send a physical touch to
-                each other's bracelets, even when they're apart.
-            </p>
-
-
-            <!-- Feature row -->
-            <div style="
-                display: flex;
-                flex-wrap: wrap;
-                gap: 8px;
-                margin: 0 0 22px;
-            ">
-
-                <span style="
-                    display: inline-block;
-                    padding: 7px 10px;
-                    border: 1px solid #e8e1dc;
-                    border-radius: 8px;
-                    color: #5d5550;
-                    background: #fcfaf8;
-                    font-size: 11px;
-                    font-weight: 600;
-                ">
-                    Long-distance connections
-                </span>
-
-                <span style="
-                    display: inline-block;
-                    padding: 7px 10px;
-                    border: 1px solid #e8e1dc;
-                    border-radius: 8px;
-                    color: #5d5550;
-                    background: #fcfaf8;
-                    font-size: 11px;
-                    font-weight: 600;
-                ">
-                    Couples &amp; friends
-                </span>
-
-            </div>
-
-
-            <!-- CTA -->
-            <a
-                href="https://www.awin1.com/cread.php?s=4045088&v=68092&q=530361&r=3029587"
-                target="_blank"
-                rel="sponsored noopener noreferrer"
-                style="
-                    display: inline-block;
-                    padding: 13px 21px;
-                    border-radius: 9px;
-                    background: #27221f;
-                    color: #ffffff;
-                    text-decoration: none;
-                    font-size: 13px;
-                    font-weight: 700;
-                    letter-spacing: 0.01em;
-                    transition: opacity 0.2s ease;
-                "
-            >
-                Explore Bond Touch&nbsp; →
-            </a>
-
-
-            <!-- Affiliate disclosure -->
-            <p style="
-                margin: 15px 0 0;
-                color: #9a928d;
-                font-size: 10px;
-                line-height: 1.5;
-            ">
-                Affiliate disclosure: ExpenseSplit may earn a commission
-                if you purchase through this link, at no additional cost to you.
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-  
-
-  <!-- SEO CONTENT -->
- <section class="section seo-content"data-aos="fade-up">
-
-<div class="seo-container"> 
-<div class="calculator-features-box"> 
-
-<h2>More Than Just an Equal Bill Split Calculator</h2> 
-  
-<p> Most people assume splitting expenses is as simple as dividing a bill equally between everyone. In reality, group expenses are rarely that straightforward. Some people spend more, some contribute less, and sometimes one person pays for everything upfront. That's why this calculator includes multiple ways to split expenses fairly depending on your situation. </p> 
-
-<div class="expense-tree"> 
-<div class="tree-item equal"> 
-  
-<h3>Equal Split</h3> 
-<p> Perfect when everyone should pay the same amount. Simply enter the total bill and the number of people, and the calculator instantly shows how much each person owes. </p> 
-  
-<div class="example"> 
-Example: 5 friends share a $250 dinner bill → everyone pays $50. 
-</div> 
-</div> 
-
-<div class="tree-item uneven"> 
-  
-<h3>Uneven Split</h3> 
-<p> Not everyone consumes the same amount. One friend might order extra food, choose a private room, or stay longer during a trip. The uneven split option lets each person pay their fair share based on actual usage. </p> 
-  
-<div class="example"> 
-Example: Sarah's meal costs $35 while Mike's meal costs $18. Instead of splitting equally, everyone pays only for what they consumed. 
-</div> 
-</div> 
-
-<div class="tree-item multi"> 
-  
-<h3>Multiple Expense Tracking</h3> 
-<p> Group expenses often involve more than one bill. Trips, weekends away, shared apartments, and events can generate dozens of expenses. Instead of calculating each bill separately, you can track multiple expenses together and get an overall breakdown. </p> 
-  
-<div class="example"> 
-Example: Hotel, fuel, groceries, activities, and parking costs can all be combined into a single settlement. 
-</div> 
-</div> 
-  
-<div class="tree-item owes"> 
-  
-<h3>Who Owes Who Calculation</h3> 
-<p> One of the most common problems in group spending is figuring out repayments after different people pay different expenses. The calculator automatically determines who owes money and who should receive money, reducing confusion and avoiding manual calculations. </p> 
-  
-<div class="example"> 
-Example: John paid $120 for fuel, Emma paid $80 for groceries, and Alex paid nothing. The calculator determines exactly who should reimburse whom. 
-</div> 
-</div> 
-</div> 
-  
-<div class="feature-summary"> 
-  
-<h3>Why This Matters</h3> 
-<p> Most bill split calculators only divide a single number by a group size. Real-world expenses are rarely that simple. Whether you're splitting restaurant bills, planning a vacation, sharing apartment costs, organizing events, or tracking ongoing group expenses, having multiple splitting methods helps ensure everyone pays fairly. </p> 
-<p> Instead of creating spreadsheets or manually calculating reimbursements, you can choose the method that best matches your situation and get instant results. </p> 
-</div> 
-</div> 
-</div>
-
-<h2>Why Use This Calculator to Split Bills With Friend</h2>
-   
-<p>
-Splitting expenses with friends sounds simple, but in real life it often becomes complicated. 
-During a dinner, weekend trip, movie night, or shared event, different people pay for different things. 
-One friend pays for food, another books tickets, and someone else covers transportation. 
-At the end of the day, figuring out <strong>who owes whom</strong> can quickly turn into a confusing math problem.
-</p>
-
-<p>
-The <strong>ExpenseSplit Friends Expense Calculator</strong> makes this process effortless. 
-Instead of manually calculating bills or sending multiple payment requests, our tool automatically calculates the fair share for everyone in the group. 
-Whether you're splitting a dinner bill, managing group travel expenses, or organizing a shared event, this calculator helps you track expenses and split costs accurately.
-</p>
-
-<p>
-If you're splitting expenses during a trip, you may also want to use our 
-<a href="trip.html">Trip Expense Calculator</a> which is designed specifically for travel budgeting and vacation cost tracking.
-</p>
-
-<h2>Common Situations Where Friends Split Expenses</h2>
-
-<p>
-People often feel awkward to manually split expenses and also look for ways to make it faster, easier and fairer to split expense on the go. 
-Here are some of the most common scenarios where a <strong>friends expense calculator</strong> becomes extremely useful:
-</p>
-
-<ul>
-<li>Splitting restaurant bills with friends</li>
-<li>Sharing costs during group trips or vacations</li>
-<li>Dividing Airbnb or hotel expenses</li>
-<li>Group gift purchases</li>
-<li>Concert or event ticket costs</li>
-<li>Party planning expenses</li>
-<li>Weekend road trip budgets</li>
-</ul>
-
-<p>
-Instead of arguing over who paid for what, our calculator helps to calculate the fair share instantly.
-</p>
-
-<h2>How to Split Bills Between Friends Fairly</h2>
-
-<p>
-Many groups struggle with one simple question: <strong>Should expenses be split equally or based on who paid?</strong>
-The answer depends on the situation.
-</p>
-
-<p>
-If everyone consumed the same things (for example a shared dinner or taxi ride), an <strong>equal bill split</strong> is usually the simplest approach. 
-However, if some friends paid for larger items such as hotel bookings or event tickets, it's often better to track individual payments and calculate balances.
-</p>
-
-<p>
-ExpenseSplit helps simplify both scenarios. 
-Our tool works as a <strong>split bills between friends calculator</strong>, helping you quickly determine how much each person owes.
-</p>
-
-<p>
-For more advanced situations where multiple people contribute different amounts, you may want to explore a 
-<a href="group-expense-management.html">Group Expense Management Guide</a> to learn the best strategies for handling shared money in groups.
-</p>
-
-<p>
-👉 Want a step-by-step breakdown? Feel free to explore the guide, 
-<a href="how-to-split-expenses.html">Learn how to split expenses properly</a>
-</p>
-
-<h2>Why Use an Online Friends Expense Calculator?</h2>
-
-<p>
-Manually calculating group expenses often leads to mistakes. 
-People forget who paid for what, numbers get rounded incorrectly, and small amounts add up quickly.
-</p>
-
-<p>
-Using a dedicated <strong>group expense calculator</strong> offers several benefits:
-</p>
-
-<ul>
-<li>Instant calculations with zero math required</li>
-<li>Fair cost distribution among friends</li>
-<li>Clear visibility of total group spending</li>
-<li>Fast bill splitting for dinners and outings</li>
-<li>No spreadsheets or complicated apps required</li>
-</ul>
-
-<p>
-ExpenseSplit is designed to be a <strong>fast, lightweight bill splitting tool</strong>. 
-You can open the calculator, enter the total amount and number of friends, and instantly see how much each person needs to contribute.
-</p>
-
-<h2>Split Expenses for Different Types of Friend Groups</h2>
-
-<h3>Splitting Restaurant Bills</h3>
-
-<p>
-One of the most common situations where friends split money is at restaurants. 
-Instead of dividing the bill manually or calculating tax and tips separately, you can simply use a <strong>dinner bill split calculator</strong> to determine each person's share.
-</p>
-
-<p>
-Many people also search for <em>"group dinner split calculator"</em> because restaurants rarely provide individual receipts for large groups.
-Our calculator solves that problem instantly.
-</p>
-
-<h3>Splitting Trip Expenses</h3>
-
-<p>
-Group trips involve multiple shared costs such as hotels, transportation, food, and activities. 
-Keeping track of who paid what during a trip can become complicated very quickly.
-</p>
-
-<p>
-For travel situations, we recommend combining this tool with our 
-<a href="trip.html">Vacation Expense Split Calculator</a> which is specifically designed to track travel costs among friends.
-</p>
-<p>
-You can also try our <a href="iou-calculator.html">Who Owes Who Calculator</a> 
-for quickly settling group balances, or use the 
-<a href="restaurant-bill-split-calculator.html">Restaurant Bill Split Calculator</a> 
-for dining scenarios.
-</p>
-
-<h3>Splitting Event Costs</h3>
-
-<p>
-Planning a birthday party, celebration, or event often requires friends to contribute money for decorations, food, or venue booking. 
-Instead of collecting money manually, you can use a <strong>group expense settlement tool</strong> to determine everyone's share quickly.
-</p>
-
-<h2>Tips for Managing Money With Friends</h2>
-
-<p>
-Money can sometimes create tension in friendships if not handled transparently. 
-Here are a few simple tips to keep things smooth when sharing expenses with friends:
-</p>
-
-<ul>
-<li>Always track shared expenses immediately</li>
-<li>Split costs as soon as possible</li>
-<li>Use a calculator instead of estimating</li>
-<li>Keep group spending transparent</li>
-<li>Agree on how expenses will be divided beforehand</li>
-</ul>
-
-<p>
-If you're looking for more strategies on managing shared costs, check out our guide:
-<a href="tips-for-using-expensesplit.html">Tips for Using ExpenseSplit</a>.
-</p>
-
-<h2>Friends Expense Calculator vs Expense Tracking Apps</h2>
-
-<p>
-Both options help manage shared expenses, but they are designed for different situations.
-</p>
-
-<div style="
-background:#f8fbff;
-border:1px solid #dbe3ec;
-border-radius:12px;
-padding:25px;
-margin:25px 0;
-">
-
-<div style="text-align:center;">
-
-<p><strong>Expense Calculator vs Tracking Apps</strong></p>
-
-<p style="font-size:22px;">↓</p>
-
-<div style="
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-margin:20px 0;
-">
-
-<div style="
-background:#eaf7ea;
-padding:15px;
-border-radius:10px;
-max-width:280px;
-">
-<strong>🧮 Calculator</strong>
-
-<ul>
-<li>Instant calculation</li>
-<li>No account required</li>
-<li>No app installation</li>
-<li>Perfect for one-time events</li>
-<li>Fast and simple</li>
-<li>Works directly in browser</li>
-<li>Privacy-friendly</li>
-</ul>
-
-<p>
-Best for trips, dinners, events, and quick group calculations.
-</p>
-
-</div>
-
-<div style="
-background:#fff4e8;
-padding:15px;
-border-radius:10px;
-max-width:280px;
-">
-<strong>📱 Apps</strong>
-
-<ul>
-<li>Track expenses over time</li>
-<li>Store transaction history</li>
-<li>Useful for long-term groups</li>
-<li>Often require sign-up</li>
-<li>More features</li>
-<li>Can sync across devices</li>
-<li>May have paid plans</li>
-</ul>
-
-<p>
-Best for roommates, ongoing expense sharing, and recurring group expenses.
-</p>
-
-</div>
-
-</div>
-</div>
-</div>
- </section>
-
-<div class="recommended-tool">
-
-    <img src="https://m.media-amazon.com/images/I/51Gy2ymW70L._AC_SL1500_.jpg" alt="Portable Receipt Scanner">
-
-    <div class="recommended-content">
-
-        <span class="recommended-label">
-            Helpful Product
-        </span>
-
-        <h3>Keep Every Shared Expense Receipt Organized</h3>
-
-        <p>
-            Splitting expenses with friends is much easier when every receipt is saved.
-            A portable receipt scanner lets you quickly digitize restaurant, hotel,
-            grocery, and fuel receipts so everyone knows exactly who paid for what.
-        </p>
-
-        <a class="recommended-btn"
-           href="https://amzn.to/3Rxf3Fi"
-           target="_blank"
-           rel="nofollow sponsored noopener">
-            View on Amazon
-        </a>
-
- <p>
-As an Amazon Associate, we may earn from qualifying purchases at no additional cost to you.
-</p>
-    </div>
-
-</div>
-
-  <!-- FAQ -->
- <section class="section faq-section" data-aos="fade-up">
+<!-- FAQ -->
+<section class="section faq-section">
   <div class="container">
-    <h2>Frequently Asked Questions</h2>
 
-    <div class="faq-item" data-aos="fade-up">
-      <div class="faq-question">1. Do friends need to create an account?</div>
-      <div class="faq-answer">
-        No. ExpenseSplit works instantly in your browser and does not require any signup or account creation. 
-        Simply open the calculator, enter the total expense and number of friends, and the tool will instantly 
-        calculate how much each person should pay.
-      </div>
-    </div>
-
-    <div class="faq-item" data-aos="fade-up">
-      <div class="faq-question">2. Can I track multiple expenses at once?</div>
-      <div class="faq-answer">
-        The friends expense calculator is designed to quickly split a total amount between a group. 
-        If you want to manage multiple shared payments such as hotel bookings, meals, or transportation 
-        during a trip, you can combine this calculator with our Trip Expense Calculator for better tracking.
-      </div>
-    </div>
-
-    <div class="faq-item" data-aos="fade-up">
-      <div class="faq-question">3. Is the calculator mobile-friendly?</div>
-      <div class="faq-answer">
-        Yes. ExpenseSplit works on phones, tablets, and desktop computers. 
-        The calculator is designed to be responsive so you can easily split bills 
-        with friends even while sitting at a restaurant or traveling together.
-      </div>
-    </div>
-
-    <div class="faq-item" data-aos="fade-up">
-      <div class="faq-question">4. What is the easiest way to split expenses between friends?</div>
-      <div class="faq-answer">
-        The easiest way is to use an online expense split calculator. Simply enter the total amount 
-        and number of friends, and the calculator will automatically determine how much each person 
-        should contribute. This removes manual calculations and prevents mistakes when dividing bills.
-      </div>
-    </div>
-
-    <div class="faq-item" data-aos="fade-up">
-      <div class="faq-question">5. How do you split bills when friends paid different amounts?</div>
-      <div class="faq-answer">
-        When different people pay for different items, the best method is to track each payment 
-        and calculate the balance afterwards. A group expense calculator can determine who owes 
-        money and how much each person should reimburse.
-      </div>
-    </div>
-
-    <div class="faq-item" data-aos="fade-up">
-      <div class="faq-question">6. Is it better to split expenses equally with friends?</div>
-      <div class="faq-answer">
-        Equal splitting works best when everyone shares the same items, such as a group dinner 
-        or taxi ride. However, if some people order different items or contribute more money, 
-        tracking individual payments may result in a more accurate and fair split.
-      </div>
-    </div>
-
-    <div class="faq-item" data-aos="fade-up">
-      <div class="faq-question">7. How do groups usually keep track of shared expenses?</div>
-      <div class="faq-answer">
-        Many groups use spreadsheets, expense tracking apps, or online calculators to manage 
-        shared costs. A simple expense split calculator is often the fastest way to divide bills 
-        without needing complicated tools or account registration.
-      </div>
-    </div>
-
-    <div class="faq-item" data-aos="fade-up">
-      <div class="faq-question">8. Can this calculator split expenses for large groups?</div>
-      <div class="faq-answer">
-        Yes. The ExpenseSplit friends calculator works for both small and large groups. 
-        Simply enter the total amount and number of people in the group, and the calculator 
-        will instantly show how much each person should pay.
-      </div>
-    </div>
+    <h2>Frequently Asked Questions About Splitting Bills With Friends</h2>
 
     <div class="faq-item">
-  <div class="faq-question">9. What is the best app or tool to split bills with friends?</div>
-  <div class="faq-answer">
-    The best way to split bills with friends is by using an online calculator like ExpenseSplit. 
-    It works instantly without signup and helps calculate who owes whom, making it a simple 
-    alternative to apps like Splitwise.
-  </div>
-</div>
+      <div class="faq-question">
+        1. How do you split a bill between friends?
+      </div>
+
+      <div class="faq-answer">
+        First decide whether everyone should pay equally or whether each person
+        should contribute a different amount. For an equal split, divide the
+        shared bill by the number of people. If friends paid different amounts,
+        compare what each person paid with their fair share and settle the
+        remaining balances.
+      </div>
+    </div>
+
+
+    <div class="faq-item">
+      <div class="faq-question">
+        2. How do you split expenses when friends paid different amounts?
+      </div>
+
+      <div class="faq-answer">
+        Add the amount each friend paid, calculate everyone's fair share, and
+        compare the two amounts. Anyone who paid less than their share needs
+        to reimburse someone who paid more. Use the Who Owes Who calculator
+        above to calculate the resulting payments.
+      </div>
+    </div>
+
+
+    <div class="faq-item">
+      <div class="faq-question">
+        3. How do you calculate who owes whom?
+      </div>
+
+      <div class="faq-answer">
+        Add each person's payment to the shared expenses. The calculator
+        determines each person's share and compares it with what they already
+        paid. Friends who paid less than their share can then reimburse those
+        who paid more.
+      </div>
+    </div>
+
+
+    <div class="faq-item">
+      <div class="faq-question">
+        4. Should friends split bills equally?
+      </div>
+
+      <div class="faq-answer">
+        Equal splitting works well when everyone shares the same expense.
+        If people consumed different amounts, paid different expenses, or
+        agreed to contribute different shares, an uneven or individual expense
+        split may be more appropriate.
+      </div>
+    </div>
+
+
+    <div class="faq-item">
+      <div class="faq-question">
+        5. How do you split multiple expenses between friends?
+      </div>
+
+      <div class="faq-answer">
+        Record each shared expense and who paid it, then calculate everyone's
+        overall balance. This is useful for trips and group outings where
+        different friends pay for meals, hotels, transportation, fuel,
+        activities, or other expenses.
+      </div>
+    </div>
 
   </div>
 </section>
+  
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-content">
@@ -1883,7 +2006,6 @@ faqQuestions.forEach(question => {
 
     question.classList.toggle('active');
   });
-});
 </script>
   <!-- AOS SCRIPT (STEP 2) -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -1914,9 +2036,6 @@ z-index:999;
   </a>
 </div>
 
-}
-</style>
-
 <script>
 const stickyCTA = document.getElementById("stickyCTA");
 const footer = document.getElementById("footer");
@@ -1928,7 +2047,8 @@ const observer = new IntersectionObserver((entries) => {
     } else {
       stickyCTA.classList.remove("hide"); // show otherwise
     }
-  });
+  }
+);
 }, { threshold: 0.1 });
 
 if (footer) observer.observe(footer);
