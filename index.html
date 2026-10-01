@@ -2473,154 +2473,249 @@ z-index:999;
 </div>
 
 <style>
+
 /* =========================================================
-   EXPENSESPLIT — FIXED STICKY CTA
+   EXPENSESPLIT — HOMEPAGE TECHNICAL / LAYOUT FIX
    ========================================================= */
 
-#stickyCTA {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
 
-    width: 100%;
-    max-width: none;
+/* ---------------------------------------------------------
+   1. PREVENT HORIZONTAL OVERFLOW
+   --------------------------------------------------------- */
 
-    margin: 0;
-    box-sizing: border-box;
-
-    z-index: 9999;
-
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-
-    transition: none;
-
-    /* Keeps CTA clear of mobile browser safe areas */
-    padding-bottom: env(safe-area-inset-bottom);
-}
-
-/* IMPORTANT:
-   Do not allow the old JavaScript hide class
-   to move the CTA off-screen. */
-
-#stickyCTA.hide {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Prevent accidental horizontal overflow */
 html,
 body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+}
+
+
+/* ---------------------------------------------------------
+   2. MAKE MAIN CONTENT USE FULL AVAILABLE WIDTH
+   --------------------------------------------------------- */
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.es-page,
+.es-homepage,
+.homepage,
+.main-wrapper,
+.main-content,
+.content-wrapper {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+
+/* ---------------------------------------------------------
+   3. FOOTER — FULL WIDTH
+   --------------------------------------------------------- */
+
+footer,
+.es-footer,
+.site-footer,
+.footer,
+#footer {
+    width: 100vw !important;
+    max-width: none !important;
+
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ---------------------------------------------------------
+   4. FOOTER INNER CONTENT
+   --------------------------------------------------------- */
+
+footer > *,
+.es-footer > *,
+.site-footer > *,
+.footer > * {
+    box-sizing: border-box !important;
+}
+
+
+/* ---------------------------------------------------------
+   5. FIX COMMON FOOTER CONTAINER WIDTH PROBLEM
+   --------------------------------------------------------- */
+
+footer .container,
+footer .footer-container,
+.es-footer .container,
+.es-footer .footer-container,
+.site-footer .container,
+.site-footer .footer-container {
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+
+/* ---------------------------------------------------------
+   6. STICKY CTA — ALWAYS FIXED TO VIEWPORT
+   --------------------------------------------------------- */
+
+.es-sticky-cta,
+.sticky-cta,
+#sticky-cta {
+    position: fixed !important;
+
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    z-index: 999999 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ---------------------------------------------------------
+   7. STICKY CTA INNER CONTENT
+   --------------------------------------------------------- */
+
+.es-sticky-cta > *,
+.sticky-cta > *,
+#sticky-cta > * {
+    box-sizing: border-box !important;
+}
+
+
+/* ---------------------------------------------------------
+   8. REMOVE POSITIONING THAT CAN BREAK STICKY CTA
+   --------------------------------------------------------- */
+
+.es-sticky-cta,
+.sticky-cta,
+#sticky-cta {
+    transform: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   9. MAKE SURE CTA IS NOT CLIPPED BY PARENT ELEMENTS
+   --------------------------------------------------------- */
+
+body,
+html,
+main,
+section,
+article {
     overflow-x: hidden;
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* ---------------------------------------------------------
+   10. MOBILE FOOTER FIX
+   --------------------------------------------------------- */
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
 
-    #stickyCTA {
-        width: 100%;
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: calc(8px + env(safe-area-inset-bottom));
-
-        box-sizing: border-box;
-    }
-
-}
-
-
-/* =========================================================
-   DESKTOP
-   ========================================================= */
-
-@media (min-width: 641px) {
-
-    #stickyCTA {
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-bottom: 10px;
-        box-sizing: border-box;
-    }
-
-}
-</style>
-
-<style>
-/* =========================================================
-   EXPENSESPLIT — FULL WIDTH FOOTER FIX
-   ========================================================= */
-
-footer.footer,
-#footer {
-    width: 100%;
-    max-width: none;
-
-    margin-left: 0;
-    margin-right: 0;
-
-    box-sizing: border-box;
-
-    position: relative;
-    left: 0;
-    right: 0;
-
-    overflow: hidden;
-}
-
-/*
-   Keep the footer content nicely constrained while
-   allowing the footer background itself to reach
-   the browser edges.
-*/
-
-footer.footer .container,
-#footer .container {
-    width: 100%;
-    max-width: 1180px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    box-sizing: border-box;
-}
-
-
-/* =========================================================
-   MOBILE FOOTER
-   ========================================================= */
-
-@media (max-width: 640px) {
-
-    footer.footer,
+    footer,
+    .es-footer,
+    .site-footer,
+    .footer,
     #footer {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
+        width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
     }
 
-    footer.footer .container,
-    #footer .container {
-        width: 100%;
-        max-width: none;
-
-        padding-left: 18px;
-        padding-right: 18px;
-
-        box-sizing: border-box;
+    footer .container,
+    footer .footer-container,
+    .es-footer .container,
+    .es-footer .footer-container,
+    .site-footer .container,
+    .site-footer .footer-container {
+        width: 100% !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
     }
 
+    .es-sticky-cta,
+    .sticky-cta,
+    #sticky-cta {
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+    }
 }
+
+
+/* ---------------------------------------------------------
+   11. PREVENT STICKY CTA FROM COVERING FOOTER CONTENT
+   --------------------------------------------------------- */
+
+body {
+    padding-bottom: 80px !important;
+}
+
+
+/* ---------------------------------------------------------
+   12. SMALLER MOBILE CTA SPACE
+   --------------------------------------------------------- */
+
+@media (max-width: 640px) {
+
+    body {
+        padding-bottom: 75px !important;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   13. REMOVE ACCIDENTAL INLINE WIDTH RESTRICTIONS
+   --------------------------------------------------------- */
+
+.es-sticky-cta[style],
+.sticky-cta[style],
+#sticky-cta[style] {
+    max-width: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   14. FOOTER TEXT / LINKS SHOULD NOT FORCE WIDTH
+   --------------------------------------------------------- */
+
+footer a,
+.es-footer a,
+.site-footer a,
+.footer a {
+    overflow-wrap: anywhere;
+}
+
+
+/* ---------------------------------------------------------
+   15. FOOTER BOX-SIZING
+   --------------------------------------------------------- */
+
+footer *,
+.es-footer *,
+.site-footer *,
+.footer * {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   END TECHNICAL FIX
+   ========================================================= */
 </style>
    
   <!-- Place this at the very bottom of your HTML file -->
