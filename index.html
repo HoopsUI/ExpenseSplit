@@ -555,6 +555,27 @@
   </div>
 </section>
 
+
+<!-- =====================================================
+     REAL-WORLD EXPENSE SPLITTING EXPLANATION
+     ===================================================== -->
+
+<section class="es-real-world">
+
+    <h2>Split Shared Expenses Without the Guesswork</h2>
+
+    <p>
+        ExpenseSplit helps you work out <strong>who should pay what</strong>
+        when expenses are shared between friends, roommates, couples,
+        families, or travel groups. Use the calculators to split
+        <strong>restaurant bills, rent, trips, groceries, gas, subscriptions,
+        Airbnb costs, and uneven expenses</strong> without doing the
+        calculations manually.
+    </p>
+
+</section>
+  
+
 <!-- QUICK INTENT / TOOL NAVIGATION -->
 <section class="es-quick-intent" data-aos="fade-up">
     <div class="container">
@@ -2199,6 +2220,225 @@ padding:20px;
 background:#f6f9ff;
 border-left:5px solid #007BFF;
 border-radius:10px;
+}
+
+</style>
+
+
+<style>
+
+/* =========================================================
+   EXPENSESPLIT - HOMEPAGE INTENT SECTIONS
+   ========================================================= */
+
+/* ---------- Real World Explanation ---------- */
+
+.es-real-world {
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 26px 28px;
+    background: #f8fbff;
+    border: 1px solid #e1eaf3;
+    border-radius: 14px;
+    box-sizing: border-box;
+}
+
+.es-real-world h2 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    line-height: 1.3;
+    color: #1f2937;
+}
+
+.es-real-world p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.75;
+    color: #555;
+}
+
+.es-real-world strong {
+    color: #222;
+}
+
+
+/* ---------- Choose Your Situation ---------- */
+
+.es-situations {
+    max-width: 1000px;
+    margin: 40px auto;
+    box-sizing: border-box;
+}
+
+.es-situations-header {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.es-situations-header h2 {
+    margin: 0 0 8px;
+    font-size: 25px;
+    color: #1f2937;
+}
+
+.es-situations-header p {
+    margin: 0 auto;
+    max-width: 700px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.es-situation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.es-situation-card {
+    display: block;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid #e1e8ef;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+                border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.es-situation-card:hover {
+    transform: translateY(-2px);
+    border-color: #b9d3ea;
+    box-shadow: 0 5px 16px rgba(0,0,0,0.06);
+}
+
+.es-situation-card h3 {
+    margin: 0 0 7px;
+    font-size: 16px;
+    line-height: 1.35;
+    color: #222;
+}
+
+.es-situation-card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #666;
+}
+
+
+/* ---------- Six Calculator Paths ---------- */
+
+.es-calculator-paths {
+    max-width: 1000px;
+    margin: 40px auto;
+    box-sizing: border-box;
+}
+
+.es-calculator-paths-header {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.es-calculator-paths-header h2 {
+    margin: 0 0 8px;
+    font-size: 25px;
+    color: #1f2937;
+}
+
+.es-calculator-paths-header p {
+    margin: 0 auto;
+    max-width: 700px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.es-path-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.es-path-card {
+    display: block;
+    padding: 19px;
+    background: #f8fbff;
+    border: 1px solid #dfe8f1;
+    border-radius: 12px;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.es-path-card:hover {
+    transform: translateY(-2px);
+    border-color: #b9d3ea;
+    box-shadow: 0 5px 16px rgba(0,0,0,0.06);
+}
+
+.es-path-card h3 {
+    margin: 0 0 7px;
+    font-size: 16px;
+    line-height: 1.35;
+    color: #222;
+}
+
+.es-path-card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #666;
+}
+
+.es-path-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2d89ef;
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 700px) {
+
+    .es-real-world {
+        margin: 28px 12px;
+        padding: 21px;
+    }
+
+    .es-real-world h2 {
+        font-size: 21px;
+    }
+
+    .es-real-world p {
+        font-size: 14px;
+    }
+
+    .es-situations,
+    .es-calculator-paths {
+        margin: 32px 12px;
+    }
+
+    .es-situations-header h2,
+    .es-calculator-paths-header h2 {
+        font-size: 22px;
+    }
+
+    .es-situation-grid,
+    .es-path-grid {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .es-situation-card,
+    .es-path-card {
+        padding: 16px;
+    }
 }
 
 </style>
