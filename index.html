@@ -1450,8 +1450,7 @@ Find the right calculator based on your needs — from trips and dining to rent 
 </script>
 
   <!-- FOOTER -->
- <footer id="footer">
-  <footer class="footer">
+ <footer class="footer" id="footer">
     <div class="container footer-content">
       <p>© 2026 ExpenseSplit. All rights reserved.</p>
       <div class="footer-links">
@@ -2232,11 +2231,6 @@ z-index:999;
     📚 Explore Budget Planners →
   </a>
 </div>
-<style>
-   #stickyCTA.hide {
-  transform: translateY(100%);
-}
-</style>
 
 <script>
 const stickyCTA = document.getElementById("stickyCTA");
@@ -2249,7 +2243,8 @@ const observer = new IntersectionObserver((entries) => {
     } else {
       stickyCTA.classList.remove("hide"); // show otherwise
     }
-  });
+  }
+);
 }, { threshold: 0.1 });
 
 if (footer) observer.observe(footer);
@@ -2259,5 +2254,6 @@ if (footer) observer.observe(footer);
 <div id="printable-summary"></div>
 <!-- Hidden frame for high-quality printing -->
 <iframe id="printFrame" style="display:none;"></iframe>
+  </div>
 </body>
 </html>
