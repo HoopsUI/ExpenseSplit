@@ -398,7 +398,24 @@
 }
 </style>
   
+<!-- =====================================================
+     REAL-WORLD EXPENSE SPLITTING EXPLANATION
+     ===================================================== -->
 
+<section class="es-real-world">
+
+    <h2>Split Shared Expenses Without the Guesswork</h2>
+
+    <p>
+        ExpenseSplit helps you work out <strong>who should pay what</strong>
+        when expenses are shared between friends, roommates, couples,
+        families, or travel groups. Use the calculators to split
+        <strong>restaurant bills, rent, trips, groceries, gas, subscriptions,
+        Airbnb costs, and uneven expenses</strong> without doing the
+        calculations manually.
+    </p>
+
+</section>
   
 
   <!-- CALCULATOR -->
@@ -498,10 +515,6 @@
 </div>
 
 
-    
-
-
-        
 
 <!-- PREMIUM SUMMARY SECTION -->
 <div id="premium-summary-section" class="calc-card" style="margin-top: 30px; border: 2px solid #3b82f6;">
@@ -556,24 +569,486 @@
 </section>
 
 
-<!-- =====================================================
-     REAL-WORLD EXPENSE SPLITTING EXPLANATION
-     ===================================================== -->
+<style>
 
-<section class="es-real-world">
+/* =========================================
+   EXPENSE SPLIT — INFORMATION SECTION
+   ========================================= */
 
-    <h2>Split Shared Expenses Without the Guesswork</h2>
+.es-info-section {
+    max-width: 900px;
+    margin: 45px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
 
-    <p>
-        ExpenseSplit helps you work out <strong>who should pay what</strong>
-        when expenses are shared between friends, roommates, couples,
-        families, or travel groups. Use the calculators to split
-        <strong>restaurant bills, rent, trips, groceries, gas, subscriptions,
-        Airbnb costs, and uneven expenses</strong> without doing the
-        calculations manually.
-    </p>
+.es-info-intro {
+    max-width: 760px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.es-info-intro h2 {
+    margin: 0 0 12px;
+    font-size: 28px;
+    line-height: 1.3;
+    color: #1f2937;
+}
+
+.es-info-intro p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #5f6b76;
+}
+
+/* Information cards */
+
+.es-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.es-info-card {
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #e1e8ef;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.es-info-card h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    line-height: 1.4;
+    color: #1f2937;
+}
+
+.es-info-card p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #59636e;
+}
+
+/* Highlight block */
+
+.es-info-highlight {
+    margin-top: 22px;
+    padding: 24px;
+    background: #f5f9fd;
+    border: 1px solid #dbe8f3;
+    border-radius: 12px;
+}
+
+.es-info-highlight h3 {
+    margin: 0 0 10px;
+    font-size: 19px;
+    color: #1f2937;
+}
+
+.es-info-highlight p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #59636e;
+}
+
+/* Simple process */
+
+.es-info-process {
+    margin-top: 22px;
+    padding: 24px;
+    border: 1px solid #e1e8ef;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.es-info-process h3 {
+    margin: 0 0 18px;
+    font-size: 20px;
+    color: #1f2937;
+}
+
+.es-process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.es-process-step:last-child {
+    margin-bottom: 0;
+}
+
+.es-step-number {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    background: #2d89ef;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.es-step-content strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+    color: #26313c;
+}
+
+.es-step-content span {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #606b76;
+}
+
+/* Search-intent questions */
+
+.es-common-questions {
+    margin-top: 22px;
+}
+
+.es-common-questions h3 {
+    margin: 0 0 15px;
+    font-size: 21px;
+    color: #1f2937;
+}
+
+.es-question {
+    padding: 17px 0;
+    border-bottom: 1px solid #e5e9ed;
+}
+
+.es-question:last-child {
+    border-bottom: none;
+}
+
+.es-question strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #26313c;
+}
+
+.es-question p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #606b76;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .es-info-section {
+        margin: 35px auto;
+        padding: 0 15px;
+    }
+
+    .es-info-intro h2 {
+        font-size: 24px;
+    }
+
+    .es-info-intro p {
+        font-size: 15px;
+    }
+
+    .es-info-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .es-info-card {
+        padding: 19px;
+    }
+
+    .es-info-highlight,
+    .es-info-process {
+        padding: 20px;
+    }
+
+    .es-common-questions h3 {
+        font-size: 19px;
+    }
+}
+
+</style>
+
+
+<!-- =========================================
+     HOW EXPENSE SPLITTING WORKS
+     ========================================= -->
+
+<section class="es-info-section">
+
+    <div class="es-info-intro">
+
+        <h2>How Expense Splitting Works</h2>
+
+        <p>
+            Splitting an expense is not always as simple as dividing the total
+            by the number of people. The right method depends on what was
+            purchased, who used it, and whether everyone contributed equally.
+        </p>
+
+    </div>
+
+
+    <!-- Core situations -->
+
+    <div class="es-info-grid">
+
+        <div class="es-info-card">
+
+            <h3>When Everyone Pays Equally</h3>
+
+            <p>
+                If everyone shared the same expense equally, divide the total
+                cost by the number of people. This works well for shared meals,
+                group activities, accommodation, utilities, and other common
+                expenses.
+            </p>
+
+        </div>
+
+
+        <div class="es-info-card">
+
+            <h3>When Everyone Owes a Different Amount</h3>
+
+            <p>
+                Unequal expenses need a different approach. Someone who ordered
+                more food, used more of a service, or covered an additional cost
+                may need to contribute more than the others.
+            </p>
+
+        </div>
+
+
+        <div class="es-info-card">
+
+            <h3>When One Person Paid the Entire Bill</h3>
+
+            <p>
+                If one person paid upfront for everyone, the final calculation
+                should show each person's share and how much they need to
+                reimburse the person who originally paid.
+            </p>
+
+        </div>
+
+
+        <div class="es-info-card">
+
+            <h3>When There Are Extra Costs</h3>
+
+            <p>
+                Tax, tip, delivery fees, deposits, service charges, fuel,
+                additional orders, and other shared costs can change the final
+                amount each person owes. Include these costs before calculating
+                the final split.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Highlight -->
+
+    <div class="es-info-highlight">
+
+        <h3>The easiest way to avoid confusion</h3>
+
+        <p>
+            Start with the total amount, identify who is sharing the expense,
+            decide whether the split should be equal or based on individual
+            contributions, and then account for any additional costs. A clear
+            breakdown makes it easier for everyone to understand exactly what
+            they owe.
+        </p>
+
+    </div>
+
+
+    <!-- Simple process -->
+
+    <div class="es-info-process">
+
+        <h3>A simple 4-step way to split expenses</h3>
+
+
+        <div class="es-process-step">
+
+            <div class="es-step-number">1</div>
+
+            <div class="es-step-content">
+
+                <strong>Enter the total expense</strong>
+
+                <span>
+                    Start with the full bill or shared cost before dividing it.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="es-process-step">
+
+            <div class="es-step-number">2</div>
+
+            <div class="es-step-content">
+
+                <strong>Add everyone involved</strong>
+
+                <span>
+                    Include the people who are actually responsible for the
+                    expense.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="es-process-step">
+
+            <div class="es-step-number">3</div>
+
+            <div class="es-step-content">
+
+                <strong>Choose the appropriate split</strong>
+
+                <span>
+                    Use an equal split when everyone shares the cost equally,
+                    or an unequal/fair contribution when people owe different
+                    amounts.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="es-process-step">
+
+            <div class="es-step-number">4</div>
+
+            <div class="es-step-content">
+
+                <strong>Check who owes what</strong>
+
+                <span>
+                    Review the final amounts before collecting or sending
+                    reimbursements.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Common questions -->
+
+    <div class="es-common-questions">
+
+        <h3>Common Expense-Splitting Questions</h3>
+
+
+        <div class="es-question">
+
+            <strong>
+                How do you split a bill between multiple people?
+            </strong>
+
+            <p>
+                For an equal split, divide the total cost by the number of
+                people. If people purchased different items or contributed
+                different amounts, use an unequal split instead.
+            </p>
+
+        </div>
+
+
+        <div class="es-question">
+
+            <strong>
+                How do you calculate who owes whom?
+            </strong>
+
+            <p>
+                First determine each person's share of the total expense and
+                compare it with what they already paid. The difference shows
+                whether they need to pay more or receive money back.
+            </p>
+
+        </div>
+
+
+        <div class="es-question">
+
+            <strong>
+                Should tax and tip be included when splitting a restaurant bill?
+            </strong>
+
+            <p>
+                Yes. Tax, tip, service charges, and additional orders can be
+                included in the final restaurant expense so the amount being
+                divided reflects the actual bill.
+            </p>
+
+        </div>
+
+
+        <div class="es-question">
+
+            <strong>
+                What is the easiest way to split expenses with friends?
+            </strong>
+
+            <p>
+                The simplest approach is to record the total expense, identify
+                who participated, and calculate each person's share before
+                settling reimbursements. This avoids relying on memory or
+                manually working out multiple amounts.
+            </p>
+
+        </div>
+
+
+        <div class="es-question">
+
+            <strong>
+                How should shared expenses be handled during a trip?
+            </strong>
+
+            <p>
+                Keep track of accommodation, transportation, meals, activities,
+                fuel, and other shared costs separately. This makes it easier
+                to calculate each person's overall contribution at the end of
+                the trip.
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
+
+  
   
 
 <!-- QUICK INTENT / TOOL NAVIGATION -->
