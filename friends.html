@@ -1762,18 +1762,7 @@ alert("Sharing not supported");
 }
 
 /* TAB SWITCHING */
-function openTab(evt, tabName){
 
-let tabs = document.querySelectorAll(".tab-content");
-tabs.forEach(tab => tab.classList.remove("active"));
-
-let buttons = document.querySelectorAll(".tab-btn");
-buttons.forEach(btn => btn.classList.remove("active"));
-
-document.getElementById(tabName).classList.add("active");
-evt.currentTarget.classList.add("active");
-
-}
 
 
 
