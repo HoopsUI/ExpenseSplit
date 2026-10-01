@@ -2472,23 +2472,156 @@ z-index:999;
   </a>
 </div>
 
-<script>
-const stickyCTA = document.getElementById("stickyCTA");
-const footer = document.getElementById("footer");
+<style>
+/* =========================================================
+   EXPENSESPLIT — FIXED STICKY CTA
+   ========================================================= */
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      stickyCTA.classList.add("hide"); // hide when footer visible
-    } else {
-      stickyCTA.classList.remove("hide"); // show otherwise
+#stickyCTA {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+    box-sizing: border-box;
+
+    z-index: 9999;
+
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+
+    transition: none;
+
+    /* Keeps CTA clear of mobile browser safe areas */
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* IMPORTANT:
+   Do not allow the old JavaScript hide class
+   to move the CTA off-screen. */
+
+#stickyCTA.hide {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Prevent accidental horizontal overflow */
+html,
+body {
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    #stickyCTA {
+        width: 100%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: calc(8px + env(safe-area-inset-bottom));
+
+        box-sizing: border-box;
     }
-  }
-);
-}, { threshold: 0.1 });
 
-if (footer) observer.observe(footer);
-</script>
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 641px) {
+
+    #stickyCTA {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+}
+</style>
+
+<style>
+/* =========================================================
+   EXPENSESPLIT — FULL WIDTH FOOTER FIX
+   ========================================================= */
+
+footer.footer,
+#footer {
+    width: 100%;
+    max-width: none;
+
+    margin-left: 0;
+    margin-right: 0;
+
+    box-sizing: border-box;
+
+    position: relative;
+    left: 0;
+    right: 0;
+
+    overflow: hidden;
+}
+
+/*
+   Keep the footer content nicely constrained while
+   allowing the footer background itself to reach
+   the browser edges.
+*/
+
+footer.footer .container,
+#footer .container {
+    width: 100%;
+    max-width: 1180px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MOBILE FOOTER
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    footer.footer,
+    #footer {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    footer.footer .container,
+    #footer .container {
+        width: 100%;
+        max-width: none;
+
+        padding-left: 18px;
+        padding-right: 18px;
+
+        box-sizing: border-box;
+    }
+
+}
+</style>
    
   <!-- Place this at the very bottom of your HTML file -->
 <div id="printable-summary"></div>
